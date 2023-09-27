@@ -5,8 +5,18 @@
 }
 
 @font-face {
-	font-family: "Hack";
-	src: url("./fonts/hack.woff") format("woff");
+	font-family: "IBM";
+	src: url("./fonts/ibm.ttf") format("woff");
+}
+
+@font-face {
+	font-family: "Bakbakone";
+	src: url("./fonts/bakbakone.ttf") format("woff");
+}
+
+@font-face {
+	font-family: "Solitreo";
+	src: url("./fonts/solitreo.ttf") format("woff");
 }
 
 @font-face {
