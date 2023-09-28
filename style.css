@@ -124,10 +124,13 @@ body {
 	line-height: 1;
 }
 
+.header_title h1 {
+font-size: 4vw;
+}
+
 .header_slogan {
 	display: flex;
 	justify-content: right;
-	/* margin: auto; */
 	width: 100%;
 	margin-top: 0;
 	font-family: Solitreo;
@@ -166,6 +169,13 @@ body {
 	display: flex;
 	font-size: 16pt;
 	color: #bbb;
+	transition: .3s;
+}
+
+.menu_item:hover {
+	transform: scale(1.1);
+	cursor: pointer;
+	/* color: #80539e; */
 }
 
 .social {
@@ -197,15 +207,41 @@ body {
 	transition: 0.3s;
 	transform: scale(1.2);
 	cursor: pointer;
-	color: #d2691e;
+	background-color: #80539e;
+}
+
+/* FOOTER */
+
+.footer {
+	display: flex;
+	position: fixed;
+	z-index: 102;
+	width: 100%;
+	height: 40px;
+	background-color: #000;
+	bottom: 0;
+	justify-content: center;
+	overflow: hidden;
+	margin: auto;
+}
+
+#footer {
+	color: #ccc;
+	font-size: 11pt;
+	text-align: center;
+	margin: auto;
+	padding: 0;
 }
 
 /* RESPONSIVE */
 
 @media screen and (max-width: 280px) {
-	.header_top, .header_box {
-		height:200px;
+
+	.header_top,
+	.header_box {
+		height: 200px;
 	}
+
 	.logo {
 		height: 200px;
 	}
@@ -238,7 +274,7 @@ body {
 		width: 110%;
 	}
 
-	.header_title p {
+	.header_title h1 {
 		font-size: 5.9vw;
 		width: 90%;
 		text-align: center;
@@ -258,7 +294,7 @@ body {
 		display: none;
 	}
 
-	.header_title p {
+	.header_title h1 {
 		font-size: 6vw;
 		text-align: right;
 	}
@@ -311,8 +347,9 @@ body {
 	.header_top {
 		min-height: 100px;
 	}
+
 	.logo {
-height: 88%;
+		height: 88%;
 	}
 
 	#h_logo {
