@@ -64,12 +64,12 @@ body {
 	align-items: center;
 	margin: auto;
 	width: 100%;
-	min-height: 100px;
+	height: 200px;
 }
 
 .header_box {
 	display: flex;
-	max-height: 180px;
+	min-height: 200px;
 	width: 100%;
 	justify-content: center;
 	align-items: center;
@@ -84,16 +84,16 @@ body {
 .logo {
 	display: flex;
 	left: 0;
-	width: 15%;
+	width: 35%;
 	max-height: 200px;
 }
 
 #h_logo {
 	display: flex;
-	width: 100%;
-	min-width: 150%;
+	width: 200px;
+	padding-top: 5px;
 	margin: auto;
-	object-fit:contain;
+	object-fit: contain;
 	z-index: 150;
 }
 
@@ -104,9 +104,7 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	/* margin: auto; */
-	margin-right: 20px;
-	background-color: red;
+	margin-right: 60px;
 }
 
 .header_title {
@@ -116,7 +114,7 @@ body {
 	text-align: center;
 	font-family: Bakbakone;
 	color: #057c85;
-	font-size: 4.8vw;
+	font-size: 4.5vw;
 	width: 100%;
 	justify-content: right;
 	margin: auto;
@@ -143,9 +141,12 @@ body {
 	display: flex;
 	flex-direction: row;
 	width: 100%;
+	height: 40px;
 	justify-content: center;
 	align-items: center;
 	margin: auto;
+	background-color: #222;
+	border-top: 1px solid #000;
 }
 
 .menu {
@@ -154,43 +155,130 @@ body {
 	justify-content: center;
 	align-items: center;
 	margin: auto;
+	margin-left: 30px;
 	padding: 5px;
 	gap: 30px;
-	background-color: #222;
-	border-top: 1px solid #000;
 }
 
 .menu_item {
-display: flex;
-font-size: 16pt;
-color: #bbb;
+	display: flex;
+	font-size: 16pt;
+	color: #bbb;
+}
+
+.social {
+	display: flex;
+	font-family: Symbols;
+	width: 15%;
+	position: fixed;
+	justify-content: right;
+	align-content: center;
+	gap: 8px;
+	padding: 0;
+	right: 60px;
+}
+
+.social p {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #222;
+	background-color: #37a1c6;
+	border-radius: 8px;
+	width: 32px;
+	height: 32px;
+	padding: 0;
+	font-size: 16pt;
+}
+
+.social_item:hover {
+	transition: 0.3s;
+	transform: scale(1.2);
+	cursor: pointer;
+	color: #d2691e;
 }
 
 /* RESPONSIVE */
 
 @media screen and (max-width: 370px) {}
 
+
+
 @media screen and (max-width: 576px) {
-	.header_title {
-		/* margin-left: 30px; */
-		font-size: 4.8vw;
+	.header_box {
+		background-position: center;
+		background-position-x: -730px;
+		min-height: 170px;
 	}
 
+	.header_text_box {
+		width: 100%;
+		padding: 0;
+		margin: auto;
+		margin-right: 0;
+		gap: 5px;
+	}
+
+	.header_title,
 	.header_slogan {
-		/* margin-left: 30px; */
-		font-size: 3.2vw;
+		width: 110%;
+	}
+
+	.header_title p {
+		font-size: 5.9vw;
+		width: 90%;
+		text-align: center;
+	}
+
+	.header_slogan p {
+		font-size: 3.3vw;
+		text-align: center;
+		width: 90%;
 	}
 }
 
 @media screen and (max-width: 768px) {}
 
-@media screen and (max-width: 945px) {}
+@media screen and (max-width: 920px) {
+	.menu {
+		display: none;
+	}
 
-@media screen and (max-width: 1024px) {}
+	.social {
+		justify-content: center;
+		width: 100%;
+		right: 0;
+	}
+}
+
+@media screen and (max-width: 980px) {
+	.logo {
+		justify-content: center;
+		align-items: center;
+		margin: auto;
+		height: 100%;
+	}
+
+	#h_logo {
+		width: 160px;
+		/* margin-left: -12px; */
+	}
+
+}
+
+@media screen and (max-width: 1024px) {
+	.header_title {
+		font-size: 4.2vw;
+	}
+}
 
 @media screen and (max-width: 1140px) {}
 
-@media screen and (max-width: 1200px) {}
+@media screen and (max-width: 1200px) {
+	.menu {
+		justify-content: left;
+	}
+}
 
 /* ANIMATIONS */
 
