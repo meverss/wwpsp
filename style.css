@@ -294,9 +294,10 @@ a {
 .s_why_us {
 	display: flex;
 	flex-direction: column;
+	flex: 3;
 	justify-content: center;
 	align-items: center;
-	width: 70%;
+	width: 65%;
 }
 
 .why_us_title {
@@ -305,6 +306,54 @@ a {
 	background-color: #057c85;
 	text-align: center;
 }
+
+
+.why_us_cards {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	margin: auto;
+	gap: 10px;
+}
+
+.card {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: auto;
+	column-gap: 50px;
+	width: 250px;
+	height: 300px;
+	background-color: #057c85;
+	border: 1px solid #bbb;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
+
+.card img {
+	padding: 0;
+	width: 100%;
+	height: auto;
+}
+
+.card p {
+	/* height: 100%; */
+	vertical-align: middle;
+}
+
+.card_text {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	text-align: center;
+	padding: 0;
+	text-align: center;
+	vertical-align: middle;
+	color: #fff;
+}
+
 
 /* FOOTER */
 
