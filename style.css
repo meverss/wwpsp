@@ -66,8 +66,8 @@ h2 {
 	font-size: 22pt;
 	text-align: justify;
 	padding: 8px;
-	border-top-left-radius: 8px;
-	border-top-right-radius: 8px;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
 }
 
 a {
@@ -442,16 +442,6 @@ a {
 
 
 /* ANIMATIONS */
-
-@keyframes underline {
-	from {
-		width: 0%;
-	}
-
-	to {
-		width: 100%;
-	}
-}
 
 @keyframes l6 {
 	100% {
