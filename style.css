@@ -276,7 +276,7 @@ a {
 	text-align: center;
 	margin: auto;
 	padding: 10px;
-	width: 50%;
+	width: 65%;
 }
 
 .welcome_title {
@@ -286,7 +286,7 @@ a {
 }
 
 .welcome_msg {
-	border: 1px solid #bbb;
+	border: 1px solid #80539e;
 }
 
 /* WHY CHOOSING US */
@@ -324,31 +324,33 @@ a {
 	align-items: center;
 	margin: auto;
 	column-gap: 50px;
-	width: 250px;
+	width: 180px;
 	height: 300px;
 	background-color: #057c85;
-	border: 1px solid #bbb;
-	border-top-left-radius: 8px;
-	border-top-right-radius: 8px;
+	border: 1px solid #057c85;
+	/* border-top-left-radius: 8px;
+	border-top-right-radius: 8px; */
 }
 
 .card img {
-	padding: 0;
+	/* padding: 0; */
 	width: 100%;
 	height: auto;
 }
 
 .card p {
-	/* height: 100%; */
 	vertical-align: middle;
+	font-size: 16pt;
 }
 
 .card_text {
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	width: 100%;
+	height: 20px;
 	text-align: center;
-	padding: 0;
+	margin: auto;
 	text-align: center;
 	vertical-align: middle;
 	color: #fff;
