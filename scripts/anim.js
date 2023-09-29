@@ -3,9 +3,9 @@ const notes = document.querySelectorAll('.box');
 function triggerAnimation(entries){
   entries.forEach(entry =>{
     if(entry.isIntersecting){
-        entry.target.classList.add('show', 'animate__animated', 'animate__zoomIn');
+        entry.target.classList.add('show', 'animate__animated', 'animate__fadeIn');
         obBoxes.unobserve(entry.target);
-        setTimeout(function(){entry.target.classList.remove('animate__animated', 'animate__zoomIn');}, 1500);
+        setTimeout(function(){entry.target.classList.remove('animate__animated', 'animate__fadeIn');}, 1500);
     }
   })  
 }

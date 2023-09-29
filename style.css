@@ -259,6 +259,8 @@ a {
 /* MAIN CONTAINER */
 .main_container {
 	display: flex;
+	flex-direction: column;
+	gap: 100px;
 	justify-content: center;
 	align-items: center;
 	margin: auto;
@@ -271,7 +273,6 @@ a {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	/* gap: 10px; */
 	text-align: center;
 	margin: auto;
 	padding: 10px;
@@ -286,6 +287,23 @@ a {
 
 .welcome_msg {
 	border: 1px solid #bbb;
+}
+
+/* WHY CHOOSING US */
+
+.s_why_us {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 70%;
+}
+
+.why_us_title {
+	width: 100%;
+	color: #eee;
+	background-color: #057c85;
+	text-align: center;
 }
 
 /* FOOTER */
