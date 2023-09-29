@@ -66,8 +66,8 @@ h2 {
 	font-size: 22pt;
 	text-align: justify;
 	padding: 8px;
-	border-top-left-radius: 7px;
-	border-top-right-radius: 7px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 }
 
 a {
@@ -110,9 +110,9 @@ a {
 
 #h_logo {
 	display: flex;
-	width: 350px;
+	width: 300px;
 	position: fixed;
-	padding-top: 35px;
+	padding-top: 60px;
 	margin: -100px;
 	margin-left: -115px;
 	object-fit: contain;
@@ -122,11 +122,12 @@ a {
 .header_text_box {
 	display: flex;
 	width: 100%;
+	margin-top: -40px;
 	flex-flow: wrap-reverse;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin-right: 60px;
+	/* margin-right: 60px; */
 }
 
 .header_title {
@@ -144,6 +145,10 @@ a {
 }
 
 .header_title h1 {
+	position: absolute;
+	/* background-color: red; */
+	right: 0;
+	width: 100%;
 	font-size: 4vw;
 }
 
@@ -157,6 +162,12 @@ a {
 }
 
 .header_slogan p {
+	position: absolute;
+	/* background-color: green; */
+	text-align: center;
+	margin-top: 35px;
+	right: 0;
+	width: 100%;
 	padding: 0;
 	font-size: 1.5vw;
 }
@@ -241,7 +252,6 @@ a {
 	justify-content: center;
 	align-items: center;
 	color: #bbb;
-	background-color: #222;
 	border-radius: 8px;
 	width: 32px;
 	height: 32px;
@@ -285,16 +295,12 @@ a {
 	text-align: center;
 }
 
-.welcome_msg {
-	border: 1px solid #80539e;
-}
-
 /* WHY CHOOSING US */
 
 .s_why_us {
 	display: flex;
 	flex-direction: column;
-	flex: 3;
+
 	justify-content: center;
 	align-items: center;
 	width: 65%;
@@ -320,27 +326,32 @@ a {
 .card {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: space-evenly;
 	align-items: center;
 	margin: auto;
+	margin-bottom: 30px;
 	column-gap: 50px;
-	width: 180px;
-	height: 300px;
-	background-color: #057c85;
-	border: 1px solid #057c85;
-	/* border-top-left-radius: 8px;
-	border-top-right-radius: 8px; */
+	width: 160px;
+	height: 250px;
+	border: 1px solid #555;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
 }
 
 .card img {
-	/* padding: 0; */
-	width: 100%;
+	width: 60%;
+	margin-top: 30px;
 	height: auto;
+	filter: contrast(40%);
+	
 }
 
 .card p {
-	vertical-align: middle;
+	align-self: baseline;
+	background-color: #555;
 	font-size: 16pt;
+	height: 75px;
+	margin-bottom: 0;
 }
 
 .card_text {
@@ -356,6 +367,27 @@ a {
 	color: #fff;
 }
 
+/* FOOTER */
+
+.footer {
+	display: flex;
+	position: fixed;
+	z-index: 102;
+	width: 100%;
+	height: 40px;
+	background-color: #000;
+	bottom: 0;
+	justify-content: center;
+	margin: auto;
+}
+
+#footer {
+	color: #ccc;
+	font-size: 11pt;
+	text-align: center;
+	margin: auto;
+	padding: 0;
+}
 
 /* FOOTER */
 
@@ -381,22 +413,7 @@ a {
 
 /* RESPONSIVE */
 
-@media screen and (max-width: 280px) {
-
-	.header_top,
-	.header_box {
-		height: 200px;
-	}
-
-	.logo {
-		height: 200px;
-	}
-
-	#h_logo {
-		height: 150px;
-	}
-
-}
+@media screen and (max-width: 280px) {}
 
 @media screen and (max-width: 370px) {}
 
@@ -404,8 +421,28 @@ a {
 
 @media screen and (max-width: 576px) {
 	.header_top {
+		background-size: auto;
 		background-position: center;
 		background-position-x: -800px;
+	}
+
+	.header_top,
+	.header_box {
+		height: 100px;
+	}
+
+	.menu_bar {
+		margin-top: -50px;
+	}
+
+	.logo {
+		height: 200px;
+	}
+
+	#h_logo {
+		height: 110px;
+		padding-bottom: 8px;
+		left: -25px;
 	}
 
 	.header_text_box {
