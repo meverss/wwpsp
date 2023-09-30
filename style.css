@@ -442,34 +442,34 @@ a {
 	column-gap: 50px;
 	width: 160px;
 	height: 225px;
-	border: 1px solid #085c97;
+	border: 1px solid #222;
+	/* border: 1px solid #085c97; */
 	border-radius: 20px;
 	transition: .3s;
 }
 
-.card:hover {
+.card:hover>img {
 	transform: scale(1.05);
-	cursor: pointer;
 }
 
 .card img {
 	width: 60%;
 	margin-top: 30px;
 	height: auto;
-	filter: contrast(10%);
-	color:#085c97;
+	filter: opacity(80%);
+	transition: .3s;
 }
 
 .card p {
 	align-self: baseline;
-	background-color: #085c97;
+	background-color: #222;
+	/* background-color: #085c97; */
 	font-size: 14pt;
 	height: 75px;
 	margin-bottom: 0;
 	line-height: 1.2;
-	border-radius: 19px;
-	/* border-top-left-radius: 30px;
-	border-top-right-radius: 30px; */
+	border-bottom-left-radius: 19px;
+	border-bottom-right-radius: 19px;
 }
 
 .card_text {
@@ -542,7 +542,7 @@ a {
 
 
 	.welcome {
-		margin-top: -80px;
+		margin-top: -30px;
 	}
 
 	#h_logo {
