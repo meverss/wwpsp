@@ -90,6 +90,26 @@ a {
 	box-shadow: 2px 2px 7px 0.1px #bbb;
 }
 
+.button {
+	width: auto;
+	font-size: 14pt;
+	color: #fff;
+	background-color: #085c97;
+	border: 1px solid #222;
+	border-radius: 8px;
+	transition: .3s;
+	height: fit-content;
+	padding: 8px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.button:hover {
+	color: #fff;
+	transform: scale(1.1);
+	cursor: pointer;
+}
+
 /* TOP SECTION */
 .header_top {
 	display: flex;
@@ -297,9 +317,8 @@ a {
 	margin-left: 50px;
 	left: 0;
 	top: 270px;
-	width: 260px;
+	width: 280px;
 	height: 200px;
-	/* background-color: #eee; */
 	border-radius: 8px;
 	border: 1px solid #eee;
 }
@@ -322,6 +341,43 @@ a {
 	width: 100%;
 	color: #000;
 	z-index: 2;
+}
+
+/* RIGHT SIDE BAR - WWP SERVICE */
+
+.wwp_services {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: auto;
+	position: fixed;
+	right: 40px;
+	top: 270px;
+	border-radius: 8px;
+	border: 1px solid #eee;
+	width: 300px;
+	height: fit-content;
+	padding: 10px;
+}
+
+.budget {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: auto;
+}
+
+.budget_title {
+	display: flex;
+	text-align: center;
+	width: auto;
+	color: #37a1c6;
+}
+
+.budget img {
+	width: 80%;
+	filter: opacity(85%);
 }
 
 /* MAIN CONTAINER */
