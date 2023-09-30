@@ -349,15 +349,20 @@ a {
 	width: 100%;
 }
 
-.welcome_msg {
-	border: 1px solid #085c97;
-}
-
 .welcome_title {
 	color: #eee;
 	background-color: #085c97;
 	text-align: center;
+	border-top-right-radius: 8px;
+	border-top-left-radius: 8px;
 }
+
+.welcome_msg {
+	border: 1px solid #085c97;
+	border-bottom-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+}
+
 
 /* ABOUT US */
 
@@ -433,7 +438,7 @@ a {
 	justify-content: space-evenly;
 	align-items: center;
 	margin: auto;
-	/* margin-bottom: 30px; */
+	margin-bottom: 30px;
 	column-gap: 50px;
 	width: 160px;
 	height: 225px;
@@ -533,12 +538,10 @@ a {
 
 @media screen and (max-width: 600px) {
 
-	.main_container {
-		width: 98%;
-	}
+
 
 	.welcome {
-		margin-top: -100px;
+		margin-top: -80px;
 	}
 
 	#h_logo {
@@ -603,6 +606,11 @@ a {
 }
 
 @media screen and (max-width: 850px) {
+	.main_container {
+		width: 98%;
+		gap: 30px;
+	}
+
 	.header_title h1 {
 		font-size: 4vw;
 	}
