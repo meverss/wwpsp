@@ -286,7 +286,7 @@ a {
 
 /* WORKING HOURS */
 
-.working_hours{
+.working_hours {
 	display: flex;
 	justify-content: center;
 	position: fixed;
@@ -529,13 +529,30 @@ a {
 
 @media screen and (max-width: 370px) {}
 
+@media screen and (max-width: 490px) {}
 
+@media screen and (max-width: 600px) {
 
-@media screen and (max-width: 576px) {
+	.main_container {
+		width: 98%;
+	}
+
+	.welcome {
+		margin-top: -100px;
+	}
+
+	#h_logo {
+		height: 100px;
+		position: fixed;
+		padding: 0;
+		margin: auto;
+		left: -20px !important;
+		width: 150px;
+	}
+
 	.header_top {
-		background-size: auto;
+		background-size: cover;
 		background-position: center;
-		background-position-x: -800px;
 	}
 
 	.header_top,
@@ -548,13 +565,16 @@ a {
 	}
 
 	.logo {
-		height: 200px;
+		height: 100px;
 	}
 
 	#h_logo {
-		height: 110px;
-		padding-bottom: 8px;
-		left: -25px;
+		height: 100px;
+		position: fixed;
+		padding: 0;
+		margin: auto;
+		left: 20px;
+		width: 150px;
 	}
 
 	.header_text_box {
@@ -566,23 +586,40 @@ a {
 
 	.header_title,
 	.header_slogan {
-		width: 110%;
+		width: 100%;
 	}
 
 	.header_title h1 {
-		font-size: 5.9vw;
+		font-size: 4vw !important;
 		width: 90%;
 		text-align: center;
 	}
 
 	.header_slogan p {
 		font-size: 3.3vw;
-		text-align: right;
 		width: 90%;
+		margin-top: 5px;
 	}
 }
 
-@media screen and (max-width: 768px) {}
+@media screen and (max-width: 850px) {
+	.header_title h1 {
+		font-size: 4vw;
+	}
+
+	.header_slogan p {
+		font-size: 3vw !important;
+	}
+
+	.about_us_box {
+		flex-direction: column;
+	}
+
+	.about_us_img,
+	.about_us_text {
+		width: 96%;
+	}
+}
 
 @media screen and (max-width: 920px) {
 	.menu {
@@ -606,26 +643,9 @@ a {
 	}
 }
 
-@media screen and (max-width: 980px) {
+@media screen and (max-width: 980px) {}
 
-	.logo {
-		justify-content: center;
-		align-items: center;
-		margin: auto;
-		height: 100%;
-	}
-
-	#h_logo {
-		width: 160px;
-	}
-
-}
-
-@media screen and (max-width: 1024px) {
-	.header_title {
-		font-size: 4vw;
-	}
-}
+@media screen and (max-width: 1024px) {}
 
 @media screen and (max-width: 1140px) {}
 
@@ -635,10 +655,28 @@ a {
 	}
 }
 
-@media screen and (max-width: 1690px) {
-.info {
-	display: none;
+@media screen and (max-width: 1359px) {
+	.header_title h1 {
+		text-align: right;
+		font-size: 4.6vw;
+	}
+
+	#h_slogan {
+		text-align: right;
+		font-size: 3vw;
+	}
+
+	.header_title h1,
+	#h_slogan {
+		right: 20px;
+	}
 }
+
+@media screen and (max-width: 1690px) {
+	.info {
+		display: none;
+	}
+
 }
 
 
