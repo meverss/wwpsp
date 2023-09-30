@@ -64,15 +64,27 @@ p {
 
 h2 {
 	font-size: 22pt;
+	font-weight: bold;
 	text-align: justify;
 	padding: 2px;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
+	/* border-top-left-radius: 5px;
+	border-top-right-radius: 5px; */
 }
 
 a {
 	text-decoration: none;
 	color: #057c85;
+}
+
+.big_box {
+	display: flex;
+	justify-content: center;
+	margin: auto;
+	width: 100%;
+}
+
+.shadowed {
+	box-shadow: 2px 2px 7px 0.1px #bbb;
 }
 
 /* TOP SECTION */
@@ -110,11 +122,11 @@ a {
 
 #h_logo {
 	display: flex;
-	width: 300px;
+	width: 200px;
 	position: fixed;
-	padding-top: 60px;
+	padding-top: 10px;
 	margin: -100px;
-	margin-left: -115px;
+	margin-left: -20px;
 	object-fit: contain;
 	/* -webkit-filter: drop-shadow(0 0 5px #111) drop-shadow(0 0 10px #111); */
 }
@@ -127,7 +139,6 @@ a {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	/* margin-right: 60px; */
 }
 
 .header_title {
@@ -264,6 +275,43 @@ a {
 	background-color: #085c97;
 }
 
+/* WORKING HOURS */
+
+.working_hours{
+	display: flex;
+	justify-content: center;
+	position: fixed;
+	margin: auto;
+	margin-left: 50px;
+	left: 0;
+	top: 270px;
+	width: 250px;
+	height: 200px;
+	background-color: #e1e2e3;
+	border-radius: 8px;
+	border: 1px solid #aaa;
+}
+
+.working_hours_title {
+	text-align: center;
+	padding: 20px;
+	color: #37a1c6;
+}
+
+.working_hours li {
+	list-style: none;
+	padding-left: 20px;
+	line-height: 1.5;
+	font-size: 14pt;
+}
+
+.time {
+	position: absolute;
+	width: 100%;
+	color: #000;
+	z-index: 2;
+}
+
 /* MAIN CONTAINER */
 .main_container {
 	display: flex;
@@ -273,9 +321,14 @@ a {
 	align-items: center;
 	margin: auto;
 	position: absolute;
-	width: 100%;
-	margin-top: 250px;
+	width: 60%;
+	margin-top: 170px;
 }
+
+
+/***** CONTENT *****/
+
+/* WELCOME */
 
 .welcome {
 	display: flex;
@@ -284,7 +337,7 @@ a {
 	text-align: center;
 	margin: auto;
 	padding: 10px;
-	width: 65%;
+	width: 100%;
 }
 
 .welcome_msg {
@@ -305,7 +358,7 @@ a {
 	justify-content: center;
 	align-items: center;
 	margin: auto;
-	width: 65%;
+	width: 100%;
 }
 
 .about_us_title {
@@ -344,7 +397,7 @@ a {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 65%;
+	width: 100%;
 }
 
 .why_us_title {
@@ -361,6 +414,7 @@ a {
 	justify-content: center;
 	align-items: center;
 	margin: auto;
+	margin-top: 20px;
 	gap: 10px;
 }
 
@@ -370,7 +424,7 @@ a {
 	justify-content: space-evenly;
 	align-items: center;
 	margin: auto;
-	margin-bottom: 30px;
+	/* margin-bottom: 30px; */
 	column-gap: 50px;
 	width: 160px;
 	height: 225px;
@@ -381,7 +435,7 @@ a {
 
 .card:hover {
 	transform: scale(1.05);
-	background-color: #eee;
+	cursor: pointer;
 }
 
 .card img {

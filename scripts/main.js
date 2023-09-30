@@ -89,7 +89,7 @@ function show_page() {
 //COPYRIGHT
 
 const fecha = new Date();
-const copyright = "Copyright ©" + fecha.getFullYear() + " WWP Screening & Painting LLC.";
+const copyright = "Copyright ©" + fecha.getFullYear() + " WWP SCREENING & PAINTING LLC.";
 footer.innerHTML = copyright;
 my_age.innerHTML = fecha.getFullYear() - 1985;
 
