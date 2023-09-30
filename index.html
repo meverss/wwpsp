@@ -2,10 +2,6 @@
 <html lang="en">
 
 <head>
-	<link rel="preload" href="./fonts/hack.woff" as="font" type="font/woff" crossorigin />
-	<link rel="preload" href="./fonts/symbols.woff" as="font" type="font/woff" crossorigin />
-	<link rel="stylesheet" href="./style.css" />
-
 	<!-- META -->
 
 	<title>WWP Screening & Painting LLC</title>
@@ -28,8 +24,15 @@
 	<meta name="author" content="KiniunTech" />
 	<link rel="icon" href="./media/images/icon.png" />
 	<link rel="apple-touch-icon" href="./media/images/apple-touch-icon.png" />
-	<link rel="apple-touch-icon" sizes="57x57" href="./media/images/touch-icon-iphone.png" />
-	<link rel="apple-touch-icon" sizes="114x114" href="./media/images/touch-icon-ipad.png" />
+	<link rel="apple-touch-icon" sizes="57x57" href="./media/images/touch-icon-iphone.ico" />
+	<link rel="apple-touch-icon" sizes="114x114" href="./media/images/touch-icon-ipad.ico" />
+	<link rel="preload" href="./fonts/hack.woff" as="font" type="font/woff" crossorigin />
+	<link rel="preload" href="./fonts/symbols.woff" as="font" type="font/woff" crossorigin />
+	<link rel="stylesheet" href="./style.css" />
+	<link rel="stylesheet" href="./fontawesome/css/all.css" />
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+		integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
 </head>
 
 <body>
@@ -38,7 +41,9 @@
 			<aside class="info" id="info">
 				<section class="working_hours shadowed" id="working_hours">
 					<div class="time" id="time">
-						<h2 class="working_hours_title" id="working_hours_title"><span style="font-family: Symbols; font-size: 30pt;">󱑎 </span>Working hours</h2>
+						<h2 class="working_hours_title" id="working_hours_title"><span
+								style="font-family: Symbols; font-size: 22pt;"><i class='far fa-clock'></i></span>
+							Working hours</h2>
 						<ul>
 							<li>Monday - Friday: 8am - 8pm</li>
 							<li>Saturday: 8am – 6pm</li>
@@ -80,9 +85,12 @@
 							<p class="menu_item" id="contact_us" data-before="Contact us"> Contact us </p>
 						</div>
 						<div class="social" id="social">
-							<p class="social_item" id="facebook" title="Share on Facebook"></p>
-							<p class="social_item" id="tweeter" title="Share on Tweeter"></p>
-							<p class="social_item" id="linkedin" title="Share on LinkedIn"></p>
+							<p class="social_item" id="facebook" title="Share on Facebook"><i
+									class='fab fa-facebook-f'></i></p>
+							<p class="social_item" id="tweeter" title="Share on Tweeter"><i class='fab fa-twitter'></i>
+							</p>
+							<p class="social_item" id="linkedin" title="Share on LinkedIn"><i
+									class='fab fa-linkedin-in'></i></p>
 						</div>
 					</div>
 				</section>
@@ -152,27 +160,27 @@
 						</p>
 						<div class="why_us_cards" id="why_us_cards">
 							<div class="card box" id="free_consultation">
-								<img src="./media/images/free_consultation.png" alt="consultation" srcset="">
+								<img src="./media/images/free_consultation.svg" alt="consultation" srcset="">
 								<p class="card_text"> Free consultation </p>
 							</div>
-							<div class="card box" id="free_consultation">
-								<img src="./media/images/experienced_technician.png" alt="experience" srcset="">
+							<div class="card box" id="experienced_technicians">
+								<img src="./media/images/experienced_technician.svg" alt="experience" srcset="">
 								<p class="card_text"> Experienced technicians</p>
 							</div>
-							<div class="card box" id="free_consultation">
-								<img src="./media/images/parts_quality.png" alt="parts qulity" srcset="">
+							<div class="card box" id="parts_quality">
+								<img src="./media/images/parts_quality.svg" alt="parts qulity" srcset="">
 								<p class="card_text"> Parts quality guarantee </p>
 							</div>
-							<div class="card box" id="free_consultation">
-								<img src="./media/images/work_guaranteed.png" alt="work guaranteed" srcset="">
+							<div class="card box" id="work_waranteed">
+								<img src="./media/images/work_guaranteed.svg" alt="work guaranteed" srcset="">
 								<p class="card_text"> All work guaranteed </p>
 							</div>
-							<div class="card box" id="free_consultation">
-								<img src="./media/images/service_on_time.png" alt="service on time" srcset="">
+							<div class="card box" id="service_on_time">
+								<img src="./media/images/service_on_time.svg" alt="service on time" srcset="">
 								<p class="card_text"> Service on time </p>
 							</div>
-							<div class="card box" id="free_consultation">
-								<img src="./media/images/cover_major_brands.png" alt="cover mayor brands" srcset="">
+							<div class="card box" id="cover_major_brands">
+								<img src="./media/images/cover_major_brands.svg" alt="cover mayor brands" srcset="">
 								<p class="card_text"> We cover all major brands </p>
 							</div>
 						</div>
