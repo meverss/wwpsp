@@ -143,6 +143,8 @@ social_n.forEach((item) => {
 // const f_message = document.getElementById("message");
 // const f_btn = document.getElementById("btn_send");
 // const valid_email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+// const valid_phone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
+// const valid_phone_cc = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/;
 
 // f_name.addEventListener("focusout", (e) => {
 // 	if (f_name.value.length < 2) {
