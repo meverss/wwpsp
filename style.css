@@ -60,13 +60,16 @@ p {
 	text-align: justify;
 	line-height: 1.5;
 	padding: 20px;
+	padding-top: 15px;
 }
 
 h2 {
-	font-size: 22pt;
+	font-size: 24pt;
 	font-weight: bold;
 	text-align: justify;
 	padding: 2px;
+	color: #085c97;
+	padding-left: 20px;
 	/* border-top-left-radius: 5px;
 	border-top-right-radius: 5px; */
 }
@@ -194,7 +197,7 @@ a {
 	justify-content: center;
 	align-items: center;
 	margin: auto;
-	background-color: #000;
+	background-color: #111;
 }
 
 .menu {
@@ -493,7 +496,7 @@ a {
 	z-index: 102;
 	width: 100%;
 	height: 40px;
-	background-color: #000;
+	background-color: #111;
 	bottom: 0;
 	justify-content: center;
 	margin: auto;
@@ -609,7 +612,7 @@ a {
 @media screen and (max-width: 850px) {
 	.main_container {
 		width: 98%;
-		gap: 30px;
+		gap: 20px;
 	}
 
 	.header_title h1 {
