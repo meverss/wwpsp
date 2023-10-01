@@ -63,6 +63,13 @@ p {
 	padding-top: 15px;
 }
 
+hr {
+	display: flex;
+	width: 90%;
+	margin: auto;
+	margin-bottom: 10px;
+}
+
 h2 {
 	font-size: 24pt;
 	font-weight: bold;
@@ -83,7 +90,6 @@ a {
 	display: flex;
 	justify-content: center;
 	margin: auto;
-	width: 100%;
 }
 
 .shadowed {
@@ -318,9 +324,10 @@ a {
 	left: 0;
 	top: 270px;
 	width: 280px;
-	height: 200px;
+	height: 250px;
 	border-radius: 8px;
-	border: 1px solid #eee;
+	border: 1px solid #555;
+	background-color: #eee;
 }
 
 .working_hours_title {
@@ -343,6 +350,13 @@ a {
 	z-index: 2;
 }
 
+#clock {
+	font-size: 50pt;
+	width: 100%;
+	text-align: center;
+	color: #777;
+}
+
 /* RIGHT SIDE BAR - WWP SERVICE */
 
 .wwp_services {
@@ -354,7 +368,8 @@ a {
 	right: 40px;
 	top: 270px;
 	border-radius: 8px;
-	border: 1px solid #eee;
+	border: 1px solid #555;
+	background-color: #eee;
 	width: 300px;
 	height: fit-content;
 	padding: 10px;
@@ -373,14 +388,21 @@ a {
 	text-align: center;
 	width: auto;
 	color: #37a1c6;
+	padding: 15px;
 }
 
 .budget img {
-	width: 80%;
+	width: 50%;
 	filter: opacity(85%);
 }
 
+.budget .button {
+	width: 95%;
+	text-align: center;
+}
+
 /* MAIN CONTAINER */
+
 .main_container {
 	display: flex;
 	flex-direction: column;
