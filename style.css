@@ -651,11 +651,6 @@ a {
 		height: 100px;
 	}
 
-	.social {
-		justify-content: right !important;
-		right: 20px !important;
-	}
-
 	#h_logo {
 		position: fixed;
 		padding: 0;
@@ -693,7 +688,10 @@ a {
 		margin-top: 50px;
 	}
 
-
+	.social {
+		font-size: 10pt !important;
+		gap: 2px;
+	}
 
 	.about_us_box {
 		flex-direction: column;
