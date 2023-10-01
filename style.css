@@ -93,7 +93,7 @@ a {
 }
 
 .shadowed {
-	box-shadow: 2px 2px 7px 0.1px #bbb;
+	box-shadow: 2px 2px 7px 0.1px #fff;
 }
 
 .button {
@@ -103,7 +103,7 @@ a {
 	background-color: #085c97;
 	border: 1px solid #222;
 	border-radius: 8px;
-	transition: .3s;
+	transition: .2s;
 	height: fit-content;
 	padding: 8px;
 	padding-left: 15px;
@@ -112,8 +112,13 @@ a {
 
 .button:hover {
 	color: #fff;
-	transform: scale(1.1);
+	transform: scale(1.05);
 	cursor: pointer;
+}
+
+.button:active {
+	background-color:#37a1c6;
+	transform: scale(1);
 }
 
 /* TOP SECTION */
@@ -350,6 +355,10 @@ a {
 	z-index: 2;
 }
 
+.fa-clock {
+	color: #057c85;
+}
+
 #clock {
 	font-size: 50pt;
 	width: 100%;
@@ -370,7 +379,7 @@ a {
 	border-radius: 8px;
 	border: 1px solid #555;
 	background-color: #eee;
-	width: 300px;
+	width: 280px;
 	height: fit-content;
 	padding: 10px;
 }
