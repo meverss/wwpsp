@@ -525,7 +525,7 @@ a {
 	margin: auto;
 	margin-bottom: 30px;
 	column-gap: 50px;
-	width: 160px;
+	width: 150px;
 	height: 225px;
 	border: 1px solid #222;
 	/* border: 1px solid #085c97; */
@@ -548,7 +548,6 @@ a {
 .card p {
 	align-self: baseline;
 	background-color: #222;
-	/* background-color: #085c97; */
 	font-size: 14pt;
 	height: 75px;
 	margin-bottom: 0;
@@ -624,6 +623,11 @@ a {
 
 @media screen and (max-width: 700px) {
 
+	.main_container {
+		width: 98%;
+		gap: 20px;
+	}
+
 	.welcome {
 		margin-top: -20px !important;
 	}
@@ -689,10 +693,6 @@ a {
 		margin-top: 50px;
 	}
 
-	.main_container {
-		width: 98%;
-		gap: 20px;
-	}
 
 
 	.about_us_box {
@@ -717,13 +717,14 @@ a {
 	}
 }
 
-@media screen and (max-width: 980px) {}
+@media screen and (max-width: 965px) {}
 
 @media screen and (max-width: 1024px) {}
 
 @media screen and (max-width: 1140px) {}
 
 @media screen and (max-width: 1200px) {
+
 	.menu {
 		justify-content: left;
 	}
@@ -737,7 +738,23 @@ a {
 	}
 }
 
-@media screen and (max-width: 1360px) {
+
+@media screen and (max-width: 1365px) {
+
+	.main_container {
+		width: 98% !important;
+		gap: 20px;
+	}
+
+	.welcome {
+		margin-top: 50px;
+	}
+
+	.info,
+	.service {
+		display: none;
+	}
+
 	.header_title h1 {
 		text-align: right;
 		font-size: 4.5vw;
@@ -754,13 +771,20 @@ a {
 	}
 }
 
-@media screen and (max-width: 1690px) {
-	.info, .service {
-		display: none;
+@media screen and (max-width: 1680px) {
+
+	.working_hours {
+		left: -30px;
 	}
 
-}
+	.wwp_services {
+		right: 20px;
+	}
 
+	.main_container {
+		width: 55%;
+	}
+}
 
 /* ANIMATIONS */
 
