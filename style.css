@@ -458,7 +458,7 @@ a {
 	bottom: 50px;
 	right: 10px;
 	border-radius: 50%;
-	background-color: #37a1c6;
+	background-color: #085c97;
 	z-index: 99999;
 	transition: .3s;
 }
@@ -472,6 +472,11 @@ a {
 
 .budget_float:hover {
 	transform: scale(1.1);
+}
+
+.budget_float:active {
+	background-color: #37a1c6;
+	transform: scale(1);
 }
 
 /* MAIN CONTAINER */
@@ -579,7 +584,7 @@ a {
 .why_us_cards {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
+	justify-content: space-around;
 	align-items: center;
 	margin: auto;
 	margin-top: 20px;
