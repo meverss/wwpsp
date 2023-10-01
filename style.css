@@ -151,9 +151,9 @@ a {
 
 #h_logo {
 	display: flex;
-	width: 280px;
+	width: 230px;
 	position: fixed;
-	padding-top: 10px;
+	padding-top: 35px;
 	margin: -100px;
 	margin-left: -60px;
 	object-fit: contain;
@@ -176,7 +176,7 @@ a {
 	align-items: center;
 	text-align: center;
 	font-family: Bakbakone;
-	color: #057c85;
+	color: #54a2f4;
 	font-size: 4vw;
 	width: 100%;
 	justify-content: right;
@@ -197,7 +197,7 @@ a {
 	width: 100%;
 	margin-top: 0;
 	font-family: Solitreo;
-	color: #bbb;
+	color: #d9b385;
 }
 
 .header_slogan p {
