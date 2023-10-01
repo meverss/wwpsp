@@ -44,7 +44,7 @@ html {
 body {
 	background-color: #fff;
 	transition: 0.3s;
-	/* overflow: hidden; */
+	overflow: hidden;
 	width: 100%;
 	font-size: 12pt;
 }
