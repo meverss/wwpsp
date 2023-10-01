@@ -302,3 +302,26 @@ social_n.forEach((item) => {
 // 		});
 // 	});
 
+// ANIMATE BUDGET ICON 
+
+function anim_budget() {
+	const icon = document.getElementById('budget_icon');
+	icon.classList.add('animate__animated', 'animate__tada');
+	setTimeout(function () {
+		icon.classList.remove('animate__animated', 'animate__tada');
+	}, 3000);
+}
+setTimeout(function () { budget_icon.classList.add('animate__animated', 'animate__tada'); }, 3000);
+setInterval(anim_budget, 30000);
+
+get_quote.addEventListener('click', e => {
+	let name = get_quote.innerHTML;
+	switch (name) {
+		case "Get a quote":
+			get_quote.innerHTML = 'Marvin';
+			break;
+		case "Marvin":
+			get_quote.innerHTML = 'Get a quote'
+			break;
+	}
+})
