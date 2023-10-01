@@ -332,14 +332,14 @@ a {
 	position: fixed;
 	color: #d1d2d3;
 	font-size: 14pt;
-	width: 60px;
+	width: 30px;
 	height: 30px;
 	justify-content: center;
 	align-items: center;
 	padding: 0;
 	margin: auto;
 	animation-duration: 0.3s;
-	right: 0;
+	right: 10px;
 }
 
 /* LEFT SIDE BAR - INFO */
@@ -691,16 +691,14 @@ a {
 
 	#h_logo {
 		position: fixed;
-		padding: 0;
 		margin: auto;
-		left: 0;
+		left: -8px;
 		width: 135px !important;
 	}
 
 	.header_text_box {
 		width: 100%;
-		padding: 0;
-		margin: auto;
+		padding-top: 20px;
 		gap: 5px;
 	}
 
@@ -710,12 +708,12 @@ a {
 	}
 
 	.header_title h1 {
-		font-size: 4vw !important;
+		font-size: 4.4vw !important;
 		align-self: last baseline;
 	}
 
 	.header_slogan p {
-		font-size: 2.5vw !important;
+		font-size: 2.8vw !important;
 		margin-top: 0;
 
 	}
@@ -803,7 +801,7 @@ a {
 
 	.header_title h1,
 	#h_slogan {
-		right: 20px;
+		right: 10px;
 	}
 }
 
