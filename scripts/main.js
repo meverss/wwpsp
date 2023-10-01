@@ -91,7 +91,6 @@ function show_page() {
 const fecha = new Date();
 const copyright = "Copyright ©" + fecha.getFullYear() + " WWP SCREENING & PAINTING LLC.";
 footer.innerHTML = copyright;
-my_age.innerHTML = fecha.getFullYear() - 1985;
 
 // SHARE MY PORTFOLIO
 
@@ -302,3 +301,4 @@ social_n.forEach((item) => {
 // 			}
 // 		});
 // 	});
+

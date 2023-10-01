@@ -19,11 +19,6 @@
 	src: url("./fonts/solitreo.ttf") format("woff");
 }
 
-@font-face {
-	font-family: "Symbols";
-	src: url("./fonts/symbols.woff") format("woff");
-}
-
 * {
 	padding: 0;
 	margin: 0;
@@ -58,7 +53,7 @@ body {
 p {
 	font-size: 15pt;
 	text-align: justify;
-	line-height: 1.5;
+	line-height: 1.6;
 	padding: 20px;
 	padding-top: 15px;
 }
@@ -630,7 +625,7 @@ a {
 @media screen and (max-width: 700px) {
 
 	.welcome {
-		margin-top: -30px;
+		margin-top: -20px !important;
 	}
 
 
@@ -652,12 +647,17 @@ a {
 		height: 100px;
 	}
 
+	.social {
+		justify-content: right !important;
+		right: 20px !important;
+	}
+
 	#h_logo {
 		position: fixed;
 		padding: 0;
 		margin: auto;
 		left: 0;
-		width: 118px !important;
+		width: 135px !important;
 	}
 
 	.header_text_box {
