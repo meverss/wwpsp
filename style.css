@@ -155,7 +155,7 @@ a {
 	position: fixed;
 	padding-top: 35px;
 	margin: -100px;
-	margin-left: -60px;
+	margin-left: -35px;
 	object-fit: contain;
 	/* -webkit-filter: drop-shadow(0 0 5px #111) drop-shadow(0 0 10px #111); */
 }
@@ -176,7 +176,7 @@ a {
 	align-items: center;
 	text-align: center;
 	font-family: Bakbakone;
-	color: #54a2f4;
+	color: #085c97;
 	font-size: 4vw;
 	width: 100%;
 	justify-content: right;
@@ -208,6 +208,7 @@ a {
 	width: 100%;
 	padding: 0;
 	font-size: 1.5vw;
+	filter: brightness(80%);
 }
 
 /* MAIN MENU */
@@ -240,8 +241,9 @@ a {
 .menu_item {
 	display: flex;
 	font-size: 15pt;
+	font-weight: bold;
 	padding: 0;
-	color: #bbb;
+	color: #fff;
 }
 
 .menu_item p::after {
@@ -262,7 +264,7 @@ a {
 }
 
 .menu_item:hover::before {
-	border-color: #085c97;
+	border-color: #ea5421;
 	transition: transform 0.3s;
 	transform: scaleX(1);
 	transform-origin: left center;
@@ -330,7 +332,8 @@ a {
 .m_menu_btn {
 	display: none;
 	position: fixed;
-	color: teal;
+	color: #ea5421;
+	filter: opacity(50%);
 	font-size: 14pt;
 	width: 30px;
 	height: 30px;
@@ -692,8 +695,9 @@ a {
 	#h_logo {
 		position: fixed;
 		margin: auto;
-		left: -8px;
-		width: 135px !important;
+		top: 5px !important;
+		left: 5px;
+		width: 92px !important;
 	}
 
 	.header_text_box {
@@ -771,8 +775,8 @@ a {
 		position: fixed;
 		padding: 0;
 		margin: auto;
-		top: 0;
-		width: 180px;
+		top: 8px;
+		width: 165px;
 	}
 }
 
