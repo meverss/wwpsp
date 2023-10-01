@@ -447,6 +447,27 @@ a {
 	text-align: center;
 }
 
+.budget_float {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50px;
+	height: 50px;
+	margin: auto;
+	position: fixed;
+	bottom: 50px;
+	right: 10px;
+	border-radius: 50%;
+	background-color: #37a1c6;
+	z-index: 99999;
+}
+
+.budget_icon_float {
+	width: 85%;
+	filter: grayscale(100%);
+	filter: invert(100%);
+}
+
 /* MAIN CONTAINER */
 
 .main_container {
