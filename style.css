@@ -695,9 +695,9 @@ a {
 	#h_logo {
 		position: fixed;
 		margin: auto;
-		top: 5px !important;
+		top: 8px !important;
 		left: 5px;
-		width: 92px !important;
+		width: 85px !important;
 	}
 
 	.header_text_box {
@@ -712,13 +712,13 @@ a {
 	}
 
 	.header_title h1 {
-		font-size: 4.4vw !important;
+		font-size: 4.6vw !important;
 		align-self: last baseline;
 	}
 
 	.header_slogan p {
 		font-size: 2.8vw !important;
-		margin-top: 0;
+		margin-top: -5px;
 
 	}
 }
@@ -809,7 +809,7 @@ a {
 
 	.header_title h1,
 	#h_slogan {
-		right: 10px;
+		right: 15px;
 	}
 }
 
