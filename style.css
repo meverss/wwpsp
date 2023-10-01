@@ -156,11 +156,11 @@ a {
 
 #h_logo {
 	display: flex;
-	width: 200px;
+	width: 280px;
 	position: fixed;
 	padding-top: 10px;
 	margin: -100px;
-	margin-left: -20px;
+	margin-left: -60px;
 	object-fit: contain;
 	/* -webkit-filter: drop-shadow(0 0 5px #111) drop-shadow(0 0 10px #111); */
 }
