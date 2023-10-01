@@ -333,7 +333,7 @@ a {
 .m_menu_btn {
 	display: none;
 	position: fixed;
-	color: #ea5421;
+	color: #d9b385;
 	filter: opacity(50%);
 	font-size: 14pt;
 	width: 30px;
@@ -448,7 +448,7 @@ a {
 }
 
 .budget_float {
-	display: flex;
+	display: none;
 	justify-content: center;
 	align-items: center;
 	width: 50px;
@@ -460,12 +460,18 @@ a {
 	border-radius: 50%;
 	background-color: #37a1c6;
 	z-index: 99999;
+	transition: .3s;
 }
+
 
 .budget_icon_float {
 	width: 85%;
 	filter: grayscale(100%);
 	filter: invert(100%);
+}
+
+.budget_float:hover {
+	transform: scale(1.1);
 }
 
 /* MAIN CONTAINER */
@@ -808,6 +814,10 @@ a {
 	.main_container {
 		width: 98% !important;
 		gap: 20px;
+	}
+
+	.budget_float {
+		display: flex;
 	}
 
 	.welcome {
