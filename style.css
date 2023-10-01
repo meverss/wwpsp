@@ -246,7 +246,7 @@ a {
 
 .menu_item p::after {
 	content: "";
-	height: 28px;
+	height: 30px;
 	width: 100%;
 	position: absolute;
 	border-bottom: 2px solid;
@@ -254,7 +254,7 @@ a {
 
 .menu_item::before {
 	content: "";
-	height: 28px;
+	height: 30px;
 	width: 100%;
 	position: absolute;
 	border-bottom: 2px solid;
@@ -291,8 +291,8 @@ a {
 	align-items: center;
 	color: #bbb;
 	border-radius: 8px;
-	width: 32px;
-	height: 32px;
+	width: 28px;
+	height: 28px;
 	padding: 0;
 	font-size: 16pt;
 }
@@ -302,6 +302,44 @@ a {
 	transform: scale(1.2);
 	cursor: pointer;
 	background-color: #085c97;
+}
+
+/* MOBILE MENU */
+
+.m_menu {
+	display: flex;
+	flex-direction: column;
+	position: fixed;
+	top: 38px;
+	z-index: 100;
+	background-color: rgb(30, 30, 30, 0.95);
+	backdrop-filter: blur(3px);
+	border: 1px solid #333;
+	border-bottom-left-radius: 10px;
+	width: 200px;
+	height: 500px;
+	padding-bottom: 20px;
+	justify-content: center;
+	align-items: center;
+	transition: 0.3s;
+	transform: translate(100%);
+	right: 0;
+	margin: auto;
+}
+
+.m_menu_btn {
+	display: flex;
+	position: fixed;
+	color: #d1d2d3;
+	font-size: 14pt;
+	width: 60px;
+	height: 30px;
+	justify-content: center;
+	align-items: center;
+	padding: 0;
+	margin: auto;
+	animation-duration: 0.3s;
+	right: 0;
 }
 
 /* LEFT SIDE BAR - INFO */
