@@ -35,7 +35,14 @@
 	<link rel="stylesheet" href="./style.css" />
 </head>
 
-<body>
+<body onload="setTimeout(show_page, 1500)">
+	<!-- LOADER -->
+
+	<div class="loader_container" id="page_loader">
+		<i class="loader_cog fas fa-cog fa-spin fa-5x" id="loader_cog"></i>
+		<p class="loader_text">Loading...</p>
+	</div>
+
 	<div class="page_content" id="page_content">
 		<section class="big_box">
 
@@ -191,7 +198,8 @@
 					<div class="why_us_box" id="why_us_box">
 						<p class="why_us_text" id="why_us_text">
 							The State of Florida has a high demand for services related to
-							the construction, repair and maintenance of pool protective screens, but here we give six powerful
+							the construction, repair and maintenance of pool protective screens, but here we give six
+							powerful
 							reasons why <span style="font-weight: bold">WWP SCREENING &
 								PAINTING LLC</span> stands out among
 							the competition, and why choosing us will be a smart investment:

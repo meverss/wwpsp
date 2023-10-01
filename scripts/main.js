@@ -1,11 +1,11 @@
 // SHOW WEBSITE AFTER LOADED
 
-// function show_page() {
-// 	page_content.style.opacity = "1";
-// 	page_loader.style.display = "none";
-// 	document.body.style.overflow = "auto";
-// 	document.getElementById("btn_send").disabled = true;
-// }
+function show_page() {
+	page_content.style.opacity = "1";
+	page_loader.style.display = "none";
+	document.body.style.overflow = "auto";
+	// document.getElementById("btn_send").disabled = true;
+}
 
 // SHOW/HIDE ALTERANTIVE MENU
 
