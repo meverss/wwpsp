@@ -117,7 +117,7 @@ a {
 }
 
 .button:active {
-	background-color:#37a1c6;
+	background-color: #37a1c6;
 	transform: scale(1);
 }
 
@@ -619,7 +619,7 @@ a {
 	padding: 0;
 }
 
-/* RESPONSIVE */
+/*================= RESPONSIVE ================*/
 
 @media screen and (max-width: 280px) {}
 
@@ -627,22 +627,12 @@ a {
 
 @media screen and (max-width: 490px) {}
 
-@media screen and (max-width: 600px) {
-
-
+@media screen and (max-width: 700px) {
 
 	.welcome {
 		margin-top: -30px;
 	}
 
-	#h_logo {
-		height: 100px;
-		position: fixed;
-		padding: 0;
-		margin: auto;
-		left: -20px !important;
-		width: 150px;
-	}
 
 	.header_top {
 		background-size: cover;
@@ -663,12 +653,11 @@ a {
 	}
 
 	#h_logo {
-		height: 100px;
 		position: fixed;
 		padding: 0;
 		margin: auto;
-		left: 20px;
-		width: 150px;
+		left: 0;
+		width: 118px !important;
 	}
 
 	.header_text_box {
@@ -685,30 +674,26 @@ a {
 
 	.header_title h1 {
 		font-size: 4vw !important;
-		width: 90%;
-		text-align: center;
+		align-self: last baseline;
 	}
 
 	.header_slogan p {
-		font-size: 3.3vw;
-		width: 90%;
-		margin-top: 5px;
+		font-size: 2.5vw !important;
+		margin-top: 0;
+
 	}
 }
 
 @media screen and (max-width: 850px) {
+	.welcome {
+		margin-top: 50px;
+	}
+
 	.main_container {
 		width: 98%;
 		gap: 20px;
 	}
 
-	.header_title h1 {
-		font-size: 4vw;
-	}
-
-	.header_slogan p {
-		font-size: 3vw !important;
-	}
 
 	.about_us_box {
 		flex-direction: column;
@@ -723,16 +708,6 @@ a {
 @media screen and (max-width: 920px) {
 	.menu {
 		display: none;
-	}
-
-	.header_title h1 {
-		font-size: 6vw;
-		text-align: right;
-	}
-
-	.header_slogan p {
-		font-size: 3vw;
-		text-align: right;
 	}
 
 	.social {
@@ -752,17 +727,25 @@ a {
 	.menu {
 		justify-content: left;
 	}
+
+	#h_logo {
+		position: fixed;
+		padding: 0;
+		margin: auto;
+		top: 0;
+		width: 180px;
+	}
 }
 
-@media screen and (max-width: 1359px) {
+@media screen and (max-width: 1360px) {
 	.header_title h1 {
 		text-align: right;
-		font-size: 4.6vw;
+		font-size: 4.5vw;
 	}
 
 	#h_slogan {
 		text-align: right;
-		font-size: 3vw;
+		font-size: 2.5vw;
 	}
 
 	.header_title h1,
@@ -772,7 +755,7 @@ a {
 }
 
 @media screen and (max-width: 1690px) {
-	.info {
+	.info, .service {
 		display: none;
 	}
 
