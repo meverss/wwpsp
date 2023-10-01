@@ -1,21 +1,34 @@
 // SHOW WEBSITE AFTER LOADED
 
-function show_page() {
-	page_content.style.opacity = "1";
-	page_loader.style.display = "none";
-	document.body.style.overflow = "auto";
-	document.getElementById("btn_send").disabled = true;
-}
+// function show_page() {
+// 	page_content.style.opacity = "1";
+// 	page_loader.style.display = "none";
+// 	document.body.style.overflow = "auto";
+// 	document.getElementById("btn_send").disabled = true;
+// }
 
 // SHOW/HIDE ALTERANTIVE MENU
 
-// m_menu_open_btn.addEventListener("click", showmenu);
-// m_menu_close_btn.addEventListener("click", hidemenu);
+m_menu_btn.addEventListener("click", showmenu);
 
-// function showmenu() {
-// 	m_menu_open_btn.style = "display: none; right: 0;";
-// 	m_menu_close_btn.style = "display: flex; right: 0;";
-// 	m_menu.style["transform"] = "translate(0%)";
+function showmenu() {
+	let btn = document.getElementById('m_menu_btn');
+	const open = "<i class='fas fa-bars'></i>";
+	const close = "<i class='far fa-circle-xmark'></i>";
+	if (btn.innerHTML = `${open}`) {
+		alert('Yes');
+		btn.innerHTML = `${close}`;
+	} else if (btn.innerHTML = `${close}`) {
+		btn.innerHTML = `${open}`;
+		alert('No');
+	}
+}
+// if (m_menu_btn.innerHTML = `<i class='fas fa-bars'></i>`){
+// 	m_menu_btn.innerHTML = `<i class='far fa-circle-xmark'></i>`
+// } else {
+// }
+// m_menu_open_btn.style = "display: none; right: 0;";
+// m_menu.style["transform"] = "translate(0%)";
 // }
 
 // function hidemenu() {
