@@ -315,13 +315,13 @@ setTimeout(function () { budget_icon.classList.add('animate__animated', 'animate
 setInterval(anim_budget, 30000);
 
 get_quote.addEventListener('click', e => {
-	let name = get_quote.innerHTML;
-	switch (name) {
-		case "Get a quote":
-			get_quote.innerHTML = 'Marvin';
-			break;
-		case "Marvin":
-			get_quote.innerHTML = 'Get a quote'
-			break;
-	}
+	// let name = get_quote.innerHTML;
+	// switch (name) {
+	// 	case "Get a quote":
+	// 		get_quote.innerHTML = 'Marvin';
+	// 		break;
+	// 	case "Marvin":
+	// 		get_quote.innerHTML = 'Get a quote'
+	// 		break;
+	// }
 })

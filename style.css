@@ -282,7 +282,7 @@ a {
 	align-content: center;
 	gap: 8px;
 	padding: 0;
-	right: 60px;
+	right: 20px;
 }
 
 .social p {
@@ -328,9 +328,9 @@ a {
 }
 
 .m_menu_btn {
-	display: flex;
+	display: none;
 	position: fixed;
-	color: #d1d2d3;
+	color: teal;
 	font-size: 14pt;
 	width: 30px;
 	height: 30px;
@@ -358,7 +358,7 @@ a {
 	justify-content: center;
 	position: fixed;
 	margin: auto;
-	margin-left: 50px;
+	margin-left: 45px;
 	left: 0;
 	top: 270px;
 	width: 280px;
@@ -742,6 +742,10 @@ a {
 @media screen and (max-width: 920px) {
 	.menu {
 		display: none;
+	}
+
+	.m_menu_btn {
+		display: flex;
 	}
 
 	.social {
