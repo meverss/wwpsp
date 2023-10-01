@@ -319,12 +319,18 @@ social_n.forEach((item) => {
 
 function anim_budget() {
 	const icon = document.getElementById('budget_icon');
+	const icon_float = document.getElementById('budget_icon_float');
 	icon.classList.add('animate__animated', 'animate__tada');
+	icon_float.classList.add('animate__animated', 'animate__tada');
 	setTimeout(function () {
 		icon.classList.remove('animate__animated', 'animate__tada');
+		icon_float.classList.remove('animate__animated', 'animate__tada');
 	}, 3000);
 }
-setTimeout(function () { budget_icon.classList.add('animate__animated', 'animate__tada'); }, 3000);
+setTimeout(function () { 
+	budget_icon.classList.add('animate__animated', 'animate__tada'); 
+	budget_icon_float.classList.add('animate__animated', 'animate__tada');
+}, 3000);
 setInterval(anim_budget, 30000);
 
 get_quote.addEventListener('click', e => {
