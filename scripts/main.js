@@ -30,7 +30,7 @@ function showmenu() {
 	}
 }
 
-// Calc M-Menu top
+// Calc M-Menu top and fix position
 
 window.addEventListener("resize", (a) => {
 	let w = window.innerWidth;

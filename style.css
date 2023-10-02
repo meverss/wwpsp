@@ -136,7 +136,8 @@ a {
 }
 
 .loader_cog {
-	color: #085c97;
+	width: 130px;
+	filter: invert(17%) sepia(95%) saturate(2433%) hue-rotate(189deg) brightness(100%) contrast(94%);
 }
 
 .loader_text {
@@ -650,6 +651,7 @@ a {
 	margin-top: 30px;
 	height: auto;
 	filter: opacity(80%);
+	filter: invert(17%) sepia(95%) saturate(2433%) hue-rotate(189deg) brightness(100%) contrast(94%);
 	transition: .3s;
 }
 
@@ -897,47 +899,4 @@ a {
 	.main_container {
 		width: 55%;
 	}
-}
-
-/* ANIMATIONS */
-
-@keyframes l6 {
-	100% {
-		inset: 0;
-	}
-}
-
-@keyframes show {
-	0% {
-		opacity: 0;
-	}
-
-	100% {
-		opacity: 1;
-		transform: translate(1rem, 0);
-	}
-}
-
-[data-animation="fade"] {
-	opacity: 0;
-	transform: translateX(30%);
-	transition: 1s ease 0.3s;
-	--opacity: 1;
-	--transform: translate(0);
-}
-
-[data-animation="show"] {
-	opacity: 0;
-	transform: scale(0);
-	transition: 1s ease 0.3s;
-	--opacity: 1;
-	--transform: scale(1);
-}
-
-[data-animation="up"] {
-	opacity: 0;
-	transform: translateY(30%);
-	transition: 0.5s ease-in 0.3s;
-	--opacity: 1;
-	--transform: translateY(0);
 }
