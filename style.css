@@ -136,7 +136,8 @@ a {
 }
 
 .loader_cog {
-	width: 130px;
+	width: 80px;
+	height: 80px;
 	filter: invert(17%) sepia(95%) saturate(2433%) hue-rotate(189deg) brightness(100%) contrast(94%);
 }
 
