@@ -368,3 +368,7 @@ get_quote.addEventListener('click', e => {
 	// }
 })
 
+// COOKIES
+
+// document.cookie = "name='_ga'; SameSite='Strict'"
+console.log(document.cookie);
