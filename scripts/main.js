@@ -4,6 +4,9 @@ function show_page() {
 	page_content.style.opacity = "1";
 	page_loader.classList.add('animate__animated','animate__fadeOut');
 	document.body.style.overflow = "auto";
+	setTimeout(function(){
+		page_loader.style.display = 'none';
+	}, 1000)
 	// document.getElementById("btn_send").disabled = true;
 }
 
