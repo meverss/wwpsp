@@ -177,6 +177,7 @@ a {
 	display: flex;
 	width: 25%;
 	max-height: 200px;
+	transition: .3s;
 }
 
 #h_logo {
@@ -187,7 +188,6 @@ a {
 	margin: -100px;
 	margin-left: -35px;
 	object-fit: contain;
-	/* -webkit-filter: drop-shadow(0 0 5px #111) drop-shadow(0 0 10px #111); */
 }
 
 .header_text_box {
@@ -268,6 +268,11 @@ a {
 	margin-left: 30px;
 	padding: 5px;
 	gap: 40px;
+}
+
+.menu  i {
+line-height: 1.5;
+color: #777;
 }
 
 .menu_item {
@@ -369,15 +374,20 @@ a {
 	gap: 15px;
 }
 
+.m_menu i {
+	color: #777;
+}
+
 .m_menu_item {
 	text-align: left;
 	vertical-align: middle;
 	width: 130px;
 	margin: auto;
 	font-size: 12pt;
-	color: #ddd;
+	font-weight: bold;
+	color: #fff;
 	list-style: none;
-	margin-left: 20px;
+	margin-left: 40px;
 	transition: .3s;
 }
 
@@ -408,6 +418,7 @@ a {
 	cursor: pointer;
 	transform: scale(1.2);
 }
+
 
 /* LEFT SIDE BAR - INFO */
 
