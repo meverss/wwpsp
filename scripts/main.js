@@ -12,30 +12,35 @@ function show_page() {
 m_menu_btn.addEventListener("click", showmenu);
 
 function showmenu() {
-	let btn = document.getElementById('m_menu_btn');
+	let btn = document.getElementById('m_menu_btn').innerText;
 	const open = "<i class='fas fa-bars'></i>";
 	const close = "<i class='far fa-circle-xmark'></i>";
-	if (btn.innerHTML = `${open}`) {
-		alert('Yes');
-		btn.innerHTML = `${close}`;
-	} else if (btn.innerHTML = `${close}`) {
-		btn.innerHTML = `${open}`;
-		alert('No');
+
+	switch (btn) {
+		case '󰍜':
+			m_menu_btn.innerHTML = '';
+			m_menu.style["transform"] = "translate(0%)";
+			break;
+		case '':
+			m_menu_btn.innerHTML = '󰍜';
+			m_menu.style["transform"] = "translate(100%)";
+			break;
 	}
 }
-// if (m_menu_btn.innerHTML = `<i class='fas fa-bars'></i>`){
-// 	m_menu_btn.innerHTML = `<i class='far fa-circle-xmark'></i>`
-// } else {
-// }
-// m_menu_open_btn.style = "display: none; right: 0;";
-// m_menu.style["transform"] = "translate(0%)";
-// }
 
-// function hidemenu() {
-// 	m_menu_close_btn.style = "display: none; right: 0;";
-// 	m_menu_open_btn.style = "display: flex; right: 0;";
-// 	m_menu.style["transform"] = "translate(100%)";
-// }
+// Calc M-Menu top
+
+window.addEventListener('resize', e => {
+	const header_h = document.getElementById('header_top').getBoundingClientRect().height;
+	const menu_bar_h = document.getElementById('menu_bar').getBoundingClientRect().height;
+	// menu_bar.style.top = header_h + 'px';
+	if (header_h == '100') {
+		m_menu.style['top'] = header_h + menu_bar_h + 'px';
+	} else {
+		m_menu.style['top'] = header_h + 20 + 'px';
+	}
+})
+
 
 // const m_menu_items = document.querySelectorAll(".m_menu_item");
 
@@ -327,8 +332,8 @@ function anim_budget() {
 		icon_float.classList.remove('animate__animated', 'animate__tada');
 	}, 3000);
 }
-setTimeout(function () { 
-	budget_icon.classList.add('animate__animated', 'animate__tada'); 
+setTimeout(function () {
+	budget_icon.classList.add('animate__animated', 'animate__tada');
 	budget_icon_float.classList.add('animate__animated', 'animate__tada');
 }, 3000);
 setInterval(anim_budget, 30000);

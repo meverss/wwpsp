@@ -6,17 +6,22 @@
 
 @font-face {
 	font-family: "IBM";
-	src: url("./fonts/ibm.ttf") format("woff");
+	src: url("./fonts/ibm.ttf") format("truetype");
 }
 
 @font-face {
 	font-family: "Bakbakone";
-	src: url("./fonts/bakbakone.ttf") format("woff");
+	src: url("./fonts/bakbakone.ttf") format("truetype");
 }
 
 @font-face {
 	font-family: "Solitreo";
-	src: url("./fonts/solitreo.ttf") format("woff");
+	src: url("./fonts/solitreo.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Symbols";
+	src: url("./fonts/symbols.woff") format("woff");
 }
 
 * {
@@ -247,7 +252,9 @@ a {
 	justify-content: center;
 	align-items: center;
 	margin: auto;
+	margin-top: 0;
 	background-color: #111;
+	z-index: 5000;
 }
 
 .menu {
@@ -335,8 +342,7 @@ a {
 	display: flex;
 	flex-direction: column;
 	position: fixed;
-	top: 38px;
-	z-index: 100;
+	z-index: 400;
 	background-color: rgb(30, 30, 30, 0.95);
 	backdrop-filter: blur(3px);
 	border: 1px solid #333;
@@ -348,7 +354,7 @@ a {
 	align-items: center;
 	transition: 0.3s;
 	transform: translate(100%);
-	right: 0;
+	right: -2px;
 	margin: auto;
 }
 
@@ -357,6 +363,7 @@ a {
 	position: fixed;
 	color: #d9b385;
 	filter: opacity(50%);
+	font-family: Symbols;
 	font-size: 14pt;
 	width: 30px;
 	height: 30px;
@@ -366,6 +373,11 @@ a {
 	margin: auto;
 	animation-duration: 0.3s;
 	right: 10px;
+}
+
+.m_menu_btn:hover {
+	cursor: pointer;
+	transform: scale(1.2);
 }
 
 /* LEFT SIDE BAR - INFO */
