@@ -2,7 +2,7 @@
 
 function show_page() {
 	page_content.style.opacity = "1";
-	page_loader.style.display = "none";
+	page_loader.classList.add('animate__animated','animate__fadeOut');
 	document.body.style.overflow = "auto";
 	// document.getElementById("btn_send").disabled = true;
 }
