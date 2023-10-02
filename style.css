@@ -342,13 +342,13 @@ a {
 	display: flex;
 	flex-direction: column;
 	position: fixed;
-	z-index: 400;
+	z-index: -1;
 	background-color: rgb(30, 30, 30, 0.95);
 	backdrop-filter: blur(3px);
 	border: 1px solid #333;
 	border-bottom-left-radius: 10px;
 	width: 200px;
-	height: 500px;
+	height: 300px;
 	padding-bottom: 20px;
 	justify-content: center;
 	align-items: center;

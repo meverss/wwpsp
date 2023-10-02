@@ -16,6 +16,8 @@ function showmenu() {
 	const open = "<i class='fas fa-bars'></i>";
 	const close = "<i class='far fa-circle-xmark'></i>";
 
+	fix_m_menu();
+
 	switch (btn) {
 		case '󰍜':
 			m_menu_btn.innerHTML = '';
@@ -30,16 +32,28 @@ function showmenu() {
 
 // Calc M-Menu top
 
-window.addEventListener('resize', e => {
+window.addEventListener("resize", (a) => {
+	let w = window.innerWidth;
+	if (w > 1000) {
+		m_menu_open_btn.style.display = "none";
+	} else {
+		m_menu_btn.innerHTML = '󰍜';
+		m_menu.style["transform"] = "translate(100%)";
+	}
+});
+
+
+function fix_m_menu() {
 	const header_h = document.getElementById('header_top').getBoundingClientRect().height;
 	const menu_bar_h = document.getElementById('menu_bar').getBoundingClientRect().height;
-	// menu_bar.style.top = header_h + 'px';
 	if (header_h == '100') {
 		m_menu.style['top'] = header_h + menu_bar_h + 'px';
 	} else {
 		m_menu.style['top'] = header_h + 20 + 'px';
 	}
-})
+}
+
+window.addEventListener('resize', fix_m_menu);
 
 
 // const m_menu_items = document.querySelectorAll(".m_menu_item");
@@ -320,6 +334,7 @@ social_n.forEach((item) => {
 // 		});
 // 	});
 
+
 // ANIMATE BUDGET ICON 
 
 function anim_budget() {
@@ -349,3 +364,4 @@ get_quote.addEventListener('click', e => {
 	// 		break;
 	// }
 })
+
