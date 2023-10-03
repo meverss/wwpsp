@@ -712,7 +712,7 @@ a {
 	width: 100%;
 	height: 20px;
 	text-align: center;
-	METAL REPAIR margin: auto;
+	margin: auto;
 	text-align: center;
 	vertical-align: middle;
 	color: #fff;
@@ -766,7 +766,6 @@ a {
 	border: 1px solid #bbb;
 	border-radius: 10px;
 	transition: .7s;
-	heigh: 100%;
 }
 
 .e_services_card img:hover {
