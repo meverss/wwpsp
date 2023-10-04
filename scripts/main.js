@@ -373,7 +373,7 @@ get_quote.addEventListener('click', e => {
 // const headers = new Headers();
 // headers.append('Set-Cookie', 'key=value; path=/; domain=http://192.168.241.14:5500; Secure; SameSite=Strict');
 
-fetch("http://localhost:3000/reviews?enabled=true&_sort=id&_order=desc")
+fetch("http://100.20.92.101:3000/reviews?enabled=true&_sort=id&_order=desc")
 	.then(data => data.json())
 	.then(data => {
 		// const reviews = data.reviews;
