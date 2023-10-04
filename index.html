@@ -84,8 +84,8 @@
 				</section>
 			</aside>
 			<div class="budget_float" id="busget_float">
-				<img class="budget_icon_float" id="budget_icon_float" data-service="Budget" src="./media/images/budget.png"
-					alt="WWP Budget - Float">
+				<img class="budget_icon_float" id="budget_icon_float" data-service="Budget"
+					src="./media/images/budget.png" alt="WWP Budget - Float">
 			</div>
 
 			<!-- HEADER TOP -->
@@ -274,33 +274,78 @@
 					<div class="e_services" id="e_services">
 						<div class="e_services_cards_box" id="e_services_cards_box">
 							<div class="e_services_card box" id="e_services_card">
-								<a href="./media/images/metal_repair.png" data-lightbox='rescreening' data-title='Metal repair' class="e_services_img" id="e_services_img">
+								<a href="./media/images/metal_repair.png" data-lightbox='services'
+									data-title='Metal repair' class="e_services_img" id="e_services_img">
 									<img src="./media/images/metal_repair.png" alt="Metal repair">
 								</a>
 								<p> METAL REPAIR </p>
 							</div>
 							<div class="e_services_card box" id="e_services_card">
-								<a href="./media/images/painting.png" data-lightbox='rescreening' data-title='Painting' class="e_services_img" id="e_services_img">
+								<a href="./media/images/painting.png" data-lightbox='services' data-title='Painting'
+									class="e_services_img" id="e_services_img">
 									<img src="./media/images/painting.png" alt="Metal repair">
 								</a>
 								<p> PAINTING </p>
 							</div>
 							<div class="e_services_card box" id="e_services_card">
-								<a href="./media/images/preasure_washing.png" data-lightbox='rescreening' data-title='Preasure washing' class="e_services_img" id="e_services_img">
+								<a href="./media/images/preasure_washing.png" data-lightbox='services'
+									data-title='Preasure washing' class="e_services_img" id="e_services_img">
 									<img src="./media/images/preasure_washing.png" alt="Metal repair">
 								</a>
 								<p> PREASURE WASHING </p>
 							</div>
 							<div class="e_services_card box" id="e_services_card">
-								<a href="./media/images/rescreening.png" data-lightbox='rescreening' data-title='Rescreening' class="e_services_img" id="e_services_img">
+								<a href="./media/images/rescreening.png" data-lightbox='services'
+									data-title='Rescreening' class="e_services_img" id="e_services_img">
 									<img src="./media/images/rescreening.png" alt="Metal repair">
 								</a>
 								<p> RESCREENING </p>
 							</div>
 
+							<div class="e_services_card box" id="e_services_card">
+								<a href="./media/videos/nebula.mp4" data-lightbox='services' data-title='Testing video'
+									class="e_services_img" id="e_services_img">
+									<video src="./media/videos/nebula.mp4" alt="Video">
+								</a>
+								<p> NEBULA </p>
+							</div>
 						</div>
 					</div>
 				</section>
+
+				<!-- REVIEWS -->
+
+				<section class="s_reviews" id="s_reviews">
+					<h2 class="reviews_title" id="reviews_title">Reviews</h2>
+					<article class="reviews_box" id="reviews_box">
+						<div class="review_card" id="review_card">
+							<i class='fas fa-quote-left fa-7x'></i>
+							<hr>
+							<h3>Alexa Lopez wrote:</h3>
+							<p class="review_text" id="review_text">
+								Very fast and courteous. They did a fantastic job and I highly recommend them.
+							</p>
+						</div>
+						<div class="review_card" id="review_card">
+							<i class='fas fa-quote-left fa-7x'></i>
+							<hr>
+							<h3>Morgan James wrote:</h3>
+							<p class="review_text" id="review_text">
+								I highly recommend this company, they did an exemplary job on my pool cage, it looks beautiful!
+							</p>
+						</div>
+						<div class="review_card" id="review_card">
+							<i class='fas fa-quote-left fa-7x'></i>
+							<hr>
+							<h3>Lisa Driver wrote:</h3>
+							<p class="review_text" id="review_text">
+								Replaced a couple of screens. We will be replacing the entire cage after hurricane season. 
+							</p>
+						</div>
+
+					</article>
+				</section>
+
 				<br><br><br>
 			</section> <!-- END OF MAIN CONTAINER BLOCK -->
 		</section>
@@ -312,12 +357,8 @@
 	<!-- SCRIPTS -->
 	<script src="./scripts/main.js"></script>
 	<script src="./scripts/anim.js"></script>
+	<script src="./scripts/jquery-3.7.1.min.js"></script>
 	<script src="./scripts/lightbox-plus-jquery.js"></script>
-	<script>
-		lightbox.option({
-			'alwaysShowNavOnTouchDevices': true
-		})
-	</script>
 
 </body>
 
