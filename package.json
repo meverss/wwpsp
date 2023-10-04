@@ -4,7 +4,7 @@
   "description": "WWP Screening & Painting",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "json-server --watch './data/db.json'"
   },
   "author": "",
   "license": "ISC",

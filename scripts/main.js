@@ -373,3 +373,12 @@ get_quote.addEventListener('click', e => {
 // const headers = new Headers();
 // headers.append('Set-Cookie', 'key=value; path=/; domain=http://192.168.241.14:5500; Secure; SameSite=Strict');
 
+fetch("./data/db.json")
+.then(data => data.json())
+.then(data => {
+	const reviews = data.reviews;
+	const budgets = data.budgets;
+
+console.table(reviews);
+	console.table(budgets);
+})
