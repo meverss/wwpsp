@@ -2,9 +2,9 @@
 
 function show_page() {
 	page_content.style.opacity = "1";
-	page_loader.classList.add('animate__animated','animate__fadeOut');
+	page_loader.classList.add('animate__animated', 'animate__fadeOut');
 	document.body.style.overflow = "auto";
-	setTimeout(function(){
+	setTimeout(function () {
 		page_loader.style.display = 'none';
 	}, 1000)
 	// document.getElementById("btn_send").disabled = true;
@@ -38,7 +38,7 @@ function showmenu() {
 window.addEventListener("resize", (a) => {
 	let w = window.innerWidth;
 	if (w > 1000) {
-		m_menu_open_btn.style.display = "none";
+		m_menu_btn.style.display = "none";
 	} else {
 		m_menu_btn.innerHTML = '󰍜';
 		m_menu.style["transform"] = "translate(100%)";
@@ -369,3 +369,7 @@ get_quote.addEventListener('click', e => {
 })
 
 // COOKIES
+
+const headers = new Headers();
+// headers.append('Set-Cookie', 'key=value; path=/; domain=http://192.168.241.14:5500; HttpOnly; Secure; SameSite=Strict');
+console.log(headers.get("Accept-Encoding"));
