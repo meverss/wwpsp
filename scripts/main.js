@@ -371,5 +371,7 @@ get_quote.addEventListener('click', e => {
 // COOKIES
 
 const headers = new Headers();
-// headers.append('Set-Cookie', 'key=value; path=/; domain=http://192.168.241.14:5500; HttpOnly; Secure; SameSite=Strict');
+headers.append('Set-Cookie: key=value; path=/; domain=http://192.168.241.14:5500; Secure; SameSite=Strict');
 console.log(headers.get("Accept-Encoding"));
+
+console.log(document.querySelectorAll('img').dataset.service = 'Budget');
