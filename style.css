@@ -80,7 +80,7 @@ h2 {
 }
 
 h3 {
-	text-align: left;
+	text-align: center;
 	width: 100%;
 	padding: 20px;
 	padding-bottom: 0;
@@ -810,10 +810,11 @@ a {
 	align-items: center;
 	width: 96%;
 	overflow-x: scroll;
-	padding: 50px;
+	padding: 20px;
 	padding-left: 15px;
 	padding-right: 15px;
 	padding-top: 20px;
+	margin-bottom: 10px;
 }
 
 .reviews_title {
@@ -839,7 +840,10 @@ a {
 
 .review_text {
 	width: 100%;
-	/* margin:auto; */
+}
+
+.new_review {
+	margin-bottom: 30px;
 }
 
 /* FOOTER */
