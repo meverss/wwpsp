@@ -16,8 +16,6 @@ m_menu_btn.addEventListener("click", showmenu);
 
 function showmenu() {
 	let btn = document.getElementById('m_menu_btn').innerText;
-	const open = "<i class='fas fa-bars'></i>";
-	const close = "<i class='far fa-circle-xmark'></i>";
 
 	fix_m_menu();
 
@@ -95,12 +93,17 @@ function scroll_to_section_m(section_m) {
 					window.scrollTo(0, position - 80);
 					break;
 				} else {
-					window.scrollTo(0, position - 10);
+					window.scrollTo(0, position + 10);
 					break;
 				}
 			case "s_m_reviews":
-				window.scrollTo(0, position - 35);
-				break;
+				if (window.innerWidth >= 768) {
+					window.scrollTo(0, position - 50);
+					break;
+				} else {
+					window.scrollTo(0, position + 40);
+					break;
+				}
 			case "s_m_our_team":
 				window.scrollTo(0, position + 250);
 				break;
@@ -111,6 +114,9 @@ function scroll_to_section_m(section_m) {
 	} else {
 		window.scrollTo(0, position - 80);
 	}
+	m_menu_btn.innerHTML = '󰍜';
+	m_menu.style["transform"] = "translate(100%)";
+
 }
 
 let menu = document.querySelectorAll(".menu_item");
