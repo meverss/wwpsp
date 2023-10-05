@@ -373,12 +373,33 @@ get_quote.addEventListener('click', e => {
 // const headers = new Headers();
 // headers.append('Set-Cookie', 'key=value; path=/; domain=http://192.168.241.14:5500; Secure; SameSite=Strict');
 
-fetch("http://100.20.92.101:3000/reviews?enabled=true&_sort=id&_order=desc")
+
+// REVIEWS
+
+// fetch("http://localhost:8080/reviews?enabled=true&_sort=id&_order=desc")
+fetch("./data/db.json")
 	.then(data => data.json())
 	.then(data => {
-		// const reviews = data.reviews;
 		// const budgets = data.budgets;
-
-		console.table(data);
 		// console.table(budgets);
+		const reviews = data.reviews;
+
+		reviews.forEach(e => {
+			const name = e.name;
+			const email = e.email;
+			const review = e.review;
+
+			reviews_box.innerHTML += `
+			<div class="review_card" id="review_card">
+				<i class='fas fa-quote-left fa-7x'></i>
+				<hr>
+				<h3>${name}</h3>
+				<p class="review_text" id="review_text">
+					${review}
+				</p>
+			</div>
+			`
+		})
 	})
+
+

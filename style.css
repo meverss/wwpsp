@@ -65,7 +65,7 @@ p {
 
 hr {
 	display: flex;
-	width: 90%;
+	width: 70%;
 	margin: auto;
 	margin-bottom: 10px;
 }
@@ -805,7 +805,7 @@ a {
 
 .reviews_box {
 	display: flex;
-	justify-content:left;
+	justify-content: left;
 	gap: 40px;
 	align-items: center;
 	width: 96%;
@@ -845,6 +845,86 @@ a {
 .new_review {
 	margin-bottom: 30px;
 }
+
+
+/* OUR TEAM */
+
+.s_our_team {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+.team_title {
+	padding: 50px;
+}
+
+.team_box {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 40px;
+	gap: 30px;
+	width: 98%;
+	overflow-x: auto;
+}
+
+.team_card {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-width: 225px;
+	max-width: 225px;
+	height: 300px;
+	border: 1px solid #bbb;
+	border-radius: 10px;
+}
+
+.team_card_img {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 150px;
+	height: 150px;
+	padding: 35px;
+	margin: 20px;
+	border: 1px solid #bbb;
+	border-radius: 50%;
+	background-color: #fff;
+
+}
+
+.team_card_img img {
+	width: 150px;
+	border-radius: 50%;
+}
+
+.team_card_text {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 0;
+	margin-bottom: 50px;
+	padding-left: 10px;
+	padding-right: 10px;
+	width: 100%;
+	font-size: 12pt;
+}
+
+
+.team_card_text h3 {
+	color: #37a1c6;
+	font-weight: bold;
+}
+
+.team_card_text span {}
+
 
 /* FOOTER */
 
@@ -964,6 +1044,10 @@ a {
 		font-size: 2.8vw !important;
 		margin-top: -5px;
 
+	}
+
+	.team_box {
+		justify-content: left;
 	}
 }
 
