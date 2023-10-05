@@ -83,11 +83,21 @@ function scroll_to_section_m(section_m) {
 	if (window.innerWidth < 850) {
 		switch (section_m) {
 			case "s_m_about_us":
-				window.scrollTo(0, position - 50);
-				break;
+				if (window.innerWidth >= 768) {
+					window.scrollTo(0, position - 50);
+					break;
+				} else {
+					window.scrollTo(0, position + 20);
+					break;
+				}
 			case "s_m_services":
-				window.scrollTo(0, position - 10);
-				break;
+				if (window.innerWidth >= 768) {
+					window.scrollTo(0, position - 80);
+					break;
+				} else {
+					window.scrollTo(0, position - 10);
+					break;
+				}
 			case "s_m_reviews":
 				window.scrollTo(0, position - 35);
 				break;
@@ -97,7 +107,7 @@ function scroll_to_section_m(section_m) {
 			default:
 				window.scrollTo(0, position - 80);
 				break;
-		} 
+		}
 	} else {
 		window.scrollTo(0, position - 80);
 	}
@@ -108,7 +118,7 @@ let alt_menu = document.querySelectorAll(".m_menu_item");
 
 menu.forEach((obj) => {
 	let sec = obj.id;
-	let section = 's_'+obj.id;
+	let section = 's_' + obj.id;
 	if (obj.classList[1] != "m_menu_item") {
 		if (obj.id != "") {
 			obj.addEventListener("click", function () {
