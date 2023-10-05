@@ -37,9 +37,10 @@ function showmenu() {
 
 window.addEventListener("resize", (a) => {
 	let w = window.innerWidth;
-	if (w > 1000) {
+	if (w > 1155) {
 		m_menu_btn.style.display = "none";
 	} else {
+		m_menu_btn.style.display = "flex";
 		m_menu_btn.innerHTML = '󰍜';
 		m_menu.style["transform"] = "translate(100%)";
 	}
@@ -70,56 +71,62 @@ window.addEventListener('resize', fix_m_menu);
 
 // SACROLL TO SECTIONS
 
-// function scroll_to_section(section) {
-// 	let element = document.getElementById(section);
-// 	let position = element.offsetTop;
-// 	window.scrollTo(0, position - 40);
-// }
+function scroll_to_section(section) {
+	let element = document.getElementById(section);
+	let position = element.offsetTop;
+	window.scrollTo(0, position - 100);
+}
 
-// function scroll_to_section_m(section_m) {
-// 	let element = document.getElementById(section_m);
-// 	let position = element.offsetTop;
-// 	if (window.innerWidth <= 1140) {
-// 		switch (section_m) {
-// 			case "s_m_about":
-// 				window.scrollTo(0, position - 50);
-// 				break;
-// 			case "s_m_services":
-// 				window.scrollTo(0, position - 10);
-// 				break;
-// 			case "s_m_projects":
-// 				window.scrollTo(0, position);
-// 				break;
-// 			default:
-// 				window.scrollTo(0, position - 80);
-// 				break;
-// 		}
-// 	}
-// }
+function scroll_to_section_m(section_m) {
+	let element = document.getElementById(section_m);
+	let position = element.offsetTop;
+	if (window.innerWidth < 850) {
+		switch (section_m) {
+			case "s_m_about_us":
+				window.scrollTo(0, position - 50);
+				break;
+			case "s_m_services":
+				window.scrollTo(0, position - 10);
+				break;
+			case "s_m_reviews":
+				window.scrollTo(0, position - 35);
+				break;
+			case "s_m_our_team":
+				window.scrollTo(0, position + 250);
+				break;
+			default:
+				window.scrollTo(0, position - 80);
+				break;
+		} 
+	} else {
+		window.scrollTo(0, position - 80);
+	}
+}
 
-// let menu = document.querySelectorAll(".menu_item");
-// let alt_menu = document.querySelectorAll(".m_menu_item");
+let menu = document.querySelectorAll(".menu_item");
+let alt_menu = document.querySelectorAll(".m_menu_item");
 
-// menu.forEach((obj) => {
-// 	let sec = obj.id;
-// 	if (obj.classList[1] != "m_menu_item") {
-// 		if (obj.id != "") {
-// 			obj.addEventListener("click", function () {
-// 				scroll_to_section("s_" + sec);
-// 			});
-// 		}
-// 	}
-// });
+menu.forEach((obj) => {
+	let sec = obj.id;
+	let section = 's_'+obj.id;
+	if (obj.classList[1] != "m_menu_item") {
+		if (obj.id != "") {
+			obj.addEventListener("click", function () {
+				scroll_to_section("s_" + sec);
+			});
+		}
+	}
+});
 
-// alt_menu.forEach((obj1) => {
-// 	let sec = obj1.id;
+alt_menu.forEach((obj1) => {
+	let sec = obj1.id;
 
-// 	if (obj1 != "s_m_menu_open_btn") {
-// 		obj1.addEventListener("click", function () {
-// 			scroll_to_section_m("s_" + sec);
-// 		});
-// 	}
-// });
+	if (obj1 != "s_m_menu_open_btn") {
+		obj1.addEventListener("click", function () {
+			scroll_to_section_m("s_" + sec);
+		});
+	}
+});
 
 //COPYRIGHT
 

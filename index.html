@@ -117,12 +117,12 @@
 					<div class="menu_bar" id="menu_bar">
 						<div class="menu" id="menu">
 							<p class="menu_item" id="home"> <i class='fas fa-home'>&nbsp</i>HOME </p>
-							<p class="menu_item" id="about_us"><i class='fas fa-user-friends'>&nbsp</i> About us</p>
+							<p class="menu_item" id="about_us"><i class='fas fa-user-friends'>&nbsp</i> About Us</p>
 							<p class="menu_item" id="services"><i class='fas fa-toolbox'>&nbsp</i> Services </p>
 							<p class="menu_item" id="portfolio"><i class='fas fa-photo-video'>&nbsp</i> Portfolio </p>
 							<p class="menu_item" id="reviews"><i class='fas fa-newspaper'>&nbsp</i> Reviews </p>
-							<p class="menu_item" id="reviews"><i class='fas fa-users-cog'>&nbsp</i> Our team </p>
-							<p class="menu_item" id="contact_us"><i class='fas fa-mail-bulk'>&nbsp</i> Contact us </p>
+							<p class="menu_item" id="our_team"><i class='fas fa-users-cog'>&nbsp</i> Our Team </p>
+							<p class="menu_item" id="contact_us"><i class='fas fa-mail-bulk'>&nbsp</i> Contact </p>
 						</div>
 						<div class="social" id="social">
 							<p class="social_item" id="facebook" title="Share on Facebook"><i
@@ -139,18 +139,18 @@
 						<div class="m_menu" id="m_menu">
 							<ul>
 								<li class="m_menu_item" id="m_home"><i class='fas fa-home'>&nbsp</i>HOME</li>
-								<li class="m_menu_item" id="m_about"><i class='fas fa-user-friends'>&nbsp</i> About
-									us
+								<li class="m_menu_item" id="m_about_us"><i class='fas fa-user-friends'>&nbsp</i> About
+									Us
 								</li>
 								<li class="m_menu_item" id="m_services"><i class='fas fa-toolbox'>&nbsp</i>
 									Services</li>
-								<li class="m_menu_item" id="m_projects"><i class='fas fa-photo-video'>&nbsp</i>
+								<li class="m_menu_item" id="m_portfolio"><i class='fas fa-photo-video'>&nbsp</i>
 									Portfolio</li>
-								<li class="m_menu_item" id="m_projects"><i class='fas fa-newspaper'>&nbsp</i>
+								<li class="m_menu_item" id="m_reviews"><i class='fas fa-newspaper'>&nbsp</i>
 									Reviews
 								</li>
-								<li class="m_menu_item" id="m_projects"><i class='fas fa-users-cog'>&nbsp</i> Our
-									team
+								<li class="m_menu_item" id="m_our_team"><i class='fas fa-users-cog'>&nbsp</i> Our
+									Team
 								</li>
 								<li class="m_menu_item" id="m_contact"><i class='fas fa-mail-bulk'>&nbsp</i>
 									Contact</li>
@@ -166,8 +166,9 @@
 			<section class="main_container" id="main_container">
 				.
 				<!-- WELCOME -->
-
 				<section class="welcome box" id="welcome">
+					<nav id="s_home"></nav>
+					<nav id="s_m_home"></nav>
 					<h2 class="welcome_title" id="welcome_title">Welcome!</h2>
 					<p class="welcome_msg" id="welcome_msg">
 						<span style="font-weight: bold">WWP SCREENING & PAINTING LLC </span>team is available to provide
@@ -191,6 +192,7 @@
 							<img src="./media/images/about_thumb.png" alt="Working at WWP Screening & Painting LLC">
 						</div>
 						<div class="about_us_text box" id="about_us_text">
+							<nav id="s_m_about_us"></nav>
 							<h2 class="about_us_title" id="about_us_title">About us</h2>
 							<p>
 								<span style="font-weight: bold"> WWP SCREENING & PAINTING LLC</span> was founded in
@@ -212,7 +214,7 @@
 				</section>
 				<!-- WHY US -->
 
-				<section class="s_why_us box" id="s_why_us">
+				<article class="s_why_us box" id="s_why_us">
 					<h2 class="why_us_title" id="why_us_title">Why choosing us?</h2>
 					<div class="why_us_box" id="why_us_box">
 						<p class="why_us_text" id="why_us_text">
@@ -250,12 +252,13 @@
 							</div>
 						</div>
 					</div>
-				</section>
+				</article>
 
 				<!-- SERVICES -->
 
 				<section class="s_services" id="s_services">
 					<div class="services_box box" id="services_box">
+						<nav id="s_m_services"></nav>
 						<h2>Services</h2>
 						<p>
 							Do you have a pool enclosure that needs to be checked? Or maybe your lanai needs a new
@@ -274,7 +277,7 @@
 							quality in the market…
 						</p>
 					</div>
-					<div class="e_services" id="e_services">
+					<article class="e_services" id="e_services">
 						<div class="e_services_cards_box" id="e_services_cards_box">
 							<div class="e_services_card box" id="e_services_card">
 								<a href="./media/images/metal_repair.png" data-lightbox='services'
@@ -305,12 +308,13 @@
 								<p> RESCREENING </p>
 							</div>
 						</div>
-					</div>
+					</article>
 				</section>
 
 				<!-- REVIEWS -->
 
 				<section class="s_reviews" id="s_reviews">
+					<nav id="s_m_reviews"></nav>
 					<h2 class="reviews_title" id="reviews_title">Reviews</h2>
 					<article class="reviews_box" id="reviews_box">
 						<!-- Auto generated reviews from DB -->
@@ -321,7 +325,8 @@
 				<!-- OUR TEAM -->
 
 				<section class="s_our_team box" id="s_our_team">
-					<h2 class="team_title" id="team_title">Our team</h2>
+					<nav id="s_m_our_team"></nav>
+					<h2 class="team_title" id="team_title">Our Team</h2>
 					<div class="team_box " id="team_box">
 						<div class="team_card">
 							<div class="team_card_img">
