@@ -955,6 +955,7 @@ a {
 .s_contact_us {
 	width: 98%;
 	height: fit-content;
+	margin-bottom: 15px;
 }
 
 .contact_title,
@@ -983,7 +984,7 @@ a {
 	justify-content: left;
 	flex-direction: column;
 	width: 100%;
-	height: 550px;
+	height: 560px;
 	background-image: url(./media/images/contact/contact-us-scaled-1.jpg);
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -1005,6 +1006,7 @@ a {
 .contact_form label {
 	width: 95%;
 	color: #eee;
+	font-size: 12pt;
 }
 
 .contact_form .frm_text,
@@ -1048,8 +1050,8 @@ textarea {
 .contact_form input,
 .contact_form textarea {
 	font-family: Hack;
-	font-size: 11pt;
-	padding: 8px;
+	font-size: 12pt;
+	padding: 5px;
 	margin-bottom: 10px;
 }
 
@@ -1085,12 +1087,12 @@ textarea {
 }
 
 .wrong {
-	box-shadow: 0 0 5pt 0.5pt red;
+	box-shadow: 0 0 10pt 0.5pt red;
 }
 
 .important {
 	color: #d2691e;
-	font-size: 12pt;
+	font-size: 16pt;
 	font-weight: bold;
 }
 
