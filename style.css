@@ -1109,30 +1109,29 @@ textarea {
 	display: flex;
 	flex-direction: column;
 	justify-content: left;
-	align-items: center;
-	margin: auto;
+	align-items: baseline;
+	margin-right: 5%;
 	margin-top: 50px;
-	margin-right: 70px;
-	background-color: rgb(30, 30, 30, 0.98);
+	background-color: rgb(30, 30, 30, 0.95);
 	border-radius: 10px;
-	width: 25%;
+	width: 400px;
 	min-width: 360px;
 	padding: 20px;
+	align-self:baseline;
+}
+
+.contact_me_info span {
+	font-size: 20px;
 }
 
 .contact_me_info p {
 	text-align: center;
-	font-size: 14pt;
-	color: #bbb;
+	font-size: 12pt;
+	margin: auto;
+	color: #eee;
 	height: 30px;
 	width: 96%;
 	padding: 0;
-}
-
-#arrow {
-	display: none;
-	transition: 0.3s;
-	color: #bbb;
 }
 
 /* FOOTER */
