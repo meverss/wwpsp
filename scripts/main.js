@@ -150,30 +150,30 @@ const fecha = new Date();
 const copyright = "Copyright ©" + fecha.getFullYear() + " WWP SCREENING & PAINTING LLC.";
 footer.innerHTML = copyright;
 
-// SHARE MY PORTFOLIO
+// SHARE ON SOCIAL MEDIA
 
 const social_n = document.querySelectorAll(".social_item");
-const my_website = encodeURIComponent(location.origin + "/portfolio");
-const my_website_title = "https://meverss.github.io/portfolio";
+const my_website = encodeURIComponent(location.origin);
+const my_title = encodeURIComponent('WWP SCREENING & PAINTING LLC.');
 const url_facebook =
 	"http://www.facebook.com/sharer.php?u=" +
 	my_website +
-	"&t= Marvin%27s%20Portfolio";
+	"&t=" + my_title;
 const url_tweeter =
 	"https://twitter.com/intent/tweet?url=" +
 	my_website +
-	"&text = Marvin%27s%20Portfolio";
+	"&text = " + my_title;
 const url_telegram =
 	"https://telegram.me/share/url?url=" +
 	my_website +
-	"&text = Marvin%27s%20Portfolio";
+	"&text = " + my_title;
 const url_linkedin =
 	"https://www.linkedin.com/shareArticle?mini=true&url=" + my_website;
 
 social_n.forEach((item) => {
 	item.addEventListener("click", function () {
 		link = "url_" + item.id;
-		window.open(eval(link), "_blank", "resizable=no, toolbar=0, status=0");
+		window.open(eval(link), "", "width=720, height=480, toolbar=0, status=0, top=300, left=600");
 	});
 });
 
@@ -412,17 +412,25 @@ fetch("./data/db.json")
 			const email = e.email;
 			const review = e.review;
 
-			reviews_box.innerHTML += `
-			<div class="review_card" id="review_card">
-				<i class='fas fa-quote-left fa-7x'></i>
+			if(e.enabled == true){
+				reviews_box.innerHTML += `
+			<div class="review_card" id="review_card" >
+				<div class="review_card_img">
+					<i class='fas fa-quote-left fa-4x'></i>
+				</div>
 				<hr>
-				<h3>${name}</h3>
-				<p class="review_text" id="review_text">
-					${review}
-				</p>
+				<div class="review_card_text" >
+					<h3>${name}</h3>
+					<p class="review_text" id="review_text">
+						${review}
+					</p>
+				</div>
 			</div>
 			`
+			}
 		})
+
+
 	})
 
 
