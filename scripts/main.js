@@ -97,8 +97,11 @@ function scroll_to_section_m(section_m) {
 			case "s_m_our_team":
 				window.scrollTo(0, position + 250);
 				break;
+			case "s_m_contact_us":
+				window.scrollTo(0, position - 260);
+				break;
 			default:
-				window.scrollTo(0, position - 80);
+				window.scrollTo(0, position - 50);
 				break;
 		}
 	} else {
@@ -311,7 +314,7 @@ fetch("./data/db.json")
 			const email = e.email;
 			const review = e.review;
 
-			if(e.enabled == true){
+			if (e.enabled == true) {
 				reviews_box.innerHTML += `
 			<div class="review_card" id="review_card" >
 				<div class="review_card_img">
