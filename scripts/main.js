@@ -7,7 +7,7 @@ function show_page() {
 	setTimeout(function () {
 		page_loader.style.display = 'none';
 	}, 1000)
-	// document.getElementById("btn_send").disabled = true;
+	document.getElementById("btn_send").disabled = true;
 }
 
 // SHOW/HIDE ALTERANTIVE MENU

@@ -953,21 +953,24 @@ a {
 /* CONTACT */
 
 .s_contact_us {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: 98%;
 	height: fit-content;
-	margin-bottom: 15px;
+	margin-bottom: 50px;
 }
 
 .contact_title,
 .contact_message {
 	display: flex;
 	width: 96%;
-	justify-content: left;
+	justify-content: center;
 	align-items: center;
 	margin: auto;
 }
 
-.contact_title h2{
+.contact_title h2 {
 	margin-top: 30px;
 	color: #fbbb40;
 	margin: auto;
@@ -976,7 +979,18 @@ a {
 }
 
 .contact_message {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 50%;
 	height: 85%;
+}
+
+.contact_full_msg {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
 }
 
 .contact_box {
@@ -1055,12 +1069,6 @@ textarea {
 	margin-bottom: 10px;
 }
 
-.form .title {
-	font-size: 20pt;
-	margin-top: 50px;
-	text-align: center;
-}
-
 .form_btn {
 	margin: auto;
 	margin-top: 10px;
@@ -1100,24 +1108,24 @@ textarea {
 
 .contact_me_info {
 	display: flex;
-	flex-direction: row;
-	justify-content: center;
+	flex-direction: column;
+	justify-content: left;
 	align-items: center;
 	margin: auto;
-	margin-top: 10px;
-	background-color: #222;
-	border-bottom-left-radius: 8px;
-	border-bottom-right-radius: 8px;
-	width: 100%;
-	bottom: 0;
-	padding: 10px;
+	margin-top: 50px;
+	margin-right: 70px;
+	background-color: rgb(40, 40, 40, 0.9);
+	border-radius: 10px;
+	width: 25%;
+	min-width: 360px;
+	padding: 20px;
 }
 
 .contact_me_info p {
-	text-align: center;
+	text-align: left;
 	color: #bbb;
 	height: 30px;
-	width: 200px;
+	width: 96%;
 	padding: 0;
 }
 
@@ -1247,6 +1255,18 @@ textarea {
 	.about_us_img,
 	.about_us_text {
 		width: 96%;
+	}
+
+	.contact_full_msg {
+		flex-direction: column;
+	}
+
+	.contact_me_info {
+		margin-right: auto;
+		margin-top: auto;
+		width: 100%;
+		background-color: rgb(40, 40, 40);
+		border-radius: 0;
 	}
 }
 
