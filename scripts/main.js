@@ -95,7 +95,7 @@ function scroll_to_section_m(section_m) {
 					break;
 				}
 			case "s_m_our_team":
-				window.scrollTo(0, position + 250);
+				window.scrollTo(0, position + 50);
 				break;
 			case "s_m_contact_us":
 				window.scrollTo(0, position - 260);
