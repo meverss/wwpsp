@@ -152,7 +152,7 @@
 								<li class="m_menu_item" id="m_our_team"><i class='fas fa-users-cog'>&nbsp</i> Our
 									Team
 								</li>
-								<li class="m_menu_item" id="m_contact"><i class='fas fa-mail-bulk'>&nbsp</i>
+								<li class="m_menu_item" id="m_contact_us"><i class='fas fa-mail-bulk'>&nbsp</i>
 									Contact</li>
 
 							</ul>
@@ -362,6 +362,58 @@
 					</div>
 				</section>
 
+				<!-- CONTACT -->
+
+				<section class="s_contact_us" id="s_contact_us">
+					<nav id="s_m_contact_us"></nav>
+					<div class="contact_box" id="contact_box">
+						<div class="form box">
+							<div class="contact_title" id="contact_title">
+								<h2>Contact</h2>
+							</div>
+							<div class="contact_message" id="contact_message">
+								<form id="contact_form" class="contact_form" action="https://api.web3forms.com/submit"
+									method="POST">
+
+									<label class="text" for="name">Name<span class="important">*</span></label>
+									<input class="frm_text" name="name" id="name" autocomplete="off"
+										placeholder="Who is contacting me?" />
+
+									<label class="text" for="email">E-mail<span class="important">*</span></label>
+									<input class="frm_text" name="email" id="email" autocomplete="off"
+										placeholder="your@email.here" />
+
+									<label class="text" for="subj">Subject</label>
+									<input class="frm_text" name="subj" id="subj" autocomplete="off"
+										placeholder="What is it about?" />
+
+									<label class="text" for="message">Message<span class="important">*</span></label>
+									<textarea class="frm_text" name="message" id="message" rows="5" autocomplete="off"
+										placeholder="Leave me your message"></textarea>
+
+									<input id="btn_send" type="submit" class="button form_btn" value="Send" />
+
+									<!-- Config -->
+									<input id="frm_key" type="hidden" name="access_key">
+									<input id="frm_url" type="hidden" name="redirect">
+									<input id="subject" type="hidden">
+									<!-- <input type="hidden" name="ccemail" value="partner@example.com"> -->
+
+								</form>
+							</div>
+						</div>
+						<div class="contact_me_info" id="contact_me_info">
+							<p>
+								<span style="font-family: Symbols; color: #fbbb40">  </span>
+								(+53) 58205225
+							</p>
+							<p>
+								<span style="font-family: Symbols; color: #fbbb40"> 󱡰 </span>
+								meverss@my.com
+							</p>
+						</div>
+					</div>
+				</section>
 				<br><br><br>
 			</section> <!-- END OF MAIN CONTAINER BLOCK -->
 		</section>

@@ -57,16 +57,6 @@ function fix_m_menu() {
 
 window.addEventListener('resize', fix_m_menu);
 
-
-// const m_menu_items = document.querySelectorAll(".m_menu_item");
-
-// m_menu_items.forEach((menu) => {
-// 	menu.addEventListener("click", function () {
-// 		m_menu.style["transform"] = "translate(100%)";
-// 		hidemenu();
-// 	});
-// });
-
 // SACROLL TO SECTIONS
 
 function scroll_to_section(section) {
@@ -177,207 +167,116 @@ social_n.forEach((item) => {
 	});
 });
 
-// FORM FIELDS DATA TYPE
-
-// const fields = document.querySelectorAll(".frm_text");
-
-// fields.forEach((field) => {
-// 	switch (field.id) {
-// 		case "email":
-// 			field.type = "email";
-// 			break;
-// 		default:
-// 			field.type = "text";
-// 			break;
-// 	}
-// });
-
 // FORM VALIDATION
 
-// const f_form = document.getElementById("contact_form");
-// const f_name = document.getElementById("name");
-// const f_email = document.getElementById("email");
-// const f_message = document.getElementById("message");
-// const f_btn = document.getElementById("btn_send");
-// const valid_email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
-// const valid_phone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
-// const valid_phone_cc = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/;
+// Form fields data-type
 
-// f_name.addEventListener("focusout", (e) => {
-// 	if (f_name.value.length < 2) {
-// 		f_btn.disabled = true;
-// 		f_name.classList.add("wrong", "animate__animated", "animate__shakeX");
-// 		f_name.value = "";
-// 		f_name.placeholder = "More than one character, please";
-// 		setTimeout((e) => {
-// 			f_name.classList.remove("wrong", "animate__animated", "animate__shakeX");
-// 		}, 1000);
-// 		setTimeout((e) => {
-// 			f_name.placeholder = "Who is contacting me?";
-// 		}, 3500);
-// 	}
-// });
+const fields = document.querySelectorAll(".frm_text");
 
-// f_email.addEventListener("focusout", (e) => {
-// 	if (!valid_email.test(f_email.value)) {
-// 		f_btn.disabled = true;
-// 		f_email.classList.add("wrong", "animate__animated", "animate__shakeX");
-// 		f_email.value = "";
-// 		f_email.placeholder = "Enter a valid e-mail address";
-// 		setTimeout((e) => {
-// 			f_email.classList.remove("wrong", "animate__animated", "animate__shakeX");
-// 		}, 1000);
-// 		setTimeout((e) => {
-// 			f_email.placeholder = "your@email.here";
-// 		}, 3500);
-// 	}
-// });
+fields.forEach((field) => {
+	switch (field.id) {
+		case "email":
+			field.type = "email";
+			break;
+		default:
+			field.type = "text";
+			break;
+	}
+});
 
-// f_message.addEventListener("focus", (e) => {
-// 	if (f_name.value != "" && f_email.value != "") {
-// 		f_btn.disabled = false;
-// 	}
-// });
+// ---------------------
 
-// f_form.addEventListener("submit", (e) => {
-// 	e.preventDefault();
-// 	if (f_message.value.length > 4) {
-// 		f_form.submit();
-// 		let fields = document.querySelectorAll(".frm_text");
-// 		fields.forEach((field) => {
-// 			field.value = "";
-// 		});
-// 	} else {
-// 		f_message.classList.add("wrong", "animate__animated", "animate__shakeX");
-// 		f_message.value = "";
-// 		f_message.placeholder = "Please, write something!";
-// 		setTimeout((e) => {
-// 			f_message.classList.remove(
-// 				"wrong",
-// 				"animate__animated",
-// 				"animate__shakeX"
-// 			);
-// 		}, 1000);
-// 		setTimeout((e) => {
-// 			f_message.placeholder = "Leave me your message";
-// 		}, 3500);
-// 	}
-// });
+const frm_contact = document.querySelector('.contact_form');
+const f_name = document.getElementById("name");
+const f_email = document.getElementById("email");
+const f_message = document.getElementById("message");
+const f_btn = document.getElementById("btn_send");
+const valid_email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
 
-// GET A JSON FILE FROM A URL TO GENERATE PREJECTS
+f_name.addEventListener("focusout", (e) => {
+	if (f_name.value.length < 2) {
+		f_btn.disabled = true;
+		f_name.classList.add("wrong", "animate__animated", "animate__shakeX");
+		f_name.value = "";
+		f_name.placeholder = "More than one character, please";
+		setTimeout((e) => {
+			f_name.classList.remove("wrong", "animate__animated", "animate__shakeX");
+		}, 1000);
+		setTimeout((e) => {
+			f_name.placeholder = "Who is contacting me?";
+		}, 3500);
+	}
+});
 
-// fetch("https://meverss.github.io/portfolio/data/projects.json", {
-//   method: "GET",
-//   headers: {
-//     Accept: "application/json",
-//   },
-// });
+f_email.addEventListener("focusout", (e) => {
+	if (!valid_email.test(f_email.value)) {
+		f_btn.disabled = true;
+		f_email.classList.add("wrong", "animate__animated", "animate__shakeX");
+		f_email.value = "";
+		f_email.placeholder = "Enter a valid e-mail address";
+		setTimeout((e) => {
+			f_email.classList.remove("wrong", "animate__animated", "animate__shakeX");
+		}, 1000);
+		setTimeout((e) => {
+			f_email.placeholder = "your@email.here";
+		}, 3500);
+	}
+});
 
-// fetch("./data/projects.json")
-// 	.then((data) => data.json())
-// 	.then((data) => {
-// 		const my_url = "."; /*"https://meverss.github.io/portfolio";*/
-// 		data.forEach((project) => {
-// 			my_projects.innerHTML += `
-//               <div class="project" id="project${project.index}">
-//               <div class="thumbnail_container">
-//                 <img
-//                   class="thumbnail"
-//                   src="./media/images/projects/${project.thumbnail}"
-//                   alt="${project.name}_thumbnail"
-//                 />
-//               </div>
-//               <hr>
-//               <ul class="project_desc text">
-//                 <li><spam class="info">Name: </spam>${project.name}</li>
-//                 <li>
-//                   <spam class="info">Description: </spam>${project.description}
-//                 </li>
-//               </ul>
-//               <p>
-//                 <span class="button view_more" id="view_more${project.index}">View more</span>
-//               </p>
-//             </div>
-//             `;
-// 		});
+f_message.addEventListener("focus", (e) => {
+	if (f_name.value != "" && f_email.value != "") {
+		f_btn.disabled = false;
+	}
+});
 
-// 		// VIEW MORE INFO
-
-// 		const vmb = document.querySelectorAll(".view_more");
-
-// 		vmb.forEach((btn) => {
-// 			let id = btn.id.split("view_more")[1];
-// 			let short_desc =
-// 				data[data.findIndex((std) => std.index == id)].description;
-// 			id = btn.id.split("view_more")[1];
-// 			let p_name = data[data.findIndex((std) => std.index == id)].name;
-// 			let full_desc = data[data.findIndex((std) => std.index == id)].viewmore;
-// 			let thumb = data[data.findIndex((std) => std.index == id)].thumbnail;
-// 			let scrsht = data[data.findIndex((std) => std.index == id)].screenshot;
-// 			let w_link = data[data.findIndex((std) => std.index == id)].link;
-
-// 			btn.addEventListener("click", (e) => {
-// 				let dat = viewmore_pict.getBoundingClientRect();
-// 				viewmore_anim.classList.remove("animate__animated", "animate__zoomOut");
-// 				viewmore_anim.classList.add("animate__animated", "animate__zoomIn");
-// 				viewmore_container.style["display"] = "flex";
-// 				viewmore_container.style["opacity"] = "1";
-// 				document.body.style.overflow = "hidden";
-// 				viewmore_pict.innerHTML = `
-//         <img src="${my_url}/media/images/projects/${scrsht}" alt="${p_name}">
-//         <a class="viewmore_page_link button" id="viewmore_page_link" href="${w_link}" target="_blank"> Visit website </a>
-//         <span id="arrow" style="font-family: Symbols; font-size: 2.5rem">  </span>
-//         `;
-// 				viewmore_text.innerHTML = `
-//         <h3 class="title">${p_name}</h3>
-//         <p class='text'><spam>${full_desc}</spam></p>`;
-
-// 				console.log(dat.top);
-// 				setTimeout(function () {
-// 					viewmore_pict.scrollTo(0, 0);
-// 				}, 1000);
-// 			});
-// 		});
-
-// 		viewmore_close.addEventListener("click", (close) => {
-// 			viewmore_anim.classList.remove("animate__animated", "animate__zoomIn");
-// 			viewmore_anim.classList.add("animate__animated", "animate__zoomOut");
-// 			setTimeout(function () {
-// 				viewmore_container.style["display"] = "none";
-// 			}, 700);
-// 			document.body.style["overflow"] = "auto";
-// 		});
-
-// 		viewmore_box.addEventListener("scroll", () => {
-// 			let dat = viewmore_pict.getBoundingClientRect();
-// 			if (dat.top < 137) {
-// 				arrow.classList.add("animate__animated", "animate__bounceOut");
-// 				arrow.classList.remove("animate__bounceIn");
-// 			} else {
-// 				arrow.classList.add("animate__animated", "animate__bounceIn");
-// 				arrow.classList.remove("animate__bounceOut");
-// 			}
-// 		});
-// 	});
+// Get data from the form, save a copy in a JSON and send the emmail
 
 
-// ANIMATE BUDGET ICON 
+frm_contact.addEventListener('submit', e => {
+	e.preventDefault();
 
-function anim_budget() {
-	const icon = document.getElementById('budget_icon');
-	const icon_float = document.getElementById('budget_icon_float');
-	icon.classList.add('animate__animated', 'animate__tada');
-	icon_float.classList.add('animate__animated', 'animate__tada');
-	setTimeout(function () {
-		icon.classList.remove('animate__animated', 'animate__tada');
-		icon_float.classList.remove('animate__animated', 'animate__tada');
-	}, 3000);
-}
-setTimeout(function () {
-	budget_icon.classList.add('animate__animated', 'animate__tada');
-	budget_icon_float.classList.add('animate__animated', 'animate__tada');
-}, 3000);
-setInterval(anim_budget, 30000);
+	const frmData = new FormData(e.target);
+	const frmDataComplete = Object.fromEntries(frmData.entries());
+	const name = frmData.get('name');
+	const email = frmData.get('email');
+	const subj = frmData.get('subj');
+	const message = frmData.get('message');
+	const contactMessage = { name, email, subj, message };
+
+	frm_key.value = "6812b923-1859-4cd0-a7b2-7f246e481715";
+	frm_url.value = location.origin;
+
+	subject.innerHTML += `<input id="subject" type="hidden" name="subject" value="New message from ${f_name.value} on My Portfolio" ></input>`;
+
+	if (f_message.value.length >= 4) {
+
+		frm_contact.submit();
+		setTimeout(() => {
+			let fields = document.querySelectorAll(".frm_text");
+			fields.forEach((field) => {
+				field.value = "";
+			});
+		}, 2000);
+
+	} else {
+		f_message.classList.add("wrong", "animate__animated", "animate__shakeX");
+		f_message.value = "";
+		f_message.placeholder = "Please, write something!";
+		setTimeout((e) => {
+			f_message.classList.remove(
+				"wrong",
+				"animate__animated",
+				"animate__shakeX"
+			);
+		}, 1000);
+		setTimeout((e) => {
+			f_message.placeholder = "Leave me your message";
+		}, 3500);
+	}
+
+});
+
+// BUDGET REQUEST
 
 get_quote.addEventListener('click', e => {
 	// let name = get_quote.innerHTML;
@@ -429,8 +328,6 @@ fetch("./data/db.json")
 			`
 			}
 		})
-
-
 	})
 
 
