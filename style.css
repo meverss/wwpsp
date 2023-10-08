@@ -1007,7 +1007,6 @@ a {
 	display: flex;
 	flex-direction: column;
 	width: 400px;
-	min-width: 360px;
 	height: fit-content;
 	justify-content: center;
 	align-items: center;
@@ -1109,7 +1108,7 @@ textarea {
 	align-items: center;
 	background-color: #011326;
 	width: 100%;
-	min-width: 360px;
+	/* min-width: 360px; */
 	padding: 5px;
 }
 
@@ -1376,7 +1375,6 @@ textarea {
 	}
 
 	.contact_me_info {
-		flex-wrap: wrap;
 		padding-bottom: 20px;
 		margin-right: auto;
 		margin-top: auto;
