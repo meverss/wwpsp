@@ -11,8 +11,9 @@ function show_page() {
 }
 
 // SHOW/HIDE ALTERANTIVE MENU
+const btnMenu = document.getElementById('m_menu_btn');
 
-m_menu_btn.addEventListener("click", showmenu);
+btnMenu.addEventListener("click", showmenu);
 
 function showmenu() {
 	let btn = document.getElementById('m_menu_btn').innerText;
@@ -195,6 +196,7 @@ const f_email = document.getElementById("email");
 const f_message = document.getElementById("message");
 const f_btn = document.getElementById("btn_send");
 const valid_email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+const valid_phone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 
 f_name.addEventListener("focusout", (e) => {
 	if (f_name.value.length < 2) {
@@ -206,7 +208,7 @@ f_name.addEventListener("focusout", (e) => {
 			f_name.classList.remove("wrong", "animate__animated", "animate__shakeX");
 		}, 1000);
 		setTimeout((e) => {
-			f_name.placeholder = "Who is contacting me?";
+			f_name.placeholder = "Who is contacting us?";
 		}, 3500);
 	}
 });
@@ -249,7 +251,7 @@ frm_contact.addEventListener('submit', e => {
 	frm_key.value = "6812b923-1859-4cd0-a7b2-7f246e481715";
 	frm_url.value = location.origin;
 
-	subject.innerHTML += `<input id="subject" type="hidden" name="subject" value="New message from ${f_name.value} on My Portfolio" ></input>`;
+	subject.innerHTML += `<input id="subject" type="hidden" name="subject" value="New message from ${f_name.value} on your website" ></input>`;
 
 	if (f_message.value.length >= 4) {
 
