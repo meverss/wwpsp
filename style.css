@@ -1154,10 +1154,16 @@ textarea {
 	background-color: rgba(20, 20, 20, 0.9);
 }
 
+.budget_form_title h2 {
+	width: 100%;
+	text-align: center;
+}
+
 .budget_form_box {
 	display: flex;
 	flex-direction: column;
-	background-color: green;
+	background-color: #555;
+	padding: 20px;
 }
 
 .budget_form_frame {
@@ -1165,7 +1171,72 @@ textarea {
 	justify-content: center;
 	align-items: center;
 	width: 400px;
+	min-width: 360px;
 }
+
+.budget_form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+
+}
+
+.budget_form label {
+	width: 95%;
+	color: #eee;
+	font-size: 13pt;
+}
+
+.budget_form .frm_text,
+.budget_form textarea {
+	width: 95%;
+	color: #555;
+}
+
+.budget_form label,
+.budget_form textarea {
+	margin-bottom: 10px;
+}
+
+textarea {
+	resize: none;
+	height: 120px;
+}
+
+.budget_form label {
+	font-weight: 500;
+	margin-left: 20px;
+}
+
+.budget_form input,
+.budget_form textarea {
+	border: 1px solid #bbb;
+	border-radius: 8px;
+	text-align: justify;
+	background-color: #fff;
+	outline-color: #111;
+	transition: 0.3s;
+}
+
+.budget_form input:focus,
+.budget_form textarea:focus {
+	transform: scale(1.02);
+	outline: none;
+	box-shadow: 0 0 5pt 0.5pt #777;
+}
+
+.budget_form input,
+.budget_form textarea {
+	font-family: Hack;
+	font-size: 12pt;
+	padding: 5px;
+	margin-bottom: 10px;
+}
+
+
+
 
 
 /* ==================================== */
