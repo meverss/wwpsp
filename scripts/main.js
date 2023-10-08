@@ -280,6 +280,20 @@ frm_contact.addEventListener('submit', e => {
 });
 
 // BUDGET REQUEST
+const budgetIcon = document.getElementById('budget_icon');
+const budgetIconFloat = document.getElementById('budget_icon_float');
+
+setInterval(() => {
+	budgetIcon.classList.add('animate__animated', 'animate__tada');
+	budgetIconFloat.classList.add('animate__animated', 'animate__tada');
+	setTimeout(() => {
+		budgetIcon.classList.remove('animate__animated', 'animate__tada');
+		budgetIconFloat.classList.remove('animate__animated', 'animate__tada');
+	}, 3000);
+}, 20000);
+
+
+
 
 get_quote.addEventListener('click', e => {
 	// let name = get_quote.innerHTML;

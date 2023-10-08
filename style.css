@@ -770,10 +770,8 @@ a {
 	border-radius: 10px;
 }
 
-.e_services_card img,
-.e_services_card video {
+.e_services_card img {
 	width: 100%;
-	border: 1px solid #bbb;
 	border-radius: 10px;
 	transition: .7s;
 	object-fit: cover;
