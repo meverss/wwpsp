@@ -294,19 +294,12 @@ setInterval(() => {
 	}, 3000);
 }, 20000);
 
+const budgetBtn = document.querySelectorAll('.budget_btn');
 
-
-
-get_quote.addEventListener('click', e => {
-	// let name = get_quote.innerHTML;
-	// switch (name) {
-	// 	case "Get a quote":
-	// 		get_quote.innerHTML = 'Marvin';
-	// 		break;
-	// 	case "Marvin":
-	// 		get_quote.innerHTML = 'Get a quote'
-	// 		break;
-	// }
+budgetBtn.forEach(btn => {
+	btn.addEventListener('click', () => {
+		s_budget_form.style.display = 'flex';
+	})
 })
 
 // COOKIES
