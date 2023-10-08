@@ -7,7 +7,6 @@ function show_page() {
 	setTimeout(function () {
 		page_loader.style.display = 'none';
 	}, 1000)
-	document.getElementById("btn_send").disabled = true;
 }
 
 // SHOW/HIDE ALTERANTIVE MENU
@@ -44,7 +43,6 @@ window.addEventListener("resize", (a) => {
 		m_menu.style["transform"] = "translate(100%)";
 	}
 });
-
 
 function fix_m_menu() {
 	const header_h = document.getElementById('header_top').getBoundingClientRect().height;
@@ -173,6 +171,13 @@ social_n.forEach((item) => {
 
 // FORM VALIDATION
 
+const btnSend = document.querySelectorAll('.form_btn');
+
+btnSend.forEach((btn) => {
+	btn.disabled = true;
+})
+
+
 // Form fields data-type
 
 const fields = document.querySelectorAll(".frm_text");
@@ -283,7 +288,7 @@ frm_contact.addEventListener('submit', e => {
 
 // BUDGET REQUEST
 const budgetIcon = document.getElementById('budget_icon');
-const budgetIconFloat = document.getElementById('budget_icon_float');
+const budgetIconFloat = document.getElementById('budget_float');
 
 setInterval(() => {
 	budgetIcon.classList.add('animate__animated', 'animate__tada');
@@ -299,6 +304,8 @@ const budgetBtn = document.querySelectorAll('.budget_btn');
 budgetBtn.forEach(btn => {
 	btn.addEventListener('click', () => {
 		s_budget_form.style.display = 'flex';
+		document.body.style.overflow = 'hidden';
+		budgetIconFloat.style.display = 'none';
 	})
 })
 
