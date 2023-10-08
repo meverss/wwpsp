@@ -1140,6 +1140,8 @@ textarea {
 	height: 100%;
 	position: fixed;
 	top: 0;
+	background-color: rgba(20, 20, 20, 0.9);
+	backdrop-filter: blur(2px);
 	z-index: 10000;
 }
 
@@ -1151,12 +1153,6 @@ textarea {
 	height: 100%;
 	position: fixed;
 	z-index: 10001;
-	background-color: rgba(20, 20, 20, 0.9);
-}
-
-.budget_form_title h2 {
-	width: 100%;
-	text-align: center;
 }
 
 .budget_form_box {
@@ -1165,6 +1161,12 @@ textarea {
 	background-color: #555;
 	padding: 20px;
 }
+
+.budget_form_title h2 {
+	width: 100%;
+	text-align: center;
+}
+
 
 .budget_form_frame {
 	display: flex;
