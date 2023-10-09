@@ -174,10 +174,19 @@ social_n.forEach((item) => {
 const dataForms = document.querySelectorAll('.form');
 const frmField = document.querySelectorAll('.frm_text');
 const btnSend = document.querySelectorAll('.form_btn');
+
+const formContactName = document.getElementById("name");
+const formContactEmail = document.getElementById("email");
+const formContactSubject = document.getElementById("subj");
+const formContactMessage = document.getElementById("message");
+
+const formBudgetName = document.getElementById("br_name");
+const formBudgetEmail = document.getElementById("br_email");
+const formBudgetPhone = document.getElementById("br_phone");
+const formBudgetMessage = document.getElementById("br_message");
+
 const validEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
 const validPhone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-
-console.log(dataForms)
 
 function disableSendButton() {
 	btnSend.forEach((btn) => {
@@ -185,7 +194,31 @@ function disableSendButton() {
 	})
 }
 
+function enableSendButton() {
+	btnSend.forEach((btn) => {
+		btn.disabled = false;
+	})
+}
+
 disableSendButton();
+
+// Form fields data-type
+
+const fields = document.querySelectorAll(".frm_text");
+
+fields.forEach((field) => {
+	switch (field.id) {
+		case "email":
+			field.type = "email";
+			break;
+		case "email":
+			field.type = "email";
+			break;
+		default:
+			field.type = "text";
+			break;
+	}
+});
 
 frmField.forEach((e) => {
 
@@ -206,6 +239,8 @@ frmField.forEach((e) => {
 						e.placeholder = "Who is contacting us?";
 					}, 3500);
 				}
+
+				console
 			})
 			break;
 		case "email":
@@ -241,42 +276,29 @@ frmField.forEach((e) => {
 			})
 			break;
 		case "message":
-			// e.addEventListener('focusout', () => {
-			// 	if (e..value != "" && f_email.value != "") {
-			// 		f_btn.disabled = false;
-			// 	}
-			// })
-			break;
-			console.log(actFormFields + 'Hola');
+			dataForms.forEach((form) => {
+				switch (form.id) {
+					case "contact_form":
+						e.addEventListener('focus', () => {
+							if (formContactName.value != "" && formContactEmail.value != "") {
+								enableSendButton();
+							}
+						})
+						break;
+
+				}
+
+			})
 	}
 
 })
 
-
-// Form fields data-type
-
-const fields = document.querySelectorAll(".frm_text");
-
-fields.forEach((field) => {
-	switch (field.id) {
-		case "email":
-			field.type = "email";
-			break;
-		case "email":
-			field.type = "email";
-			break;
-		default:
-			field.type = "text";
-			break;
-	}
-});
-
 // ---------------------
 
 // const frm_contact = document.querySelector('.contact_form');
-// const f_name = document.getElementById("name");
-// const f_email = document.getElementById("email");
-// const f_message = document.getElementById("message");
+// const formContactName = document.getElementById("name");
+// const formContactEemail = document.getElementById("email");
+// const formContactMessage = document.getElementById("message");
 // const f_btn = document.getElementById("btn_send");
 
 // f_name.addEventListener("focusout", (e) => {
