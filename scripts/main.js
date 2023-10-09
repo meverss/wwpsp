@@ -262,41 +262,6 @@ frmField.forEach((e) => {
 // const formContactMessage = document.getElementById("message");
 // const f_btn = document.getElementById("btn_send");
 
-// f_name.addEventListener("focusout", (e) => {
-// 	if (f_name.value.length < 2) {
-// 		f_btn.disabled = true;
-// 		f_name.classList.add("wrong", "animate__animated", "animate__shakeX");
-// 		f_name.value = "";
-// 		f_name.placeholder = "More than one character, please";
-// 		setTimeout((e) => {
-// 			f_name.classList.remove("wrong", "animate__animated", "animate__shakeX");
-// 		}, 1000);
-// 		setTimeout((e) => {
-// 			f_name.placeholder = "Who is contacting us?";
-// 		}, 3500);
-// 	}
-// });
-
-// f_email.addEventListener("focusout", (e) => {
-// 	if (!valid_email.test(f_email.value)) {
-// 		f_btn.disabled = true;
-// 		f_email.classList.add("wrong", "animate__animated", "animate__shakeX");
-// 		f_email.value = "";
-// 		f_email.placeholder = "Enter a valid e-mail address";
-// 		setTimeout((e) => {
-// 			f_email.classList.remove("wrong", "animate__animated", "animate__shakeX");
-// 		}, 1000);
-// 		setTimeout((e) => {
-// 			f_email.placeholder = "your@email.here";
-// 		}, 3500);
-// 	}
-// });
-
-// f_message.addEventListener("focus", (e) => {
-// 	if (f_name.value != "" && f_email.value != "") {
-// 		f_btn.disabled = false;
-// 	}
-// });
 
 // Get data from the form, save a copy in a JSON and send the emmail
 
@@ -495,3 +460,39 @@ fetch("https://wwpspdb.kiniun.tech/reviews?enabled=true&_sort=id&_order=desc")
 		})
 	})
 
+const getData = () => {
+	const frmData = new FormData(contact_form);
+	const frmDataComplete = Object.fromEntries(frmData.entries());
+	const name = frmData.get('name');
+	const email = frmData.get('email');
+	const subj = frmData.get('subj');
+	const message = frmData.get('message');
+	const contactMessage = { name, email, subj, message };
+
+	return contactMessage;
+}
+
+contact_form.addEventListener('submit', (e) => {
+	e.preventDefault();
+
+	const postData = async () => {
+		const newMessage = getData();
+		try {
+			resp = await fetch("https://wwpspdb.kiniun.tech/reviews?enabled=true&_sort=id&_order=desc", {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(newMessage)
+			});
+			
+			if(resp.ok){
+				jsonResp = await resp.json();
+			}
+			
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
+	postData();
+
+})
