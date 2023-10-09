@@ -1162,11 +1162,44 @@ textarea {
 	/* --animate-duration: .5s; */
 }
 
+.budget_close_btn {
+	display: flex;
+	justify-content: right;
+	align-items: center;
+	width: 100%;
+	padding: 5px;
+}
+
+.budget_close_btn p {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 40px;
+	height: 40px;
+	text-align: right;
+	padding: 5px;
+	padding-top: 0;
+	font-size: 16pt;
+	color: #555;
+	transition: .3s;
+}
+
+.budget_close_btn > p:hover {
+	cursor: pointer;
+	transform: scale(1.2);
+}
+
+.budget_close_btn>p:active {
+	transform: scale(1);
+}
+
 .budget_form_title h2 {
 	width: 100%;
 	text-align: center;
 	color: #085c97;
 	padding: 20px;
+	padding-top: 0;
+	/* background-color: rebeccapurple; */
 }
 
 .budget_form {
