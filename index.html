@@ -372,8 +372,8 @@
 						</div>
 						<div class="contact_full_msg box">
 							<div class="contact_message" id="contact_message">
-								<form id="contact_form" class="contact_form form" action="https://api.web3forms.com/submit"
-									method="POST">
+								<form id="contact_form" class="contact_form form"
+									action="https://api.web3forms.com/submit" method="POST">
 
 									<label class="text" for="name">Name<span class="important">*</span></label>
 									<input class="frm_text" name="name" id="name" autocomplete="off"
@@ -422,7 +422,7 @@
 				</section>
 				<br><br><br>
 
-				<!-- BUDGET REQUEST FORM --> 
+				<!-- BUDGET REQUEST FORM -->
 
 				<section class="s_budget_form" id="s_budget_form">
 					<nav id="s_m_budget_form"></nav>
@@ -452,6 +452,8 @@
 								<label class="text" for="br_message">Message<span class="important">*</span></label>
 								<textarea class="frm_text" name="message" id="br_message" rows="5" autocomplete="off"
 									placeholder="Please, tell us what you need." data-frminfo="message"></textarea>
+
+								<input id="br_enabled" type="hidden" name="enabled" value="false">
 
 								<input id="br_btn_send" type="submit" class="button form_btn" value="Send" />
 

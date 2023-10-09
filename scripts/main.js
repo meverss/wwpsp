@@ -389,6 +389,18 @@ const budgetIcon = document.getElementById('budget_icon');
 const budgetIconFloat = document.getElementById('budget_float');
 const budgetBtn = document.querySelectorAll('.budget_btn');
 const budgetForm = document.getElementById('budget_form_box');
+const budgetCloseBtn = document.getElementById('budget_close_btn');
+
+budgetCloseBtn.addEventListener('click', () => {
+	budgetForm.classList.remove('animate__animated', 'animate__zoomIn');
+	budgetForm.classList.add('animate__animated', 'animate__zoomOut');
+	setTimeout(() => {
+		budgetForm.classList.remove('animate__animated', 'animate__zoomOut');
+		s_budget_form.style.display = 'none';
+		document.body.style.overflow = 'auto';
+		budgetIconFloat.style.display = 'flex';
+	}, 500);
+})
 
 setInterval(() => {
 	budgetIcon.classList.add('animate__animated', 'animate__tada');
@@ -398,6 +410,8 @@ setInterval(() => {
 		budgetIconFloat.classList.remove('animate__animated', 'animate__tada');
 	}, 3000);
 }, 20000);
+
+
 
 budgetBtn.forEach(btn => {
 	btn.addEventListener('click', () => {
