@@ -239,6 +239,13 @@ frmField.forEach((e) => {
 							}
 						})
 						break;
+					case "budget_form":
+						e.addEventListener('focus', () => {
+							if (formBudgetName.value != "" && formBudgetEmail.value != "" && formBudgetPhone.value != "") {
+								enableSendButton();
+							}
+						})
+						break;
 
 				}
 
@@ -354,6 +361,7 @@ function hideBudgetRequest() {
 		document.body.style.overflow = 'auto';
 		if (window.innerWidth < 1368) {
 			budgetIconFloat.style.display = 'flex';
+			formBudgetName.value = ""; formBudgetEmail.value = ""; formBudgetPhone.value = "";
 		}
 	}, 200);
 }
@@ -429,20 +437,6 @@ window.addEventListener("resize", () => {
 		m_menu_btn.style.display = "flex";
 		budgetIconFloat.style.display = 'flex';
 	}
-	// switch (w) {
-	// 	case (eval(w) > 1368):
-	// 		console.log(w);
-	// 		budgetIconFloat.style.display = 'none';
-	// 		break;
-	// 	case "w > 1155":
-	// 		console.log(m_menu_btn.style)
-	// 		m_menu_btn.style.display = "none";
-	// 		break;
-	// 	case "w <= 1155":
-	// 		m_menu_btn.style.display = "flex";
-	// 		budgetIconFloat.style.display = 'flex';
-	// 		break;
-	// }
 });
 
 function fix_m_menu() {
