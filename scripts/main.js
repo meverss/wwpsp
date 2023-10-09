@@ -367,8 +367,6 @@ setInterval(() => {
 	}, 3000);
 }, 20000);
 
-
-
 budgetBtn.forEach(btn => {
 	btn.addEventListener('click', () => {
 		s_budget_form.style.display = 'flex';
