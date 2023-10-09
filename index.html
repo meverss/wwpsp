@@ -377,19 +377,19 @@
 
 									<label class="text" for="name">Name<span class="important">*</span></label>
 									<input class="frm_text" name="name" id="name" autocomplete="off"
-										placeholder="Who is contacting us?" />
+										placeholder="Who is contacting us?" data-frminfo="name" />
 
 									<label class="text" for="email">E-mail<span class="important">*</span></label>
 									<input class="frm_text" name="email" id="email" autocomplete="off"
-										placeholder="your@email.here" />
+										placeholder="your@email.here" data-frminfo="email" />
 
 									<label class="text" for="subj">Subject</label>
 									<input class="frm_text" name="subj" id="subj" autocomplete="off"
-										placeholder="What's the affair?" />
+										placeholder="What's the affair?" data-frminfo="subject" />
 
 									<label class="text" for="message">Message<span class="important">*</span></label>
 									<textarea class="frm_text" name="message" id="message" rows="5" autocomplete="off"
-										placeholder="Leave us your message"></textarea>
+										placeholder="Leave us your message" data-frminfo="message"></textarea>
 
 									<input id="btn_send" type="submit" class="button form_btn" value="Send" />
 
@@ -427,7 +427,7 @@
 				<section class="s_budget_form" id="s_budget_form">
 					<nav id="s_m_budget_form"></nav>
 					<div class="budget_form_back" id="budget_form_back">
-						<div class="budget_form_box">
+						<div class="budget_form_box" id="budget_form_box">
 							<div class="budget_form_title" id="budget_form_title">
 								<h2>Budget Request</h2>
 							</div>
@@ -436,19 +436,19 @@
 
 								<label class="text" for="br_name">Full Name<span class="important">*</span></label>
 								<input class="frm_text" name="name" id="br_name" autocomplete="off"
-									placeholder="Who is contacting us?" />
+									placeholder="Who is contacting us?" data-frminfo="name" />
 
 								<label class="text" for="br_email">E-mail<span class="important">*</span></label>
 								<input class="frm_text" name="email" id="br_email" autocomplete="off"
-									placeholder="your@email.here" />
+									placeholder="your@email.here" data-frminfo="email" />
 
 								<label class="text" for="br_phone">Phone Number<span class="important">*</span></label>
 								<input class="frm_text" name="phone" id="br_phone" autocomplete="off"
-									placeholder="Your phone in format ### #### ####" />
+									placeholder="Your phone in format ###-###-####" data-frminfo="phone" />
 
 								<label class="text" for="br_message">Message<span class="important">*</span></label>
 								<textarea class="frm_text" name="message" id="br_message" rows="5" autocomplete="off"
-									placeholder="What can we do for you?"></textarea>
+									placeholder="Please, tell us what you need." data-frminfo="message"></textarea>
 
 								<input id="br_btn_send" type="submit" class="button form_btn" value="Send" />
 

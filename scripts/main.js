@@ -171,10 +171,77 @@ social_n.forEach((item) => {
 
 // FORM VALIDATION
 
-const btnSend = document.querySelectorAll('.form_btn');
 
-btnSend.forEach((btn) => {
-	btn.disabled = true;
+const btnSend = document.querySelectorAll('.form_btn');
+const frmField = document.querySelectorAll('.frm_text');
+const validEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+const validPhone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+
+function disableSendButton() {
+	btnSend.forEach((btn) => {
+		btn.disabled = true;
+	})
+}
+
+disableSendButton();
+
+frmField.forEach((e) => {
+	const dataType = e.dataset.frminfo;
+	switch (dataType) {
+		case "name":
+			e.addEventListener('focusout', () => {
+				if (e.value.length < 2) {
+					disableSendButton();
+					e.classList.add("wrong", "animate__animated", "animate__shakeX");
+					e.value = "";
+					e.placeholder = "More than one character, please";
+					setTimeout(() => {
+						e.classList.remove("wrong", "animate__animated", "animate__shakeX");
+					}, 1000);
+					setTimeout(() => {
+						e.placeholder = "Who is contacting us?";
+					}, 3500);
+				}
+			})
+			break;
+		case "email":
+			e.addEventListener('focusout', () => {
+				if (!validEmail.test(e.value)) {
+					disableSendButton();
+					e.classList.add("wrong", "animate__animated", "animate__shakeX");
+					e.value = "";
+					e.placeholder = "Enter a valid e-mail address";
+					setTimeout(() => {
+						e.classList.remove("wrong", "animate__animated", "animate__shakeX");
+					}, 1000);
+					setTimeout(() => {
+						e.placeholder = "your@email.here";
+					}, 3500);
+				}
+			})
+			break;
+		case "phone":
+			e.addEventListener('focusout', () => {
+				if (!validPhone.test(e.value)) {
+					disableSendButton();
+					e.classList.add("wrong", "animate__animated", "animate__shakeX");
+					e.value = "";
+					e.placeholder = "Enter a valid phone number";
+					setTimeout(() => {
+						e.classList.remove("wrong", "animate__animated", "animate__shakeX");
+					}, 1000);
+					setTimeout(() => {
+						e.placeholder = "Your phone in format ###-###-####";
+					}, 3500);
+				}
+			})
+			break;
+		case "message":
+
+			break;
+
+	}
+
 })
 
 
@@ -184,6 +251,9 @@ const fields = document.querySelectorAll(".frm_text");
 
 fields.forEach((field) => {
 	switch (field.id) {
+		case "email":
+			field.type = "email";
+			break;
 		case "email":
 			field.type = "email";
 			break;
@@ -200,38 +270,36 @@ const f_name = document.getElementById("name");
 const f_email = document.getElementById("email");
 const f_message = document.getElementById("message");
 const f_btn = document.getElementById("btn_send");
-const valid_email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
-const valid_phone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 
-f_name.addEventListener("focusout", (e) => {
-	if (f_name.value.length < 2) {
-		f_btn.disabled = true;
-		f_name.classList.add("wrong", "animate__animated", "animate__shakeX");
-		f_name.value = "";
-		f_name.placeholder = "More than one character, please";
-		setTimeout((e) => {
-			f_name.classList.remove("wrong", "animate__animated", "animate__shakeX");
-		}, 1000);
-		setTimeout((e) => {
-			f_name.placeholder = "Who is contacting us?";
-		}, 3500);
-	}
-});
+// f_name.addEventListener("focusout", (e) => {
+// 	if (f_name.value.length < 2) {
+// 		f_btn.disabled = true;
+// 		f_name.classList.add("wrong", "animate__animated", "animate__shakeX");
+// 		f_name.value = "";
+// 		f_name.placeholder = "More than one character, please";
+// 		setTimeout((e) => {
+// 			f_name.classList.remove("wrong", "animate__animated", "animate__shakeX");
+// 		}, 1000);
+// 		setTimeout((e) => {
+// 			f_name.placeholder = "Who is contacting us?";
+// 		}, 3500);
+// 	}
+// });
 
-f_email.addEventListener("focusout", (e) => {
-	if (!valid_email.test(f_email.value)) {
-		f_btn.disabled = true;
-		f_email.classList.add("wrong", "animate__animated", "animate__shakeX");
-		f_email.value = "";
-		f_email.placeholder = "Enter a valid e-mail address";
-		setTimeout((e) => {
-			f_email.classList.remove("wrong", "animate__animated", "animate__shakeX");
-		}, 1000);
-		setTimeout((e) => {
-			f_email.placeholder = "your@email.here";
-		}, 3500);
-	}
-});
+// f_email.addEventListener("focusout", (e) => {
+// 	if (!valid_email.test(f_email.value)) {
+// 		f_btn.disabled = true;
+// 		f_email.classList.add("wrong", "animate__animated", "animate__shakeX");
+// 		f_email.value = "";
+// 		f_email.placeholder = "Enter a valid e-mail address";
+// 		setTimeout((e) => {
+// 			f_email.classList.remove("wrong", "animate__animated", "animate__shakeX");
+// 		}, 1000);
+// 		setTimeout((e) => {
+// 			f_email.placeholder = "your@email.here";
+// 		}, 3500);
+// 	}
+// });
 
 f_message.addEventListener("focus", (e) => {
 	if (f_name.value != "" && f_email.value != "") {
@@ -289,6 +357,8 @@ frm_contact.addEventListener('submit', e => {
 // BUDGET REQUEST
 const budgetIcon = document.getElementById('budget_icon');
 const budgetIconFloat = document.getElementById('budget_float');
+const budgetBtn = document.querySelectorAll('.budget_btn');
+const budgetForm = document.getElementById('budget_form_box');
 
 setInterval(() => {
 	budgetIcon.classList.add('animate__animated', 'animate__tada');
@@ -299,13 +369,15 @@ setInterval(() => {
 	}, 3000);
 }, 20000);
 
-const budgetBtn = document.querySelectorAll('.budget_btn');
-
 budgetBtn.forEach(btn => {
 	btn.addEventListener('click', () => {
 		s_budget_form.style.display = 'flex';
 		document.body.style.overflow = 'hidden';
 		budgetIconFloat.style.display = 'none';
+		budgetForm.classList.add('animate__animated', 'animate__zoomIn');
+		setTimeout(() => {
+			budgetForm.classList.remove('anitame__animated', 'animate__zoomIn');
+		}, 1000);
 	})
 })
 

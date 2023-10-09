@@ -105,7 +105,7 @@ a {
 	font-size: 14pt;
 	color: #fff;
 	background-color: #085c97;
-	border: 1px solid #222;
+	border: 1px solid #555;
 	border-radius: 8px;
 	transition: .2s;
 	height: fit-content;
@@ -362,7 +362,6 @@ a {
 	border-bottom-left-radius: 10px;
 	width: 150px;
 	height: 300px;
-	/* padding-bottom: 20px; */
 	justify-content: center;
 	align-items: center;
 	transition: 0.3s;
@@ -447,7 +446,6 @@ a {
 	top: 270px;
 	width: 280px;
 	height: 282px;
-	/* border-radius: 8px; */
 	border: 1px solid #aaa;
 	background-color: #eee;
 }
@@ -493,7 +491,6 @@ a {
 	position: fixed;
 	right: 40px;
 	top: 270px;
-	/* border-radius: 8px; */
 	border: 1px solid #aaa;
 	background-color: #eee;
 	width: 280px;
@@ -922,9 +919,6 @@ a {
 	font-weight: bold;
 }
 
-.team_card_text span {}
-
-
 /* FOOTER */
 
 .footer {
@@ -1073,14 +1067,15 @@ textarea {
 
 .form_btn:disabled {
 	background-color: #bbb;
-	border-color: #111;
-	color: #fff;
+	border-color: #999;
+	color: #ddd;
 	text-align: center;
 }
 
 .form_btn:enabled {
-	color: #222;
+	color: #333;
 	background-color: #fff;
+	border-color: #333;
 	text-align: center;
 }
 
@@ -1108,7 +1103,6 @@ textarea {
 	align-items: center;
 	background-color: #011326;
 	width: 100%;
-	/* min-width: 360px; */
 	padding: 5px;
 }
 
@@ -1160,17 +1154,18 @@ textarea {
 	width: 400px;
 	min-width: 360px;
 	flex-direction: column;
-	background-color: #555;
+	background-color: #999;
 	border-radius: 10px;
 	box-shadow: 2px 2px 10px 1px #222;
 	padding: 5px;
 	margin: 10px;
+	/* --animate-duration: .5s; */
 }
 
 .budget_form_title h2 {
 	width: 100%;
 	text-align: center;
-	color: #fbbb40;
+	color: #085c97;
 	padding: 20px;
 }
 
@@ -1184,8 +1179,9 @@ textarea {
 
 .budget_form label {
 	width: 95%;
-	color: #eee;
+	color: #222;
 	font-size: 14pt;
+	font-weight: 500;
 }
 
 .budget_form .frm_text,
@@ -1205,7 +1201,7 @@ textarea {
 }
 
 .budget_form label {
-	font-weight: 500;
+	font-weight: 550;
 	margin-left: 20px;
 }
 
@@ -1228,8 +1224,11 @@ textarea {
 
 .budget_form input,
 .budget_form textarea {
+	font-family: IBM;
 	font-size: 13pt;
 	padding: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
 	margin-bottom: 10px;
 }
 
