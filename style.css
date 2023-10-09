@@ -1178,7 +1178,7 @@ textarea {
 	height: 40px;
 	text-align: right;
 	padding: 5px;
-	padding-top: 0;
+	padding-top: 5px;
 	font-size: 16pt;
 	color: #555;
 	transition: .3s;
@@ -1199,7 +1199,7 @@ textarea {
 	color: #085c97;
 	padding: 20px;
 	padding-top: 0;
-	/* background-color: rebeccapurple; */
+	margin-top: -20px;
 }
 
 .budget_form {
