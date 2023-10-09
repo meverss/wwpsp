@@ -9,52 +9,6 @@ function show_page() {
 	}, 1000)
 }
 
-// SHOW/HIDE ALTERANTIVE MENU
-const btnMenu = document.getElementById('m_menu_btn');
-
-btnMenu.addEventListener("click", showmenu);
-
-function showmenu() {
-	let btn = document.getElementById('m_menu_btn').innerText;
-
-	fix_m_menu();
-
-	switch (btn) {
-		case '󰍜':
-			m_menu_btn.innerHTML = '';
-			m_menu.style["transform"] = "translate(0%)";
-			break;
-		case '':
-			m_menu_btn.innerHTML = '󰍜';
-			m_menu.style["transform"] = "translate(100%)";
-			break;
-	}
-}
-
-// Calc M-Menu top and fix position
-
-window.addEventListener("resize", (a) => {
-	let w = window.innerWidth;
-	if (w > 1155) {
-		m_menu_btn.style.display = "none";
-	} else {
-		m_menu_btn.style.display = "flex";
-		m_menu_btn.innerHTML = '󰍜';
-		m_menu.style["transform"] = "translate(100%)";
-	}
-});
-
-function fix_m_menu() {
-	const header_h = document.getElementById('header_top').getBoundingClientRect().height;
-	const menu_bar_h = document.getElementById('menu_bar').getBoundingClientRect().height;
-	if (header_h == '100') {
-		m_menu.style['top'] = header_h + menu_bar_h + 'px';
-	} else {
-		m_menu.style['top'] = header_h + 20 + 'px';
-	}
-}
-
-window.addEventListener('resize', fix_m_menu);
 
 // SACROLL TO SECTIONS
 
@@ -425,6 +379,59 @@ budgetBtn.forEach(btn => {
 		}, 1000);
 	})
 })
+
+
+// SHOW/HIDE ALTERANTIVE MENU
+const btnMenu = document.getElementById('m_menu_btn');
+
+btnMenu.addEventListener("click", showmenu);
+
+function showmenu() {
+	let btn = document.getElementById('m_menu_btn').innerText;
+
+	fix_m_menu();
+
+	switch (btn) {
+		case '󰍜':
+			m_menu_btn.innerHTML = '';
+			m_menu.style["transform"] = "translate(0%)";
+			break;
+		case '':
+			m_menu_btn.innerHTML = '󰍜';
+			m_menu.style["transform"] = "translate(100%)";
+			break;
+	}
+}
+
+// Calc M-Menu top and fix position
+
+window.addEventListener("resize", (a) => {
+	let w = window.innerWidth;
+
+	switch (w) {
+		case "w > 1368":
+			budgetIconFloat.style.display = 'none';
+			break;
+		case "w > 1155":
+			m_menu_btn.style.display = "none";
+			break;
+		case "w <= 1155":
+			m_menu_btn.style.display = "none";
+			break;
+	}
+});
+
+function fix_m_menu() {
+	const header_h = document.getElementById('header_top').getBoundingClientRect().height;
+	const menu_bar_h = document.getElementById('menu_bar').getBoundingClientRect().height;
+	if (header_h == '100') {
+		m_menu.style['top'] = header_h + menu_bar_h + 'px';
+	} else {
+		m_menu.style['top'] = header_h + 20 + 'px';
+	}
+}
+
+window.addEventListener('resize', fix_m_menu);
 
 // COOKIES
 
