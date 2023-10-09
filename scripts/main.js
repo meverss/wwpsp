@@ -224,7 +224,7 @@ frmField.forEach((e) => {
 						e.classList.remove("wrong", "animate__animated", "animate__shakeX");
 					}, 1000);
 					setTimeout(() => {
-						e.placeholder = "Your phone in format ###-###-####";
+						e.placeholder = "Your phone in format 123-123-1234";
 					}, 3500);
 				}
 			})
@@ -345,7 +345,7 @@ const budgetBtn = document.querySelectorAll('.budget_btn');
 const budgetForm = document.getElementById('budget_form_box');
 const budgetCloseBtn = document.getElementById('budget_close_btn');
 
-budgetCloseBtn.addEventListener('click', () => {
+function hideBudgetRequest() {
 	budgetForm.classList.remove('animate__animated', 'animate__zoomIn');
 	budgetForm.classList.add('animate__animated', 'animate__zoomOut');
 	setTimeout(() => {
@@ -355,8 +355,20 @@ budgetCloseBtn.addEventListener('click', () => {
 		if (window.innerWidth < 1368) {
 			budgetIconFloat.style.display = 'flex';
 		}
-	}, 500);
+	}, 200);
+}
+
+budgetCloseBtn.addEventListener('click', () => {
+	hideBudgetRequest();
 })
+
+window.addEventListener("keydown", function (event) {
+	let k = event.key;
+	if (k == 27 || k == "Escape" || k == "Esc") {
+		hideBudgetRequest();
+	}
+});
+
 
 setInterval(() => {
 	budgetIcon.classList.add('animate__animated', 'animate__tada');
@@ -413,7 +425,7 @@ window.addEventListener("resize", () => {
 		budgetIconFloat.style.display = 'flex';
 	} else if (eval(w) > 1155) {
 		m_menu_btn.style.display = "none";
-	} else if (eval(w) < 1155){
+	} else if (eval(w) < 1155) {
 		m_menu_btn.style.display = "flex";
 		budgetIconFloat.style.display = 'flex';
 	}
