@@ -352,7 +352,9 @@ budgetCloseBtn.addEventListener('click', () => {
 		budgetForm.classList.remove('animate__animated', 'animate__zoomOut');
 		s_budget_form.style.display = 'none';
 		document.body.style.overflow = 'auto';
-		budgetIconFloat.style.display = 'flex';
+		if (window.innerWidth < 1368) {
+			budgetIconFloat.style.display = 'flex';
+		}
 	}, 500);
 })
 
@@ -405,20 +407,32 @@ function showmenu() {
 
 // Calc M-Menu top and fix position
 
-window.addEventListener("resize", (a) => {
-	let w = window.innerWidth;
-
-	switch (w) {
-		case "w > 1368":
-			budgetIconFloat.style.display = 'none';
-			break;
-		case "w > 1155":
-			m_menu_btn.style.display = "none";
-			break;
-		case "w <= 1155":
-			m_menu_btn.style.display = "none";
-			break;
+window.addEventListener("resize", () => {
+	const w = window.innerWidth;
+	if (eval(w) > 1368) {
+		budgetIconFloat.style.display = 'none';
+	} else if (eval(w) < 1368) {
+		budgetIconFloat.style.display = 'flex';
+	} else if (eval(w) > 1155) {
+		m_menu_btn.style.display = "none";
+	} else if (eval(w) < 1155){
+		m_menu_btn.style.display = "flex";
+		budgetIconFloat.style.display = 'flex';
 	}
+	// switch (w) {
+	// 	case (eval(w) > 1368):
+	// 		console.log(w);
+	// 		budgetIconFloat.style.display = 'none';
+	// 		break;
+	// 	case "w > 1155":
+	// 		console.log(m_menu_btn.style)
+	// 		m_menu_btn.style.display = "none";
+	// 		break;
+	// 	case "w <= 1155":
+	// 		m_menu_btn.style.display = "flex";
+	// 		budgetIconFloat.style.display = 'flex';
+	// 		break;
+	// }
 });
 
 function fix_m_menu() {
