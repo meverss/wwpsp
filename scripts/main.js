@@ -428,20 +428,14 @@ fetch("https://wwpspdb.kiniun.tech/reviews?enabled=true&_sort=id&_order=desc")
 	// fetch("./data/db.json")
 	.then(data => data.json())
 	.then(data => {
-		// const budgets = data.budgets;
-		// console.table(budgets);
-
-		// const reviews = data.reviews;
 
 		data.forEach(e => {
-			// reviews.forEach(e => {
-
 			const name = e.name;
-
 			const email = e.email;
 			const review = e.review;
+			const enabled = e.enabled;
 
-			if (e.enabled == true) {
+			if (enabled == true) {
 				reviews_box.innerHTML += `
 			<div class="review_card" id="review_card" >
 				<div class="review_card_img">
@@ -472,27 +466,62 @@ const getData = () => {
 	return contactMessage;
 }
 
+const frmContactKey = document.querySelectorAll('.frmContactKey');
+const frmContactRedirect = document.querySelectorAll('.frmContactRedirect');
+
+frmContactKey.forEach(key => {
+	key.value = "6812b923-1859-4cd0-a7b2-7f246e481715";
+})
+
+frmContactRedirect.forEach(redirect => {
+	redirect.value = location.origin;
+})
+
 contact_form.addEventListener('submit', (e) => {
 	e.preventDefault();
 
 	const postData = async () => {
 		const newMessage = getData();
 		try {
-			resp = await fetch("https://wwpspdb.kiniun.tech/reviews?enabled=true&_sort=id&_order=desc", {
+			resp = await fetch("https://wwpspdb.kiniun.tech/messages?sort=id&_order=desc", {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(newMessage)
 			});
-			
-			if(resp.ok){
+
+			if (resp.ok) {
 				jsonResp = await resp.json();
 			}
-			
+
 		} catch (error) {
 			console.log(error);
 		}
 	}
 
-	postData();
+	if (formContactMessage.value.length >= 4) {
+		formContactMessage.submit();
+		postData();
 
+		setTimeout(() => {
+			let fields = document.querySelectorAll(".frm_text");
+			fields.forEach((field) => {
+				field.value = "";
+			});
+		}, 2000);
+
+	} else {
+		formContactMessage.classList.add("wrong", "animate__animated", "animate__shakeX");
+		formContactMessage.value = "";
+		formContactMessage.placeholder = "Please, write something!";
+		setTimeout((e) => {
+			f_message.classList.remove(
+				"wrong",
+				"animate__animated",
+				"animate__shakeX"
+			);
+		}, 1000);
+		setTimeout((e) => {
+			formContactMessage.placeholder = "Leave me your message";
+		}, 3500);
+	}
 })
