@@ -404,6 +404,7 @@ budgetBtn.forEach(btn => {
 		s_budget_form.style.display = 'flex';
 		document.body.style.overflow = 'hidden';
 		budgetIconFloat.style.display = 'none';
+		disableSendButton();
 		budgetForm.classList.add('animate__animated', 'animate__zoomIn');
 		setTimeout(() => {
 			budgetForm.classList.remove('anitame__animated', 'animate__zoomIn');
@@ -450,5 +451,4 @@ fetch("./data/db.json")
 			}
 		})
 	})
-
 
