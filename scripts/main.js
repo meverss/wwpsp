@@ -420,16 +420,20 @@ budgetBtn.forEach(btn => {
 
 // REVIEWS
 
-// fetch("http://localhost:8080/reviews?enabled=true&_sort=id&_order=desc")
-fetch("./data/db.json")
+fetch("https://wwpspdb.kiniun.tech/reviews?enabled=true&_sort=id&_order=desc")
+	// fetch("./data/db.json")
 	.then(data => data.json())
 	.then(data => {
 		// const budgets = data.budgets;
 		// console.table(budgets);
-		const reviews = data.reviews;
 
-		reviews.forEach(e => {
+		// const reviews = data.reviews;
+
+		data.forEach(e => {
+			// reviews.forEach(e => {
+
 			const name = e.name;
+
 			const email = e.email;
 			const review = e.review;
 
