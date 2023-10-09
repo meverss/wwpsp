@@ -171,11 +171,13 @@ social_n.forEach((item) => {
 
 // FORM VALIDATION
 
-
-const btnSend = document.querySelectorAll('.form_btn');
+const dataForms = document.querySelectorAll('.form');
 const frmField = document.querySelectorAll('.frm_text');
+const btnSend = document.querySelectorAll('.form_btn');
 const validEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
 const validPhone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+
+console.log(dataForms)
 
 function disableSendButton() {
 	btnSend.forEach((btn) => {
@@ -186,7 +188,9 @@ function disableSendButton() {
 disableSendButton();
 
 frmField.forEach((e) => {
+
 	const dataType = e.dataset.frminfo;
+
 	switch (dataType) {
 		case "name":
 			e.addEventListener('focusout', () => {
@@ -237,9 +241,13 @@ frmField.forEach((e) => {
 			})
 			break;
 		case "message":
-
+			// e.addEventListener('focusout', () => {
+			// 	if (e..value != "" && f_email.value != "") {
+			// 		f_btn.disabled = false;
+			// 	}
+			// })
 			break;
-
+			console.log(actFormFields + 'Hola');
 	}
 
 })
@@ -265,11 +273,11 @@ fields.forEach((field) => {
 
 // ---------------------
 
-const frm_contact = document.querySelector('.contact_form');
-const f_name = document.getElementById("name");
-const f_email = document.getElementById("email");
-const f_message = document.getElementById("message");
-const f_btn = document.getElementById("btn_send");
+// const frm_contact = document.querySelector('.contact_form');
+// const f_name = document.getElementById("name");
+// const f_email = document.getElementById("email");
+// const f_message = document.getElementById("message");
+// const f_btn = document.getElementById("btn_send");
 
 // f_name.addEventListener("focusout", (e) => {
 // 	if (f_name.value.length < 2) {
@@ -301,58 +309,58 @@ const f_btn = document.getElementById("btn_send");
 // 	}
 // });
 
-f_message.addEventListener("focus", (e) => {
-	if (f_name.value != "" && f_email.value != "") {
-		f_btn.disabled = false;
-	}
-});
+// f_message.addEventListener("focus", (e) => {
+// 	if (f_name.value != "" && f_email.value != "") {
+// 		f_btn.disabled = false;
+// 	}
+// });
 
 // Get data from the form, save a copy in a JSON and send the emmail
 
 
-frm_contact.addEventListener('submit', e => {
-	e.preventDefault();
+// frm_contact.addEventListener('submit', e => {
+// 	e.preventDefault();
 
-	const frmData = new FormData(e.target);
-	const frmDataComplete = Object.fromEntries(frmData.entries());
-	const name = frmData.get('name');
-	const email = frmData.get('email');
-	const subj = frmData.get('subj');
-	const message = frmData.get('message');
-	const contactMessage = { name, email, subj, message };
+// 	const frmData = new FormData(e.target);
+// 	const frmDataComplete = Object.fromEntries(frmData.entries());
+// 	const name = frmData.get('name');
+// 	const email = frmData.get('email');
+// 	const subj = frmData.get('subj');
+// 	const message = frmData.get('message');
+// 	const contactMessage = { name, email, subj, message };
 
-	frm_key.value = "6812b923-1859-4cd0-a7b2-7f246e481715";
-	frm_url.value = location.origin;
+// 	frm_key.value = "6812b923-1859-4cd0-a7b2-7f246e481715";
+// 	frm_url.value = location.origin;
 
-	subject.innerHTML += `<input id="subject" type="hidden" name="subject" value="New message from ${f_name.value} on your website" ></input>`;
+// 	subject.innerHTML += `<input id="subject" type="hidden" name="subject" value="New message from ${f_name.value} on your website" ></input>`;
 
-	if (f_message.value.length >= 4) {
+// 	if (f_message.value.length >= 4) {
 
-		frm_contact.submit();
-		setTimeout(() => {
-			let fields = document.querySelectorAll(".frm_text");
-			fields.forEach((field) => {
-				field.value = "";
-			});
-		}, 2000);
+// 		frm_contact.submit();
+// 		setTimeout(() => {
+// 			let fields = document.querySelectorAll(".frm_text");
+// 			fields.forEach((field) => {
+// 				field.value = "";
+// 			});
+// 		}, 2000);
 
-	} else {
-		f_message.classList.add("wrong", "animate__animated", "animate__shakeX");
-		f_message.value = "";
-		f_message.placeholder = "Please, write something!";
-		setTimeout((e) => {
-			f_message.classList.remove(
-				"wrong",
-				"animate__animated",
-				"animate__shakeX"
-			);
-		}, 1000);
-		setTimeout((e) => {
-			f_message.placeholder = "Leave me your message";
-		}, 3500);
-	}
+// 	} else {
+// 		f_message.classList.add("wrong", "animate__animated", "animate__shakeX");
+// 		f_message.value = "";
+// 		f_message.placeholder = "Please, write something!";
+// 		setTimeout((e) => {
+// 			f_message.classList.remove(
+// 				"wrong",
+// 				"animate__animated",
+// 				"animate__shakeX"
+// 			);
+// 		}, 1000);
+// 		setTimeout((e) => {
+// 			f_message.placeholder = "Leave me your message";
+// 		}, 3500);
+// 	}
 
-});
+// });
 
 // BUDGET REQUEST
 const budgetIcon = document.getElementById('budget_icon');
