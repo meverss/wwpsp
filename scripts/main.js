@@ -201,7 +201,6 @@ frmField.forEach((e) => {
 					}, 3500);
 				}
 
-				console
 			})
 			break;
 		case "email":
@@ -418,12 +417,12 @@ frmKey.forEach(key => {
 })
 
 frmRedirect.forEach(redirect => {
-	if (location.origin == 'https://meverss.github.io') {
-		redirect.value = location.origin + '/portfolio';
-	} else {
-		redirect.value = location.origin;
-	}
-	console.log(redirect.value);
+	// if (location.origin == 'https://meverss.github.io') {
+	// 	redirect.value = location.origin + '/wwpsp';
+	// } else {
+	// 	redirect.value = location.origin;
+	// }
+	redirect.value = location.href;
 })
 
 
