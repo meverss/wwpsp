@@ -1,3 +1,27 @@
+// GLOBAL VARIABLES
+
+const contactForm = document.getElementById('contact_form');
+const budgetForm = document.getElementById('budget_form');
+//const reviewForm = document.getElementById('review_form');
+
+const dataForms = document.querySelectorAll('.form');
+const frmField = document.querySelectorAll('.frm_text');
+const frmMessage = document.querySelectorAll('.frm_message');
+const btnSend = document.querySelectorAll('.form_btn');
+
+const formContactName = document.getElementById("name");
+const formContactEmail = document.getElementById("email");
+const formContactSubject = document.getElementById("subj");
+const formContactMessage = document.getElementById("message");
+
+const formBudgetName = document.getElementById("br_name");
+const formBudgetEmail = document.getElementById("br_email");
+const formBudgetPhone = document.getElementById("br_phone");
+const formBudgetMessage = document.getElementById("br_message");
+
+const validEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+const validPhone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+
 // SHOW WEBSITE AFTER LOADED
 
 function show_page() {
@@ -125,23 +149,6 @@ social_n.forEach((item) => {
 
 // FORM VALIDATION
 
-const dataForms = document.querySelectorAll('.form');
-const frmField = document.querySelectorAll('.frm_text');
-const btnSend = document.querySelectorAll('.form_btn');
-
-const formContactName = document.getElementById("name");
-const formContactEmail = document.getElementById("email");
-const formContactSubject = document.getElementById("subj");
-const formContactMessage = document.getElementById("message");
-
-const formBudgetName = document.getElementById("br_name");
-const formBudgetEmail = document.getElementById("br_email");
-const formBudgetPhone = document.getElementById("br_phone");
-const formBudgetMessage = document.getElementById("br_message");
-
-const validEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
-const validPhone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-
 function disableSendButton() {
 	btnSend.forEach((btn) => {
 		btn.disabled = true;
@@ -254,50 +261,19 @@ frmField.forEach((e) => {
 
 })
 
-// ---------------------
-
-
-
-// 	if (f_message.value.length >= 4) {
-
-// 		frm_contact.submit();
-// 		setTimeout(() => {
-// 			let fields = document.querySelectorAll(".frm_text");
-// 			fields.forEach((field) => {
-// 				field.value = "";
-// 			});
-// 		}, 2000);
-
-// 	} else {
-// 		f_message.classList.add("wrong", "animate__animated", "animate__shakeX");
-// 		f_message.value = "";
-// 		f_message.placeholder = "Please, write something!";
-// 		setTimeout((e) => {
-// 			f_message.classList.remove(
-// 				"wrong",
-// 				"animate__animated",
-// 				"animate__shakeX"
-// 			);
-// 		}, 1000);
-// 		setTimeout((e) => {
-// 			f_message.placeholder = "Leave me your message";
-// 		}, 3500);
-// 	}
-
-// });
-
 // BUDGET REQUEST
+
 const budgetIcon = document.getElementById('budget_icon');
 const budgetIconFloat = document.getElementById('budget_float');
 const budgetBtn = document.querySelectorAll('.budget_btn');
-const budgetForm = document.getElementById('budget_form_box');
+const budgetFormBox = document.getElementById('budget_form_box');
 const budgetCloseBtn = document.getElementById('budget_close_btn');
 
 function hideBudgetRequest() {
-	budgetForm.classList.remove('animate__animated', 'animate__zoomIn');
-	budgetForm.classList.add('animate__animated', 'animate__zoomOut');
+	budgetFormBox.classList.remove('animate__animated', 'animate__zoomIn');
+	budgetFormBox.classList.add('animate__animated', 'animate__zoomOut');
 	setTimeout(() => {
-		budgetForm.classList.remove('animate__animated', 'animate__zoomOut');
+		budgetFormBox.classList.remove('animate__animated', 'animate__zoomOut');
 		s_budget_form.style.display = 'none';
 		document.body.style.overflow = 'auto';
 		if (window.innerWidth < 1368) {
@@ -334,15 +310,16 @@ budgetBtn.forEach(btn => {
 		document.body.style.overflow = 'hidden';
 		budgetIconFloat.style.display = 'none';
 		disableSendButton();
-		budgetForm.classList.add('animate__animated', 'animate__zoomIn');
+		budgetFormBox.classList.add('animate__animated', 'animate__zoomIn');
 		setTimeout(() => {
-			budgetForm.classList.remove('anitame__animated', 'animate__zoomIn');
+			budgetFormBox.classList.remove('anitame__animated', 'animate__zoomIn');
 		}, 1000);
 	})
 })
 
 
 // SHOW/HIDE ALTERANTIVE MENU
+
 const btnMenu = document.getElementById('m_menu_btn');
 
 btnMenu.addEventListener("click", showmenu);
@@ -430,17 +407,7 @@ fetch("https://wwpspdb.kiniun.tech/reviews?enabled=true&_sort=id&_order=desc")
 		})
 	})
 
-const getData = () => {
-	const frmData = new FormData(contact_form);
-	const frmDataComplete = Object.fromEntries(frmData.entries());
-	const name = frmData.get('name');
-	const email = frmData.get('email');
-	const subj = frmData.get('subj');
-	const message = frmData.get('message');
-	const contactMessage = { name, email, subj, message };
-
-	return contactMessage;
-}
+// FORMS SUBMIT
 
 const frmKey = document.querySelectorAll('.frmKey');
 const frmRedirect = document.querySelectorAll('.frmRedirect');
@@ -454,68 +421,145 @@ frmRedirect.forEach(redirect => {
 	redirect.value = location.origin;
 })
 
-frmSubject.forEach(subject => {
-	switch (subject.id) {
-		case "contactSubject":
-			subject.innerHTML = `<input id="contactSubject" type="hidden" name="subject" value="New message from ${formContactName} on your website" ></input>`;
-			break;
-		case "reviewSubject":
-			subject.innerHTML = `<input id="reviewSubject" type="hidden" name="subject" value="New review from ${formContactName} on your website" ></input>`;
-			break;
-		case "budgetSubject":
-			subject.innerHTML = `<input id="budgetSubject" type="hidden" name="subject" value="New budget request from ${formContactName}" ></input>`;
-			break;
+const getContactData = () => {
+	const frmData = new FormData(contactForm);
+	// const frmDataComplete = Object.fromEntries(frmData.entries());
+	const name = frmData.get('name');
+	const email = frmData.get('email');
+	const subj = frmData.get('subj');
+	const message = frmData.get('message');
+	const contactData = { name, email, subj, message };
+	return contactData;
+}
 
-	}
-	subject.value = location.origin;
-})
+const getBudgetData = () => {
+	const frmData = new FormData(budgetForm);
+	// const frmDataComplete = Object.fromEntries(frmData.entries());
+	const name = frmData.get('name');
+	const email = frmData.get('email');
+	const subj = frmData.get('phone');
+	const message = frmData.get('message');
+	const contactData = { name, email, phone, message };
+	return budgetData;
+}
 
+// const getReviewData = () => {
+// 	const frmData = new FormData(reviewForm);
+// // 	const frmDataComplete = Object.fromEntries(frmData.entries());
+// 	const name = frmData.get('name');
+// 	const email = frmData.get('email');
+// 	const message = frmData.get('message');
+// 	const subj = frmData.get('enabled');
+// 	const contactData = { name, email, message, enabled };
+// 	return contactData;
+// }
 
-contact_form.addEventListener('submit', (e) => {
-	e.preventDefault();
+dataForms.forEach(form => {
 
-	const postData = async () => {
-		const newMessage = getData();
-		try {
-			resp = await fetch("https://wwpspdb.kiniun.tech/messages?sort=id&_order=desc", {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify(newMessage)
-			});
+	form.addEventListener('submit', (e) => {
+		e.preventDefault();
 
-			if (resp.ok) {
-				jsonResp = await resp.json();
+		frmSubject.forEach(subject => {
+			switch (subject.id) {
+				case "contactSubject":
+					subject.innerHTML = `<input id="contactSubject" type="hidden" name="subject" value="New MESSAGE from ${formContactName.value} on your website" ></input>`;
+					break;
+				case "reviewSubject":
+					subject.innerHTML = `<input id="reviewSubject" type="hidden" name="subject" value="New REVIEW from ${formReviewName.value} on your website" ></input>`;
+					break;
+				case "budgetSubject":
+					subject.innerHTML = `<input id="budgetSubject" type="hidden" name="subject" value="New BUDGET REQUEST from ${formBudgetName.value}" ></input>`;
+					break;
 			}
+		})
 
-		} catch (error) {
-			console.log(error);
+
+		const postData = async () => {
+			switch (e.target.id) {
+				case "contact_form":
+					const newContactData = getContactData();
+					try {
+						resp = await fetch("https://wwpspdb.kiniun.tech/messages?sort=id&_order=desc", {
+							method: 'POST',
+							headers: { 'Content-Type': 'application/json' },
+							body: JSON.stringify(newContactData)
+						});
+
+						if (resp.ok) {
+							jsonResp = await resp.json();
+						}
+
+					} catch (error) {
+						console.log(error);
+					}
+					break;
+				case "budget_form":
+					const newBudgetData = getBudgetData();
+					try {
+						resp = await fetch("https://wwpspdb.kiniun.tech/budgets?sort=id&_order=desc", {
+							method: 'POST',
+							headers: { 'Content-Type': 'application/json' },
+							body: JSON.stringify(newBudgetData)
+						});
+
+						if (resp.ok) {
+							jsonResp = await resp.json();
+						}
+
+					} catch (error) {
+						console.log(error);
+					}
+					break;
+				// case "reviewForm":
+				// 	const newReviewData = getBudgetData();
+				// 	try {
+				// 		resp = await fetch("https://wwpspdb.kiniun.tech/reviews?sort=id&_order=desc", {
+				// 			method: 'POST',
+				// 			headers: { 'Content-Type': 'application/json' },
+				// 			body: JSON.stringify(newReviewData)
+				// 		});
+
+				// 		if (resp.ok) {
+				// 			// jsonResp = await resp.json();
+				// 		}
+
+				// 	} catch (error) {
+				// 		console.log(error);
+				// 	}
+				// 	break;
+
+			}
 		}
-	}
 
-	if (formContactMessage.value.length >= 4) {
-		formContactMessage.submit();
-		postData();
+		// ----------------------
 
-		setTimeout(() => {
-			let fields = document.querySelectorAll(".frm_text");
-			fields.forEach((field) => {
-				field.value = "";
-			});
-		}, 2000);
+		frmMessage.forEach(msg => {
+			if (msg.value.length >= 4) {
+				e.target.submit();
+				postData();
 
-	} else {
-		formContactMessage.classList.add("wrong", "animate__animated", "animate__shakeX");
-		formContactMessage.value = "";
-		formContactMessage.placeholder = "Please, write something!";
-		setTimeout((e) => {
-			f_message.classList.remove(
-				"wrong",
-				"animate__animated",
-				"animate__shakeX"
-			);
-		}, 1000);
-		setTimeout((e) => {
-			formContactMessage.placeholder = "Leave me your message";
-		}, 3500);
-	}
+				setTimeout(() => {
+					let fields = document.querySelectorAll(".frm_text");
+					fields.forEach((field) => {
+						field.value = "";
+					});
+				}, 2000);
+
+			} else {
+				msg.classList.add("wrong", "animate__animated", "animate__shakeX");
+				msg.value = "";
+				msg.placeholder = "Please, write something!";
+				setTimeout((e) => {
+					msg.classList.remove(
+						"wrong",
+						"animate__animated",
+						"animate__shakeX"
+					);
+				}, 1000);
+				setTimeout((e) => {
+					msg.placeholder = "Leave us your message";
+				}, 3500);
+			}
+		})
+	})
 })
