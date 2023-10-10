@@ -129,7 +129,7 @@ const url_facebook =
 	"http://www.facebook.com/sharer.php?u=" +
 	my_website +
 	"&t=" + my_title;
-const url_tweeter =
+const url_twitter =
 	"https://twitter.com/intent/tweet?url=" +
 	my_website +
 	"&text = " + my_title;
