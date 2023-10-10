@@ -450,8 +450,8 @@ const getBudgetData = () => {
 // 	const email = frmData.get('email');
 // 	const message = frmData.get('message');
 // 	const subj = frmData.get('enabled');
-// 	const contactData = { name, email, message, enabled };
-// 	return contactData;
+// 	const reviewData = { name, email, message, enabled };
+// 	return reviewData;
 // }
 
 dataForms.forEach(form => {
@@ -530,8 +530,6 @@ dataForms.forEach(form => {
 
 			}
 		}
-
-		// ----------------------
 
 		frmMessage.forEach(msg => {
 			if (msg.value.length >= 4) {
