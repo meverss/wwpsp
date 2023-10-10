@@ -383,9 +383,13 @@ window.addEventListener('resize', fix_m_menu);
 
 // NOTIFICATIONS
 
+setTimeout(() => {
+	showNoti('err','Prueba');
+},3000)
+
 noti.style['top'] = headerHeight + menuBarHeight + 'px';
 
-function showNoti(notiType) {
+function showNoti(notiType, message) {
 	switch (notiType) {
 		case "ok":
 			notiType = `<div id="ntf_icon" class="ntf_icon" id="ntf_icon"><i style="color: green" class='far fa-circle-check'></i></div`;
@@ -399,10 +403,11 @@ function showNoti(notiType) {
 	}
 
 	notiIcon.innerHTML = notiType;
+	notiText.innerHTML = message;
 	noti.style['transform'] = 'translate(-1%)';
 	setTimeout(() => {
 		noti.style['transform'] = 'translate(102%)';
-	}, 7000);
+	}, 5000);
 }
 
 // REVIEWS
