@@ -123,7 +123,7 @@ footer.innerHTML = copyright;
 // SHARE ON SOCIAL MEDIA
 
 const social_n = document.querySelectorAll(".social_item");
-const my_website = encodeURIComponent(location.origin);
+const my_website = encodeURIComponent(location.href);
 const my_title = encodeURIComponent('WWP SCREENING & PAINTING LLC.');
 const url_facebook =
 	"http://www.facebook.com/sharer.php?u=" +
