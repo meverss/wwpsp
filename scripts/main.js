@@ -230,7 +230,7 @@ frmField.forEach((e) => {
 						e.classList.remove("wrong", "animate__animated", "animate__shakeX");
 					}, 1000);
 					setTimeout(() => {
-						e.placeholder = "Your phone in format 123-123-1234";
+						e.placeholder = "Where can we call you?";
 					}, 3500);
 				}
 			})
