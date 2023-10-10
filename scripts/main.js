@@ -383,10 +383,6 @@ window.addEventListener('resize', fix_m_menu);
 
 // NOTIFICATIONS
 
-setTimeout(() => {
-	showNoti('err','Prueba');
-},3000)
-
 noti.style['top'] = headerHeight + menuBarHeight + 'px';
 
 function showNoti(notiType, message) {
@@ -404,7 +400,7 @@ function showNoti(notiType, message) {
 
 	notiIcon.innerHTML = notiType;
 	notiText.innerHTML = message;
-	noti.style['transform'] = 'translate(-1%)';
+	noti.style['transform'] = 'translate(-3%)';
 	setTimeout(() => {
 		noti.style['transform'] = 'translate(102%)';
 	}, 5000);
@@ -527,11 +523,11 @@ dataForms.forEach(form => {
 						});
 
 						if (resp.ok) {
-							// jsonResp = await resp.json();
+							showNoti('ok', 'Your message has been sent successfully');
 						}
 
 					} catch (error) {
-						// console.log(error);
+						showNoti('err', error);
 					}
 					break;
 				case "budget_form":
@@ -544,11 +540,11 @@ dataForms.forEach(form => {
 						});
 
 						if (resp.ok) {
-							// jsonResp = await resp.json();
+							showNoti('ok', 'Budget request sent successfully');
 						}
 
 					} catch (error) {
-						// alert(error);
+						showNoti('err', error);
 					}
 					break;
 				// case "reviewForm":
@@ -561,11 +557,11 @@ dataForms.forEach(form => {
 				// 		});
 
 				// 		if (resp.ok) {
-				// 			// jsonResp = await resp.json();
+				// 			showNoti('ok', 'Your review has been sent successfully');
 				// 		}
 
 				// 	} catch (error) {
-				// 		console.log(error);
+				// 		showNoti('err', error);
 				// 	}
 				// 	break;
 
@@ -574,15 +570,15 @@ dataForms.forEach(form => {
 
 		frmMessage.forEach(msg => {
 			if (msg.value.length >= 4) {
-				e.target.submit();
 				postData();
-
+				
 				setTimeout(() => {
 					let fields = document.querySelectorAll(".frm_text");
+					e.target.submit();
 					fields.forEach((field) => {
 						field.value = "";
 					});
-				}, 2000);
+				}, 5000);
 
 			} else {
 				msg.classList.add("wrong", "animate__animated", "animate__shakeX");
