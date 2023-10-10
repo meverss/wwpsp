@@ -256,31 +256,7 @@ frmField.forEach((e) => {
 
 // ---------------------
 
-// const frm_contact = document.querySelector('.contact_form');
-// const formContactName = document.getElementById("name");
-// const formContactEemail = document.getElementById("email");
-// const formContactMessage = document.getElementById("message");
-// const f_btn = document.getElementById("btn_send");
 
-
-// Get data from the form, save a copy in a JSON and send the emmail
-
-
-// frm_contact.addEventListener('submit', e => {
-// 	e.preventDefault();
-
-// 	const frmData = new FormData(e.target);
-// 	const frmDataComplete = Object.fromEntries(frmData.entries());
-// 	const name = frmData.get('name');
-// 	const email = frmData.get('email');
-// 	const subj = frmData.get('subj');
-// 	const message = frmData.get('message');
-// 	const contactMessage = { name, email, subj, message };
-
-// 	frm_key.value = "6812b923-1859-4cd0-a7b2-7f246e481715";
-// 	frm_url.value = location.origin;
-
-// 	subject.innerHTML += `<input id="subject" type="hidden" name="subject" value="New message from ${f_name.value} on your website" ></input>`;
 
 // 	if (f_message.value.length >= 4) {
 
@@ -466,16 +442,34 @@ const getData = () => {
 	return contactMessage;
 }
 
-const frmContactKey = document.querySelectorAll('.frmContactKey');
-const frmContactRedirect = document.querySelectorAll('.frmContactRedirect');
+const frmKey = document.querySelectorAll('.frmKey');
+const frmRedirect = document.querySelectorAll('.frmRedirect');
+const frmSubject = document.querySelectorAll('.frmSubject');
 
-frmContactKey.forEach(key => {
+frmKey.forEach(key => {
 	key.value = "6812b923-1859-4cd0-a7b2-7f246e481715";
 })
 
-frmContactRedirect.forEach(redirect => {
+frmRedirect.forEach(redirect => {
 	redirect.value = location.origin;
 })
+
+frmSubject.forEach(subject => {
+	switch (subject.id) {
+		case "contactSubject":
+			subject.innerHTML = `<input id="contactSubject" type="hidden" name="subject" value="New message from ${formContactName} on your website" ></input>`;
+			break;
+		case "reviewSubject":
+			subject.innerHTML = `<input id="reviewSubject" type="hidden" name="subject" value="New review from ${formContactName} on your website" ></input>`;
+			break;
+		case "budgetSubject":
+			subject.innerHTML = `<input id="budgetSubject" type="hidden" name="subject" value="New budget request from ${formContactName}" ></input>`;
+			break;
+
+	}
+	subject.value = location.origin;
+})
+
 
 contact_form.addEventListener('submit', (e) => {
 	e.preventDefault();
