@@ -22,6 +22,14 @@ const formBudgetMessage = document.getElementById("br_message");
 const validEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
 const validPhone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 
+const noti = document.getElementById('s_notifications');
+const notiIcon = document.getElementById('ntf_icon');
+const notiText = document.getElementById('ntf_text');
+
+const headerHeight = document.getElementById('header_top').getBoundingClientRect().height;
+const menuBarHeight = document.getElementById('menu_bar').getBoundingClientRect().height;
+
+
 // SHOW WEBSITE AFTER LOADED
 
 function show_page() {
@@ -373,6 +381,10 @@ window.addEventListener('resize', fix_m_menu);
 // const headers = new Headers();
 // headers.append('Set-Cookie', 'key=value; path=/; domain=http://192.168.241.14:5500; Secure; SameSite=Strict');
 
+// NOTIFICATIONS
+
+noti.style['top'] = headerHeight + menuBarHeight + 'px';
+console.log(noti)
 
 // REVIEWS
 

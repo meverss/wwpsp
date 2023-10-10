@@ -431,10 +431,11 @@ a {
 	justify-content: center;
 	align-items: center;
 	position: fixed;
-	top: 0;
-	right: 0;
+	margin-top: 2px;
+	right: 5px;
 	z-index: 999999;
-	background-color: red;
+	background-color: rgb(10,10,10,0.94);
+	border-radius: 8px;
 }
 
 .ntf_box {
@@ -467,7 +468,8 @@ a {
 
 .ntf_text p {
 	padding: 10px;
-	font-size: 13pt;	
+	font-size: 13pt;
+	color: #fff;
 }
 
 /* LEFT SIDE BAR - INFO */
