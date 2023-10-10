@@ -418,12 +418,7 @@ frmKey.forEach(key => {
 })
 
 frmRedirect.forEach(redirect => {
-	if(location.origin == 'https://meverss.github.io'){
-		redirect.value = location.origin + '/portfolio';
-	} else {
-		redirect.value = location.origin;
-	}
-	console.log(redirect.value);
+	redirect.value = location.href;
 })
 
 
