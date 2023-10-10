@@ -424,6 +424,51 @@ a {
 	transform: scale(1.2);
 }
 
+/* NOTIFICATIONS */
+
+.s_notifications {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 999999;
+	background-color: red;
+}
+
+.ntf_box {
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+}
+
+.ntf_close_btn {
+	display: flex;
+	justify-content: right;
+	align-items: center;
+	width: 100%;
+}
+
+.ntf_msg {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.ntf_icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: green;
+	font-size: 30pt;
+	height: 100%;
+}
+
+.ntf_text p {
+	padding: 10px;
+	font-size: 13pt;	
+}
 
 /* LEFT SIDE BAR - INFO */
 
