@@ -168,7 +168,7 @@
 					<div class="ntf_msg" id="ntf_msg">
 						<div class="ntf_icon"><i id='ntf_icon'></i></div>
 						<div class="ntf_text">
-							<p  id="ntf_text"></p>
+							<p id="ntf_text"></p>
 						</div>
 					</div>
 				</div>
@@ -401,8 +401,9 @@
 										placeholder="What's the affair?" data-frminfo="subject" />
 
 									<label class="text" for="message">Message<span class="important">*</span></label>
-									<textarea class="frm_text frm_message" name="message" id="message" rows="5" autocomplete="off"
-										placeholder="Leave us your message" data-frminfo="message"></textarea>
+									<textarea class="frm_text frm_message" name="message" id="message" rows="5"
+										autocomplete="off" placeholder="Leave us your message"
+										data-frminfo="message"></textarea>
 
 									<input id="btn_send" type="submit" class="button form_btn" value="Send" />
 
@@ -463,12 +464,56 @@
 									placeholder="Where can we call you?" data-frminfo="phone" />
 
 								<label class="text" for="br_message">Message<span class="important">*</span></label>
-								<textarea class="frm_text frm_message" name="message" id="br_message" rows="5" autocomplete="off"
-									placeholder="Please, tell us what you need." data-frminfo="message"></textarea>
+								<textarea class="frm_text frm_message" name="message" id="br_message" rows="5"
+									autocomplete="off" placeholder="Please, tell us what you need."
+									data-frminfo="message"></textarea>
 
 								<!-- <input id="br_enabled" type="hidden" name="enabled" value="false"> -->
 
 								<input id="br_btn_send" type="submit" class="button form_btn" value="Send" />
+
+								<!-- Config -->
+								<input class="frmKey" type="hidden" name="access_key">
+								<input class="frmRedirect" type="hidden" name="redirect">
+								<input class="frmSubject" id="budgetSubject" type="hidden">
+								<!-- <input type="hidden" name="ccemail" value="wwpscreeningpaintingllc@gmail.com"> -->
+
+							</form>
+						</div>
+					</div>
+				</section>
+
+				<!-- SUBMIT A REVIEW -->
+
+				<section class="s_review_form" id="s_review_form">
+					<nav id="s_m_review_form"></nav>
+					<div class="review_form_back" id="review_form_back">
+						<div class="review_form_box" id="review_form_box">
+							<div class="review_close_btn" id="review_close_btn">
+								<p style="font-family: Symbols" tex>  </p>
+							</div>
+							<div class="review_form_title" id="review_form_title">
+								<h2>Submit a review</h2>
+							</div>
+							<form id="review_form" class="review_form form" action="https://api.web3forms.com/submit"
+								method="POST">
+
+								<label class="text" for="rv_name">Full Name<span class="important">*</span></label>
+								<input class="frm_text" name="name" id="rv_name" autocomplete="off"
+									placeholder="What's your name?" data-frminfo="name" />
+
+								<label class="text" for="br_email">E-mail<span class="important">*</span></label>
+								<input class="frm_text" name="email" id="rv_email" autocomplete="off"
+									placeholder="your@email.here" data-frminfo="email" />
+
+								<label class="text" for="br_message">Message<span class="important">*</span></label>
+								<textarea class="frm_text frm_message" name="message" id="rv_message" rows="5"
+									autocomplete="off" placeholder="What's your opinion about our service?"
+									data-frminfo="message"></textarea>
+
+								<input id="rv_enabled" type="hidden" name="enabled" value="false">
+
+								<input id="rv_btn_send" type="submit" class="button form_btn" value="Submit" />
 
 								<!-- Config -->
 								<input class="frmKey" type="hidden" name="access_key">
