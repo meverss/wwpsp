@@ -275,9 +275,9 @@ function hideBudgetRequest() {
 		budgetFormBox.classList.remove('animate__animated', 'animate__zoomOut');
 		s_budget_form.style.display = 'none';
 		document.body.style.overflow = 'auto';
+		formBudgetName.value = ""; formBudgetEmail.value = ""; formBudgetPhone.value = "";
 		if (window.innerWidth < 1368) {
 			budgetIconFloat.style.display = 'flex';
-			formBudgetName.value = ""; formBudgetEmail.value = ""; formBudgetPhone.value = "";
 		}
 	}, 200);
 }
