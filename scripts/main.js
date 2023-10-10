@@ -437,9 +437,9 @@ const getBudgetData = () => {
 	// const frmDataComplete = Object.fromEntries(frmData.entries());
 	const name = frmData.get('name');
 	const email = frmData.get('email');
-	const subj = frmData.get('phone');
+	const phone = frmData.get('phone');
 	const message = frmData.get('message');
-	const contactData = { name, email, phone, message };
+	const budgetData = { name, email, phone, message };
 	return budgetData;
 }
 
@@ -507,7 +507,7 @@ dataForms.forEach(form => {
 						}
 
 					} catch (error) {
-						console.log(error);
+						alert(error);
 					}
 					break;
 				// case "reviewForm":
