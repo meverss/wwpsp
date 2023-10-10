@@ -123,7 +123,7 @@ footer.innerHTML = copyright;
 // SHARE ON SOCIAL MEDIA
 
 const social_n = document.querySelectorAll(".social_item");
-const my_website = encodeURIComponent(location.href);
+const my_website = encodeURIComponent(location.origin);
 const my_title = encodeURIComponent('WWP SCREENING & PAINTING LLC.');
 const url_facebook =
 	"http://www.facebook.com/sharer.php?u=" +
@@ -418,7 +418,12 @@ frmKey.forEach(key => {
 })
 
 frmRedirect.forEach(redirect => {
-	redirect.value = location.href;
+	if (location.origin == 'https://meverss.github.io') {
+		redirect.value = location.origin + '/portfolio';
+	} else {
+		redirect.value = location.origin;
+	}
+	console.log(redirect.value);
 })
 
 
@@ -487,11 +492,11 @@ dataForms.forEach(form => {
 						});
 
 						if (resp.ok) {
-							jsonResp = await resp.json();
+							// jsonResp = await resp.json();
 						}
 
 					} catch (error) {
-						console.log(error);
+						// console.log(error);
 					}
 					break;
 				case "budget_form":
@@ -504,11 +509,11 @@ dataForms.forEach(form => {
 						});
 
 						if (resp.ok) {
-							jsonResp = await resp.json();
+							// jsonResp = await resp.json();
 						}
 
 					} catch (error) {
-						alert(error);
+						// alert(error);
 					}
 					break;
 				// case "reviewForm":
