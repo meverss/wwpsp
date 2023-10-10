@@ -418,8 +418,14 @@ frmKey.forEach(key => {
 })
 
 frmRedirect.forEach(redirect => {
-	redirect.value = location.origin;
+	if(location.origin == 'https://meverss.github.io/portfolio'){
+		redirect.value = location.origin + '/portfolio';
+	} else {
+		redirect.value = location.origin;
+	}
+	console.log(redirect.value);
 })
+
 
 const getContactData = () => {
 	const frmData = new FormData(contactForm);
