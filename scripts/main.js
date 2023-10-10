@@ -460,6 +460,8 @@ const getBudgetData = () => {
 // 	return reviewData;
 // }
 
+console.log(location.href);
+
 dataForms.forEach(form => {
 
 	form.addEventListener('submit', (e) => {
