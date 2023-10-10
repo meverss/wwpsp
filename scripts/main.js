@@ -467,10 +467,10 @@ dataForms.forEach(form => {
 		frmSubject.forEach(subject => {
 			switch (subject.id) {
 				case "contactSubject":
-					subject.innerHTML = `<input id="contactSubject" type="hidden" name="subject" value="New MESSAGE from ${formContactName.value} on your website" ></input>`;
+					subject.innerHTML = `<input id="contactSubject" type="hidden" name="subject" value="New MESSAGE from ${formContactName.value} on WWP SCREENING & PAINTING LLC" ></input>`;
 					break;
 				case "reviewSubject":
-					subject.innerHTML = `<input id="reviewSubject" type="hidden" name="subject" value="New REVIEW from ${formReviewName.value} on your website" ></input>`;
+					subject.innerHTML = `<input id="reviewSubject" type="hidden" name="subject" value="New REVIEW from ${formReviewName.value} on WWP SCREENING & PAINTING LLC" ></input>`;
 					break;
 				case "budgetSubject":
 					subject.innerHTML = `<input id="budgetSubject" type="hidden" name="subject" value="New BUDGET REQUEST from ${formBudgetName.value}" ></input>`;
