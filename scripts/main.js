@@ -384,23 +384,31 @@ window.addEventListener('resize', fix_m_menu);
 // NOTIFICATIONS
 
 noti.style['top'] = headerHeight + menuBarHeight + 'px';
-console.log(noti)
+setTimeout(showNoti, 5000);
+setTimeout(hideNoti, 10000);
 
-// REVIEWS
+function showNoti() {
+	noti.style['transform'] = 'translate(-1%)'
+	setTimeout(() => {
+		noti.style['transform'] = 'translate(102%)';
+	}, 7000);
+}
 
-fetch("https://wwpspdb.kiniun.tech/reviews?enabled=true&_sort=id&_order=desc")
-	// fetch("./data/db.json")
-	.then(data => data.json())
-	.then(data => {
+	// REVIEWS
 
-		data.forEach(e => {
-			const name = e.name;
-			const email = e.email;
-			const review = e.review;
-			const enabled = e.enabled;
+	fetch("https://wwpspdb.kiniun.tech/reviews?enabled=true&_sort=id&_order=desc")
+		// fetch("./data/db.json")
+		.then(data => data.json())
+		.then(data => {
 
-			if (enabled == true) {
-				reviews_box.innerHTML += `
+			data.forEach(e => {
+				const name = e.name;
+				const email = e.email;
+				const review = e.review;
+				const enabled = e.enabled;
+
+				if (enabled == true) {
+					reviews_box.innerHTML += `
 			<div class="review_card" id="review_card" >
 				<div class="review_card_img">
 					<i class='fas fa-quote-left fa-4x'></i>
@@ -414,167 +422,167 @@ fetch("https://wwpspdb.kiniun.tech/reviews?enabled=true&_sort=id&_order=desc")
 				</div>
 			</div>
 			`
-			}
+				}
+			})
 		})
+
+	// FORMS SUBMIT
+
+	const frmKey = document.querySelectorAll('.frmKey');
+	const frmRedirect = document.querySelectorAll('.frmRedirect');
+	const frmSubject = document.querySelectorAll('.frmSubject');
+
+	frmKey.forEach(key => {
+		key.value = "6812b923-1859-4cd0-a7b2-7f246e481715";
 	})
 
-// FORMS SUBMIT
+	frmRedirect.forEach(redirect => {
+		// if (location.origin == 'https://meverss.github.io') {
+		// 	redirect.value = location.origin + '/wwpsp';
+		// } else {
+		// 	redirect.value = location.origin;
+		// }
+		redirect.value = location.href;
+	})
 
-const frmKey = document.querySelectorAll('.frmKey');
-const frmRedirect = document.querySelectorAll('.frmRedirect');
-const frmSubject = document.querySelectorAll('.frmSubject');
 
-frmKey.forEach(key => {
-	key.value = "6812b923-1859-4cd0-a7b2-7f246e481715";
-})
+	const getContactData = () => {
+		const frmData = new FormData(contactForm);
+		// const frmDataComplete = Object.fromEntries(frmData.entries());
+		const name = frmData.get('name');
+		const email = frmData.get('email');
+		const subj = frmData.get('subj');
+		const message = frmData.get('message');
+		const contactData = { name, email, subj, message };
+		return contactData;
+	}
 
-frmRedirect.forEach(redirect => {
-	// if (location.origin == 'https://meverss.github.io') {
-	// 	redirect.value = location.origin + '/wwpsp';
-	// } else {
-	// 	redirect.value = location.origin;
+	const getBudgetData = () => {
+		const frmData = new FormData(budgetForm);
+		// const frmDataComplete = Object.fromEntries(frmData.entries());
+		const name = frmData.get('name');
+		const email = frmData.get('email');
+		const phone = frmData.get('phone');
+		const message = frmData.get('message');
+		const budgetData = { name, email, phone, message };
+		return budgetData;
+	}
+
+	// const getReviewData = () => {
+	// 	const frmData = new FormData(reviewForm);
+	// // 	const frmDataComplete = Object.fromEntries(frmData.entries());
+	// 	const name = frmData.get('name');
+	// 	const email = frmData.get('email');
+	// 	const message = frmData.get('message');
+	// 	const subj = frmData.get('enabled');
+	// 	const reviewData = { name, email, message, enabled };
+	// 	return reviewData;
 	// }
-	redirect.value = location.href;
-})
+
+	dataForms.forEach(form => {
+
+		form.addEventListener('submit', (e) => {
+			e.preventDefault();
+
+			frmSubject.forEach(subject => {
+				switch (subject.id) {
+					case "contactSubject":
+						subject.innerHTML = `<input id="contactSubject" type="hidden" name="subject" value="New MESSAGE from ${formContactName.value} on WWP SCREENING & PAINTING LLC" ></input>`;
+						break;
+					case "reviewSubject":
+						subject.innerHTML = `<input id="reviewSubject" type="hidden" name="subject" value="New REVIEW from ${formReviewName.value} on WWP SCREENING & PAINTING LLC" ></input>`;
+						break;
+					case "budgetSubject":
+						subject.innerHTML = `<input id="budgetSubject" type="hidden" name="subject" value="New BUDGET REQUEST from ${formBudgetName.value}" ></input>`;
+						break;
+				}
+			})
 
 
-const getContactData = () => {
-	const frmData = new FormData(contactForm);
-	// const frmDataComplete = Object.fromEntries(frmData.entries());
-	const name = frmData.get('name');
-	const email = frmData.get('email');
-	const subj = frmData.get('subj');
-	const message = frmData.get('message');
-	const contactData = { name, email, subj, message };
-	return contactData;
-}
+			const postData = async () => {
+				switch (e.target.id) {
+					case "contact_form":
+						const newContactData = getContactData();
+						try {
+							resp = await fetch("https://wwpspdb.kiniun.tech/messages?sort=id&_order=desc", {
+								method: 'POST',
+								headers: { 'Content-Type': 'application/json' },
+								body: JSON.stringify(newContactData)
+							});
 
-const getBudgetData = () => {
-	const frmData = new FormData(budgetForm);
-	// const frmDataComplete = Object.fromEntries(frmData.entries());
-	const name = frmData.get('name');
-	const email = frmData.get('email');
-	const phone = frmData.get('phone');
-	const message = frmData.get('message');
-	const budgetData = { name, email, phone, message };
-	return budgetData;
-}
+							if (resp.ok) {
+								// jsonResp = await resp.json();
+							}
 
-// const getReviewData = () => {
-// 	const frmData = new FormData(reviewForm);
-// // 	const frmDataComplete = Object.fromEntries(frmData.entries());
-// 	const name = frmData.get('name');
-// 	const email = frmData.get('email');
-// 	const message = frmData.get('message');
-// 	const subj = frmData.get('enabled');
-// 	const reviewData = { name, email, message, enabled };
-// 	return reviewData;
-// }
-
-dataForms.forEach(form => {
-
-	form.addEventListener('submit', (e) => {
-		e.preventDefault();
-
-		frmSubject.forEach(subject => {
-			switch (subject.id) {
-				case "contactSubject":
-					subject.innerHTML = `<input id="contactSubject" type="hidden" name="subject" value="New MESSAGE from ${formContactName.value} on WWP SCREENING & PAINTING LLC" ></input>`;
-					break;
-				case "reviewSubject":
-					subject.innerHTML = `<input id="reviewSubject" type="hidden" name="subject" value="New REVIEW from ${formReviewName.value} on WWP SCREENING & PAINTING LLC" ></input>`;
-					break;
-				case "budgetSubject":
-					subject.innerHTML = `<input id="budgetSubject" type="hidden" name="subject" value="New BUDGET REQUEST from ${formBudgetName.value}" ></input>`;
-					break;
-			}
-		})
-
-
-		const postData = async () => {
-			switch (e.target.id) {
-				case "contact_form":
-					const newContactData = getContactData();
-					try {
-						resp = await fetch("https://wwpspdb.kiniun.tech/messages?sort=id&_order=desc", {
-							method: 'POST',
-							headers: { 'Content-Type': 'application/json' },
-							body: JSON.stringify(newContactData)
-						});
-
-						if (resp.ok) {
-							// jsonResp = await resp.json();
+						} catch (error) {
+							// console.log(error);
 						}
+						break;
+					case "budget_form":
+						const newBudgetData = getBudgetData();
+						try {
+							resp = await fetch("https://wwpspdb.kiniun.tech/budgets?sort=id&_order=desc", {
+								method: 'POST',
+								headers: { 'Content-Type': 'application/json' },
+								body: JSON.stringify(newBudgetData)
+							});
 
-					} catch (error) {
-						// console.log(error);
-					}
-					break;
-				case "budget_form":
-					const newBudgetData = getBudgetData();
-					try {
-						resp = await fetch("https://wwpspdb.kiniun.tech/budgets?sort=id&_order=desc", {
-							method: 'POST',
-							headers: { 'Content-Type': 'application/json' },
-							body: JSON.stringify(newBudgetData)
-						});
+							if (resp.ok) {
+								// jsonResp = await resp.json();
+							}
 
-						if (resp.ok) {
-							// jsonResp = await resp.json();
+						} catch (error) {
+							// alert(error);
 						}
+						break;
+					// case "reviewForm":
+					// 	const newReviewData = getBudgetData();
+					// 	try {
+					// 		resp = await fetch("https://wwpspdb.kiniun.tech/reviews?sort=id&_order=desc", {
+					// 			method: 'POST',
+					// 			headers: { 'Content-Type': 'application/json' },
+					// 			body: JSON.stringify(newReviewData)
+					// 		});
 
-					} catch (error) {
-						// alert(error);
-					}
-					break;
-				// case "reviewForm":
-				// 	const newReviewData = getBudgetData();
-				// 	try {
-				// 		resp = await fetch("https://wwpspdb.kiniun.tech/reviews?sort=id&_order=desc", {
-				// 			method: 'POST',
-				// 			headers: { 'Content-Type': 'application/json' },
-				// 			body: JSON.stringify(newReviewData)
-				// 		});
+					// 		if (resp.ok) {
+					// 			// jsonResp = await resp.json();
+					// 		}
 
-				// 		if (resp.ok) {
-				// 			// jsonResp = await resp.json();
-				// 		}
+					// 	} catch (error) {
+					// 		console.log(error);
+					// 	}
+					// 	break;
 
-				// 	} catch (error) {
-				// 		console.log(error);
-				// 	}
-				// 	break;
-
+				}
 			}
-		}
 
-		frmMessage.forEach(msg => {
-			if (msg.value.length >= 4) {
-				e.target.submit();
-				postData();
+			frmMessage.forEach(msg => {
+				if (msg.value.length >= 4) {
+					e.target.submit();
+					postData();
 
-				setTimeout(() => {
-					let fields = document.querySelectorAll(".frm_text");
-					fields.forEach((field) => {
-						field.value = "";
-					});
-				}, 2000);
+					setTimeout(() => {
+						let fields = document.querySelectorAll(".frm_text");
+						fields.forEach((field) => {
+							field.value = "";
+						});
+					}, 2000);
 
-			} else {
-				msg.classList.add("wrong", "animate__animated", "animate__shakeX");
-				msg.value = "";
-				msg.placeholder = "Message is too short. Please, tell us more.";
-				setTimeout((e) => {
-					msg.classList.remove(
-						"wrong",
-						"animate__animated",
-						"animate__shakeX"
-					);
-				}, 1000);
-				setTimeout((e) => {
-					msg.placeholder = "Leave us your message";
-				}, 3500);
-			}
+				} else {
+					msg.classList.add("wrong", "animate__animated", "animate__shakeX");
+					msg.value = "";
+					msg.placeholder = "Message is too short. Please, tell us more.";
+					setTimeout((e) => {
+						msg.classList.remove(
+							"wrong",
+							"animate__animated",
+							"animate__shakeX"
+						);
+					}, 1000);
+					setTimeout((e) => {
+						msg.placeholder = "Leave us your message";
+					}, 3500);
+				}
+			})
 		})
 	})
-})
