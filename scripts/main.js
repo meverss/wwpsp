@@ -29,7 +29,6 @@ const notiText = document.getElementById('ntf_text');
 const headerHeight = document.getElementById('header_top').getBoundingClientRect().height;
 const menuBarHeight = document.getElementById('menu_bar').getBoundingClientRect().height;
 
-
 // SHOW WEBSITE AFTER LOADED
 
 function show_page() {
