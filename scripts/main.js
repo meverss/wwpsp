@@ -123,7 +123,7 @@ footer.innerHTML = copyright;
 // SHARE ON SOCIAL MEDIA
 
 const social_n = document.querySelectorAll(".social_item");
-const my_website = encodeURIComponent(location.origin);
+const my_website = encodeURIComponent(location.href);
 const my_title = encodeURIComponent('WWP SCREENING & PAINTING LLC.');
 const url_facebook =
 	"http://www.facebook.com/sharer.php?u=" +
@@ -551,7 +551,7 @@ dataForms.forEach(form => {
 			} else {
 				msg.classList.add("wrong", "animate__animated", "animate__shakeX");
 				msg.value = "";
-				msg.placeholder = "Please, write something!";
+				msg.placeholder = "Message is too short. Please, tell us more.";
 				setTimeout((e) => {
 					msg.classList.remove(
 						"wrong",
