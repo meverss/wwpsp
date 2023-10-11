@@ -437,7 +437,7 @@ a {
 	z-index: 999999;
 	transition: .3s;
 	transform: translate(100%);
-	background-color: rgb(10,10,10,0.94);
+	background-color: rgb(10, 10, 10, 0.94);
 	border-radius: 8px;
 }
 
@@ -597,6 +597,7 @@ a {
 }
 
 .budget_float:hover {
+	cursor: pointer;
 	transform: scale(1.1);
 }
 
@@ -1112,25 +1113,33 @@ textarea {
 	margin-top: 10px;
 	width: 150px;
 	text-align: center;
+	transition: .2s;
 }
 
 .form_btn:disabled {
-	background-color: #bbb;
+	background-color: #eee;
 	border-color: #999;
-	color: #ddd;
+	color: #aaa;
 	text-align: center;
 }
 
 .form_btn:enabled {
-	color: #333;
-	background-color: #fff;
+	color: #111;
+	background-color: #37a1c6;
 	border-color: #333;
 	text-align: center;
 }
 
 .form_btn:enabled:hover,
 .form_btn:enabled:focus {
-	background-color: #d2691e;
+	background-color: #085c97;
+	color: #ddd;
+	transform: scale(1.1);
+}
+
+.form_btn:enabled:active {
+	background-color: #37a1c6;
+	transform: scale(1);
 }
 
 .wrong {
@@ -1169,9 +1178,10 @@ textarea {
 	padding: 0;
 }
 
-/* BUDGET FORM */
+/* BUDGET FORM - REVIEW FORM*/
 
-.s_budget_form {
+.s_budget_form,
+.s_review_form {
 	display: none;
 	justify-content: center;
 	align-items: center;
@@ -1185,7 +1195,8 @@ textarea {
 	z-index: 10000;
 }
 
-.budget_form_back {
+.budget_form_back,
+.review_form_back {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -1196,12 +1207,12 @@ textarea {
 	z-index: 10001;
 }
 
-.budget_form_box {
+.budget_form_box,
+.review_form_box {
 	display: flex;
 	width: 400px;
 	min-width: 360px;
 	flex-direction: column;
-	background-color: #ccc;
 	border-radius: 10px;
 	box-shadow: 2px 2px 10px 1px #222;
 	padding: 5px;
@@ -1213,7 +1224,12 @@ textarea {
 	--animate-duration: .5s;
 }
 
-.budget_close_btn {
+.review_form_box {
+	background-position: right;
+}
+
+.budget_close_btn,
+.review_close_btn {
 	display: flex;
 	justify-content: right;
 	align-items: center;
@@ -1221,7 +1237,8 @@ textarea {
 	padding: 5px;
 }
 
-.budget_close_btn p {
+.budget_close_btn p,
+.review_close_btn p {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -1235,16 +1252,19 @@ textarea {
 	transition: .3s;
 }
 
-.budget_close_btn>p:hover {
+.budget_close_btn>p:hover,
+.review_close_btn>p:hover {
 	cursor: pointer;
 	transform: scale(1.2);
 }
 
-.budget_close_btn>p:active {
+.budget_close_btn>p:active,
+.review_close_btn>p:active {
 	transform: scale(1);
 }
 
-.budget_form_title h2 {
+.budget_form_title h2,
+.review_form_title h2 {
 	width: 100%;
 	text-align: center;
 	color: #085c97;
@@ -1253,7 +1273,8 @@ textarea {
 	margin-top: -20px;
 }
 
-.budget_form {
+.budget_form,
+.review_form {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -1261,22 +1282,27 @@ textarea {
 	width: 100%;
 }
 
-.budget_form label {
+.budget_form label,
+.review_form label {
 	width: 95%;
 	color: #222;
 	font-size: 14pt;
-	font-weight: 500;
+	font-weight: 600;
 }
 
 .budget_form .frm_text,
-.budget_form textarea {
+.budget_form textarea,
+.review_form .frm_text,
+.review_form textarea {
 	width: 95%;
 	color: #555;
 	--animate-duration: 1s;
 }
 
 .budget_form label,
-.budget_form textarea {
+.budget_form textarea,
+.review_form label,
+.review_form textarea {
 	margin-bottom: 10px;
 }
 
@@ -1285,13 +1311,16 @@ textarea {
 	height: 120px;
 }
 
-.budget_form label {
+.budget_form label,
+.review_form label {
 	font-weight: 550;
 	margin-left: 20px;
 }
 
 .budget_form input,
-.budget_form textarea {
+.budget_form textarea,
+.review_form input,
+.review_form textarea {
 	border: 1px solid #bbb;
 	border-radius: 8px;
 	text-align: justify;
@@ -1301,14 +1330,18 @@ textarea {
 }
 
 .budget_form input:focus,
-.budget_form textarea:focus {
+.budget_form textarea:focus,
+.review_form input:focus,
+.review_form textarea:focus {
 	transform: scale(1.02);
 	outline: none;
 	box-shadow: 0 0 5pt 0.5pt #777;
 }
 
 .budget_form input,
-.budget_form textarea {
+.budget_form textarea,
+.review_form input,
+.review_form textarea {
 	font-family: IBM;
 	font-size: 13pt;
 	padding: 5px;
@@ -1316,9 +1349,6 @@ textarea {
 	padding-right: 10px;
 	margin-bottom: 10px;
 }
-
-
-
 
 
 /* ==================================== */

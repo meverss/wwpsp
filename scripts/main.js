@@ -2,7 +2,7 @@
 
 const contactForm = document.getElementById('contact_form');
 const budgetForm = document.getElementById('budget_form');
-//const reviewForm = document.getElementById('review_form');
+const reviewForm = document.getElementById('review_form');
 
 const dataForms = document.querySelectorAll('.form');
 const frmField = document.querySelectorAll('.frm_text');
@@ -18,6 +18,10 @@ const formBudgetName = document.getElementById("br_name");
 const formBudgetEmail = document.getElementById("br_email");
 const formBudgetPhone = document.getElementById("br_phone");
 const formBudgetMessage = document.getElementById("br_message");
+
+const formReviewName = document.getElementById("rv_name");
+const formReviewEmail = document.getElementById("rv_email");
+const formReviewMessage = document.getElementById("rv_message");
 
 const validEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
 const validPhone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
@@ -259,6 +263,13 @@ frmField.forEach((e) => {
 							}
 						})
 						break;
+					case "review_form":
+						e.addEventListener('focus', () => {
+							if (formReviewName.value != "" && formReviewEmail.value != "") {
+								enableSendButton();
+							}
+						})
+						break;
 
 				}
 
@@ -407,6 +418,10 @@ function showNoti(notiType, message) {
 
 // REVIEWS
 
+const newReviewBtn = document.getElementById('new_review');
+const reviewFormBox = document.getElementById('review_form_box');
+const reviewCloseBtn = document.getElementById('review_close_btn');
+
 fetch("https://wwpspdb.kiniun.tech/reviews?enabled=true&_sort=id&_order=desc")
 	// fetch("./data/db.json")
 	.then(data => data.json())
@@ -437,6 +452,44 @@ fetch("https://wwpspdb.kiniun.tech/reviews?enabled=true&_sort=id&_order=desc")
 		})
 	})
 
+newReviewBtn.addEventListener('click', () => {
+	s_review_form.style.display = 'flex';
+	document.body.style.overflow = 'hidden';
+	budgetIconFloat.style.display = 'none';
+	// disableSendButton();
+	reviewFormBox.classList.add('animate__animated', 'animate__zoomIn');
+	setTimeout(() => {
+		reviewFormBox.classList.remove('anitame__animated', 'animate__zoomIn');
+	}, 1000);
+
+})
+
+function hideSubmitReview() {
+	reviewFormBox.classList.remove('animate__animated', 'animate__zoomIn');
+	reviewFormBox.classList.add('animate__animated', 'animate__zoomOut');
+	setTimeout(() => {
+		reviewFormBox.classList.remove('animate__animated', 'animate__zoomOut');
+		s_review_form.style.display = 'none';
+		document.body.style.overflow = 'auto';
+		formReviewName.value = ""; formReviewEmail.value = ""; formReviewMessage.value = "";
+		if (window.innerWidth < 1368) {
+			budgetIconFloat.style.display = 'flex';
+		}
+	}, 200);
+}
+
+reviewCloseBtn.addEventListener('click', () => {
+	hideSubmitReview();
+})
+
+window.addEventListener("keydown", function (event) {
+	let k = event.key;
+	if (k == 27 || k == "Escape" || k == "Esc") {
+		hideSubmitReview();
+	}
+});
+
+
 // FORMS SUBMIT
 
 const frmKey = document.querySelectorAll('.frmKey');
@@ -448,14 +501,8 @@ frmKey.forEach(key => {
 })
 
 frmRedirect.forEach(redirect => {
-	// if (location.origin == 'https://meverss.github.io') {
-	// 	redirect.value = location.origin + '/wwpsp';
-	// } else {
-	// 	redirect.value = location.origin;
-	// }
 	redirect.value = location.href;
 })
-
 
 const getContactData = () => {
 	const frmData = new FormData(contactForm);
@@ -479,21 +526,22 @@ const getBudgetData = () => {
 	return budgetData;
 }
 
-// const getReviewData = () => {
-// 	const frmData = new FormData(reviewForm);
-// // 	const frmDataComplete = Object.fromEntries(frmData.entries());
-// 	const name = frmData.get('name');
-// 	const email = frmData.get('email');
-// 	const message = frmData.get('message');
-// 	const subj = frmData.get('enabled');
-// 	const reviewData = { name, email, message, enabled };
-// 	return reviewData;
-// }
+const getReviewData = () => {
+	const frmData = new FormData(reviewForm);
+	// 	const frmDataComplete = Object.fromEntries(frmData.entries());
+	const name = frmData.get('name');
+	const email = frmData.get('email');
+	const message = frmData.get('message');
+	const enabled = false;
+	const reviewData = { name, email, message, enabled };
+	return reviewData;
+}
 
 dataForms.forEach(form => {
 
 	form.addEventListener('submit', (e) => {
 		e.preventDefault();
+		let msg = e.target.children.namedItem('message');
 
 		frmSubject.forEach(subject => {
 			switch (subject.id) {
@@ -508,7 +556,6 @@ dataForms.forEach(form => {
 					break;
 			}
 		})
-
 
 		const postData = async () => {
 			switch (e.target.id) {
@@ -546,54 +593,55 @@ dataForms.forEach(form => {
 						showNoti('err', error);
 					}
 					break;
-				// case "reviewForm":
-				// 	const newReviewData = getBudgetData();
-				// 	try {
-				// 		resp = await fetch("https://wwpspdb.kiniun.tech/reviews?sort=id&_order=desc", {
-				// 			method: 'POST',
-				// 			headers: { 'Content-Type': 'application/json' },
-				// 			body: JSON.stringify(newReviewData)
-				// 		});
+				case "review_form":
+					const newReviewData = getReviewData();
+					try {
+						resp = await fetch("https://wwpspdb.kiniun.tech/reviews?sort=id&_order=desc", {
+							method: 'POST',
+							headers: { 'Content-Type': 'application/json' },
+							body: JSON.stringify(newReviewData)
+						});
 
-				// 		if (resp.ok) {
-				// 			showNoti('ok', 'Your review has been sent successfully');
-				// 		}
+						if (resp.ok) {
+							showNoti('ok', 'Your review has been sent successfully');
+						}
 
-				// 	} catch (error) {
-				// 		showNoti('err', error);
-				// 	}
-				// 	break;
-
+					} catch (error) {
+						showNoti('err', error);
+					}
+					break;
 			}
 		}
 
-		frmMessage.forEach(msg => {
-			if (msg.value.length >= 4) {
-				postData();
-				
-				setTimeout(() => {
-					let fields = document.querySelectorAll(".frm_text");
-					e.target.submit();
-					fields.forEach((field) => {
-						field.value = "";
-					});
-				}, 5000);
+		// Validate all and Submit
 
-			} else {
-				msg.classList.add("wrong", "animate__animated", "animate__shakeX");
-				msg.value = "";
-				msg.placeholder = "Message is too short. Please, tell us more.";
-				setTimeout((e) => {
-					msg.classList.remove(
-						"wrong",
-						"animate__animated",
-						"animate__shakeX"
-					);
-				}, 1000);
-				setTimeout((e) => {
+		if (msg.value.length >= 4) {
+			postData();
+			setTimeout(() => {
+				let fields = document.querySelectorAll(".frm_text");
+				e.target.submit();
+				fields.forEach((field) => {
+					field.value = "";
+				});
+			}, 5000);
+		} else {
+			msg.classList.add("wrong", "animate__animated", "animate__shakeX");
+			msg.value = "";
+			msg.placeholder = "Message is too short. Please, tell us more.";
+			setTimeout(() => {
+				msg.classList.remove(
+					"wrong",
+					"animate__animated",
+					"animate__shakeX"
+				);
+			}, 1000);
+			setTimeout(() => {
+				if (e.target.id == 'review_form') {
+					msg.placeholder = "What's your opinion about our service?";
+				} else {
 					msg.placeholder = "Leave us your message";
-				}, 3500);
-			}
-		})
+				}
+			}, 3500);
+		}
 	})
 })
