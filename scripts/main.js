@@ -550,9 +550,9 @@ const getBudgetData = () => {
 	const name = frmData.get('name');
 	const email = frmData.get('email');
 	const phone = frmData.get('phone');
-	const message = frmData.get('message');
+	const request = frmData.get('message');
 	const date = formattedDate;
-	const budgetData = { name, email, phone, message, date };
+	const budgetData = { name, email, phone, request, date };
 	return budgetData;
 }
 
