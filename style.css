@@ -141,7 +141,7 @@ a {
 	margin: auto;
 }
 
-.loader_cog {
+.loader_gear {
 	width: 80px;
 	height: 80px;
 	filter: invert(17%) sepia(95%) saturate(2433%) hue-rotate(189deg) brightness(100%) contrast(94%);
@@ -1350,9 +1350,6 @@ textarea {
 	padding-right: 10px;
 	margin-bottom: 10px;
 }
-
-
-/* ==================================== */
 
 /* FOOTER */
 
