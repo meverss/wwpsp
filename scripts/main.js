@@ -44,6 +44,9 @@ let min = today.getMinutes(); // prints the minute (0-59)
 let sec = today.getSeconds(); // prints the second (0-59)
 if (dd < 10) dd = '0' + dd;
 if (mm < 10) mm = '0' + mm;
+if (hh < 10) hh = '0' + hh;
+if (min < 10) min = '0' + min;
+if (sec < 10) sec = '0' + sec;
 const formattedDate = dd + '-' + mm + '-' + yyyy + '.' + hh + ':' + min + ':' + sec;
 
 // SHOW WEBSITE AFTER LOADED
@@ -536,7 +539,8 @@ const getContactData = () => {
 	const email = frmData.get('email');
 	const subj = frmData.get('subj');
 	const message = frmData.get('message');
-	const contactData = { name, email, subj, message };
+	const date = formattedDate;
+	const contactData = { name, email, subj, message, date };
 	return contactData;
 }
 
@@ -547,7 +551,8 @@ const getBudgetData = () => {
 	const email = frmData.get('email');
 	const phone = frmData.get('phone');
 	const message = frmData.get('message');
-	const budgetData = { name, email, phone, message };
+	const date = formattedDate;
+	const budgetData = { name, email, phone, message, date };
 	return budgetData;
 }
 
@@ -558,7 +563,8 @@ const getReviewData = () => {
 	const email = frmData.get('email');
 	const review = frmData.get('message');
 	const enabled = true;
-	const reviewData = { name, email, review, enabled };
+	const date = formattedDate;
+	const reviewData = { name, email, review, date, enabled };
 	return reviewData;
 }
 
