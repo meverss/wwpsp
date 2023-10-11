@@ -33,6 +33,19 @@ const notiText = document.getElementById('ntf_text');
 const headerHeight = document.getElementById('header_top').getBoundingClientRect().height;
 const menuBarHeight = document.getElementById('menu_bar').getBoundingClientRect().height;
 
+// SETTING CUSTOM DATE
+const timestamp = Date.now();
+const today = new Date(timestamp);
+const yyyy = today.getFullYear();
+let mm = today.getMonth() + 1; // Months start at 0!
+let dd = today.getDate(); // prints the day of the month (1-31)
+let hh = today.getHours(); // prints the hour (0-23)
+let min = today.getMinutes(); // prints the minute (0-59)
+let sec = today.getSeconds(); // prints the second (0-59)
+if (dd < 10) dd = '0' + dd;
+if (mm < 10) mm = '0' + mm;
+const formattedDate = dd + '-' + mm + '-' + yyyy + '.' + hh + ':' + min + ':' + sec;
+
 // SHOW WEBSITE AFTER LOADED
 
 function show_page() {
@@ -393,7 +406,7 @@ window.addEventListener('resize', fix_m_menu);
 
 // NOTIFICATIONS
 
-noti.style['top'] = headerHeight + menuBarHeight + 'px';
+// noti.style['top'] = headerHeight + menuBarHeight + 'px';
 
 function showNoti(notiType, message) {
 	switch (notiType) {
@@ -422,18 +435,20 @@ const newReviewBtn = document.getElementById('new_review');
 const reviewFormBox = document.getElementById('review_form_box');
 const reviewCloseBtn = document.getElementById('review_close_btn');
 
-fetch("https://wwpspdb.kiniun.tech/reviews?enabled=true&_sort=id&_order=desc")
-	.then(data => data.json())
-	.then(data => {
+const showReviews = async () => {
+	try {
+		resp = await fetch("https://wwpspdb.kiniun.tech/reviews?enabled=true&_sort=id&_order=desc")
+			.then(data => data.json())
+			.then(data => {
 
-		data.forEach(e => {
-			const name = e.name;
-			const email = e.email;
-			const review = e.review;
-			const enabled = e.enabled;
+				data.forEach(e => {
+					const name = e.name;
+					const email = e.email;
+					const review = e.review;
+					const enabled = e.enabled;
 
-			if (enabled == true) {
-				reviews_box.innerHTML += `
+					if (enabled == true) {
+						reviews_box.innerHTML += `
 			<div class="review_card" id="review_card" >
 				<div class="review_card_img">
 					<i class='fas fa-quote-left fa-4x'></i>
@@ -447,9 +462,20 @@ fetch("https://wwpspdb.kiniun.tech/reviews?enabled=true&_sort=id&_order=desc")
 				</div>
 			</div>
 			`
-			}
-		})
-	})
+					}
+				})
+			})
+
+	} catch (error) {
+		showNoti('err', "Error trying to connect to database server");
+		setTimeout(() => {
+			showReviews();
+		}, 60000);
+	}
+
+}
+
+showReviews();
 
 newReviewBtn.addEventListener('click', () => {
 	s_review_form.style.display = 'flex';
@@ -572,7 +598,7 @@ dataForms.forEach(form => {
 						}
 
 					} catch (error) {
-						showNoti('err', error);
+						showNoti('err', "Error trying to connect to database server");
 					}
 					break;
 				case "budget_form":
@@ -589,7 +615,7 @@ dataForms.forEach(form => {
 						}
 
 					} catch (error) {
-						showNoti('err', error);
+						showNoti('err', "Error trying to connect to database server");
 					}
 					break;
 				case "review_form":
@@ -606,7 +632,7 @@ dataForms.forEach(form => {
 						}
 
 					} catch (error) {
-						showNoti('err', error);
+						showNoti('err', "Error trying to connect to database server");
 					}
 					break;
 			}
@@ -637,6 +663,8 @@ dataForms.forEach(form => {
 			setTimeout(() => {
 				if (e.target.id == 'review_form') {
 					msg.placeholder = "What's your opinion about our service?";
+				} else if (e.target.id == 'budget_form') {
+					msg.placeholder = "Please, let us know what you need.";
 				} else {
 					msg.placeholder = "Leave us your message";
 				}
