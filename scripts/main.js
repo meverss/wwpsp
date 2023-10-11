@@ -423,7 +423,6 @@ const reviewFormBox = document.getElementById('review_form_box');
 const reviewCloseBtn = document.getElementById('review_close_btn');
 
 fetch("https://wwpspdb.kiniun.tech/reviews?enabled=true&_sort=id&_order=desc")
-	// fetch("./data/db.json")
 	.then(data => data.json())
 	.then(data => {
 
@@ -456,7 +455,7 @@ newReviewBtn.addEventListener('click', () => {
 	s_review_form.style.display = 'flex';
 	document.body.style.overflow = 'hidden';
 	budgetIconFloat.style.display = 'none';
-	// disableSendButton();
+	disableSendButton();
 	reviewFormBox.classList.add('animate__animated', 'animate__zoomIn');
 	setTimeout(() => {
 		reviewFormBox.classList.remove('anitame__animated', 'animate__zoomIn');
@@ -531,9 +530,9 @@ const getReviewData = () => {
 	// 	const frmDataComplete = Object.fromEntries(frmData.entries());
 	const name = frmData.get('name');
 	const email = frmData.get('email');
-	const message = frmData.get('message');
-	const enabled = false;
-	const reviewData = { name, email, message, enabled };
+	const review = frmData.get('message');
+	const enabled = true;
+	const reviewData = { name, email, review, enabled };
 	return reviewData;
 }
 
@@ -562,7 +561,7 @@ dataForms.forEach(form => {
 				case "contact_form":
 					const newContactData = getContactData();
 					try {
-						resp = await fetch("https://wwpspdb.kiniun.tech/messages?sort=id&_order=desc", {
+						resp = await fetch("https://wwpspdb.kiniun.tech/messages?_sort=id&_order=desc", {
 							method: 'POST',
 							headers: { 'Content-Type': 'application/json' },
 							body: JSON.stringify(newContactData)
@@ -579,7 +578,7 @@ dataForms.forEach(form => {
 				case "budget_form":
 					const newBudgetData = getBudgetData();
 					try {
-						resp = await fetch("https://wwpspdb.kiniun.tech/budgets?sort=id&_order=desc", {
+						resp = await fetch("https://wwpspdb.kiniun.tech/budgets?_sort=id&_order=desc", {
 							method: 'POST',
 							headers: { 'Content-Type': 'application/json' },
 							body: JSON.stringify(newBudgetData)
@@ -596,7 +595,7 @@ dataForms.forEach(form => {
 				case "review_form":
 					const newReviewData = getReviewData();
 					try {
-						resp = await fetch("https://wwpspdb.kiniun.tech/reviews?sort=id&_order=desc", {
+						resp = await fetch("https://wwpspdb.kiniun.tech/reviews?_sort=id&_order=desc", {
 							method: 'POST',
 							headers: { 'Content-Type': 'application/json' },
 							body: JSON.stringify(newReviewData)
