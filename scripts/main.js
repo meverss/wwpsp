@@ -593,7 +593,7 @@ dataForms.forEach(form => {
 				case "contact_form":
 					const newContactData = getContactData();
 					try {
-						resp = await fetch("https://wwpspdb.kiniun.tech/messages?_sort=id&_order=desc", {
+						resp = await fetch("https://wwpspdb.kiniun.tech/messages", {
 							method: 'POST',
 							headers: { 'Content-Type': 'application/json' },
 							body: JSON.stringify(newContactData)
@@ -610,7 +610,7 @@ dataForms.forEach(form => {
 				case "budget_form":
 					const newBudgetData = getBudgetData();
 					try {
-						resp = await fetch("https://wwpspdb.kiniun.tech/budgets?_sort=id&_order=desc", {
+						resp = await fetch("https://wwpspdb.kiniun.tech/budgets", {
 							method: 'POST',
 							headers: { 'Content-Type': 'application/json' },
 							body: JSON.stringify(newBudgetData)
@@ -627,7 +627,7 @@ dataForms.forEach(form => {
 				case "review_form":
 					const newReviewData = getReviewData();
 					try {
-						resp = await fetch("https://wwpspdb.kiniun.tech/reviews?_sort=id&_order=desc", {
+						resp = await fetch("https://wwpspdb.kiniun.tech/reviews", {
 							method: 'POST',
 							headers: { 'Content-Type': 'application/json' },
 							body: JSON.stringify(newReviewData)
