@@ -300,20 +300,24 @@ const budgetIcon = document.getElementById('budget_icon');
 const budgetIconFloat = document.getElementById('budget_float');
 const budgetBtn = document.querySelectorAll('.budget_btn');
 const budgetFormBox = document.getElementById('budget_form_box');
+const budgetFormBack = document.getElementById('budget_form_back');
 const budgetCloseBtn = document.getElementById('budget_close_btn');
 
 function hideBudgetRequest() {
-	budgetFormBox.classList.remove('animate__animated', 'animate__zoomIn');
 	budgetFormBox.classList.add('animate__animated', 'animate__zoomOut');
+	budgetFormBack.classList.add('animate__animated', 'animate__fadeOut');
+
 	setTimeout(() => {
 		budgetFormBox.classList.remove('animate__animated', 'animate__zoomOut');
+		budgetFormBox.classList.remove('animate__animated', 'animate__zoomIn');
+		budgetFormBack.classList.remove('animate__animated', 'animate__fadeOut');
 		s_budget_form.style.display = 'none';
 		document.body.style.overflow = 'auto';
 		formBudgetName.value = ""; formBudgetEmail.value = ""; formBudgetPhone.value = "";
 		if (window.innerWidth < 1368) {
 			budgetIconFloat.style.display = 'flex';
 		}
-	}, 200);
+	}, 300);
 }
 
 budgetCloseBtn.addEventListener('click', () => {
@@ -344,9 +348,6 @@ budgetBtn.forEach(btn => {
 		budgetIconFloat.style.display = 'none';
 		disableSendButton();
 		budgetFormBox.classList.add('animate__animated', 'animate__zoomIn');
-		setTimeout(() => {
-			budgetFormBox.classList.remove('anitame__animated', 'animate__zoomIn');
-		}, 1000);
 	})
 })
 
@@ -491,7 +492,7 @@ newReviewBtn.addEventListener('click', () => {
 	disableSendButton();
 	reviewFormBox.classList.add('animate__animated', 'animate__zoomIn');
 	setTimeout(() => {
-		reviewFormBox.classList.remove('anitame__animated', 'animate__zoomIn');
+		reviewFormBox.classList.remove('animate__animated', 'animate__zoomIn');
 	}, 1000);
 
 })
@@ -694,3 +695,4 @@ dataForms.forEach(form => {
 		}
 	})
 })
+
