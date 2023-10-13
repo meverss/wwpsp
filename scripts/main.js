@@ -432,6 +432,11 @@ function showNoti(notiType, message) {
 	}, 5000);
 }
 
+// setTimeout(() => {
+// 	showNoti('inf','This is only a test')
+// }, 5000);
+
+
 // REVIEWS
 
 const newReviewBtn = document.getElementById('new_review');
@@ -440,13 +445,12 @@ const reviewCloseBtn = document.getElementById('review_close_btn');
 
 const showReviews = async () => {
 	try {
-		resp = await fetch("https://wwpspdb.kiniun.tech/reviews?enabled=true&_sort=id&_order=desc")
+		resp = await fetch(`https://wwpspdb.kiniun.tech/reviews?enabled=true&_sort=id&_order=desc`)
 			.then(data => data.json())
 			.then(data => {
 
 				data.forEach(e => {
 					const name = e.name;
-					const email = e.email;
 					const review = e.review;
 					const enabled = e.enabled;
 
@@ -633,8 +637,20 @@ dataForms.forEach(form => {
 							body: JSON.stringify(newReviewData)
 						});
 
+						// Enable/Disable a review
+
+						// const reg = 4
+						// resp = await fetch(`https://wwpspdb.kiniun.tech/reviews/${reg}`, {
+						// 	method: 'PATCH',
+						// 	headers: { 'Content-Type': 'application/json' },
+						// 	body: JSON.stringify({ "enabled" : true })
+						// });
+
+
 						if (resp.ok) {
 							showNoti('ok', 'Your review has been sent successfully');
+							reviews_box.innerHTML = '';
+							showReviews();
 						}
 
 					} catch (error) {
