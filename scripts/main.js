@@ -50,7 +50,7 @@ const formattedDate = dd + '-' + mm + '-' + yyyy + '.' + hh + ':' + min + ':' + 
 
 // SHOW WEBSITE AFTER LOADED
 
-function show_page() {
+let show_page = () => {
 	page_content.style.opacity = "1";
 	loader_container.classList.add('animate__animated', 'animate__fadeOut');
 	document.body.style.overflow = "auto";
@@ -132,7 +132,7 @@ menu.forEach((obj) => {
 		}
 	} else if (obj.id == 'portfolio') {
 		obj.addEventListener('click', () => {
-			window.open('./pages/portfolio.html', '_self', '');
+			window.open('./pages/portfolio.html', '_top', '');
 		})
 	}
 });
@@ -148,7 +148,7 @@ alt_menu.forEach((obj1) => {
 		}
 	} else if (obj1.id == 'm_portfolio') {
 		obj1.addEventListener('click', () => {
-			window.open('./pages/portfolio.html', '_self', '');
+			window.open('./pages/portfolio.html', '_top', '');
 		})
 	}
 });
@@ -747,7 +747,7 @@ if (location.href.includes('portfolio.html')) {
 	}
 
 	menu.children.namedItem('home').addEventListener('click', () => {
-		window.open('../index.html', '_parent', '');
+		window.open('../index.html', '_self', '');
 		loaderContainer.style['backgroundColor'] = 'rgb(20,20,20,0.95)'
 	})
 
@@ -787,13 +787,22 @@ if (location.href.includes('portfolio.html')) {
 		})
 	})
 
+	// Fetching database
 
+	// fetch(`https://wwpspdb.kiniun.tech/portfolio/`)
+	fetch(`http://localhost:8080/portfolio/`)
+		.then(data => data.json())
+		.then(data => {
+			const pictures = data.pictures;
+			const videos = data.videos;
+			pictures.forEach(collection => {
+				const album = collection.album;
+				const images = collection.images;
+				const path = collection.path;
+				const date = collection.date;
+
+				
+			})
+		})
 
 }
-
-fetch(`https://wwpspdb.kiniun.tech/portfolio/`)
-.then(data => data.json())
-.then(data => {
-	const pictures = data.pictures;
-	console.log(pictures);
-})
