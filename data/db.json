@@ -48,38 +48,38 @@
 		"pictures": [
 			{
 				"album": "Team WWP#1",
-				"pictures": 4,
+				"images": 4,
 				"path": "../media/images/portfolio/1",
 				"date": "12-10-2023.02:17:08",
 				"id": 1
 			},
 			{
 				"album": "Team WWP#2",
-				"pictures": 20,
+				"images": 20,
 				"path": "../media/images/portfolio/2",
-				"date": "12-10-2023.02:17:08",
+				"date": "12-10-2023.02:17:18",
 				"id": 2
 			},
 			{
 				"album": "Team WWP#3",
-				"pictures": 9,
+				"images": 9,
 				"path": "../media/images/portfolio/3",
-				"date": "12-10-2023.02:17:08",
+				"date": "12-10-2023.02:17:28",
 				"id": 3
 			},
 			{
 				"album": "Team WWP#4",
-				"pictures": 4,
+				"images": 4,
 				"path": "../media/images/portfolio/4",
-				"date": "12-10-2023.02:17:08",
+				"date": "12-10-2023.02:17:38",
 				"id": 4
 			},
 
 			{
 				"album": "Team WWP#5",
-				"pictures": 8,
+				"images": 8,
 				"path": "../media/images/portfolio/5",
-				"date": "12-10-2023.02:17:08",
+				"date": "12-10-2023.02:17:48",
 				"id": 5
 			}
 		],
