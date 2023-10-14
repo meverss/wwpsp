@@ -567,7 +567,7 @@ const getReviewData = () => {
 	const name = frmData.get('name');
 	const email = frmData.get('email');
 	const review = frmData.get('message');
-	const enabled = true;
+	const enabled = false;
 	const date = formattedDate;
 	const reviewData = { name, email, review, date, enabled };
 	return reviewData;
