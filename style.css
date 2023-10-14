@@ -163,10 +163,10 @@ a {
 	width: 100%;
 	height: 200px;
 	background-color: #111;
-	background-image: url(./media/images/top_background.png);
+	background-image: url(./media/images/top_background.webp);
 	background-size: cover;
 	background-repeat: no-repeat;
-	background-position: top;
+	background-position: left;
 	z-index: 1000;
 }
 
@@ -225,6 +225,7 @@ a {
 	right: 0;
 	width: 100%;
 	font-size: 4vw;
+	text-shadow: 1px 1px 0.1px #222;
 }
 
 .header_slogan {

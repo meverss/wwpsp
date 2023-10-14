@@ -42,13 +42,13 @@
 <body onload="setTimeout(show_page, 1500)">
 	<!-- LOADER -->
 
-	<div class="loader_container" id="page_loader">
+	<div class="loader_container" id="loader_container">
 		<svg class="loader_gear fa-spin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
 			<path
 				d="M495.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4L83.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4C64.6 273.1 64 264.6 64 256s.6-17.1 1.7-25.4L22.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z" />
 		</svg>
 		<!-- <img src="../media/fontawesome/svgs/solid/gear.svg" alt="Loading gear" class="loader_cog fa-spin"> -->
-		<p class="loader_text">Loading...</p>
+		<p class="loader_text" id="loader_text">Loading...</p>
 
 	</div>
 
@@ -118,12 +118,6 @@
 					<div class="menu_bar" id="menu_bar">
 						<div class="menu" id="menu">
 							<p class="menu_item" id="home"> <i class='fas fa-home'>&nbsp</i>HOME </p>
-							<p class="menu_item" id="about_us"><i class='fas fa-user-friends'>&nbsp</i> About Us</p>
-							<p class="menu_item" id="services"><i class='fas fa-toolbox'>&nbsp</i> Services </p>
-							<p class="menu_item" id="portfolio"><i class='fas fa-photo-video'>&nbsp</i> Portfolio </p>
-							<p class="menu_item" id="reviews"><i class='fas fa-newspaper'>&nbsp</i> Reviews </p>
-							<p class="menu_item" id="our_team"><i class='fas fa-users-cog'>&nbsp</i> Our Team </p>
-							<p class="menu_item" id="contact_us"><i class='fas fa-mail-bulk'>&nbsp</i> Contact </p>
 						</div>
 						<div class="social" id="social">
 							<p class="social_item" id="facebook" title="Share on Facebook"><i
@@ -137,27 +131,6 @@
 							<span>󰍜</span>
 						</div>
 
-						<div class="m_menu" id="m_menu">
-							<ul>
-								<li class="m_menu_item" id="m_home"><i class='fas fa-home'>&nbsp</i>HOME</li>
-								<li class="m_menu_item" id="m_about_us"><i class='fas fa-user-friends'>&nbsp</i> About
-									Us
-								</li>
-								<li class="m_menu_item" id="m_services"><i class='fas fa-toolbox'>&nbsp</i>
-									Services</li>
-								<li class="m_menu_item" id="m_portfolio"><i class='fas fa-photo-video'>&nbsp</i>
-									Portfolio</li>
-								<li class="m_menu_item" id="m_reviews"><i class='fas fa-newspaper'>&nbsp</i>
-									Reviews
-								</li>
-								<li class="m_menu_item" id="m_our_team"><i class='fas fa-users-cog'>&nbsp</i> Our
-									Team
-								</li>
-								<li class="m_menu_item" id="m_contact_us"><i class='fas fa-mail-bulk'>&nbsp</i>
-									Contact</li>
-
-							</ul>
-						</div>
 					</div>
 				</section>
 			</section>
@@ -178,155 +151,6 @@
 			<!-- MAIN CONTAINER -->
 
 			<section class="main_container" id="main_container">
-				.
-				<!-- WELCOME -->
-
-				<section class="welcome box" id="welcome">
-					<nav id="s_home"></nav>
-					<nav id="s_m_home"></nav>
-					<h2 class="welcome_title" id="welcome_title">Welcome!</h2>
-					<p class="welcome_msg" id="welcome_msg">
-						<span style="font-weight: bold">WWP SCREENING & PAINTING LLC </span>team is available to provide
-						you
-						with skilled and affordable services
-						that are tailored to
-						your specific needs and schedule. Based in the State of Florida, we are proficient with a number
-						of
-						different makes and
-						models. When you want quality restoration and repair work done right the first time and at a
-						great
-						price, contact us. We
-						are here to offer our clients nothing but the best.
-					</p>
-				</section>
-
-				<!-- ABOUT US -->
-
-				<section class="s_about_us" id="s_about_us">
-					<div class="about_us_box" id="about_us_box">
-						<div class="about_us_img box" id="about_us_img">
-							<img src="../media/images/about_thumb.png" alt="Working at WWP Screening & Painting LLC">
-						</div>
-						<div class="about_us_text box" id="about_us_text">
-							<nav id="s_m_about_us"></nav>
-							<h2 class="about_us_title" id="about_us_title">About Us</h2>
-							<p>
-								<span style="font-weight: bold"> WWP SCREENING & PAINTING LLC</span> was founded in
-								2021, with one mission, to be the highest
-								quality
-								Pool Repair Service in the
-								State of Florida. Our passion for excellence is what inspired us to set up our business,
-								and
-								it
-								continues to drive us to
-								this day. All of our repairs are completed with meticulous detail, resulting in a
-								product
-								that
-								is as good as new.
-
-							</p>
-						</div>
-					</div>
-				</section>
-
-				<!-- WHY US -->
-
-				<article class="s_why_us box" id="s_why_us">
-					<h2 class="why_us_title" id="why_us_title">Why choosing us?</h2>
-					<div class="why_us_box" id="why_us_box">
-						<p class="why_us_text" id="why_us_text">
-							The State of Florida has a high demand for services related to
-							the construction, repair and maintenance of pool protective screens, but here we give six
-							powerful
-							reasons why <span style="font-weight: bold">WWP SCREENING &
-								PAINTING LLC</span> stands out among
-							the competition, and why choosing us will be a smart investment:
-						</p>
-						<div class="why_us_cards" id="why_us_cards">
-							<div class="card box" id="free_consultation">
-								<img src="../media/images/free_consultation.svg" alt="consultation" srcset="">
-								<p class="card_text"> Free consultation </p>
-							</div>
-							<div class="card box" id="experienced_technicians">
-								<img src="../media/images/experienced_technician.svg" alt="experience" srcset="">
-								<p class="card_text"> Experienced technicians</p>
-							</div>
-							<div class="card box" id="parts_quality">
-								<img src="../media/images/parts_quality.svg" alt="parts qulity" srcset="">
-								<p class="card_text"> Parts quality guarantee </p>
-							</div>
-							<div class="card box" id="work_waranteed">
-								<img src="../media/images/work_guaranteed.svg" alt="work guaranteed" srcset="">
-								<p class="card_text"> All work guaranteed </p>
-							</div>
-							<div class="card box" id="service_on_time">
-								<img src="../media/images/service_on_time.svg" alt="service on time" srcset="">
-								<p class="card_text"> Service on time </p>
-							</div>
-							<div class="card box" id="cover_major_brands">
-								<img src="../media/images/cover_major_brands.svg" alt="cover mayor brands" srcset="">
-								<p class="card_text"> We cover all major brands </p>
-							</div>
-						</div>
-					</div>
-				</article>
-
-				<!-- SERVICES -->
-
-				<section class="s_services" id="s_services">
-					<div class="services_box box" id="services_box">
-						<nav id="s_m_services"></nav>
-						<h2>Services</h2>
-						<p>
-							Do you have a pool enclosure that needs to be checked? Or maybe your lanai needs a new
-							screen installed. Maybe your
-							patio screen just needs to be fixed. If you're experiencing any of these issues, you've come
-							to the right place. We are
-							your Bradenton screen repair experts. We also regularly serve clients in Sarasota, St.
-							Petersburg, Orlando,
-							Jacksonville, Englewood, North Port, Cape Coral, and Fort Myers. We have extensive
-							experience and pride ourselves on the
-							quality workmanship of every pool service job we do and the high-quality products we
-							install. We use only the best
-							Phifer pool and patio screens. Our screens last 50% longer due to the quality of the product
-							we install and the care we
-							take when installing them. All our services in general are carried out with the highest
-							quality in the market.
-						</p>
-					</div>
-					<article class="e_services" id="e_services">
-						<div class="e_services_cards_box" id="e_services_cards_box">
-							<div class="e_services_card box" id="e_service_metal">
-								<a href="../media/images/metal_repair.png" data-lightbox='services'
-									data-title='Metal repair' class="e_services_img">
-									<img src="../media/images/metal_repair.png" alt="Metal repair">
-								</a>
-								<p> METAL REPAIR </p>
-							</div>
-							<div class="e_services_card box" id="e_service_painting">
-								<a href="../media/images/painting.png" data-lightbox='services' data-title='Painting'
-									class="e_services_img">
-									<img src="../media/images/painting.png" alt="Metal repair">
-								</a>
-								<p> PAINTING </p>
-							</div>
-							<div class="e_services_card box" id="e_service_washing">
-								<a href="../media/images/preasure_washing.png" data-lightbox='services'
-									data-title='Preasure washing' class="e_services_img">
-									<img src="../media/images/preasure_washing.png" alt="Metal repair">
-								</a>
-								<p> PREASURE WASHING </p>
-							</div>
-							<div class="e_services_card box" id="e_service_rescreening">
-								<a href="../media/images/rescreening.png" data-lightbox='services'
-									data-title='Rescreening' class="e_services_img">
-									<img src="../media/images/rescreening.png" alt="Metal repair">
-								</a>
-								<p> RESCREENING </p>
-							</div>
-						</div>
-					</article>
-				</section>
 
 				<!-- REVIEWS -->
 
@@ -339,105 +163,7 @@
 					<p class="new_review button" id="new_review">Submit a review</p>
 				</section>
 
-				<!-- OUR TEAM -->
 
-				<section class="s_our_team box" id="s_our_team">
-					<nav id="s_m_our_team"></nav>
-					<h2 class="team_title" id="team_title">Our Team</h2>
-					<div class="team_box " id="team_box">
-						<div class="team_card">
-							<div class="team_card_img">
-								<img src="../media/images/avatars/1.png" alt="Walfrido Winta Pérez">
-							</div>
-							<hr>
-							<div class="team_card_text" id="team_card_text">
-								<h3>Walfrido Winta P.</h3>
-								<span>CEO & Co-Founder</span>
-							</div>
-						</div>
-						<div class="team_card">
-							<div class="team_card_img">
-								<img src="../media/images/avatars/2.png" alt="Yoandra Rodríguez Reyes">
-							</div>
-							<hr>
-							<div class="team_card_text" id="team_card_text">
-								<h3>Yoandra Rodríguez R.</h3>
-								<span>Marketing & Co-Founder</span>
-							</div>
-						</div>
-						<div class="team_card">
-							<div class="team_card_img">
-								<img src="../media/images/avatars/3.png" alt="Yoander Góngora Rodríguez">
-							</div>
-							<hr>
-							<div class="team_card_text" id="team_card_text">
-								<h3>Yoander Góngora R.</h3>
-								<span>Team Manager</span>
-							</div>
-						</div>
-
-					</div>
-				</section>
-
-				<!-- CONTACT -->
-
-				<section class="s_contact_us box" id="s_contact_us">
-					<nav id="s_m_contact_us"></nav>
-					<div class="contact_box" id="contact_box">
-						<div class="contact_title" id="contact_title">
-							<h2>Contact</h2>
-						</div>
-						<div class="contact_full_msg box">
-							<div class="contact_message" id="contact_message">
-								<form id="contact_form" class="contact_form form"
-									action="https://api.web3forms.com/submit" method="POST">
-
-									<label class="text" for="name">Name<span class="important">*</span></label>
-									<input class="frm_text" name="name" id="name" autocomplete="off"
-										placeholder="Who is contacting us?" data-frminfo="name" />
-
-									<label class="text" for="email">E-mail<span class="important">*</span></label>
-									<input class="frm_text" name="email" id="email" autocomplete="off"
-										placeholder="your@email.here" data-frminfo="email" />
-
-									<label class="text" for="subj">Subject</label>
-									<input class="frm_text" name="subj" id="subj" autocomplete="off"
-										placeholder="What's the affair?" data-frminfo="subject" />
-
-									<label class="text" for="message">Message<span class="important">*</span></label>
-									<textarea class="frm_text frm_message" name="message" id="message" rows="5"
-										autocomplete="off" placeholder="Leave us your message"
-										data-frminfo="message"></textarea>
-
-									<input id="btn_send" type="submit" class="button form_btn" value="Send" />
-
-									<!-- Config -->
-									<input class="frmKey" type="hidden" name="access_key">
-									<input class="frmRedirect" type="hidden" name="redirect">
-									<input class="frmSubject" id="contactSubject" type="hidden">
-									<input class="frmEmailCopy" id="emailCopy" type="hidden" name="ccemail" value="wwpscreeningpaintingllc@gmail.com">
-
-								</form>
-							</div>
-						</div>
-						<div class="contact_me_info" id="contact_me_info">
-							<p id="phone">
-								<span style="font-family: Symbols; color: #fbbb40"> 󰏲 &nbsp;</span>
-								(904) 506-8535
-							</p>
-							<p>
-								<span style="font-family: Symbols; color: #fbbb40"> 󱡰 &nbsp;</span>
-								wwpscreeningpaintingllc@gmail.com
-							</p>
-							<p>
-								<span style="font-family: Symbols; color: #fbbb40"> 󰟙 &nbsp;</span>
-								2027 IVY PL. Sarasota, FL 34235
-							</p>
-
-						</div>
-					</div>
-				</section>
-				<br><br><br>
 
 				<!-- BUDGET REQUEST FORM -->
 
@@ -521,6 +247,17 @@
 								<!-- <input type="hidden" name="ccemail" value="wwpscreeningpaintingllc@gmail.com"> -->
 
 							</form>
+						</div>
+					</div>
+				</section>
+
+				<section class="s_portfolio" id="s_portfolio">
+					<div class="portfolio_box" id="portfolio_box">
+						<div class="pictures_box" id="pictures_box">
+							
+						</div>
+						<div class="videos_box" id="videos_box">
+
 						</div>
 					</div>
 				</section>

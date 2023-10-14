@@ -1,24 +1,23 @@
 // GLOBAL VARIABLES
 
-const contactForm = document.getElementById('contact_form');
-const budgetForm = document.getElementById('budget_form');
-const reviewForm = document.getElementById('review_form');
-
 const dataForms = document.querySelectorAll('.form');
 const frmField = document.querySelectorAll('.frm_text');
 const frmMessage = document.querySelectorAll('.frm_message');
 const btnSend = document.querySelectorAll('.form_btn');
 
+const contactForm = document.getElementById('contact_form');
 const formContactName = document.getElementById("name");
 const formContactEmail = document.getElementById("email");
 const formContactSubject = document.getElementById("subj");
 const formContactMessage = document.getElementById("message");
 
+const budgetForm = document.getElementById('budget_form');
 const formBudgetName = document.getElementById("br_name");
 const formBudgetEmail = document.getElementById("br_email");
 const formBudgetPhone = document.getElementById("br_phone");
 const formBudgetMessage = document.getElementById("br_message");
 
+const reviewForm = document.getElementById('review_form');
 const formReviewName = document.getElementById("rv_name");
 const formReviewEmail = document.getElementById("rv_email");
 const formReviewMessage = document.getElementById("rv_message");
@@ -53,10 +52,10 @@ const formattedDate = dd + '-' + mm + '-' + yyyy + '.' + hh + ':' + min + ':' + 
 
 function show_page() {
 	page_content.style.opacity = "1";
-	page_loader.classList.add('animate__animated', 'animate__fadeOut');
+	loader_container.classList.add('animate__animated', 'animate__fadeOut');
 	document.body.style.overflow = "auto";
 	setTimeout(function () {
-		page_loader.style.display = 'none';
+		loader_container.style.display = 'none';
 	}, 1000)
 }
 
@@ -70,14 +69,15 @@ function scroll_to_section(section) {
 }
 
 function scroll_to_section_m(section_m) {
-	let element = document.getElementById(section_m);
-	let position = element.offsetTop;
+	const element = document.getElementById(section_m);
+	const position = element.offsetTop;
 	if (window.innerWidth < 850) {
 		switch (section_m) {
 			case "s_m_about_us":
 				if (window.innerWidth >= 768) {
 					window.scrollTo(0, position - 50);
 					break;
+
 				} else {
 					window.scrollTo(0, position + 20);
 					break;
@@ -122,22 +122,34 @@ let alt_menu = document.querySelectorAll(".m_menu_item");
 menu.forEach((obj) => {
 	let sec = obj.id;
 	let section = 's_' + obj.id;
-	if (obj.classList[1] != "m_menu_item") {
-		if (obj.id != "") {
-			obj.addEventListener("click", function () {
-				scroll_to_section("s_" + sec);
-			});
+	if (obj.id != 'portfolio') {
+		if (obj.classList[1] != "m_menu_item") {
+			if (obj.id != "") {
+				obj.addEventListener("click", function () {
+					scroll_to_section("s_" + sec);
+				});
+			}
 		}
+	} else if (obj.id == 'portfolio') {
+		obj.addEventListener('click', () => {
+			window.open('./pages/portfolio.html', '_self', '');
+		})
 	}
 });
 
 alt_menu.forEach((obj1) => {
 	let sec = obj1.id;
 
-	if (obj1 != "s_m_menu_open_btn") {
-		obj1.addEventListener("click", function () {
-			scroll_to_section_m("s_" + sec);
-		});
+	if (obj1.id != 'm_portfolio') {
+		if (obj1 != "s_m_menu_open_btn") {
+			obj1.addEventListener("click", function () {
+				scroll_to_section_m("s_" + sec);
+			});
+		}
+	} else if (obj1.id == 'm_portfolio') {
+		obj1.addEventListener('click', () => {
+			window.open('./pages/portfolio.html', '_self', '');
+		})
 	}
 });
 
@@ -696,3 +708,45 @@ dataForms.forEach(form => {
 	})
 })
 
+// PORTFOLIO
+
+if (location.href.includes('portfolio.html')) {
+	const menu = document.getElementById('menu');
+	const social = document.getElementById('social');
+	const mMenuBtn = document.getElementById('m_menu_btn');
+	const reviewsBox = document.getElementById('s_reviews');
+	const loaderContainer = document.getElementById('loader_container');
+	const loaderText = document.getElementById('loader_text');
+
+	menu.style['justifyContent'] = 'left';
+	menu.style['marginLeft'] = '380px';
+	social.style['justifyContent'] = 'right';
+	social.style['display'] = 'flex';
+	social.style['marginRight'] = '20px';
+	social.style['width'] = '25%';
+	mMenuBtn.style['display'] = 'none';
+	reviewsBox.style['display'] = 'none'
+	loaderContainer.style['backgroundColor'] = 'rgb(20,20,20,0.95)'
+	loaderText.style['color'] = '#eee';
+
+	const fixMenu = () => {
+		if (window.innerWidth <= 1445) {
+			menu.style['marginLeft'] = '20px';
+			menu.style['justifyContent'] = 'left';
+			menu.style['display'] = 'flex';
+		} else {
+			menu.style['marginLeft'] = '380px';
+		}
+	}
+
+	menu.children.namedItem('home').addEventListener('click', () => {
+		window.open('../index.html', '_parent', '');
+		loaderContainer.style['backgroundColor'] = 'rgb(20,20,20,0.95)'
+	})
+
+	window.addEventListener('resize', () => {
+		fixMenu();
+	})
+
+	fixMenu();
+}
