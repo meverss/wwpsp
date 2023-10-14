@@ -790,3 +790,9 @@ if (location.href.includes('portfolio.html')) {
 
 
 }
+
+fetch(`https://wwpspdb.kiniun.tech/portfolio/`)
+.then(data => data.json())
+.then(data => {
+	console.log(data[0].pictures);
+})

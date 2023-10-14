@@ -44,47 +44,45 @@
 			"message": "I need to repair my pool screen and paint it too. How much would it cost me?"
 		}
 	],
-	"portfolio": [
-		{
-			"pictures": [
-				{
-					"album": "Team WWP#1",
-					"pictures": 4,
-					"path":"../media/images/portfolio/1",
-					"date": "12-10-2023.02:17:08",
-					"id": 1
-				},
-				{
-					"album": "Team WWP#2",
-					"pictures": 20,
-					"path": "../media/images/portfolio/2",
-					"date": "12-10-2023.02:17:08",
-					"id": 2
-				},
-				{
-					"album": "Team WWP#3",
-					"pictures": 9,
-					"path": "../media/images/portfolio/3",
-					"date": "12-10-2023.02:17:08",
-					"id": 3
-				},
-				{
-					"album": "Team WWP#4",
-					"pictures": 4,
-					"path": "../media/images/portfolio/4",
-					"date": "12-10-2023.02:17:08",
-					"id": 4
-				},
+	"portfolio": {
+		"pictures": [
+			{
+				"album": "Team WWP#1",
+				"pictures": 4,
+				"path": "../media/images/portfolio/1",
+				"date": "12-10-2023.02:17:08",
+				"id": 1
+			},
+			{
+				"album": "Team WWP#2",
+				"pictures": 20,
+				"path": "../media/images/portfolio/2",
+				"date": "12-10-2023.02:17:08",
+				"id": 2
+			},
+			{
+				"album": "Team WWP#3",
+				"pictures": 9,
+				"path": "../media/images/portfolio/3",
+				"date": "12-10-2023.02:17:08",
+				"id": 3
+			},
+			{
+				"album": "Team WWP#4",
+				"pictures": 4,
+				"path": "../media/images/portfolio/4",
+				"date": "12-10-2023.02:17:08",
+				"id": 4
+			},
 
-				{
-					"album": "Team WWP#5",
-					"pictures": 8,
-					"path": "../media/images/portfolio/5",
-					"date": "12-10-2023.02:17:08",
-					"id": 5
-				}
-			],
-			"videos": [{}]
-		}
-	]
+			{
+				"album": "Team WWP#5",
+				"pictures": 8,
+				"path": "../media/images/portfolio/5",
+				"date": "12-10-2023.02:17:08",
+				"id": 5
+			}
+		],
+		"videos": [{}]
+	}
 }
