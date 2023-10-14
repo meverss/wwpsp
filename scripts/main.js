@@ -717,6 +717,13 @@ if (location.href.includes('portfolio.html')) {
 	const reviewsBox = document.getElementById('s_reviews');
 	const loaderContainer = document.getElementById('loader_container');
 	const loaderText = document.getElementById('loader_text');
+	const mediaTag = document.querySelectorAll('.media_tag');
+	const picturesTag = document.getElementById('pictures_tag');
+	const videosTag = document.getElementById('videos_tag');
+	const picturesBox = document.getElementById('pictures_box');
+	const videosBox = document.getElementById('videos_box');
+	const picturesLabel = document.getElementById('picturesLabel');
+	const videosLabel = document.getElementById('videosLabel');
 
 	menu.style['justifyContent'] = 'left';
 	menu.style['marginLeft'] = '380px';
@@ -749,4 +756,37 @@ if (location.href.includes('portfolio.html')) {
 	})
 
 	fixMenu();
+
+	mediaTag.forEach(media => {
+		media.addEventListener('click', () => {
+			switch (media.id) {
+				case "pictures_tag":
+					media.style['z-index'] = '2';
+					media.style['backgroundColor'] = '#085c97';
+					media.style['color'] = '#eee';
+					picturesLabel.style['color'] = '#ddd';
+					videosLabel.style['color'] = '#222';
+					videosTag.style['backgroundColor'] = '#ddd';
+					videosTag.style['z-index'] = '1';
+					picturesBox.style['z-index'] = '4';
+					videosBox.style['z-index'] = '3';
+					break;
+				case "videos_tag":
+					media.style['z-index'] = '2';
+					media.style['backgroundColor'] = '#085c97';
+					media.style['color'] = '#eee';
+					videosLabel.style['color'] = '#ddd';
+					picturesLabel.style['color'] = '#222';
+					picturesTag.style['backgroundColor'] = '#ddd';
+					picturesTag.style['z-index'] = '1';
+					videosBox.style['z-index'] = '4';
+					picturesBox.style['z-index'] = '3';
+					break;
+
+			}
+		})
+	})
+
+
+
 }

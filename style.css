@@ -1380,6 +1380,12 @@ textarea {
 	/* background-color: green; */
 }
 
+.media_tags {
+	display: flex;
+	justify-content: left;
+	width: 100%;
+}
+
 .pictures_box,
 .videos_box {
 	display: flex;
@@ -1392,13 +1398,13 @@ textarea {
 }
 
 .pictures_box {
-	z-index: 2;
-	/* background-color: yellow; */
+	z-index: 4;
+	background-color: yellow;
 }
 
 .videos_box {
-	z-index: 1;
-	/* background-color: chocolate; */
+	z-index: 3;
+	background-color: chocolate;
 }
 
 .pictures_tag, .videos_tag {
@@ -1411,11 +1417,13 @@ textarea {
 }
 
 .pictures_tag {
+	z-index: 2;
 	background-color: #085c97;
 }
 
 .videos_tag {
-	margin-left: 160px;
+	z-index: 1;
+	margin-left: -20px;
 	color: #555;
 	background-color: #ddd;
 }
@@ -1543,6 +1551,15 @@ textarea {
 
 	.team_box {
 		justify-content: left;
+	}
+
+	.s_portfolio {
+		margin-top: 0;
+	}
+
+	.portfolio_box {
+		margin-top: -80px;
+		min-width: 360px;
 	}
 }
 
