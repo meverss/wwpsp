@@ -1,7 +1,7 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteCond %{HTTP_HOST} ^www.myportfolio.kiniun.tech$
-    RewriteRule (.*) http://myportfolio.kiniun.tech/$1 [R=301,L]
+    RewriteCond %{HTTP_HOST} ^www.wwpspllc.kiniun.tech$
+    RewriteRule (.*) http://wwpspllc.kiniun.tech/$1 [R=301,L]
 </IfModule>
 
 <IfModule mod_rewrite.c>
@@ -12,20 +12,12 @@
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    ErrorDocument 404 https://myportfolio.kiniun.tech/pages/404error.html
+    ErrorDocument 404 https://wwpspllc.kiniun.tech/pages/404error.html
 </IfModule>
 
 # ----------------------------------------------------------------------
 # Expires headers (for better cache control)
 # ----------------------------------------------------------------------
-
-# These are pretty far-future expires headers.
-# They assume you control versioning with filename-based cache busting
-# Additionally, consider that outdated proxies may miscache
-# www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/
-
-# If you don't use filenames to version, lower the CSS and JS to something like
-# "access plus 1 week".
 
 <IfModule mod_expires.c>
     ExpiresActive on
