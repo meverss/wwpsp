@@ -130,7 +130,7 @@ menu.forEach((obj) => {
 				});
 			}
 		}
-	} else if (obj.id == 'portfolio') {
+	} else {
 		obj.addEventListener('click', () => {
 			window.open('./pages/portfolio.html', '_top', '');
 		})
@@ -711,6 +711,7 @@ dataForms.forEach(form => {
 // PORTFOLIO
 
 if (location.href.includes('portfolio.html')) {
+
 	const menu = document.getElementById('menu');
 	const social = document.getElementById('social');
 	const mMenuBtn = document.getElementById('m_menu_btn');
@@ -796,12 +797,34 @@ if (location.href.includes('portfolio.html')) {
 			const pictures = data.pictures;
 			const videos = data.videos;
 			pictures.forEach(collection => {
+				const pictures = document.getElementById('pictures');
 				const album = collection.album;
 				const images = collection.images;
 				const path = collection.path;
 				const date = collection.date;
+				const id = collection.id;
 
+				pictures.innerHTML += `
+				<div class="gallery_box">
+				<div class="img_thumbnail" id="img_thumbnail_${id}">
 				
+				</div>
+				<ul>
+				<li><span style="font-weight: bold">Title:</span> ${album} </li>
+				<li><span style="font-weight: bold">Date:</span> ${date} </li>
+				<li><span style="font-weight: bold">Images:</span> ${images} </li>
+				</ul>
+				</div>
+				`;
+				const imgThumb = document.getElementById(`img_thumbnail_${id}`);
+				for (let i = 1; i <= images; i++) {
+					imgThumb.innerHTML += `
+						<a href="${path}/${i}.jpeg" data-lightbox='gallery_wwp${id}' data-title='Team WWP#${id}' class="e_services_img">
+							<img class="image" src="${path}/${i}.jpeg" alt="wwp${id}-${i}">
+						</a>
+	
+					`;
+				}
 			})
 		})
 

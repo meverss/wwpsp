@@ -1362,22 +1362,18 @@ textarea {
 .s_portfolio {
 	display: flex;
 	flex-direction: column;
+	position: absolute;
+	top: 100px;
 	justify-content: top;
 	align-items: center;
-	margin: auto;
-	margin-top: 100px;
 	width: 100%;
-	height: 400px;
-	/* background-color: red; */
+	height: 100vh;
+	min-width: 360px;
 }
 
 .portfolio_box {
 	width: 98%;
-	height: 200px;
-	position: absolute;
-	width: 98%;
-	top: 170px;
-	/* background-color: green; */
+	width: 100%;
 }
 
 .media_tags {
@@ -1394,17 +1390,15 @@ textarea {
 	flex-wrap: wrap;
 	position: absolute;
 	width: 100%;
-	padding: 0;
+	height: fit-content;
 }
 
 .pictures_box {
 	z-index: 4;
-	background-color: #fff;
 }
 
 .videos_box {
 	z-index: 3;
-	background-color: #fff;
 }
 
 .pictures_tag,
@@ -1415,6 +1409,11 @@ textarea {
 	width: 180px;
 	border-top-right-radius: 30px;
 	border-top-left-radius: 30px;
+}
+
+.pictures_tag:hover,
+.videos_tag:hover {
+	cursor: pointer;
 }
 
 .pictures_tag {
@@ -1443,10 +1442,11 @@ textarea {
 .videos {
 	display: flex;
 	justify-content: center;
-	align-items: center;
 	flex-wrap: wrap;
+	gap: 30px;
+	align-items: baseline;
 	width: 100%;
-	height: 400px;
+	height: 100%;
 	border: 1px solid #bbb;
 }
 
@@ -1454,32 +1454,50 @@ textarea {
 
 .gallery_box {
 	display: flex;
+	position: relative;
+	flex-wrap: wrap;
+	margin-top: 50px;
+	margin-bottom: 20px;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
 	width: 200px;
+	height: 350px;
 }
 
 .gallery_box ul {
-	width: 105%;
+	width: 210px;
+	position: absolute;
+	margin-top: 170px;
 	text-align: left;
 	list-style: none;
 	background-color: #eee;
 	padding: 10px;
-	border-radius: 8px;
 }
 
 .img_thumbnail {
 	display: flex;
 	justify-content: center;
-	align-items: center;
 	width: 100%;
+	height: 60%;
+	margin-top: 10px;
+	align-items: center;
 	padding: 10px;
+	border-radius: 8px;
 }
 
-.image {
-	width: 90%;
+.img_thumbnail .image {
 	border-radius: 8px;
+	position: absolute;
+	width: 80%;
+	top: 0;
+	transition: .2s;
+	object-fit: cover;
+	border-radius: 8px;
+}
+
+.image:hover {
+	filter:brightness(60%);
 }
 
 /* -------------------------------------- */
@@ -1587,13 +1605,17 @@ textarea {
 	}
 
 	.s_portfolio {
-		margin-top: 0;
+		margin-top: -100px;
+		width: 96%;
+		height: 100%;
 	}
 
 	.portfolio_box {
-		margin-top: -80px;
+		margin-top: 20px;
 		min-width: 360px;
 	}
+
+	.pictures_box {}
 }
 
 @media screen and (max-width: 850px) {
