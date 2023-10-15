@@ -811,7 +811,7 @@ if (location.href.includes('portfolio.html')) {
 				
 				</div>
 				<ul>
-				<li><span style="font-weight: bold">Title:</span> ${album} </li>
+				<li><span style="font-weight: bold">Album:</span> ${album} </li>
 				<li><span style="font-weight: bold">Date:</span> ${date} </li>
 				<li><span style="font-weight: bold">Images:</span> ${images} </li>
 				</ul>

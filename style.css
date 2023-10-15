@@ -1355,8 +1355,6 @@ textarea {
 	margin-bottom: 10px;
 }
 
-/* -------------------------------------- */
-
 /* PORTFOLIO */
 
 .s_portfolio {
@@ -1479,6 +1477,7 @@ textarea {
 	text-align: left;
 	list-style: none;
 	background-color: #eee;
+	border-radius: 8px;
 	padding: 10px;
 }
 
@@ -1506,9 +1505,8 @@ textarea {
 
 .image:hover {
 	filter:brightness(60%);
+	transform: scale(1.02);
 }
-
-/* -------------------------------------- */
 
 /* FOOTER */
 
