@@ -789,9 +789,10 @@ if (location.href.includes('portfolio.html')) {
 	})
 
 	// Fetching database
+const site = location.href;
 
-	fetch(`https://wwpspdb.kiniun.tech/portfolio/`)
-	// fetch(`http://localhost:8080/portfolio/`)
+	// fetch(`https://wwpspdb.kiniun.tech/portfolio/`)
+	fetch(`http://192.168.111.14:8080/portfolio/`)
 		.then(data => data.json())
 		.then(data => {
 			const pictures = data.pictures;
