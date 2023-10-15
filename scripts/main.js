@@ -789,10 +789,10 @@ if (location.href.includes('portfolio.html')) {
 	})
 
 	// Fetching database
-const site = location.href;
+	const site = location.href;
 
-	// fetch(`https://wwpspdb.kiniun.tech/portfolio/`)
-	fetch(`http://192.168.111.14:8080/portfolio/`)
+	fetch(`https://wwpspdb.kiniun.tech/portfolio/`)
+	// fetch(`http://192.168.111.14:8080/portfolio/`)
 		.then(data => data.json())
 		.then(data => {
 			const pictures = data.pictures;
@@ -820,8 +820,8 @@ const site = location.href;
 				const imgThumb = document.getElementById(`img_thumbnail_${id}`);
 				for (let i = images; i >= 1; i--) {
 					imgThumb.innerHTML += `
-						<a href="${path}/${i}.jpeg" data-lightbox='gallery_wwp${id}' data-title='Team WWP#${id}' class="e_services_img">
-							<img class="image" src="${path}/${i}.jpeg" alt="wwp${id}-${i}" style="z-index: ${200 + i}">
+						<a href="${path}/${i}.webp" data-lightbox='gallery_wwp${id}' data-title='Team WWP#${id}' class="e_services_img">
+							<img class="image" src="${path}/${i}.webp" alt="wwp${id}-${i}" style="z-index: ${200 + i}">
 						</a>
 	
 					`;
