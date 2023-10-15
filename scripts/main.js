@@ -769,8 +769,8 @@ if (location.href.includes('portfolio.html')) {
 					videosLabel.style['color'] = '#222';
 					videosTag.style['backgroundColor'] = '#ddd';
 					videosTag.style['z-index'] = '1';
-					picturesBox.style['z-index'] = '4';
-					videosBox.style['z-index'] = '3';
+					picturesBox.style['z-index'] = '150';
+					videosBox.style['z-index'] = '149';
 					break;
 				case "videos_tag":
 					media.style['z-index'] = '2';
@@ -780,8 +780,8 @@ if (location.href.includes('portfolio.html')) {
 					picturesLabel.style['color'] = '#222';
 					picturesTag.style['backgroundColor'] = '#ddd';
 					picturesTag.style['z-index'] = '1';
-					videosBox.style['z-index'] = '4';
-					picturesBox.style['z-index'] = '3';
+					videosBox.style['z-index'] = '150';
+					picturesBox.style['z-index'] = '149';
 					break;
 
 			}
@@ -798,11 +798,11 @@ if (location.href.includes('portfolio.html')) {
 			const videos = data.videos;
 			pictures.forEach(collection => {
 				const pictures = document.getElementById('pictures');
-				const album = collection.album;
-				const images = collection.images;
-				const path = collection.path;
-				const date = collection.date;
-				const id = collection.id;
+				let album = collection.album;
+				let images = collection.images;
+				let path = collection.path;
+				let date = collection.date;
+				let id = collection.id;
 
 				pictures.innerHTML += `
 				<div class="gallery_box">
@@ -817,10 +817,10 @@ if (location.href.includes('portfolio.html')) {
 				</div>
 				`;
 				const imgThumb = document.getElementById(`img_thumbnail_${id}`);
-				for (let i = 1; i <= images; i++) {
+				for (let i = images; i >= 1; i--) {
 					imgThumb.innerHTML += `
 						<a href="${path}/${i}.jpeg" data-lightbox='gallery_wwp${id}' data-title='Team WWP#${id}' class="e_services_img">
-							<img class="image" src="${path}/${i}.jpeg" alt="wwp${id}-${i}">
+							<img class="image" src="${path}/${i}.jpeg" alt="wwp${id}-${i}" style="z-index: ${200 + i}">
 						</a>
 	
 					`;

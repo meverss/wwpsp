@@ -263,7 +263,7 @@ a {
 	margin: auto;
 	margin-top: 0;
 	background-color: #111;
-	z-index: 5000;
+	z-index: 1000000;
 }
 
 .menu {
@@ -1417,12 +1417,12 @@ textarea {
 }
 
 .pictures_tag {
-	z-index: 2;
+	z-index: 150;
 	background-color: #085c97;
 }
 
 .videos_tag {
-	z-index: 1;
+	z-index: 149;
 	margin-left: -20px;
 	color: #555;
 	background-color: #ddd;
@@ -1444,10 +1444,17 @@ textarea {
 	justify-content: center;
 	flex-wrap: wrap;
 	gap: 30px;
+	row-gap:inherit;
 	align-items: baseline;
 	width: 100%;
 	height: 100%;
 	border: 1px solid #bbb;
+}
+
+.videos {
+	background-color: #fff;
+	height: 100%;
+	border: 0px;  /* FIX THIS WHEN YOU ADD VIDEOS */
 }
 
 /* Images Galleries */
@@ -1479,7 +1486,7 @@ textarea {
 	display: flex;
 	justify-content: center;
 	width: 100%;
-	height: 60%;
+	height: 80%;
 	margin-top: 10px;
 	align-items: center;
 	padding: 10px;
@@ -1489,7 +1496,8 @@ textarea {
 .img_thumbnail .image {
 	border-radius: 8px;
 	position: absolute;
-	width: 80%;
+	width: 100%;
+	height: 60%;
 	top: 0;
 	transition: .2s;
 	object-fit: cover;
@@ -1507,7 +1515,7 @@ textarea {
 .footer {
 	display: flex;
 	position: fixed;
-	z-index: 102;
+	z-index: 1000000;
 	width: 100%;
 	height: 40px;
 	background-color: #000;
