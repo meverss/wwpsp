@@ -835,4 +835,3 @@ if (location.href.includes('portfolio.html')) {
 // CACHE
 
 // const cacheHeader = new Headers();
-document.headers = 'Cache-Control: max-age=7776000';
