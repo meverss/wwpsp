@@ -2,21 +2,22 @@
 # 301, HTTPS & 404 Redirections
 # ----------------------------------------------------------------------
 
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteCond %{HTTP_HOST} ^www.wwpspllc.kiniun.tech$
-    RewriteRule (.*) http://wwpspllc.kiniun.tech/$1 [R=301,L]
-</IfModule>
+#<IfModule mod_rewrite.c>
+#    RewriteEngine On
+#    RewriteCond %{HTTP_HOST} ^www.wwpspllc.kiniun.tech$
+#    RewriteRule (.*) http://wwpspllc.kiniun.tech/$1 [R=301,L]
+#</IfModule>
+
+#<IfModule mod_rewrite.c>
+#    RewriteEngine On
+#    RewriteCond %{SERVER_PORT} !^443$
+#    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+#</IfModule>
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteCond %{SERVER_PORT} !^443$
-    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-</IfModule>
-
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    ErrorDocument 404 https://wwpspllc.kiniun.tech/pages/404error.html
+#    ErrorDocument 404 https://wwpspllc.kiniun.tech/pages/404error.html
+    ErrorDocument 404 http://localhost/pages/404error.html
 </IfModule>
 
 # ----------------------------------------------------------------------

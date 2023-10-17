@@ -326,7 +326,7 @@ function hideBudgetRequest() {
 		s_budget_form.style.display = 'none';
 		document.body.style.overflow = 'auto';
 		formBudgetName.value = ""; formBudgetEmail.value = ""; formBudgetPhone.value = "";
-		if (window.innerWidth < 1368) {
+		if (window.innerWidth < 1365) {
 			budgetIconFloat.style.display = 'flex';
 		}
 	}, 300);
@@ -391,9 +391,9 @@ function showmenu() {
 
 window.addEventListener("resize", () => {
 	const w = window.innerWidth;
-	if (eval(w) > 1368) {
+	if (eval(w) > 1365) {
 		budgetIconFloat.style.display = 'none';
-	} else if (eval(w) < 1368) {
+	} else if (eval(w) <= 1365) {
 		budgetIconFloat.style.display = 'flex';
 	} else if (eval(w) > 1155) {
 		m_menu_btn.style.display = "none";
