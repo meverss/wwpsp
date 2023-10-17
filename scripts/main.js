@@ -79,7 +79,7 @@ function scroll_to_section_m(section_m) {
 					break;
 
 				} else {
-					window.scrollTo(0, position + 20);
+					window.scrollTo(0, position);
 					break;
 				}
 			case "s_m_services":
@@ -87,7 +87,7 @@ function scroll_to_section_m(section_m) {
 					window.scrollTo(0, position - 80);
 					break;
 				} else {
-					window.scrollTo(0, position + 10);
+					window.scrollTo(0, position);
 					break;
 				}
 			case "s_m_reviews":
@@ -95,14 +95,14 @@ function scroll_to_section_m(section_m) {
 					window.scrollTo(0, position - 50);
 					break;
 				} else {
-					window.scrollTo(0, position + 40);
+					window.scrollTo(0, position);
 					break;
 				}
 			case "s_m_our_team":
-				window.scrollTo(0, position + 50);
+				window.scrollTo(0, position );
 				break;
 			case "s_m_contact_us":
-				window.scrollTo(0, position - 260);
+				window.scrollTo(0, position - 275);
 				break;
 			default:
 				window.scrollTo(0, position - 50);
@@ -792,7 +792,7 @@ if (location.href.includes('portfolio.html')) {
 	const site = location.href;
 
 	fetch(`https://wwpspdb.kiniun.tech/portfolio/`)
-	// fetch(`http://192.168.111.14:8080/portfolio/`)
+		// fetch(`http://192.168.111.14:8080/portfolio/`)
 		.then(data => data.json())
 		.then(data => {
 			const pictures = data.pictures;
@@ -834,4 +834,3 @@ if (location.href.includes('portfolio.html')) {
 
 // CACHE
 
-// const cacheHeader = new Headers();

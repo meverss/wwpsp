@@ -16,8 +16,7 @@
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
-#    ErrorDocument 404 https://wwpspllc.kiniun.tech/pages/404error.html
-    ErrorDocument 404 http://localhost/pages/404error.html
+    ErrorDocument 404 /pages/404error.html
 </IfModule>
 
 # ----------------------------------------------------------------------
