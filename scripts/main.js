@@ -239,20 +239,22 @@ frmField.forEach((e) => {
 						e.placeholder = "Who is contacting us?";
 					}, 3500);
 				}
-
 			})
 			break;
 		case "email":
+			e.style['textTransform'] = 'lowercase';
 			e.addEventListener('focusout', () => {
 				if (!validEmail.test(e.value)) {
 					disableSendButton();
 					e.classList.add("wrong", "animate__animated", "animate__shakeX");
 					e.value = "";
+					e.style['textTransform'] = 'none';
 					e.placeholder = "Enter a valid e-mail address";
 					setTimeout(() => {
 						e.classList.remove("wrong", "animate__animated", "animate__shakeX");
 					}, 1000);
 					setTimeout(() => {
+						e.style['textTransform'] = 'lowercase';
 						e.placeholder = "your@email.here";
 					}, 3500);
 				}
@@ -360,6 +362,7 @@ budgetBtn.forEach(btn => {
 		budgetIconFloat.style.display = 'none';
 		disableSendButton();
 		budgetFormBox.classList.add('animate__animated', 'animate__zoomIn');
+		budgetForm.children.namedItem('name').focus();
 	})
 })
 
@@ -503,6 +506,7 @@ newReviewBtn.addEventListener('click', () => {
 	budgetIconFloat.style.display = 'none';
 	disableSendButton();
 	reviewFormBox.classList.add('animate__animated', 'animate__zoomIn');
+	reviewForm.children.namedItem('name').focus();
 	setTimeout(() => {
 		reviewFormBox.classList.remove('animate__animated', 'animate__zoomIn');
 	}, 1000);
