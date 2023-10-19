@@ -32,7 +32,7 @@ const notiText = document.getElementById('ntf_text');
 const headerHeight = document.getElementById('header_top').getBoundingClientRect().height;
 const menuBarHeight = document.getElementById('menu_bar').getBoundingClientRect().height;
 
-const site = `http://${location.hostname}:8080`;
+const site = `http://${location.hostname}:3000`;
 
 // SETTING CUSTOM DATE
 const timestamp = Date.now();
@@ -184,7 +184,7 @@ const url_linkedin =
 social_n.forEach((item) => {
 	item.addEventListener("click", function () {
 		link = "url_" + item.id;
-		window.open(eval(link), "", "width=720, height=480, toolbar=0, status=0, top=300, left=600");
+		window.open(eval(link), "", "width=530, height=600, toolbar=0, status=0, top=200, left=700");
 	});
 });
 
@@ -775,8 +775,8 @@ if (location.href.includes('portfolio.html')) {
 					videosLabel.style['color'] = '#222';
 					videosTag.style['backgroundColor'] = '#ddd';
 					videosTag.style['z-index'] = '1';
-					picturesBox.style['z-index'] = '1000';
-					videosBox.style['z-index'] = '100';
+					picturesBox.style['display'] = 'flex';
+					videosBox.style['display'] = 'none';
 					break;
 				case "videos_tag":
 					media.style['z-index'] = '2';
@@ -786,9 +786,8 @@ if (location.href.includes('portfolio.html')) {
 					picturesLabel.style['color'] = '#222';
 					picturesTag.style['backgroundColor'] = '#ddd';
 					picturesTag.style['z-index'] = '1';
-					videosBox.style['z-index'] = '1000';
-					videosBox.style['height'] = `${picturesBox.getBoundingClientRect().height}px`;
-					picturesBox.style['z-index'] = '100';
+					videosBox.style['display'] = 'flex';
+					picturesBox.style['display'] = 'none';
 					break;
 
 			}
@@ -799,7 +798,7 @@ if (location.href.includes('portfolio.html')) {
 
 	const showGallery = async () => {
 		resp = await fetch(`https://wwpspdb.kiniun.tech/portfolio/`)
-			// resp = await fetch('http://192.168.148.14:3000/portfolio/')
+			// resp = await fetch(`${site}/portfolio/`)
 			.then(data => data.json())
 			.then(data => {
 				const pictures = data.pictures;
@@ -854,5 +853,3 @@ if (location.href.includes('portfolio.html')) {
 
 
 // CACHE
-
-console.log(getComputedStyle(document.getElementById('vgallery_box')).zIndex)

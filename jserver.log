@@ -151,3 +151,5 @@ JSON Server is running
 [0mGET /portfolio/ [36m304[0m 3.288 ms - -[0m
 [0mGET /portfolio/ [36m304[0m 2.852 ms - -[0m
 [0mGET /portfolio/ [36m304[0m 2.830 ms - -[0m
+[0mGET /__rules [33m404[0m 2.450 ms - 2[0m
+[0mGET /db [32m200[0m 1.368 ms - -[0m
