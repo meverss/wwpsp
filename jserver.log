@@ -3,3 +3,35 @@
 > node index.js server
 
 JSON Server is running
+[0mGET /db [32m200[0m 9.661 ms - -[0m
+[0mGET /__rules [33m404[0m 5.165 ms - 2[0m
+[0mGET /portfolio/ [32m200[0m 6.409 ms - 834[0m
+[0mGET /portfolio/ [32m200[0m 3.875 ms - 834[0m
+[0mGET /portfolio/ [36m304[0m 4.161 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 2.642 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 4.400 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 3.499 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 3.883 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 4.049 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 5.329 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 3.835 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 3.397 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 3.405 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 3.182 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 3.522 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 4.100 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 3.126 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 3.544 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 2.092 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 3.313 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 3.853 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 2.811 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 5.079 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 3.746 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 2.874 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 2.832 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 3.367 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 3.270 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 3.341 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 3.694 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 4.129 ms - -[0m

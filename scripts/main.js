@@ -32,6 +32,8 @@ const notiText = document.getElementById('ntf_text');
 const headerHeight = document.getElementById('header_top').getBoundingClientRect().height;
 const menuBarHeight = document.getElementById('menu_bar').getBoundingClientRect().height;
 
+const site = `http://${location.hostname}:8080`;
+
 // SETTING CUSTOM DATE
 const timestamp = Date.now();
 const today = new Date(timestamp);
@@ -773,8 +775,8 @@ if (location.href.includes('portfolio.html')) {
 					videosLabel.style['color'] = '#222';
 					videosTag.style['backgroundColor'] = '#ddd';
 					videosTag.style['z-index'] = '1';
-					picturesBox.style['z-index'] = '150';
-					videosBox.style['z-index'] = '149';
+					picturesBox.style['z-index'] = '1000';
+					videosBox.style['z-index'] = '100';
 					break;
 				case "videos_tag":
 					media.style['z-index'] = '2';
@@ -784,8 +786,9 @@ if (location.href.includes('portfolio.html')) {
 					picturesLabel.style['color'] = '#222';
 					picturesTag.style['backgroundColor'] = '#ddd';
 					picturesTag.style['z-index'] = '1';
-					videosBox.style['z-index'] = '150';
-					picturesBox.style['z-index'] = '149';
+					videosBox.style['z-index'] = '1000';
+					videosBox.style['height'] = `${picturesBox.getBoundingClientRect().height}px`;
+					picturesBox.style['z-index'] = '100';
 					break;
 
 			}
@@ -793,11 +796,10 @@ if (location.href.includes('portfolio.html')) {
 	})
 
 	// Fetching database
-	const site = location.href;
 
 	const showGallery = async () => {
 		resp = await fetch(`https://wwpspdb.kiniun.tech/portfolio/`)
-			// resp = await fetch(`http://localhost:8080/portfolio/`)
+			// resp = await fetch('http://192.168.148.14:3000/portfolio/')
 			.then(data => data.json())
 			.then(data => {
 				const pictures = data.pictures;
@@ -827,7 +829,7 @@ if (location.href.includes('portfolio.html')) {
 							for (let i = images; i >= 1; i--) {
 								imgThumb.innerHTML += `
 								<a href="${path}/${i}.webp" data-lightbox='gallery_wwp${id}' data-title='Team WWP#${id}' class="e_services_img">
-									<img class="image" src="${path}/${i}.webp" alt="wwp${id}-${i}" style="z-index: ${200 + i}">
+									<img id="image_${id}_${i}" class="image" src="${path}/${i}.webp" alt="wwp${id}-${i}" style="z-index: ${101 + i}">
 								</a>
 								`;
 							}
@@ -847,3 +849,4 @@ if (location.href.includes('portfolio.html')) {
 
 // CACHE
 
+console.log(getComputedStyle(document.getElementById('vgallery_box')).zIndex)
