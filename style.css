@@ -255,7 +255,7 @@ a {
 	right: 0;
 	width: 100%;
 	font-size: 4vw;
-	text-shadow: 1px 1px 0.1px #222;
+	text-shadow: 1px 1px 5px #000;
 }
 
 .header_slogan {
@@ -1562,7 +1562,7 @@ textarea {
 	gap: 2px;
 	align-items: center;
 	position: absolute;
-	margin-top: 30px;
+	margin-top: 38px;
 	color: #fff;
 	z-index: 5000;
 	background-color: rgb(40,40,40,0.9);
@@ -1571,15 +1571,22 @@ textarea {
 }
 
 .p_social p {
-	width: 40px;
+	width: 28px;
 	height: 40px;
 	padding: 5px;
 	text-align: center;
-	text-shadow: 1px 1px 1px #000;
+	text-shadow: 1px 1px 5px #000;
 	border-radius: 10px;
 	z-index: 102;
 }
 
+.p_social .social_item:hover {
+	transition: 0.3s;
+	transform: scale(1.2);
+	cursor: pointer;
+	background-color: transparent;
+	color: #ea5421;
+}
 
 /* FOOTER */
 
