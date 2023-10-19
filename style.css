@@ -1563,7 +1563,7 @@ textarea {
 	align-items: center;
 	position: absolute;
 	margin-top: 38px;
-	color: #fff;
+	color: #bbb;
 	z-index: 5000;
 	background-color: rgb(40,40,40,0.9);
 	border-bottom-left-radius: 8px;
@@ -1575,7 +1575,7 @@ textarea {
 	height: 40px;
 	padding: 5px;
 	text-align: center;
-	text-shadow: 1px 1px 5px #000;
+	text-shadow: 1px 1px 5px #222;
 	border-radius: 10px;
 	z-index: 102;
 }
