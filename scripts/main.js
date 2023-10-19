@@ -99,7 +99,7 @@ function scroll_to_section_m(section_m) {
 					break;
 				}
 			case "s_m_our_team":
-				window.scrollTo(0, position );
+				window.scrollTo(0, position);
 				break;
 			case "s_m_contact_us":
 				window.scrollTo(0, position - 275);
@@ -795,43 +795,52 @@ if (location.href.includes('portfolio.html')) {
 	// Fetching database
 	const site = location.href;
 
-	fetch(`https://wwpspdb.kiniun.tech/portfolio/`)
-		// fetch(`http://192.168.111.14:8080/portfolio/`)
-		.then(data => data.json())
-		.then(data => {
-			const pictures = data.pictures;
-			const videos = data.videos;
-			pictures.forEach(collection => {
-				const pictures = document.getElementById('pictures');
-				let album = collection.album;
-				let images = collection.images;
-				let path = collection.path;
-				let date = collection.date;
-				let id = collection.id;
+	const showGallery = async () => {
+		resp = await fetch(`https://wwpspdb.kiniun.tech/portfolio/`)
+			// resp = await fetch(`http://localhost:8080/portfolio/`)
+			.then(data => data.json())
+			.then(data => {
+				const pictures = data.pictures;
+				const videos = data.videos;
+				pictures.forEach(collection => {
+					const pictures = document.getElementById('pictures');
+					let album = collection.album;
+					let images = collection.images;
+					let path = collection.path;
+					let date = collection.date;
+					let id = collection.id;
 
-				pictures.innerHTML += `
-				<div class="gallery_box">
-				<div class="img_thumbnail" id="img_thumbnail_${id}">
-				
-				</div>
-				<ul>
-				<li><span style="font-weight: bold">Album:</span> ${album} </li>
-				<li><span style="font-weight: bold">Date:</span> ${date} </li>
-				<li><span style="font-weight: bold">Images:</span> ${images} </li>
-				</ul>
-				</div>
-				`;
-				const imgThumb = document.getElementById(`img_thumbnail_${id}`);
-				for (let i = images; i >= 1; i--) {
-					imgThumb.innerHTML += `
-						<a href="${path}/${i}.webp" data-lightbox='gallery_wwp${id}' data-title='Team WWP#${id}' class="e_services_img">
-							<img class="image" src="${path}/${i}.webp" alt="wwp${id}-${i}" style="z-index: ${200 + i}">
-						</a>
-	
-					`;
-				}
+					const buildGalleries = async () => {
+						build = await function() {
+							pictures.innerHTML += `
+							<div class="gallery_box">
+								<div class="img_thumbnail" id="img_thumbnail_${id}">
+								</div>
+								<ul>
+									<li><span style="font-weight: bold">Album:</span> ${album} </li>
+									<li><span style="font-weight: bold">Date:</span> ${date} </li>
+									<li><span style="font-weight: bold">Images:</span> ${images} </li>
+								</ul>
+							</div>
+							`;
+							const imgThumb = document.getElementById(`img_thumbnail_${id}`);
+							for (let i = images; i >= 1; i--) {
+								imgThumb.innerHTML += `
+								<a href="${path}/${i}.webp" data-lightbox='gallery_wwp${id}' data-title='Team WWP#${id}' class="e_services_img">
+									<img class="image" src="${path}/${i}.webp" alt="wwp${id}-${i}" style="z-index: ${200 + i}">
+								</a>
+								`;
+							}
+						}
+						build();
+					}
+					buildGalleries();
+				})
 			})
-		})
+
+	}
+
+	showGallery();
 
 }
 
