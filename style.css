@@ -1484,14 +1484,14 @@ textarea {
 .gallery_box,
 .vgallery_box {
 	display: flex;
+	flex-direction: column;
 	position: relative;
 	flex-wrap: wrap;
 	margin-top: 50px;
 	justify-content: center;
 	align-items: center;
-	flex-direction: column;
 	width: 200px;
-	height: 270px;
+	height: 370px;
 }
 
 .gallery_box ul,
@@ -1554,6 +1554,33 @@ textarea {
 .video_thumbnail .image {
 	z-index: 100;
 }
+
+.p_social {
+	display: flex;
+	justify-content: center;
+	width: 90%;
+	gap: 2px;
+	align-items: center;
+	position: absolute;
+	margin-top: 30px;
+	color: #fff;
+	z-index: 5000;
+	background-color: rgb(40,40,40,0.9);
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
+.p_social p {
+	width: 40px;
+	height: 40px;
+	padding: 5px;
+	text-align: center;
+	text-shadow: 1px 1px 1px #000;
+	border-radius: 10px;
+	z-index: 102;
+
+}
+
 
 /* FOOTER */
 

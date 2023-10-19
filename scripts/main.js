@@ -798,8 +798,8 @@ if (location.href.includes('portfolio.html')) {
 	// Fetching database
 
 	const showGallery = async () => {
-		resp = await fetch(`https://wwpspdb.kiniun.tech/portfolio/`)
-			// resp = await fetch('http://192.168.148.14:3000/portfolio/')
+		// resp = await fetch(`https://wwpspdb.kiniun.tech/portfolio/`)
+			resp = await fetch('http://192.168.148.14:3000/portfolio/')
 			.then(data => data.json())
 			.then(data => {
 				const pictures = data.pictures;
@@ -813,7 +813,7 @@ if (location.href.includes('portfolio.html')) {
 					let id = collection.id;
 
 					const buildGalleries = async () => {
-						build = await function() {
+						build = await function () {
 							pictures.innerHTML += `
 							<div class="gallery_box">
 								<div class="img_thumbnail" id="img_thumbnail_${id}">
@@ -822,7 +822,13 @@ if (location.href.includes('portfolio.html')) {
 									<li><span style="font-weight: bold">Album:</span> ${album} </li>
 									<li><span style="font-weight: bold">Date:</span> ${date} </li>
 									<li><span style="font-weight: bold">Images:</span> ${images} </li>
-								</ul>
+									</ul>
+									<div class="p_social" id="p_social">
+										<p class="social_item" id="p_facebook_${id}" title="Share on Facebook"><i class='fab fa-facebook-f'></i>
+										</p>
+										<p class="social_item" id="p_twitter_${id}" title="Share on Twitter"><i class='fab fa-twitter'></i>
+										</p>
+									</div>
 							</div>
 							`;
 							const imgThumb = document.getElementById(`img_thumbnail_${id}`);
