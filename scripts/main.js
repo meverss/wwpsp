@@ -798,8 +798,8 @@ if (location.href.includes('portfolio.html')) {
 	// Fetching database
 
 	const showGallery = async () => {
-		// resp = await fetch(`https://wwpspdb.kiniun.tech/portfolio/`)
-			resp = await fetch('http://192.168.148.14:3000/portfolio/')
+		resp = await fetch(`https://wwpspdb.kiniun.tech/portfolio/`)
+			// resp = await fetch('http://192.168.148.14:3000/portfolio/')
 			.then(data => data.json())
 			.then(data => {
 				const pictures = data.pictures;
