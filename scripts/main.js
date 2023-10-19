@@ -823,7 +823,7 @@ if (location.href.includes('portfolio.html')) {
 									<li><span style="font-weight: bold">Images:</span> ${images} </li>
 									</ul>
 									<div class="p_social" id="p_social">
-										<p class="social_item fb-share-button" id="p_facebook_${id}" title="Share on Facebook" data-href="https://wwpspllc.kiniun.tech/index.html" data-layout="button_count"><i class='fab fa-facebook-f'></i>
+										<p class="social_item" id="p_facebook_${id}" title="Share on Facebook" data-href="https://wwpspllc.kiniun.tech/index.html" data-layout="button_count"><i class='fab fa-facebook-f'></i>
 										</p>
 										<p class="social_item" id="p_twitter_${id}" title="Share on Twitter"><i class='fab fa-twitter'></i>
 										
