@@ -983,6 +983,7 @@ a {
 .team_card_img img {
 	width: 150px;
 	border-radius: 50%;
+	filter: invert(56%) sepia(98%) saturate(4328%) hue-rotate(166deg) brightness(101%) contrast(101%);
 }
 
 .team_card_text {
@@ -1524,10 +1525,6 @@ textarea {
 	height: 80%;
 	align-items: center;
 	padding: 10px;
-	/* background-image: url(./media/images/video_frame.webp);
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: contain; */
 }
 
 .img_thumbnail .image {
