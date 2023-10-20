@@ -32,16 +32,16 @@ const notiText = document.getElementById('ntf_text');
 const headerHeight = document.getElementById('header_top').getBoundingClientRect().height;
 const menuBarHeight = document.getElementById('menu_bar').getBoundingClientRect().height;
 
-const site = () => {
+const dbsite = () => {
 	if (location.hostname.includes('192.168.')) {
-		return `http://${location.hostname}:3000`;
+		return `http://${location.hostname}:3000/portfolio/`;
 	} else {
 		return `https://wwpspdb.kiniun.tech/portfolio/`;
 	}
 
 }
 
-console.log(site());
+console.log(dbsite());
 
 // SETTING CUSTOM DATE
 const timestamp = Date.now();
@@ -807,8 +807,7 @@ if (location.href.includes('portfolio.html')) {
 
 	const showGallery = async () => {
 		// resp = await fetch(`https://wwpspdb.kiniun.tech/portfolio/`)
-		const s = site() + '/portfolio/';
-		resp = await fetch(`${site()}`)
+		resp = await fetch(`${dbsite()}`)
 			.then(data => data.json())
 			.then(data => {
 				const pictures = data.pictures;
@@ -822,7 +821,7 @@ if (location.href.includes('portfolio.html')) {
 					let id = collection.id;
 
 					const buildGalleries = async () => {
-						build = await function () {
+						build = () => {
 							pictures.innerHTML += `
 							<div class="gallery_box">
 								<div class="img_thumbnail" id="img_thumbnail_${id}">
