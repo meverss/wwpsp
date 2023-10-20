@@ -807,7 +807,7 @@ if (location.href.includes('portfolio.html')) {
 
 	const showGallery = async () => {
 		// resp = await fetch(`https://wwpspdb.kiniun.tech/portfolio/`)
-		const s = `${site()}/portfolio/`
+		const s = site() + '/portfolio/';
 		resp = await fetch(s)
 			.then(data => data.json())
 			.then(data => {
