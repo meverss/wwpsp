@@ -1552,6 +1552,11 @@ textarea {
 	height: 35%;
 }
 
+.img_thumbnail .image:hover {
+	filter: brightness(60%);
+	transform: scale(1.02);
+}
+
 .video_thumbnail:hover>.image:nth-child(1) {
 	filter: brightness(60%);
 	transform: scale(1.05);
@@ -1572,6 +1577,7 @@ textarea {
 	color: #bbb;
 	z-index: 5000;
 	background-color: rgb(40, 40, 40, 0.9);
+	backdrop-filter: blur(2px);
 	border-bottom-left-radius: 8px;
 	border-bottom-right-radius: 8px;
 }
