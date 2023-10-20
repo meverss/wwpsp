@@ -34,14 +34,14 @@ const menuBarHeight = document.getElementById('menu_bar').getBoundingClientRect(
 
 const dbsite = () => {
 	if (location.hostname.includes('192.168.')) {
-		return `http://${location.hostname}:3000/portfolio/`;
+		return `http://${location.hostname}:3000/`;
 	} else {
-		return `https://wwpspdb.kiniun.tech/portfolio/`;
+		return `https://wwpspdb.kiniun.tech/`;
 	}
 
 }
 
-console.log(dbsite());
+console.log(dbsite())
 
 // SETTING CUSTOM DATE
 const timestamp = Date.now();
@@ -472,7 +472,7 @@ const reviewCloseBtn = document.getElementById('review_close_btn');
 
 const showReviews = async () => {
 	try {
-		resp = await fetch(`https://wwpspdb.kiniun.tech/reviews?enabled=true&_sort=id&_order=desc`)
+		resp = await fetch(`${dbsite()}reviews?enabled=true&_sort=id&_order=desc`)
 			.then(data => data.json())
 			.then(data => {
 
@@ -625,7 +625,7 @@ dataForms.forEach(form => {
 				case "contact_form":
 					const newContactData = getContactData();
 					try {
-						resp = await fetch("https://wwpspdb.kiniun.tech/messages", {
+						resp = await fetch(`${dbsite()}messages`, {
 							method: 'POST',
 							headers: { 'Content-Type': 'application/json' },
 							body: JSON.stringify(newContactData)
@@ -642,7 +642,7 @@ dataForms.forEach(form => {
 				case "budget_form":
 					const newBudgetData = getBudgetData();
 					try {
-						resp = await fetch("https://wwpspdb.kiniun.tech/budgets", {
+						resp = await fetch(`${dbsite()}budgets`, {
 							method: 'POST',
 							headers: { 'Content-Type': 'application/json' },
 							body: JSON.stringify(newBudgetData)
@@ -659,7 +659,7 @@ dataForms.forEach(form => {
 				case "review_form":
 					const newReviewData = getReviewData();
 					try {
-						resp = await fetch("https://wwpspdb.kiniun.tech/reviews", {
+						resp = await fetch(`${dbsite()}reviews`, {
 							method: 'POST',
 							headers: { 'Content-Type': 'application/json' },
 							body: JSON.stringify(newReviewData)
@@ -668,7 +668,7 @@ dataForms.forEach(form => {
 						// Enable/Disable a review
 
 						// const reg = 4
-						// resp = await fetch(`https://wwpspdb.kiniun.tech/reviews/${reg}`, {
+						// resp = await fetch(`${dbsite()}reviews/${reg}`, {
 						// 	method: 'PATCH',
 						// 	headers: { 'Content-Type': 'application/json' },
 						// 	body: JSON.stringify({ "enabled" : true })
@@ -806,8 +806,7 @@ if (location.href.includes('portfolio.html')) {
 	// Fetching database
 
 	const showGallery = async () => {
-		// resp = await fetch(`https://wwpspdb.kiniun.tech/portfolio/`)
-		resp = await fetch(`${dbsite()}`)
+		resp = await fetch(`${dbsite()}portfolio/`)
 			.then(data => data.json())
 			.then(data => {
 				const pictures = data.pictures;
