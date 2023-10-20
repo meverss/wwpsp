@@ -33,10 +33,10 @@ const headerHeight = document.getElementById('header_top').getBoundingClientRect
 const menuBarHeight = document.getElementById('menu_bar').getBoundingClientRect().height;
 
 const site = () => {
-	if (location.href.includes('192.168.')) {
+	if (location.hostname.includes('192.168.')) {
 		return `http://${location.hostname}:3000`;
 	} else {
-		return `https://${location.hostname}`;
+		return location.href;
 	}
 
 }
