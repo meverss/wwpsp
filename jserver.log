@@ -806,3 +806,8 @@ JSON Server is running
 [0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 3.771 ms - -[0m
 [0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 2.781 ms - -[0m
 [0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 3.832 ms - -[0m
+[0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 3.638 ms - -[0m
+[0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 3.170 ms - -[0m
+[0mGET /reviews?enabled=true&_sort=id&_order=desc [32m200[0m 3.880 ms - 758[0m
+[0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 2.611 ms - -[0m
+[0mGET /portfolio/ [32m200[0m 4.335 ms - 834[0m

@@ -41,8 +41,6 @@ const dbsite = () => {
 
 }
 
-console.log(dbsite())
-
 // SETTING CUSTOM DATE
 const timestamp = Date.now();
 const today = new Date(timestamp);
