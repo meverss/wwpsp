@@ -798,3 +798,11 @@ JSON Server is running
 [0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 3.506 ms - -[0m
 [0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 4.046 ms - -[0m
 [0mGET /portfolio/ [36m304[0m 4.413 ms - -[0m
+[0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 4.526 ms - -[0m
+[0mPOST /reviews [32m201[0m 28.415 ms - 157[0m
+[0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 3.064 ms - -[0m
+[0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 4.479 ms - -[0m
+[0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 4.745 ms - -[0m
+[0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 3.771 ms - -[0m
+[0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 2.781 ms - -[0m
+[0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 3.832 ms - -[0m
