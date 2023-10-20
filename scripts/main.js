@@ -32,7 +32,16 @@ const notiText = document.getElementById('ntf_text');
 const headerHeight = document.getElementById('header_top').getBoundingClientRect().height;
 const menuBarHeight = document.getElementById('menu_bar').getBoundingClientRect().height;
 
-const site = `http://${location.hostname}:3000`;
+const site = () => {
+	if (location.href.includes('192.168.')) {
+		return `http://${location.hostname}:3000`;
+	} else {
+		return `http://${location.hostname}`;
+	}
+
+}
+
+console.log(site());
 
 // SETTING CUSTOM DATE
 const timestamp = Date.now();
@@ -798,7 +807,7 @@ if (location.href.includes('portfolio.html')) {
 
 	const showGallery = async () => {
 		// resp = await fetch(`https://wwpspdb.kiniun.tech/portfolio/`)
-			resp = await fetch(`${site}/portfolio/`)
+		resp = await fetch(`${site()}/portfolio/`)
 			.then(data => data.json())
 			.then(data => {
 				const pictures = data.pictures;
