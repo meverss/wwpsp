@@ -36,7 +36,7 @@ const site = () => {
 	if (location.hostname.includes('192.168.')) {
 		return `http://${location.hostname}:3000`;
 	} else {
-		return location.href;
+		return `${location.href}`;
 	}
 
 }
