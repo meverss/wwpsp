@@ -762,3 +762,10 @@ JSON Server is running
 [0mGET /portfolio/ [36m304[0m 4.016 ms - -[0m
 [0mGET /portfolio/ [36m304[0m 3.618 ms - -[0m
 [0mGET /portfolio/ [36m304[0m 4.101 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 2.563 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 2.022 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 3.436 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 3.167 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 3.067 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 1.991 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 2.897 ms - -[0m

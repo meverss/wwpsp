@@ -36,7 +36,7 @@ const site = () => {
 	if (location.hostname.includes('192.168.')) {
 		return `http://${location.hostname}:3000`;
 	} else {
-		return `${location.href}`;
+		return `https://wwpspdb.kiniun.tech/portfolio/`;
 	}
 
 }
@@ -808,7 +808,7 @@ if (location.href.includes('portfolio.html')) {
 	const showGallery = async () => {
 		// resp = await fetch(`https://wwpspdb.kiniun.tech/portfolio/`)
 		const s = site() + '/portfolio/';
-		resp = await fetch(s)
+		resp = await fetch(`${site()}`)
 			.then(data => data.json())
 			.then(data => {
 				const pictures = data.pictures;
