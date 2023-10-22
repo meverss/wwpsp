@@ -622,7 +622,7 @@ a {
 	right: 10px;
 	border-radius: 50%;
 	background-color: #085c97;
-	z-index: 5000;
+	z-index: 999;
 	transition: .2s;
 }
 
