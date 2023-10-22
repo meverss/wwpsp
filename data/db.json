@@ -97,6 +97,13 @@
 				"duration": "00:41",
 				"date": "12-10-2023.02:17:48",
 				"id": 1
+			},
+			{
+				"name": "Deep Nebula",
+				"path": "../media/videos/deep_nebula.mp4",
+				"duration": "00:32",
+				"date": "22-10-2023.10:97:18",
+				"id": 2
 			}
 		]
 	}

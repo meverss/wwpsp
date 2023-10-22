@@ -1536,7 +1536,7 @@ textarea {
 .vgallery_box ul {
 	width: 210px;
 	position: absolute;
-	margin-top: 35px;
+	margin-top: 10px;
 	text-align: left;
 	list-style: none;
 	background-color: #eee;
@@ -1546,7 +1546,7 @@ textarea {
 }
 
 .vgallery_box ul {
-	margin-top: 210px;
+	margin-top: 200px;
 }
 
 .img_thumbnail {
@@ -1622,7 +1622,7 @@ textarea {
 	gap: 2px;
 	align-items: center;
 	position: absolute;
-	margin-top: -100px;
+	margin-top: -125px;
 	color: #bbb;
 	z-index: 5000;
 	background-color: rgb(40, 40, 40, 0.9);
@@ -1688,32 +1688,44 @@ textarea {
 @media screen and (max-width: 459px) {
 	.gallery_box {
 		width: 300px;
-		height: 350px;
-		margin-bottom: -30px;
+		height: 450px;
+		margin-bottom: -130px;
+	}
+
+	.img_thumbnail .image {
+		width: 90%;
+		object-fit: cover;
 	}
 
 	.videos {
-		gap: 0;
-		margin-bottom: 0;
+		gap: 20px;
+		padding-bottom: 90px;
+		margin-bottom: 60px;
 	}
 
 
 	.vgallery_box {
 		width: 300px;
-		margin-bottom: -30px;
+		margin-top: 10px;
+		margin-bottom: -50px;
 	}
 
 	.video_thumbnail .video_frame {
-		object-fit: fill;
 		width: 300px;
 		height: 50%;
 	}
-
+	
 	.video_thumbnail .video {
+		object-fit: cover;
 		width: 100%;
 	}
 
 	.gallery_box ul {
+		width: 100%;
+		font-size: 12pt;
+	}
+
+	.vgallery_box ul {
 		width: 100%;
 		font-size: 12pt;
 	}
