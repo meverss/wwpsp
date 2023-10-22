@@ -1536,7 +1536,7 @@ textarea {
 .vgallery_box ul {
 	width: 210px;
 	position: absolute;
-	margin-top: 10px;
+	margin-top: 20px;
 	text-align: left;
 	list-style: none;
 	background-color: #eee;
@@ -1598,6 +1598,11 @@ textarea {
 	border-radius: 5px;
 }
 
+.img_thumbnail .image {
+	width: 100%;
+	object-fit: cover;
+}
+
 .img_thumbnail .image:hover {
 	filter: brightness(60%);
 	transform: scale(1.02);
@@ -1618,11 +1623,11 @@ textarea {
 .p_social {
 	display: flex;
 	justify-content: center;
-	width: 90%;
+	width: 100%;
 	gap: 2px;
 	align-items: center;
 	position: absolute;
-	margin-top: -125px;
+	margin-top: -110px;
 	color: #bbb;
 	z-index: 5000;
 	background-color: rgb(40, 40, 40, 0.9);
@@ -1692,11 +1697,6 @@ textarea {
 		margin-bottom: -130px;
 	}
 
-	.img_thumbnail .image {
-		width: 90%;
-		object-fit: cover;
-	}
-
 	.videos {
 		gap: 20px;
 		padding-bottom: 90px;
@@ -1728,6 +1728,10 @@ textarea {
 	.vgallery_box ul {
 		width: 100%;
 		font-size: 12pt;
+	}
+
+	.p_social {
+		margin-top: -125px;
 	}
 }
 
