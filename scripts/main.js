@@ -876,12 +876,25 @@ if (location.href.includes('portfolio.html')) {
 				const videoFrames = document.querySelectorAll('.video_frame');
 				const videoPopup = document.querySelector('.video_popup');
 				const videoPopupPlayer = document.querySelector('#video_popup_player');
+				const closeVideo = document.getElementById('close_video');
 				videoFrames.forEach(frame => {
 					frame.addEventListener('click', () => {
-						videoPopup.style.display = 'block'
+						reviewFormBox.classList.add('animate__animated', 'animate__zoomIn');
+						reviewForm.children.namedItem('name').focus();
+						
+						videoPopup.style.display = 'block';
+						videoPopupPlayer.classList.add('animate__animated', 'animate__fadeIn');
 						videoPopupPlayer.src = frame.dataset['src'];
-						console.log(videoPopupPlayer.src)
 					})
+				})
+				
+				closeVideo.addEventListener('click', () => {
+					videoPopupPlayer.classList.add('animate__animated', 'animate__fadeOut');
+					videoPopupPlayer.pause();
+					videoPopup.style.display = 'none';
+					setTimeout(() => {
+						videoPopupPlayer.classList.remove('animate__animated', 'animate__fadeIn', 'animate__fadeOut');
+					}, 1000);
 				})
 			})
 
