@@ -824,14 +824,13 @@ if (location.href.includes('portfolio.html')) {
 									<li><span style="font-weight: bold">Album:</span> ${album} </li>
 									<li><span style="font-weight: bold">Date:</span> ${date} </li>
 									<li><span style="font-weight: bold">Images:</span> ${images} </li>
-									</ul>
-									<div class="p_social" id="p_social">
-										<p class="social_item" id="p_facebook_${id}" title="Share on Facebook" data-href="https://wwpspllc.kiniun.tech/index.html" data-layout="button_count"><i class='fab fa-facebook-f'></i>
-										</p>
-										<p class="social_item" id="p_twitter_${id}" title="Share on Twitter"><i class='fab fa-twitter'></i>
-										
-										</p>
-									</div>
+								</ul>
+								<div class="p_social" id="p_social">
+									<p class="social_item" id="p_facebook_${id}" title="Share on Facebook" data-href="https://wwpspllc.kiniun.tech/index.html" data-layout="button_count"><i class='fab fa-facebook-f'></i>
+									</p>
+									<p class="social_item" id="p_twitter_${id}" title="Share on Twitter"><i class='fab fa-twitter'></i>
+									</p>
+								</div>
 							</div>
 							`;
 							const imgThumb = document.getElementById(`img_thumbnail_${id}`);
@@ -846,6 +845,33 @@ if (location.href.includes('portfolio.html')) {
 						build();
 					}
 					buildGalleries();
+				})
+
+				videos.forEach(video => {
+					const videos = document.getElementById('videos');
+					let name = video.name;
+					let path = video.path;
+					let duration = video.duration;
+					let date = video.date;
+					let id = video.id;
+
+					const buildVideoGallery = async () => {
+						console.log(id)
+						videos.innerHTML += `
+						<div class="vgallery_box" id="vgallery_box">
+						<div class="video_thumbnail" id="video_thumbnail_${id}">
+								<img class="image video_frame" id="video_frame_${id}" src="../media/images/video_frame.webp" alt="frame" >
+								<video class="video"  src="${path}" alt="${name}" muted>
+							</div>
+							<ul>
+								<li><span style="font-weight: bold">Name:</span> ${name} </li>
+								<li><span style="font-weight: bold">Date:</span> ${date} </li>
+								<li><span style="font-weight: bold">Duration:</span> ${duration} </li>
+							</ul>
+							</div>
+						`;
+					}
+					buildVideoGallery();
 				})
 			})
 
