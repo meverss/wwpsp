@@ -1,4 +1,6 @@
 @import url(./css/animate.css);
+@import url(./css/lightbox.css);
+@import url(./media/fontawesome/css/all.css);
 
 @-ms-viewport {
 	width: device-width;

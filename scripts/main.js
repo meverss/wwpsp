@@ -429,9 +429,6 @@ window.addEventListener('resize', fix_m_menu);
 
 // COOKIES
 
-// const headers = new Headers();
-// headers.append('Set-Cookie', 'key=value; path=/; domain=http://192.168.241.14:5500; Secure; SameSite=Strict');
-
 // NOTIFICATIONS
 
 // noti.style['top'] = headerHeight + menuBarHeight + 'px';
