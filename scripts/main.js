@@ -859,18 +859,29 @@ if (location.href.includes('portfolio.html')) {
 						videos.innerHTML += `
 						<div class="vgallery_box" id="vgallery_box">
 						<div class="video_thumbnail" id="video_thumbnail_${id}">
-								<img class="image video_frame" id="video_frame_${id}" src="../media/images/video_frame.webp" alt="frame" >
-								<video class="video"  src="${path}" alt="${name}" muted>
-							</div>
-							<ul>
-								<li><span style="font-weight: bold">Name:</span> ${name} </li>
-								<li><span style="font-weight: bold">Date:</span> ${date} </li>
-								<li><span style="font-weight: bold">Duration:</span> ${duration} </li>
-							</ul>
-							</div>
+						<img class="image video_frame" id="video_frame_${id}" src="../media/images/video_frame.webp" alt="frame" data-src="${path}">
+						<video class="video"  src="${path}" alt="${name}" muted>
+						</div>
+						<ul>
+						<li><span style="font-weight: bold">Name:</span> ${name} </li>
+						<li><span style="font-weight: bold">Date:</span> ${date} </li>
+						<li><span style="font-weight: bold">Duration:</span> ${duration} </li>
+						</ul>
+						</div>
 						`;
+						
 					}
 					buildVideoGallery();
+				})
+				const videoFrames = document.querySelectorAll('.video_frame');
+				const videoPopup = document.querySelector('.video_popup');
+				const videoPopupPlayer = document.querySelector('#video_popup_player');
+				videoFrames.forEach(frame => {
+					frame.addEventListener('click', () => {
+						videoPopup.style.display = 'block'
+						videoPopupPlayer.src = frame.dataset['src'];
+						console.log(videoPopupPlayer.src)
+					})
 				})
 			})
 
