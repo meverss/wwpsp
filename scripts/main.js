@@ -856,7 +856,6 @@ if (location.href.includes('portfolio.html')) {
 					let id = video.id;
 
 					const buildVideoGallery = async () => {
-						console.log(id)
 						videos.innerHTML += `
 						<div class="vgallery_box" id="vgallery_box">
 						<div class="video_thumbnail" id="video_thumbnail_${id}">

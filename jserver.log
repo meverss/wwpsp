@@ -148,3 +148,5 @@ JSON Server is running
 [0mGET /portfolio/ [36m304[0m 6.142 ms - -[0m
 [0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 4.654 ms - -[0m
 [0mGET /portfolio/ [36m304[0m 3.642 ms - -[0m
+[0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 4.781 ms - -[0m
+[0mGET /portfolio/ [36m304[0m 2.427 ms - -[0m
