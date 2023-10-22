@@ -11,3 +11,8 @@ JSON Server is running
 [0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 4.029 ms - -[0m
 [0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 3.866 ms - -[0m
 [0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 3.622 ms - -[0m
+[0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 6.725 ms - -[0m
+[0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 3.617 ms - -[0m
+[0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 3.610 ms - -[0m
+[0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 3.408 ms - -[0m
+[0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 4.072 ms - -[0m
