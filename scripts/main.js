@@ -456,7 +456,7 @@ cookiesBanner.innerHTML =
 
 // Acept cookies //
 cookiesOK.addEventListener("click", (e) => {
-	cookies.classList.add("animate__animated", "animate__flipOutX");
+	cookies.classList.add("animate__animated", "animate__bounceOutDown");
 });
 
 
