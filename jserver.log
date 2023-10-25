@@ -372,3 +372,5 @@ JSON Server is running
 [0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 2.358 ms - -[0m
 [0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 3.783 ms - -[0m
 [0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 3.583 ms - -[0m
+[0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 3.623 ms - -[0m
+[0mGET /reviews?enabled=true&_sort=id&_order=desc [36m304[0m 3.271 ms - -[0m

@@ -434,7 +434,7 @@ const cookiesOK = document.getElementById('cookies_ok');
 function openCookies() {
 	const origin = location.hostname;
 	switch (origin) {
-		case "https://wwpspllc.kiniun.tech":
+		case "wwpspllc.kiniun.tech":
 			window.open(
 				`https://${location.hostname}/pages/cookies.html`,
 				"",
