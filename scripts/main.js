@@ -428,6 +428,39 @@ window.addEventListener('resize', fix_m_menu);
 
 // COOKIES
 
+const cookiesBanner = document.getElementById('cookies_banner');
+const cookiesOK = document.getElementById('cookies_ok');
+
+function openCookies() {
+	const origin = location.hostname;
+	switch (origin) {
+		case "https://wwpspllc.kiniun.tech":
+			window.open(
+				`https://${location.hostname}/pages/cookies.html`,
+				"",
+				"width=720, height=480, toolbar=0, status=0, top=300, left=600"
+			);
+			break
+		default:
+			window.open(
+				`http://${location.host}/pages/cookies.html`,
+				"",
+				"width=720, height=480, toolbar=0, status=0, top=300, left=600"
+			);
+			break
+	}
+}
+
+cookiesBanner.innerHTML =
+	`We use cookies with the only purpose to analyze our website traffic. If you want to know more about it, you can read our <a href="javascript:openCookies();">cookies policy</a>`;
+
+// Acept cookies //
+cookiesOK.addEventListener("click", (e) => {
+	cookies.classList.add("animate__animated", "animate__flipOutX");
+});
+
+
+
 // NOTIFICATIONS
 
 // noti.style['top'] = headerHeight + menuBarHeight + 'px';
