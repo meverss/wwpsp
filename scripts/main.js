@@ -59,7 +59,7 @@ const formattedDate = dd + '-' + mm + '-' + yyyy + '.' + hh + ':' + min + ':' + 
 
 // SHOW WEBSITE AFTER LOADED
 
-let show_page = () => {
+let show_page = async () => {
 	page_content.style.opacity = "1";
 	loader_container.classList.add('animate__animated', 'animate__fadeOut');
 	document.body.style.overflow = "auto";
@@ -67,7 +67,6 @@ let show_page = () => {
 		loader_container.style.display = 'none';
 	}, 1000)
 }
-
 
 // SACROLL TO SECTIONS
 
@@ -436,13 +435,13 @@ window.addEventListener('resize', fix_m_menu);
 function showNoti(notiType, message) {
 	switch (notiType) {
 		case "ok":
-			notiType = `<div id="ntf_icon" class="ntf_icon" id="ntf_icon"><i style="color: green" class='far fa-circle-check'></i></div`;
+			notiType = /*html*/ `<div id="ntf_icon" class="ntf_icon" id="ntf_icon"><i style="color: green" class='far fa-circle-check'></i></div>`;
 			break;
 		case "err":
-			notiType = `<div id="ntf_icon" class="ntf_icon" id="ntf_icon"><i style="color: red" class='fas fa-exclamation-triangle'></i></div`;
+			notiType = /*html*/ `<div id="ntf_icon" class="ntf_icon" id="ntf_icon"><i style="color: red" class='fas fa-exclamation-triangle'></i></div>`;
 			break;
 		case "inf":
-			notiType = `<div id="ntf_icon" class="ntf_icon" id="ntf_icon"><i style="color: yellow" class='fas fa-exclamation-circle'></i></div`;
+			notiType = /*html*/ `<div id="ntf_icon" class="ntf_icon" id="ntf_icon"><i style="color: yellow" class='fas fa-exclamation-circle'></i></div>`;
 			break;
 	}
 
@@ -457,7 +456,6 @@ function showNoti(notiType, message) {
 // setTimeout(() => {
 // 	showNoti('inf','This is only a test')
 // }, 5000);
-
 
 // REVIEWS
 
@@ -477,7 +475,7 @@ const showReviews = async () => {
 					const enabled = e.enabled;
 
 					if (enabled == true) {
-						reviews_box.innerHTML += `
+						reviews_box.innerHTML += /*html*/`
 			<div class="review_card" id="review_card" >
 				<div class="review_card_img">
 					<i class='fas fa-quote-left fa-4x'></i>
@@ -544,7 +542,6 @@ window.addEventListener("keydown", function (event) {
 	}
 });
 
-
 // FORMS SUBMIT
 
 const frmKey = document.querySelectorAll('.frmKey');
@@ -604,13 +601,13 @@ dataForms.forEach(form => {
 		frmSubject.forEach(subject => {
 			switch (subject.id) {
 				case "contactSubject":
-					subject.innerHTML = `<input id="contactSubject" type="hidden" name="subject" value="New MESSAGE from ${formContactName.value} on WWP SCREENING & PAINTING LLC" ></input>`;
+					subject.innerHTML = /*html*/ `<input id="contactSubject" type="hidden" name="subject" value="New MESSAGE from ${formContactName.value} on WWP SCREENING & PAINTING LLC" >`;
 					break;
 				case "reviewSubject":
-					subject.innerHTML = `<input id="reviewSubject" type="hidden" name="subject" value="New REVIEW from ${formReviewName.value} on WWP SCREENING & PAINTING LLC" ></input>`;
+					subject.innerHTML = /*html*/ `<input id="reviewSubject" type="hidden" name="subject" value="New REVIEW from ${formReviewName.value} on WWP SCREENING & PAINTING LLC" >`;
 					break;
 				case "budgetSubject":
-					subject.innerHTML = `<input id="budgetSubject" type="hidden" name="subject" value="New BUDGET REQUEST from ${formBudgetName.value}" ></input>`;
+					subject.innerHTML = /*html*/ `<input id="budgetSubject" type="hidden" name="subject" value="New BUDGET REQUEST from ${formBudgetName.value}" >`;
 					break;
 			}
 		})
@@ -816,7 +813,7 @@ if (location.href.includes('portfolio.html')) {
 
 					const buildGalleries = async () => {
 						build = () => {
-							pictures.innerHTML += `
+							pictures.innerHTML += /*html*/`
 							<div class="gallery_box">
 								<div class="img_thumbnail" id="img_thumbnail_${id}">
 								</div>
@@ -835,7 +832,7 @@ if (location.href.includes('portfolio.html')) {
 							`;
 							const imgThumb = document.getElementById(`img_thumbnail_${id}`);
 							for (let i = images; i >= 1; i--) {
-								imgThumb.innerHTML += `
+								imgThumb.innerHTML += /*html*/`
 								<a href="${path}/${i}.webp" data-lightbox='gallery_wwp${id}' data-title='Team WWP#${id}' class="e_services_img">
 									<img id="image_${id}_${i}" class="image" src="${path}/${i}.webp" alt="wwp${id}-${i}" style="z-index: ${101 + i}">
 								</a>
@@ -856,7 +853,7 @@ if (location.href.includes('portfolio.html')) {
 					let id = video.id;
 
 					const buildVideoGallery = async () => {
-						videos.innerHTML += `
+						videos.innerHTML += /*html*/`
 						<div class="vgallery_box" id="vgallery_box">
 						<div class="video_thumbnail" id="video_thumbnail_${id}">
 						<img class="image video_frame" id="video_frame_${id}" src="../media/images/video_frame.webp" alt="frame" data-src="${path}">
@@ -869,7 +866,7 @@ if (location.href.includes('portfolio.html')) {
 						</ul>
 						</div>
 						`;
-						
+
 					}
 					buildVideoGallery();
 				})
@@ -881,13 +878,13 @@ if (location.href.includes('portfolio.html')) {
 					frame.addEventListener('click', () => {
 						reviewFormBox.classList.add('animate__animated', 'animate__zoomIn');
 						reviewForm.children.namedItem('name').focus();
-						
+
 						videoPopup.style.display = 'block';
 						videoPopupPlayer.classList.add('animate__animated', 'animate__fadeIn');
 						videoPopupPlayer.src = frame.dataset['src'];
 					})
 				})
-				
+
 				closeVideo.addEventListener('click', () => {
 					videoPopupPlayer.classList.add('animate__animated', 'animate__fadeOut');
 					videoPopupPlayer.pause();
