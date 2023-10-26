@@ -38,10 +38,10 @@ const dbsite = () => {
 	} else {
 		return `https://wwpspdb.kiniun.tech/`;
 	}
-
 }
 
 // SETTING CUSTOM DATE
+
 const timestamp = Date.now();
 const today = new Date(timestamp);
 const yyyy = today.getFullYear();
@@ -56,6 +56,18 @@ if (hh < 10) hh = '0' + hh;
 if (min < 10) min = '0' + min;
 if (sec < 10) sec = '0' + sec;
 const formattedDate = dd + '-' + mm + '-' + yyyy + '.' + hh + ':' + min + ':' + sec;
+
+// CATCH ESCAPE KEY
+
+const getEscKey = (func) => {
+	window.addEventListener("keydown", (event) => {
+		let k = event.key;
+		if (k == 27 || k == "Escape" || k == "Esc") {
+			func();
+			window.removeEventListener("keydown", null);
+		}
+	});
+}
 
 // SHOW WEBSITE AFTER LOADED
 
@@ -85,7 +97,6 @@ function scroll_to_section_m(section_m) {
 				if (window.innerWidth >= 768) {
 					window.scrollTo(0, position - 50);
 					break;
-
 				} else {
 					window.scrollTo(0, position);
 					break;
@@ -121,7 +132,9 @@ function scroll_to_section_m(section_m) {
 	}
 	m_menu_btn.innerHTML = '󰍜';
 	m_menu.style["transform"] = "translate(100%)";
-
+	setTimeout(() => {
+		m_menu_container.style["display"] = "none";
+	}, 200);
 }
 
 let menu = document.querySelectorAll(".menu_item");
@@ -148,18 +161,21 @@ menu.forEach((obj) => {
 alt_menu.forEach((obj1) => {
 	let sec = obj1.id;
 
-	if (obj1.id != 'm_portfolio') {
-		if (obj1 != "s_m_menu_open_btn") {
-			obj1.addEventListener("click", function () {
-				scroll_to_section_m("s_" + sec);
-			});
+	if (!location.href.includes('portfolio')) {
+		if (obj1.id != 'm_portfolio') {
+			if (obj1 != "s_m_menu_open_btn") {
+				obj1.addEventListener("click", function () {
+					scroll_to_section_m("s_" + sec);
+				});
+			}
+		} else if (obj1.id == 'm_portfolio') {
+			obj1.addEventListener('click', () => {
+				window.open('./pages/portfolio.html', '_top', '');
+			})
 		}
-	} else if (obj1.id == 'm_portfolio') {
-		obj1.addEventListener('click', () => {
-			window.open('./pages/portfolio.html', '_top', '');
-		})
 	}
 });
+
 
 //COPYRIGHT
 
@@ -342,17 +358,6 @@ function hideBudgetRequest() {
 	}, 300);
 }
 
-budgetCloseBtn.addEventListener('click', () => {
-	hideBudgetRequest();
-})
-
-window.addEventListener("keydown", function (event) {
-	let k = event.key;
-	if (k == 27 || k == "Escape" || k == "Esc") {
-		hideBudgetRequest();
-	}
-});
-
 
 setInterval(() => {
 	budgetIcon.classList.add('animate__animated', 'animate__tada');
@@ -371,6 +376,14 @@ budgetBtn.forEach(btn => {
 		disableSendButton();
 		budgetFormBox.classList.add('animate__animated', 'animate__zoomIn');
 		budgetForm.children.namedItem('name').focus();
+
+		budgetCloseBtn.addEventListener('click', () => {
+			hideBudgetRequest();
+			budgetCloseBtn.removeEventListener('click', null);
+		})
+
+		getEscKey(hideBudgetRequest);
+
 	})
 })
 
@@ -386,16 +399,31 @@ function showmenu() {
 
 	fix_m_menu();
 
+	const hideMenu = () => {
+		m_menu_btn.innerHTML = '󰍜';
+		m_menu.style["transform"] = "translate(100%)";
+		setTimeout(() => {
+			m_menu_container.style["display"] = "none";
+		}, 200);
+	}
+
 	switch (btn) {
 		case '󰍜':
-			m_menu_btn.innerHTML = '';
-			m_menu.style["transform"] = "translate(0%)";
+			m_menu_container.style["display"] = "flex";
+			setTimeout(() => {
+				m_menu_btn.innerHTML = '';
+				m_menu.style["transform"] = "translate(0%)";
+			}, 10);
 			break;
 		case '':
-			m_menu_btn.innerHTML = '󰍜';
-			m_menu.style["transform"] = "translate(100%)";
+			hideMenu();
 			break;
 	}
+
+	m_menu_container.addEventListener('click', hideMenu);
+
+	getEscKey(hideMenu);
+
 }
 
 // Calc M-Menu top and fix position
@@ -415,19 +443,25 @@ window.addEventListener("resize", () => {
 });
 
 function fix_m_menu() {
-	const header_h = document.getElementById('header_top').getBoundingClientRect().height;
-	const menu_bar_h = document.getElementById('menu_bar').getBoundingClientRect().height;
-	if (header_h == '100') {
-		m_menu.style['top'] = header_h + menu_bar_h + 'px';
-	} else {
-		m_menu.style['top'] = header_h + 20 + 'px';
+	if (!location.href.includes('portfolio')) {
+		const header_h = document.getElementById('header_top').getBoundingClientRect().height;
+		const menu_bar_h = document.getElementById('menu_bar').getBoundingClientRect().height;
+		if (header_h == '100') {
+			m_menu.style['top'] = header_h + menu_bar_h + 'px';
+			m_menu_container.style['top'] = header_h + menu_bar_h + 'px';
+		} else {
+			m_menu.style['top'] = header_h + 20 + 'px';
+			m_menu_container.style['top'] = header_h + 20 + 'px';
+		}
 	}
 }
 
 window.addEventListener('resize', fix_m_menu);
+fix_m_menu();
 
 // COOKIES
 
+const cookies = document.getElementById('cookies');
 const cookiesBanner = document.getElementById('cookies_banner');
 const cookiesOK = document.getElementById('cookies_ok');
 
@@ -459,11 +493,7 @@ cookiesOK.addEventListener("click", (e) => {
 	cookies.classList.add("animate__animated", "animate__bounceOutDown");
 });
 
-
-
 // NOTIFICATIONS
-
-// noti.style['top'] = headerHeight + menuBarHeight + 'px';
 
 function showNoti(notiType, message) {
 	switch (notiType) {
@@ -509,19 +539,18 @@ const showReviews = async () => {
 
 					if (enabled == true) {
 						reviews_box.innerHTML += /*html*/`
-			<div class="review_card" id="review_card" >
-				<div class="review_card_img">
-					<i class='fas fa-quote-left fa-4x'></i>
-				</div>
-				<hr>
-				<div class="review_card_text" >
-					<h3>${name}</h3>
-					<p class="review_text" id="review_text">
-						${review}
-					</p>
-				</div>
-			</div>
-			`
+							<div class="review_card" id="review_card" >
+								<div class="review_card_img">
+									<i class='fas fa-quote-left fa-4x'></i>
+								</div>
+								<hr>
+								<div class="review_card_text" >
+									<h3>${name}</h3>
+									<p class="review_text" id="review_text">
+										${review}
+									</p>
+								</div>
+							</div>`
 					}
 				})
 			})
@@ -548,6 +577,13 @@ newReviewBtn.addEventListener('click', () => {
 		reviewFormBox.classList.remove('animate__animated', 'animate__zoomIn');
 	}, 1000);
 
+	reviewCloseBtn.addEventListener('click', () => {
+		hideSubmitReview();
+		reviewCloseBtn.removeEventListener('click', null);
+	})
+
+	getEscKey(hideSubmitReview);
+
 })
 
 function hideSubmitReview() {
@@ -563,17 +599,6 @@ function hideSubmitReview() {
 		}
 	}, 200);
 }
-
-reviewCloseBtn.addEventListener('click', () => {
-	hideSubmitReview();
-})
-
-window.addEventListener("keydown", function (event) {
-	let k = event.key;
-	if (k == 27 || k == "Escape" || k == "Esc") {
-		hideSubmitReview();
-	}
-});
 
 // FORMS SUBMIT
 
