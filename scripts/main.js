@@ -404,6 +404,7 @@ function showmenu() {
 		m_menu.style["transform"] = "translate(100%)";
 		setTimeout(() => {
 			m_menu_container.style["display"] = "none";
+			m_menu_container.removeEventListener('click', null);
 		}, 200);
 	}
 
