@@ -3,7 +3,7 @@ const notes = document.querySelectorAll(".box");
 function triggerAnimation(entries) {
 	entries.forEach((entry) => {
 		if (entry.isIntersecting) {
-			if(entry.target.id == 's_contact_us'){
+			if (entry.target.id == 's_contact_us') {
 				contactForm.children.namedItem('name').focus();
 			}
 			entry.target.classList.remove("animate__animated", "animate__fadeOut", "hide");

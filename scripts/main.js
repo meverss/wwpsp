@@ -40,6 +40,14 @@ const dbsite = () => {
 	}
 }
 
+const mySite = () => {
+	if (!location.hostname.includes('192.168.')) {
+		return `https://${location.host}`;
+	} else {
+		return `http://${location.host}`;
+	}
+}
+
 // SETTING CUSTOM DATE
 
 const timestamp = Date.now();
@@ -76,7 +84,16 @@ let show_page = async () => {
 	loader_container.classList.add('animate__animated', 'animate__fadeOut');
 	document.body.style.overflow = "auto";
 	setTimeout(function () {
+		
+		const animations = document.createElement('script');
+		const lightbox = document.createElement('script');
+		animations.src = `${mySite()}/scripts/anim.js`;
+		lightbox.src = `${mySite()}/scripts/lightbox-plus-jquery.js`;
+		
 		loader_container.style.display = 'none';
+
+		document.body.appendChild(animations);
+		document.body.appendChild(lightbox);
 	}, 1000)
 }
 
