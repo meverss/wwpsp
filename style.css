@@ -1608,6 +1608,15 @@ textarea {
 	border-radius: 5px;
 }
 
+.gallery_img {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: auto;
+	width: 100%;
+	height: fit-content;
+}
+
 .img_thumbnail .image {
 	width: 100%;
 	object-fit: cover;
