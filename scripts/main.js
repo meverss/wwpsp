@@ -48,6 +48,15 @@ const mySite = () => {
 	}
 }
 
+const animations = document.createElement('script');
+const lightbox = document.createElement('script');
+animations.src = `${mySite()}/scripts/anim.js`;
+lightbox.src = `${mySite()}/scripts/lightbox-plus-jquery.js`;
+
+document.body.appendChild(animations);
+document.body.appendChild(lightbox);
+
+
 // SETTING CUSTOM DATE
 
 const timestamp = Date.now();
@@ -85,15 +94,15 @@ let show_page = async () => {
 	document.body.style.overflow = "auto";
 	setTimeout(function () {
 		
-		const animations = document.createElement('script');
-		const lightbox = document.createElement('script');
-		animations.src = `${mySite()}/scripts/anim.js`;
-		lightbox.src = `${mySite()}/scripts/lightbox-plus-jquery.js`;
+		// const animations = document.createElement('script');
+		// const lightbox = document.createElement('script');
+		// animations.src = `${mySite()}/scripts/anim.js`;
+		// lightbox.src = `${mySite()}/scripts/lightbox-plus-jquery.js`;
 		
 		loader_container.style.display = 'none';
 
-		document.body.appendChild(animations);
-		document.body.appendChild(lightbox);
+		// document.body.appendChild(animations);
+		// document.body.appendChild(lightbox);
 	}, 1000)
 }
 
