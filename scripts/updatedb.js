@@ -1,17 +1,12 @@
-const os = require('os');
-const fs = require('fs');
-
-const db = () => {
+const db = (reg, status) => {
 
     // Enable/Disable a review
 
     try {
-        const reg = 4;
-        const enabled = false;
         resp = fetch(`https://wwpspdb.kiniun.tech/reviews/${reg}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ "enabled": enabled })
+            body: JSON.stringify({ "enabled": status })
         });
 
         if (resp.ok) {
@@ -23,3 +18,6 @@ const db = () => {
     }
 
 }
+
+db("4", false);
+db("3", true);

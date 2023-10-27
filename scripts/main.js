@@ -742,16 +742,6 @@ dataForms.forEach(form => {
 							body: JSON.stringify(newReviewData)
 						});
 
-						// Enable/Disable a review
-
-						// const reg = 4
-						// resp = await fetch(`${dbsite()}reviews/${reg}`, {
-						// 	method: 'PATCH',
-						// 	headers: { 'Content-Type': 'application/json' },
-						// 	body: JSON.stringify({ "enabled" : true })
-						// });
-
-
 						if (resp.ok) {
 							showNoti('ok', 'Your review has been sent successfully');
 							reviews_box.innerHTML = '';
