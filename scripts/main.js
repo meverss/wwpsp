@@ -33,8 +33,9 @@ const headerHeight = document.getElementById('header_top').getBoundingClientRect
 const menuBarHeight = document.getElementById('menu_bar').getBoundingClientRect().height;
 
 const dbsite = () => {
-	if (location.hostname.includes('192.168.')) {
-		return `http://${location.hostname}:3000/`;
+	if (location.hostname.includes('192.168.') || location.hostname == 'localhost') {
+		return `http://${location.hostname}:3001/wwpsp/`;
+		alert(location.hostname)
 	} else {
 		return `https://wwpspdb.kiniun.tech/`;
 	}
@@ -83,7 +84,7 @@ let show_page = async () => {
 	page_content.style.opacity = "1";
 	loader_container.classList.add('animate__animated', 'animate__fadeOut');
 	document.body.style.overflow = "auto";
-	setTimeout(function () {		
+	setTimeout(function () {
 		loader_container.style.display = 'none';
 	}, 1000)
 }
@@ -504,7 +505,7 @@ cookiesOK.addEventListener("click", (e) => {
 
 // NOTIFICATIONS
 
-function showNoti(notiType, message) {
+function showNotification(notiType, message) {
 	switch (notiType) {
 		case "ok":
 			notiType = /*html*/ `<div id="ntf_icon" class="ntf_icon" id="ntf_icon"><i style="color: green" class='far fa-circle-check'></i></div>`;
@@ -526,7 +527,7 @@ function showNoti(notiType, message) {
 }
 
 // setTimeout(() => {
-// 	showNoti('inf','This is only a test')
+// 	showNotification('inf','This is only a test')
 // }, 5000);
 
 // REVIEWS
@@ -537,11 +538,13 @@ const reviewCloseBtn = document.getElementById('review_close_btn');
 
 const showReviews = async () => {
 	try {
-		resp = await fetch(`${dbsite()}reviews?enabled=true&_sort=id&_order=desc`)
+		resp = await fetch(`${dbsite()}`)
 			.then(data => data.json())
 			.then(data => {
 
-				data.forEach(e => {
+				const reviews = data.reviews
+
+				reviews.forEach(e => {
 					const name = e.name;
 					const review = e.review;
 					const enabled = e.enabled;
@@ -565,7 +568,7 @@ const showReviews = async () => {
 			})
 
 	} catch (error) {
-		showNoti('err', "Error trying to connect to database server");
+		showNotification('err', "Error trying to connect to database server");
 		setTimeout(() => {
 			showReviews();
 		}, 60000);
@@ -691,11 +694,11 @@ dataForms.forEach(form => {
 						});
 
 						if (resp.ok) {
-							showNoti('ok', 'Your message has been sent successfully');
+							showNotification('ok', 'Your message has been sent successfully');
 						}
 
 					} catch (error) {
-						showNoti('err', "Error trying to connect to database server");
+						showNotification('err', "Error trying to connect to database server");
 					}
 					break;
 				case "budget_form":
@@ -708,11 +711,11 @@ dataForms.forEach(form => {
 						});
 
 						if (resp.ok) {
-							showNoti('ok', 'Budget request sent successfully');
+							showNotification('ok', 'Budget request sent successfully');
 						}
 
 					} catch (error) {
-						showNoti('err', "Error trying to connect to database server");
+						showNotification('err', "Error trying to connect to database server");
 					}
 					break;
 				case "review_form":
@@ -725,13 +728,13 @@ dataForms.forEach(form => {
 						});
 
 						if (resp.ok) {
-							showNoti('ok', 'Your review has been sent successfully');
+							showNotification('ok', 'Your review has been sent successfully');
 							reviews_box.innerHTML = '';
 							showReviews();
 						}
 
 					} catch (error) {
-						showNoti('err', "Error trying to connect to database server");
+						showNotification('err', "Error trying to connect to database server");
 					}
 					break;
 			}
