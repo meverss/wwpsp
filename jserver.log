@@ -8,103 +8,207 @@
 [33m[nodemon] watching extensions: js,mjs,cjs,json[39m
 [32m[nodemon] starting `node index.js`[39m
 JSON Server is running on port 3001
-[0mGET /wwpsp/reviews?enabled=true&_sort=id&_order=desc [33m404[0m 13.271 ms - 2[0m
-[0mGET /wwpsp/reviews?enabled=true&_sort=id&_order=desc [33m404[0m 5.032 ms - 2[0m
-[0mGET /wwpsp/reviews?enabled=true&_sort=id&_order=desc [33m404[0m 2.014 ms - 2[0m
-[0mGET /wwpsp/reviews?enabled=true&_sort=id&_order=desc [33m404[0m 3.414 ms - 2[0m
-[0mGET /wwpsp/reviews?enabled=true&_sort=id&_order=desc [33m404[0m 3.607 ms - 2[0m
-[0mGET /wwpsp/reviews?enabled=true&_sort=id&_order=desc [33m404[0m 3.504 ms - 2[0m
-[0mGET /wwpsp/reviews?enabled=true&_sort=id&_order=desc [33m404[0m 3.483 ms - 2[0m
-[0mGET /wwpsp/ [36m304[0m 9.923 ms - -[0m
-[0mGET /wwpsp/ [36m304[0m 2.410 ms - -[0m
-[0mGET /wwpsp/ [36m304[0m 5.441 ms - -[0m
-[0mGET /wwpsp/ [36m304[0m 4.414 ms - -[0m
-[0mGET /wwpsp/ [36m304[0m 3.733 ms - -[0m
+[0mGET /wwpsp/reviews?enabled=true&_sort=id&_order=desc [33m404[0m 15.012 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 6.820 ms - -[0m
+[0mGET /wwpsp/portfolio/ [33m404[0m 2.231 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 6.150 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 3.366 ms - -[0m
+[0mGET /wwpsp/portfolio/ [33m404[0m 5.477 ms - 2[0m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node index.js`[39m
+JSON Server is running on port 3001
+[0mGET /wwpsp/wwps/portfolio/ [33m404[0m 10.039 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 22.284 ms - -[0m
+[0mGET /wwpsp/wwps/portfolio/ [33m404[0m 8.018 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 12.168 ms - -[0m
+[0mGET /wwpsp/wwps/portfolio/ [33m404[0m 2.798 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 4.472 ms - -[0m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node index.js`[39m
+JSON Server is running on port 3001
+[0mGET /wwpsp/wwpsllc/portfolio/ [33m404[0m 8.738 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 4.928 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 4.079 ms - -[0m
+[0mGET /wwpsp/wwpsllc/portfolio/ [33m404[0m 7.988 ms - 2[0m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node index.js`[39m
+JSON Server is running on port 3001
+[0mGET /wwpsp/wwpspllc/portfolio/ [33m404[0m 16.914 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 12.302 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 4.911 ms - -[0m
+[0mGET /wwpsp/wwpspllc/portfolio/ [33m404[0m 8.974 ms - 2[0m
+[0mGET /db [36m304[0m 0.630 ms - -[0m
+[0mGET /__rules [33m404[0m 2.355 ms - 2[0m
+[0mGET /wwpsp/wwpspllc/portfolio/ [33m404[0m 1.639 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 4.602 ms - -[0m
+[0mGET /wwpsp/wwpspllc/portfolio/ [33m404[0m 3.423 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 9.950 ms - -[0m
+[0mGET /wwpsp/wwpspllc/portfolio/ [33m404[0m 2.569 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 6.394 ms - -[0m
+[0mGET /wwpsp/wwpspllc/portfolio/ [33m404[0m 1.248 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 4.200 ms - -[0m
+[0mGET /wwpsp/wwpspllc/portfolio/ [33m404[0m 1.980 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 5.773 ms - -[0m
+[0mGET /wwpsp/wwpspllc/portfolio/ [33m404[0m 2.752 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 5.944 ms - -[0m
+[0mGET /wwpsp/wwpspllc/portfolio/ [33m404[0m 3.338 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 5.895 ms - -[0m
+[0mGET /wwpsp/wwpspllc/portfolio/ [33m404[0m 2.218 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 6.115 ms - -[0m
+[0mGET /wwpsp/wwpspllc/portfolio/ [33m404[0m 2.215 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 4.835 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 4.524 ms - -[0m
+[0mGET /wwpsp/wwpspllc/portfolio/ [33m404[0m 2.575 ms - 2[0m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node index.js`[39m
+JSON Server is running on port 3001
+[0mGET /wwpsp/wwpsp/portfolio/ [33m404[0m 15.444 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 27.498 ms - -[0m
+[0mGET /wwpsp/wwpsp/portfolio/ [33m404[0m 8.735 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 14.671 ms - -[0m
+[0mGET /wwpsp/wwpsp/portfolio/ [33m404[0m 2.244 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 9.494 ms - -[0m
+[0mGET /wwpsp/wwpsp/portfolio/ [33m404[0m 1.384 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 3.955 ms - -[0m
+[0mGET /wwpsp/wwpsp/portfolio/ [33m404[0m 1.657 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 5.320 ms - -[0m
+[0mGET /wwpsp/wwpsp/portfolio/ [33m404[0m 1.186 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 4.016 ms - -[0m
+[0mGET /wwpsp/wwpsp/portfolio/ [33m404[0m 3.330 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 7.447 ms - -[0m
+[0mGET /wwpsp/wwpsp/portfolio/ [33m404[0m 2.211 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 4.377 ms - -[0m
+[0mGET /wwpsp/wwpsp/portfolio/ [33m404[0m 2.564 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 6.415 ms - -[0m
+[0mGET /wwpsp/wwpsp/portfolio/ [33m404[0m 3.339 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 7.260 ms - -[0m
+[0mGET /wwpsp/wwpsp/portfolio/ [33m404[0m 0.963 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 4.068 ms - -[0m
+[0mGET /wwpsp/wwpsp/portfolio/ [33m404[0m 1.317 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 4.812 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 5.170 ms - -[0m
+[0mGET /wwpsp/wwpsp/portfolio/ [33m404[0m 2.213 ms - 2[0m
+[0mGET /wwpsp/wwpsp/portfolio/ [33m404[0m 2.161 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 5.368 ms - -[0m
+[0mGET /wwpsp/wwpsp/portfolio/ [33m404[0m 2.296 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 5.355 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 3.609 ms - -[0m
+[0mGET /wwpsp/wwpsp/portfolio/ [33m404[0m 2.841 ms - 2[0m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node index.js`[39m
+JSON Server is running on port 3001
+[0mGET /wwpsp/portfolio/ [33m404[0m 15.107 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 30.457 ms - -[0m
+[0mGET /wwpsp/portfolio/ [33m404[0m 5.081 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 8.977 ms - -[0m
+[0mGET /wwpsp/portfolio/ [33m404[0m 2.436 ms - 2[0m
+[0mGET /wwpsp/ [36m304[0m 5.546 ms - -[0m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node index.js`[39m
+JSON Server is running on port 3001
+[0mGET /wwpsp/ [36m304[0m 14.924 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 7.443 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 5.954 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 4.354 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 4.258 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 4.103 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 4.094 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 5.297 ms - -[0m
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `node index.js`[39m
 JSON Server is running on port 3001
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `node index.js`[39m
 JSON Server is running on port 3001
-[0mGET /wwpsp/reviews?enabled=true&_sort=id&_order=desc [33m404[0m 14.947 ms - 2[0m
-[0mGET /wwpsp/reviews?enabled=true&_sort=id&_order=desc [33m404[0m 5.192 ms - 2[0m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node index.js`[39m
-JSON Server is running on port 3001
-[0mGET /wwpsp/ [36m304[0m 22.934 ms - -[0m
-[0mGET /wwpsp/ [36m304[0m 5.090 ms - -[0m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node index.js`[39m
-JSON Server is running on port 3001
-[0mGET /wwpsp/ [36m304[0m 32.389 ms - -[0m
-[0mGET /wwpsp/ [36m304[0m 7.871 ms - -[0m
-[0mGET /wwpsp/ [36m304[0m 6.829 ms - -[0m
-[0mGET /wwpsp/ [36m304[0m 7.051 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 18.435 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 4.632 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 3.644 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 7.046 ms - -[0m
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `node index.js`[39m
 JSON Server is running on port 3001
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `node index.js`[39m
 JSON Server is running on port 3001
-[0mGET /wwpsp/ [36m304[0m 18.752 ms - -[0m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node index.js`[39m
+JSON Server is running on port 3001
+[0mGET /wwpsp/ [36m304[0m 16.688 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 8.625 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 4.304 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 4.934 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 4.448 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 5.636 ms - -[0m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node index.js`[39m
+JSON Server is running on port 3001
+[0mGET /wwpsp/ [36m304[0m 18.257 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 4.265 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 4.534 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 3.934 ms - -[0m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node index.js`[39m
+JSON Server is running on port 3001
+[0mGET /wwpsp/ [36m304[0m 11.110 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 4.717 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 5.593 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 5.180 ms - -[0m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node index.js`[39m
+JSON Server is running on port 3001
+[0mGET /wwpsp/ [36m304[0m 15.445 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 6.728 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 4.253 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 4.339 ms - -[0m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node index.js`[39m
+JSON Server is running on port 3001
+[0mGET /wwpsp/ [36m304[0m 25.213 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 5.619 ms - -[0m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node index.js`[39m
+JSON Server is running on port 3001
+[0mGET /wwpsp/ [36m304[0m 12.807 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 4.826 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 5.290 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 3.605 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 4.606 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 4.348 ms - -[0m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node index.js`[39m
+JSON Server is running on port 3001
+[0mGET /wwpsp/ [36m304[0m 22.093 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 6.297 ms - -[0m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node index.js`[39m
+JSON Server is running on port 3001
+[0mGET /wwpsp/ [36m304[0m 19.078 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 8.076 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 7.881 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 7.005 ms - -[0m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node index.js`[39m
+JSON Server is running on port 3001
+[0mGET /wwpsp/ [36m304[0m 18.585 ms - -[0m
 [0mGET /wwpsp/ [36m304[0m 5.137 ms - -[0m
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `node index.js`[39m
 JSON Server is running on port 3001
-[0mGET /wwpsp/ [36m304[0m 20.126 ms - -[0m
-[0mGET /wwpsp/ [36m304[0m 6.750 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 13.752 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 5.797 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 3.355 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 5.295 ms - -[0m
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `node index.js`[39m
 JSON Server is running on port 3001
-[0mGET /wwpsp/ [36m304[0m 18.648 ms - -[0m
-[0mGET /wwpsp/ [36m304[0m 6.824 ms - -[0m
-[0mGET /wwpsp/ [36m304[0m 4.455 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 13.696 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 4.707 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 4.207 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 5.053 ms - -[0m
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `node index.js`[39m
 JSON Server is running on port 3001
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node index.js`[39m
-JSON Server is running on port 3001
-[0mGET /wwpsp/ [36m304[0m 22.922 ms - -[0m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node index.js`[39m
-JSON Server is running on port 3001
-[0mGET /wwpsp/ [36m304[0m 29.992 ms - -[0m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node index.js`[39m
-JSON Server is running on port 3001
-[0mGET /wwpsp/ [36m304[0m 18.793 ms - -[0m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node index.js`[39m
-JSON Server is running on port 3001
-[0mGET /wwpsp/ [36m304[0m 20.927 ms - -[0m
-[0mGET /wwpsp/ [36m304[0m 6.526 ms - -[0m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node index.js`[39m
-JSON Server is running on port 3001
-[0mGET /wwpsp/ [36m304[0m 17.024 ms - -[0m
-[0mGET /wwpsp/ [36m304[0m 5.549 ms - -[0m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node index.js`[39m
-JSON Server is running on port 3001
-[0mGET /wwpsp/ [36m304[0m 23.090 ms - -[0m
-[0mGET /wwpsp/ [36m304[0m 5.088 ms - -[0m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node index.js`[39m
-JSON Server is running on port 3001
-[0mGET /wwpsp/ [36m304[0m 19.776 ms - -[0m
-[0mGET /wwpsp/ [36m304[0m 6.570 ms - -[0m
-[0mGET /wwpsp/ [36m304[0m 5.798 ms - -[0m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node index.js`[39m
-JSON Server is running on port 3001
-[0mGET /wwpsp/ [36m304[0m 21.967 ms - -[0m
-[0mGET /wwpsp/ [36m304[0m 8.398 ms - -[0m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node index.js`[39m
-JSON Server is running on port 3001
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node index.js`[39m
-JSON Server is running on port 3001
-[0mGET /wwpsp/ [36m304[0m 22.327 ms - -[0m
-[0mGET /wwpsp/ [36m304[0m 6.188 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 11.884 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 5.923 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 5.479 ms - -[0m
+[0mGET /wwpsp/ [36m304[0m 3.228 ms - -[0m

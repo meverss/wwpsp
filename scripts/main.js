@@ -858,11 +858,14 @@ if (location.href.includes('portfolio.html')) {
 	// Fetching database
 
 	const showGallery = async () => {
-		resp = await fetch(`${dbsite()}portfolio/`)
+		resp = await fetch(`${dbsite()}`)
 			.then(data => data.json())
 			.then(data => {
-				const pictures = data.pictures;
-				const videos = data.videos;
+
+				const portfolio = data.portfolio
+
+				const pictures = portfolio.pictures;
+				const videos = portfolio.videos;
 				pictures.forEach(collection => {
 					const pictures = document.getElementById('pictures');
 					let album = collection.album;
