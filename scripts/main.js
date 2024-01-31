@@ -37,7 +37,7 @@ const dbsite = () => {
 		return `http://${location.hostname}:3001/wwpsp/`;
 		alert(location.hostname)
 	} else {
-		return `https://wwpspdb.kiniun.tech/`;
+		return `https://wwpspdb.kiniun.tech/wwpsp/`;
 	}
 }
 
