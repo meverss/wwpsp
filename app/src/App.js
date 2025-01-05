@@ -50,8 +50,8 @@ const App = () => {
 	if(!rootDir) loaderContainer.current.style.zIndex = '999'
   }}
 
-//  document.body.setAttribute("onLoad", showPage())
-  document.onload = showPage()
+  document.addEventListener("DOMContentLoaded", showPage())
+//  window.onload = showPage()
 
   // Trigger animation
   const boxes = document.querySelectorAll(".box")
