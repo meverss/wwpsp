@@ -11,18 +11,16 @@ export const CompReviews = ({ notify }) => {
   const URI = `${server}/reviews/`
   
   const [reviews, setReviews] = useState()
-  const [actReviews, setActReviews] = useState()
   const [author, setAuthor] = useState()
   const [email, setEmail] = useState()
   const [review, setReview] = useState()
 
   const reviewForm = document.getElementById('s_review_form')
-  const budgetIconFloat = document.getElementById('budgetIconFloat')
-  const reviewFormBox = document.getElementById('reviewFormBox')
-  const reviewCloseBtn = document.getElementById('reviewCloseBtn')
-  const formReviewName = document.getElementById('formReviewName')
-  const formReviewEmail = document.getElementById('formReviewEmail')
-  const formReviewMessage = document.getElementById('formReviewMessage')
+  const reviewFormBox = document.getElementById('review_form_box')
+  const reviewCloseBtn = document.getElementById('review_close_btn')
+  const formReviewName = document.getElementById('rv_name')
+  const formReviewEmail = document.getElementById('rv_email')
+  const formReviewMessage = document.getElementById('rv_message')
 
   useEffect(()=>{
 	getReviews()
@@ -32,77 +30,66 @@ export const CompReviews = ({ notify }) => {
   const getReviews =  async ()=> {
 	try {
 	  const res = await axios.get(URI)
-		setReviews(res.data)
-		setActReviews(res.data.filter(r => r.enabled === true))
+		setReviews(res.data.filter(r => r.enabled === true))
 	} catch (error) {
-		notify('err',error)
+		notify('err', error)
 	}
   }
   
   // Hide 'Submit a review' form
   const  hideSubmitReview = ()=> {
 	if(reviewFormBox){
-    reviewFormBox.classList.remove('animate__animated', 'animate__zoomIn')
-    reviewFormBox.classList.add('animate__animated', 'animate__zoomOut')
+  	  reviewFormBox.classList.remove('animate__animated', 'animate__zoomIn')
+  	  reviewFormBox.classList.add('animate__animated', 'animate__zoomOut')
 
-    setTimeout(()=> {
-  	  reviewFormBox.classList.remove('animate__animated', 'animate__zoomOut')
-	  reviewForm.style.display = 'none'
-	  document.body.style.overflow = 'auto'
-	  formReviewName.value = ""; formReviewEmail.value = ""; formReviewMessage.value = ""
-
-	  if (window.innerWidth < 1368) {
-	    budgetIconFloat.style.display = 'flex'
-	  }
-	}, 200)
-  }
+  	  setTimeout(()=> {
+  		reviewFormBox.classList.remove('animate__animated', 'animate__zoomOut')
+		formReviewName.value = ""; formReviewEmail.value = ""; formReviewMessage.value = ""
+		reviewForm.style.display = 'none'
+		document.body.style.overflow = 'auto'
+	  }, 200)
+	}
   }
 
   // Create a new review
   const showCreateReview = ()=> {
-	notify('sys','Hola!')
-/*	if(reviewForm){
-
-	reviewForm.style.display = 'flex'
-	document.body.style.overflow = 'hidden'
-	//budgetIconFloat.style.display = 'none'
+	if(reviewForm){
+	  reviewForm.style.display = 'flex'
+	  document.body.style.overflow = 'hidden'
   
-	//disableSendButton()
+	  //disableSendButton()
 
-	if(reviewFormBox){  
-	reviewFormBox.classList.add('animate__animated', 'animate__zoomIn');
-	reviewForm.children.namedItem('name').focus()
+	  reviewFormBox.classList.add('animate__animated', 'animate__zoomIn');
+	  formReviewName.focus()
   
-	setTimeout(() => {
-	  reviewFormBox.classList.remove('animate__animated', 'animate__zoomIn')
-	}, 1000)
+	  setTimeout(() => {
+		reviewFormBox.classList.remove('animate__animated', 'animate__zoomIn')
+	  }, 1000)
 
-
-	reviewCloseBtn.addEventListener('click', ()=> {
-	  hideSubmitReview()
-	  reviewCloseBtn.removeEventListener('click', null)
-	})
-
-	//getEscKey(hideSubmitReview)
-  }
-  }*/
+	  //getEscKey(hideSubmitReview)
+	}
   }
   
   const createReview = async (e)=> {
 	e.preventDefault()
 	
-	await axios.post(URI, { author, email, review })
-	hideSubmitReview()
+	try {
+	  await axios.post(URI, { author, email, review })
+	  notify('ok', 'Your review has been submitted')
+	  hideSubmitReview()
+	  getReviews()
+	} catch (error) {
+	  notify('err', error)
+	}
   }
   
-
   return (
     <>
   	  {/* Create new review form */}
 	  <section className="s_review_form" id="s_review_form">
 		<div className="review_form_back" id="review_form_back">
 		  <div className="review_form_box" id="review_form_box">
-			<div className="review_close_btn" id="review_close_btn">
+			<div className="review_close_btn" id="review_close_btn" onClick={hideSubmitReview}>
 			  <p style={{fontFamily: 'Symbols'}} >  </p>
 			</div>
 			<div className="review_form_title" id="review_form_title">
@@ -125,7 +112,7 @@ export const CompReviews = ({ notify }) => {
 	  <section className="s_reviews box" id="s_reviews">
 		<h2 className="reviews_title" id="reviews_title">Reviews</h2>
 		<article className="reviews_box" id="reviews_box">
-		  {actReviews ? actReviews.map((r) => (
+		  {reviews ? reviews.map((r) => (
 			<div className="review_card" id="review_card" key='_id' >
 			  <div className="review_card_img">
 				<p className="review_quote"><RiDoubleQuotesL /> &nbsp;<RiDoubleQuotesR /></p>

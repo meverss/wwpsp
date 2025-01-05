@@ -18,7 +18,8 @@ import { CompServices } from './pages/CompServices.js'
 
 // Backend server
 export const serverContext = createContext()
-const server = `http://${window.location.hostname}:4000/api`
+//const server = `http://${window.location.hostname}:4000/api`
+const server = `https://wwpsp-server.vercel.app/api`
 
 // App Component
 const App = () => {
@@ -62,7 +63,7 @@ const App = () => {
 	  if (entry.isIntersecting) {
 		entry.target.classList.remove("animate__animated", "animate__fadeOut", "hide")
 		entry.target.classList.add("animate__animated", "animate__fadeIn", "show")
-		//obBoxes.unobserve(entry.target)
+		obBoxes.unobserve(entry.target)
 	  } else {
 		entry.target.classList.remove("animate__animated", "animate__fadeIn", "show")
 		entry.target.classList.add("animate__animated", "animate__fadeOut", "hide")

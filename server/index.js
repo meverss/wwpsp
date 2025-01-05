@@ -4,7 +4,7 @@ import { connectDB } from './database/db.js'
 
 // Settings
 app.set('case sensitive routing', true)
-app.set('appName', 'wwpsp')
+app.set('appName', 'wwpsp-server')
 
 // Run Server
 connectDB()

@@ -1188,7 +1188,7 @@ a {
 .contact_form .frm_text,
 .contact_form textarea {
 	width: 95%;
-	color: #555;
+	color: var(--text-main);
 }
 
 .contact_form label,
@@ -1311,8 +1311,9 @@ textarea {
 	height: 100%;
 	position: fixed;
 	top: 0;
+	left: 0;
 	margin: auto;
-	background-color: rgba(20, 20, 20, 0.9);
+	background-color: rgba(20, 20, 20, 0.7);
 	backdrop-filter: blur(2px);
 	z-index: 10000;
 }
@@ -1335,16 +1336,13 @@ textarea {
 	width: 400px;
 	min-width: 360px;
 	flex-direction: column;
-	border-radius: 10px;
-	box-shadow: 2px 2px 10px 1px #222;
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	box-shadow: 2px 2px 5px 2px #222;
 	padding: 5px;
 	margin: 10px;
-	background-image: url(./media/images/forms_background.webp);
-	background-color: #fff;
-	background-size: cover;
-	background-position: bottom;
-	background-repeat: no-repeat;
-	--animate-duration: .5s;
+	background-color: var(--background-body);
+	animate-duration: .5s;
 }
 
 .budget_close_btn,
@@ -1404,7 +1402,7 @@ textarea {
 .budget_form label,
 .review_form label {
 	width: 95%;
-	color: #222;
+	color: var(--text-main);
 	font-size: 14pt;
 	font-weight: 600;
 }
