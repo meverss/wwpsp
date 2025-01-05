@@ -23,13 +23,11 @@ const server = `https://wwpsp-server.vercel.app/api`
 
 // App Component
 const App = () => {
-  const [user, setUser] = useState('')
   const [notifyIcon, setNotifyIcon] = useState('')
   const [notifyText, setNotifyText] = useState('')
   const [notify, setNotify] = useState()
   const [theme, setTheme] = useState('')
   const [themeIcon, setThemeIcon] = useState('')
-  const [loginMsg, setLoginMsg] = useState('')
 
   useEffect(() => {
     getTheme()
@@ -52,10 +50,9 @@ const App = () => {
 	if(!rootDir) loaderContainer.current.style.zIndex = '999'
   }}
 
-  document.body.addEventListener("load", showPage())
+  document.body.setAttribute("onLoad", showPage())
 
   // Trigger animation
-
   const boxes = document.querySelectorAll(".box")
 
   const triggerAnimation = (entries) => {
@@ -142,7 +139,6 @@ const App = () => {
   const ntf_icon = useRef()
   const ntf_text = useRef()
 
-  // Notification Box
   const showNotification = (notiType, message) => {
 
     switch (notiType) {
@@ -182,7 +178,6 @@ const App = () => {
     setTimeout(() => {
       notifications.current.style['transform'] = 'translate(102%)'
     }, 2500)
-
   }
     
   
