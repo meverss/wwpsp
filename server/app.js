@@ -1,7 +1,6 @@
 import express from 'express'
 import cors from 'cors'
 import ReviewsRoutes from './routes/reviewsRoutes.js'
-import jwt from 'jsonwebtoken'
 import { SERVERIP } from './config.js'
 import morgan from 'morgan'
 
