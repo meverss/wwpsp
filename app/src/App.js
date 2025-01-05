@@ -51,7 +51,7 @@ const App = () => {
   }}
 
 //  document.body.setAttribute("onLoad", showPage())
-  window.onload = showPage()
+  document.onload = showPage()
 
   // Trigger animation
   const boxes = document.querySelectorAll(".box")
