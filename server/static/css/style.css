@@ -1,0 +1,45 @@
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #333;
+	transition: 0.3s;
+	width: 100%;
+	font-size: 12pt;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+
+.msg_box {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 96%;
+}
+
+.msg_box img {
+	align-self: center;
+	width: 700px;
+}
+
+.msg_box p {
+	font-size: 14pt;
+	margin: 0;
+	margin-left: 10px;
+	margin-right: 10px;
+	color: #fff;
+}
+
+@media screen and (max-width: 500px) {
+	.msg_box img {
+		width: 100%
+	}
+}

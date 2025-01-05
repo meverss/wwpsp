@@ -1,0 +1,149 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import axios from 'axios'
+import { useState, useEffect, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { serverContext } from '../App.js'
+import { formatDate } from '../libs/formatDate.js'
+import { RiDoubleQuotesL, RiDoubleQuotesR } from "react-icons/ri";
+
+export const CompReviews = ({ notify }) => {
+  const server = useContext(serverContext)
+  const URI = `${server}/reviews/`
+  
+  const [reviews, setReviews] = useState()
+  const [actReviews, setActReviews] = useState()
+  const [author, setAuthor] = useState()
+  const [email, setEmail] = useState()
+  const [review, setReview] = useState()
+
+  const reviewForm = document.getElementById('s_review_form')
+  const budgetIconFloat = document.getElementById('budgetIconFloat')
+  const reviewFormBox = document.getElementById('reviewFormBox')
+  const reviewCloseBtn = document.getElementById('reviewCloseBtn')
+  const formReviewName = document.getElementById('formReviewName')
+  const formReviewEmail = document.getElementById('formReviewEmail')
+  const formReviewMessage = document.getElementById('formReviewMessage')
+
+  useEffect(()=>{
+	getReviews()
+  },[])
+
+  // Get all reviews
+  const getReviews =  async ()=> {
+	try {
+	  const res = await axios.get(URI)
+		setReviews(res.data)
+		setActReviews(res.data.filter(r => r.enabled === true))
+	} catch (error) {
+		notify('err',error)
+	}
+  }
+  
+  // Hide 'Submit a review' form
+  const  hideSubmitReview = ()=> {
+	if(reviewFormBox){
+    reviewFormBox.classList.remove('animate__animated', 'animate__zoomIn')
+    reviewFormBox.classList.add('animate__animated', 'animate__zoomOut')
+
+    setTimeout(()=> {
+  	  reviewFormBox.classList.remove('animate__animated', 'animate__zoomOut')
+	  reviewForm.style.display = 'none'
+	  document.body.style.overflow = 'auto'
+	  formReviewName.value = ""; formReviewEmail.value = ""; formReviewMessage.value = ""
+
+	  if (window.innerWidth < 1368) {
+	    budgetIconFloat.style.display = 'flex'
+	  }
+	}, 200)
+  }
+  }
+
+  // Create a new review
+  const showCreateReview = ()=> {
+	notify('sys','Hola!')
+/*	if(reviewForm){
+
+	reviewForm.style.display = 'flex'
+	document.body.style.overflow = 'hidden'
+	//budgetIconFloat.style.display = 'none'
+  
+	//disableSendButton()
+
+	if(reviewFormBox){  
+	reviewFormBox.classList.add('animate__animated', 'animate__zoomIn');
+	reviewForm.children.namedItem('name').focus()
+  
+	setTimeout(() => {
+	  reviewFormBox.classList.remove('animate__animated', 'animate__zoomIn')
+	}, 1000)
+
+
+	reviewCloseBtn.addEventListener('click', ()=> {
+	  hideSubmitReview()
+	  reviewCloseBtn.removeEventListener('click', null)
+	})
+
+	//getEscKey(hideSubmitReview)
+  }
+  }*/
+  }
+  
+  const createReview = async (e)=> {
+	e.preventDefault()
+	
+	await axios.post(URI, { author, email, review })
+	hideSubmitReview()
+  }
+  
+
+  return (
+    <>
+  	  {/* Create new review form */}
+	  <section className="s_review_form" id="s_review_form">
+		<div className="review_form_back" id="review_form_back">
+		  <div className="review_form_box" id="review_form_box">
+			<div className="review_close_btn" id="review_close_btn">
+			  <p style={{fontFamily: 'Symbols'}} >  </p>
+			</div>
+			<div className="review_form_title" id="review_form_title">
+			  <h2>Submit a review</h2>
+			</div>
+			<form id="review_form" className="review_form form" action="https://api.web3forms.com/submit" onSubmit={createReview}>
+			  <label className="text" for="rv_name">Full Name<span className="important">*</span></label>
+			  <input className="frm_text" name="name" id="rv_name" autocomplete="off" placeholder="What's your name?" data-frminfo="name" onChange={(e)=> setAuthor(e.target.value)}/>
+			  <label className="text" for="br_email">E-mail<span className="important">*</span></label>
+			  <input className="frm_text" name="email" id="rv_email" autocomplete="off"	placeholder="your@email.here" data-frminfo="email" onChange={(e)=> setEmail(e.target.value)}/>
+			  <label className="text" for="br_message">Review<span className="important">*</span></label>
+			  <textarea className="frm_text frm_message" name="message" id="rv_message" rows="5" autocomplete="off" placeholder="What's your opinion about our service?" data-frminfo="message" onChange={(e)=> setReview(e.target.value)}></textarea>
+			  <input id="rv_btn_send" type="submit" className="button form_btn" value="Submit" />
+			</form>
+		  </div>
+		</div>
+	  </section>
+    
+  	  {/* Show reviews */}
+	  <section className="s_reviews box" id="s_reviews">
+		<h2 className="reviews_title" id="reviews_title">Reviews</h2>
+		<article className="reviews_box" id="reviews_box">
+		  {actReviews ? actReviews.map((r) => (
+			<div className="review_card" id="review_card" key='_id' >
+			  <div className="review_card_img">
+				<p className="review_quote"><RiDoubleQuotesL /> &nbsp;<RiDoubleQuotesR /></p>
+			  </div>
+			  <hr />
+			  <div className="review_card_text" >
+				<p className="review_author" >{r.author} wrote:</p>
+				<p className="review_text" id="review_text">
+					{r.review}
+				</p>
+			  </div>
+			</div>
+		  ))
+		  : null
+		  } 
+		</article>
+		<p className="new_review button" id="new_review" onClick={showCreateReview}>Submit a review</p>
+	  </section>
+    </>
+  )
+}
