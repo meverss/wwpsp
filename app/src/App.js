@@ -15,7 +15,7 @@ import CompBudgetFloat from './components/CompBudgetFloat.js'
 
 //Pages
 import { CompMain } from './pages/CompMain.js'
-import { CompServices } from './pages/CompServices.js'
+import { CompPortfolio } from './pages/CompPortfolio.js'
 
 // API Server
 export const serverContext = createContext()
@@ -38,7 +38,7 @@ const App = () => {
   }, [])
 
   useEffect(() => {
-    if(reviews.length > 0){
+    if(reviews.length !== 0){
 	  document.addEventListener("DOMContentLoaded", showPage())    
 	}
   }, [reviews])
@@ -231,7 +231,7 @@ const App = () => {
         <BrowserRouter forceRefresh={true}>
           <Routes>
         	<Route path='/' element={<CompMain reviews={reviews} getReviews={getReviews} notify={showNotification} />} />
-            <Route path='/portfolio' element={<CompServices notify={showNotification} />} />
+            <Route path='/portfolio' element={<CompPortfolio />} />
 	        <Route path='*' element={<Navigate to="/" />} />
           </Routes>
         </BrowserRouter>
