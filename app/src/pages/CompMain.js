@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { CompServices } from './CompServices.js'
 import { CompReviews } from './CompReviews.js'
+import { CompOurTeam } from './CompOurTeam.js'
 import { FaCircleCheck, FaTriangleExclamation, FaCircleExclamation } from "react-icons/fa6";
 import { IoSunnyOutline, IoLogOutOutline } from "react-icons/io5"
 import { RiMoonLine } from "react-icons/ri"
@@ -18,7 +19,7 @@ import painting from "../media/images/painting.webp"
 import preasureWashing from "../media/images/preasure_washing.webp"
 import rescreening from "../media/images/rescreening.webp"
 
-export const CompMain = ({ notify }) => {
+export const CompMain = ({ getReviews, reviews, notify }) => {
   
   return (
     <>
@@ -112,7 +113,8 @@ export const CompMain = ({ notify }) => {
 		</article>
 		
 		<CompServices />
-		<CompReviews  notify={notify}/>
+		<CompOurTeam />
+		<CompReviews getReviews={getReviews} reviews={reviews} notify={notify}/>
 	  </section>
     </>
   )

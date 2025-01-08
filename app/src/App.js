@@ -1,4 +1,5 @@
 import './App.css'
+import axios from './libs/axios'
 import { React, useState, useRef, useEffect, createContext } from 'react'
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
 import { getYear } from './libs/formatDate.js'
@@ -16,13 +17,15 @@ import CompBudgetFloat from './components/CompBudgetFloat.js'
 import { CompMain } from './pages/CompMain.js'
 import { CompServices } from './pages/CompServices.js'
 
-// Backend server
+// API Server
 export const serverContext = createContext()
 //const server = `http://${window.location.hostname}:4000/api`
 const server = `https://wwpsp-server.vercel.app/api`
+const URI = `${server}/reviews`
 
 // App Component
 const App = () => {
+  const [reviews, setReviews] = useState([])
   const [notifyIcon, setNotifyIcon] = useState('')
   const [notifyText, setNotifyText] = useState('')
   const [notify, setNotify] = useState()
@@ -30,8 +33,26 @@ const App = () => {
   const [themeIcon, setThemeIcon] = useState('')
 
   useEffect(() => {
+	getReviews()
     getTheme()
   }, [])
+
+  useEffect(() => {
+    if(reviews.length > 0){
+	  document.addEventListener("DOMContentLoaded", showPage())    
+	}
+  }, [reviews])
+
+
+  // Get all reviews
+  const getReviews =  async ()=> {
+    try {
+      const res = await axios.get(URI)
+        setReviews(res.data.filter(r => r.enabled === true))
+    } catch (error) {
+        showNotification('err', error)
+    }
+  }
 
   // Show page
   const pageContent = useRef()
@@ -50,8 +71,7 @@ const App = () => {
 	if(!rootDir) loaderContainer.current.style.zIndex = '999'
   }}
 
-  document.addEventListener("DOMContentLoaded", showPage())
-//  window.onload = showPage()
+  // document.addEventListener("DOMContentLoaded", showPage())
 
   // Trigger animation
   const boxes = document.querySelectorAll(".box")
@@ -124,7 +144,6 @@ const App = () => {
   const my_title = encodeURIComponent('WWP SCREENING & PAINTING LLC.')
   const url_facebook = "http://www.facebook.com/sharer.php?u=" + my_website + "&t=" + my_title
   const url_twitter = "https://twitter.com/intent/tweet?url=" + my_website + "&text = " + my_title
-  const url_telegram = "https://telegram.me/share/url?url=" + my_website + "&text = " + my_title
   const url_linkedin = "https://www.linkedin.com/shareArticle?mini=true&url=" + my_website
 
   social_n.forEach((item) => {
@@ -181,7 +200,6 @@ const App = () => {
     }, 2500)
   }
     
-  
   return (
     <serverContext.Provider value={server}>
       <>
@@ -200,7 +218,7 @@ const App = () => {
       	  <div className="ntf_box" id="ntf_box">
         	<div className="ntf_msg" id="ntf_msg">
         	  <div className="ntf_icon">
-				  {notifyIcon}
+				{notifyIcon}
         	  </div>
         	  <div className="ntf_text" ref={ntf_text} id="ntf_text">
 				{notifyText}
@@ -212,7 +230,7 @@ const App = () => {
             
         <BrowserRouter forceRefresh={true}>
           <Routes>
-        	<Route path='/' element={<CompMain notify={showNotification} />} />
+        	<Route path='/' element={<CompMain reviews={reviews} getReviews={getReviews} notify={showNotification} />} />
             <Route path='/portfolio' element={<CompServices notify={showNotification} />} />
 	        <Route path='*' element={<Navigate to="/" />} />
           </Routes>

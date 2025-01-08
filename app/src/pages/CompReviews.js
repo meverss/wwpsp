@@ -5,15 +5,18 @@ import { useNavigate } from 'react-router-dom'
 import { serverContext } from '../App.js'
 import { formatDate } from '../libs/formatDate.js'
 import { RiDoubleQuotesL, RiDoubleQuotesR } from "react-icons/ri";
+import { PiUserFill } from "react-icons/pi"
+import { LiaCalendar } from "react-icons/lia"
 
-export const CompReviews = ({ notify }) => {
+export const CompReviews = ({ getReviews, reviews, notify }) => {
   const server = useContext(serverContext)
   const URI = `${server}/reviews/`
   
-  const [reviews, setReviews] = useState()
-  const [author, setAuthor] = useState()
-  const [email, setEmail] = useState()
-  const [review, setReview] = useState()
+//  const [reviews, setReviews] = useState()
+  const [author, setAuthor] = useState('')
+  const [email, setEmail] = useState('')
+  const [review, setReview] = useState('')
+  const [reviewLength, setReviewLength] = useState(0)
 
   const reviewForm = document.getElementById('s_review_form')
   const reviewFormBox = document.getElementById('review_form_box')
@@ -26,15 +29,20 @@ export const CompReviews = ({ notify }) => {
 	getReviews()
   },[])
 
+  useEffect(()=>{
+	setReviewLength(review.length)
+	if(review.length === 0)setReviewLength(0)
+  },[review])
+
   // Get all reviews
-  const getReviews =  async ()=> {
+/*  const getReviews =  async ()=> {
 	try {
 	  const res = await axios.get(URI)
 		setReviews(res.data.filter(r => r.enabled === true))
 	} catch (error) {
 		notify('err', error)
 	}
-  }
+  }*/
   
   // Hide 'Submit a review' form
   const  hideSubmitReview = ()=> {
@@ -44,7 +52,10 @@ export const CompReviews = ({ notify }) => {
 
   	  setTimeout(()=> {
   		reviewFormBox.classList.remove('animate__animated', 'animate__zoomOut')
-		formReviewName.value = ""; formReviewEmail.value = ""; formReviewMessage.value = ""
+		setAuthor('')
+		setEmail('')
+		setReview('')
+		setReviewLength(0)
 		reviewForm.style.display = 'none'
 		document.body.style.overflow = 'auto'
 	  }, 200)
@@ -97,11 +108,14 @@ export const CompReviews = ({ notify }) => {
 			</div>
 			<form id="review_form" className="review_form form" action="https://api.web3forms.com/submit" onSubmit={createReview}>
 			  <label className="text" for="rv_name">Full Name<span className="important">*</span></label>
-			  <input className="frm_text" name="name" id="rv_name" autocomplete="off" placeholder="What's your name?" data-frminfo="name" onChange={(e)=> setAuthor(e.target.value)}/>
+			  <input className="frm_text" name="name" id="rv_name" autocomplete="off" placeholder="What's your name?" data-frminfo="name" onChange={(e)=> setAuthor(e.target.value)} value={author}/>
 			  <label className="text" for="br_email">E-mail<span className="important">*</span></label>
-			  <input className="frm_text" name="email" id="rv_email" autocomplete="off"	placeholder="your@email.here" data-frminfo="email" onChange={(e)=> setEmail(e.target.value)}/>
-			  <label className="text" for="br_message">Review<span className="important">*</span></label>
-			  <textarea className="frm_text frm_message" name="message" id="rv_message" rows="5" autocomplete="off" placeholder="What's your opinion about our service?" data-frminfo="message" onChange={(e)=> setReview(e.target.value)}></textarea>
+			  <input className="frm_text" name="email" id="rv_email" autocomplete="off"	placeholder="your@email.here" data-frminfo="email" onChange={(e)=> setEmail(e.target.value.toLowerCase().trim())} value={email}/>
+			  <div className="review_labels">
+				<label className="text" for="br_message" id="review_message">Review<span className="important">*</span></label>
+				<label className="text" for="br_message" id="review_counter">({reviewLength}/160)</label>
+			  </div>
+			  <textarea className="frm_text frm_message" name="message" id="rv_message" rows="5" autocomplete="off" placeholder="What's your opinion about our service?" data-frminfo="message" onChange={(e)=> setReview(e.target.value)} value={review} maxlength="160"></textarea>
 			  <input id="rv_btn_send" type="submit" className="button form_btn" value="Submit" />
 			</form>
 		  </div>
@@ -114,18 +128,15 @@ export const CompReviews = ({ notify }) => {
 		<article className="reviews_box" id="reviews_box">
 		  {reviews ? reviews.map((r) => (
 			<div className="review_card" id="review_card" key='_id' >
-			  <div className="review_card_img">
-				<p className="review_quote"><RiDoubleQuotesL /> &nbsp;<RiDoubleQuotesR /></p>
-			  </div>
-			  <hr />
 			  <div className="review_card_text" >
-				<p className="review_author" >{r.author} wrote:</p>
+				<p className="review_date" ><span><LiaCalendar className="review_icon" />&nbsp;{formatDate(r.createdAt)}</span></p>
+				<p className="review_author" ><span><PiUserFill className="review_icon" />&nbsp;{r.author} wrote:</span></p>
 				<p className="review_text" id="review_text">
 					{r.review}
 				</p>
 			  </div>
 			</div>
-		  ))
+		  )).slice(0, 11)
 		  : null
 		  } 
 		</article>

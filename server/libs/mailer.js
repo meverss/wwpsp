@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer'
 
-const sendEmail = () => {
+const sendEmail = (motive, user, email, message) => {
 	const transporter = nodemailer.createTransport({
 	  host: "smtp.gmail.com",
 	  port: 465,
@@ -9,25 +9,32 @@ const sendEmail = () => {
 	    user: "kiniundev@gmail.com",
 	    pass: process.env.GMAIL_KEY,
 	  },
-	});
+	})
 
-	/* transporter.verify().then(() => {
-		console.log('Ready for sending e-mails.')
-	}) */
-	
 	async function main() {
 	  const msg = await transporter.sendMail({
 	    from: '"KiniunDev" <no-replay@kiniun.dev>',
 	    to: "meverss@my.com",
-	    subject: "Added new user",
-	    text: "A new user has been added.",
-	    html: "<p style='color: green'>A new user has been added.</p>",
-	  });
+	    subject: `You have a ${motive}`,
+	    html: `
+	    <p style='color: #085c97'>
+	  	  <b>You have received a ${motive}.</b>
+	    </p>
+	    <p style='color: #37a1c6'>
+	  	  <b>Details:</b>
+	    </p>
+	    <p>
+	  	  <span style='color: #A2B992'>Name:</span>&nbsp;${user}<br /><br />
+	  	  <span style='color: #A2B992'>E-mail:</span>&nbsp;${email}<br /><br />
+	  	  <span style='color: #A2B992'>Message:</span><br />${message}
+	    </p>   
+	    `,
+	  })
 	
-	  console.log("Message sent: %s", msg.messageId);
+	  console.log("Message sent: ID %s", msg.messageId)
 	}
 	
-	main().catch(console.error); 
+	main().catch(console.error)
 } 
 
 export default sendEmail

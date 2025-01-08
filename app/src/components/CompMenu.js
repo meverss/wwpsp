@@ -62,8 +62,8 @@ const CompMenu = () => {
 			<p className="menu_item" id="services"><BsFillInfoCircleFill className="mIcon"/>&nbsp; About Us </p>
 			<p className="menu_item" id="services"><FaToolbox className="mIcon"/>&nbsp; Services </p>
 			<p className="menu_item" id="portfolio"><FaPhotoVideo className="mIcon"/>&nbsp; Portfolio </p>
-			<p className="menu_item" id="reviews"><FaRegNewspaper className="mIcon"/>&nbsp; Reviews </p>
 			<p className="menu_item" id="our_team"><FaUsers className="mIcon"/>&nbsp; Our Team </p>
+			<p className="menu_item" id="reviews"><FaRegNewspaper className="mIcon"/>&nbsp; Reviews </p>
 			<p className="menu_item" id="contact_us"><FaMailBulk className="mIcon"/>&nbsp; Contact </p>
 		  </div>
 		  <div className="social" id="social">
@@ -83,8 +83,8 @@ const CompMenu = () => {
 				<li className="m_menu_item" id="m_services"><BsFillInfoCircleFill className="mIcon" />&nbsp;About Us</li>
 				<li className="m_menu_item" id="m_services"><FaToolbox className="mIcon" />&nbsp;Services</li>
 				<li className="m_menu_item" id="m_portfolio"><FaPhotoVideo className="mIcon" />&nbsp;Portfolio</li>
-				<li className="m_menu_item" id="m_reviews"><FaRegNewspaper className="mIcon" />&nbsp;Reviews</li>
 				<li className="m_menu_item" id="m_our_team"><FaUsers className="mIcon" />&nbsp;Our Team</li>
+				<li className="m_menu_item" id="m_reviews"><FaRegNewspaper className="mIcon" />&nbsp;Reviews</li>
 				<li className="m_menu_item" id="m_contact_us"><FaMailBulk className="mIcon" />&nbsp;Contact</li>
 			  </ul>
 			</div>

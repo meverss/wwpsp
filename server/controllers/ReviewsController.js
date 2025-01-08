@@ -1,4 +1,5 @@
 import Review from '../database/models/reviews.model.js'
+import sendEmail from '../libs/mailer.js'
 
 const passAuth = (req) => {
   const auth = req.get('authorization')
@@ -10,7 +11,7 @@ const passAuth = (req) => {
 // Get All Reviews
 export const getAllReviews = async (req, res) => {
     try {
-      const reviews = await Review.find().sort({'createdAt':1}).populate('author')
+      const reviews = await Review.find().sort({'createdAt': -1}).populate('author')
         res.json(reviews)
     } catch (error) {
       return res.status(500).json({
@@ -56,6 +57,7 @@ export const createReview = async (req, res) => {
   	})
   	  
   	await newReview.save()
+  	sendEmail('NEW REVIEW', author, email, review)
   	
     console.log(`${author} added a new review`)
     res.sendStatus(204)
