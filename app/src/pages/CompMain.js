@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { CompServices } from './CompServices.js'
-import { CompReviews } from './CompReviews.js'
 import { CompOurTeam } from './CompOurTeam.js'
+import { CompReviews } from './CompReviews.js'
+import { CompContactUs } from './CompContactUs.js'
 import { FaCircleCheck, FaTriangleExclamation, FaCircleExclamation } from "react-icons/fa6";
 import { IoSunnyOutline, IoLogOutOutline } from "react-icons/io5"
 import { RiMoonLine } from "react-icons/ri"
@@ -115,6 +116,7 @@ export const CompMain = ({ getReviews, reviews, notify }) => {
 		<CompServices />
 		<CompOurTeam />
 		<CompReviews getReviews={getReviews} reviews={reviews} notify={notify}/>
+		<CompContactUs />
 	  </section>
     </>
   )

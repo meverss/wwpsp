@@ -38,7 +38,7 @@ const App = () => {
   }, [])
 
   useEffect(() => {
-    if(reviews.length !== 0){
+    if(reviews && reviews.length !== 0){
 	  document.addEventListener("DOMContentLoaded", showPage())    
 	}
   }, [reviews])

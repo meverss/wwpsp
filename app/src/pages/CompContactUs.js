@@ -1,68 +1,58 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import metalRepair from "../media/images/metal_repair.webp"
-import painting from "../media/images/painting.webp"
-import preasureWashing from "../media/images/preasure_washing.webp"
-import rescreening from "../media/images/rescreening.webp"
+import { BiMailSend } from "react-icons/bi";
+import { MdLocalPhone, MdOutlineLocationOn } from "react-icons/md"
 
-const CompMain = ({ notify }) => {
+export const CompContactUs = ({ notify }) => {
 
   return (
     <>
-  	  <section className="main_container" id="s_services">
-		<div className="services_box box" id="services_box">
-		  <h2>Services</h2>
-			<p>
-			  Do you have a pool enclosure that needs to be checked? Or maybe your lanai needs a new
-			  screen installed. Maybe your
-			  patio screen just needs to be fixed. If you're experiencing any of these issues, you've come
-			  to the right place. We are
-			  your Bradenton screen repair experts. We also regularly serve clients in Sarasota, St.
-			  Petersburg, Orlando,
-			  Jacksonville, Englewood, North Port, Cape Coral, and Fort Myers. We have extensive
-			  experience and pride ourselves on the
-			  quality workmanship of every pool service job we do and the high-quality products we
-			  install. We use only the best
-			  Phifer pool and patio screens. Our screens last 50% longer due to the quality of the product
-			  we install and the care we
-			  take when installing them. All our services in general are carried out with the highest
-			  quality in the market.
-			</p>
-		  </div>
-		  <article className="e_services" id="e_services">
-			<div className="e_services_cards_box" id="e_services_cards_box">
-			  <div className="e_services_card box" id="e_service_metal">
-				<a href={metalRepair} data-lightbox='services'
-				  data-title='Metal repair' className="e_services_img">
-				  <img src={metalRepair} alt="Metal repair" />
-				</a>
-				<p> METAL REPAIR </p>
-			  </div>
-			  <div className="e_services_card box" id="e_service_painting">
-				<a href={painting} data-lightbox='services' data-title='Painting'
-				  className="e_services_img">
-				  <img src={painting} alt="Metal repair" />
-				</a>
-				<p> PAINTING </p>
-			  </div>
-			  <div className="e_services_card box" id="e_service_washing">
-				<a href={preasureWashing} data-lightbox='services'
-				  data-title='Preasure washing' className="e_services_img">
-				  <img src={preasureWashing} alt="Metal repair" />
-				</a>
-				<p> PREASURE WASHING </p>
-			  </div>
-			  <div className="e_services_card box" id="e_service_rescreening">
-				<a href={rescreening} data-lightbox='services'
-				  data-title='Rescreening' className="e_services_img">
-				  <img src={rescreening} alt="Metal repair" />
-				</a>
-				<p> RESCREENING </p>
+		<section className="s_contact_us box" id="s_contact_us">
+		  <nav id="s_m_contact_us"></nav>
+		  <div className="contact_box" id="contact_box">
+			<div className="contact_title" id="contact_title">
+			  <h2>Contact</h2>
+			</div>
+			<div className="contact_full_msg box">
+			  <div className="contact_message" id="contact_message">
+				<form id="contact_form" className="contact_form form">
+
+				  <label className="text" for="name">Name<span className="important">*</span></label>
+				  <input className="frm_text" name="name" id="name" autocomplete="off"
+					placeholder="Who is contacting us?" data-frminfo="name" />
+
+				  <label className="text" for="email">E-mail<span className="important">*</span></label>
+				  <input className="frm_text" name="email" id="email" autocomplete="off"
+					placeholder="your@email.here" data-frminfo="email" />
+
+				  <label className="text" for="subj">Subject</label>
+				  <input className="frm_text" name="subj" id="subj" autocomplete="off"
+					placeholder="What's the affair?" data-frminfo="subject" />
+
+				  <label className="text" for="message">Message<span className="important">*</span></label>
+				  <textarea className="frm_text frm_message" name="message" id="message" rows="5"
+					autocomplete="off" placeholder="Leave us your message"
+					data-frminfo="message"></textarea>
+
+				  <input id="btn_send" type="button" className="button form_btn" value="Send" />
+				</form>
 			  </div>
 			</div>
-		  </article>
-	  </section>
+			<div className="contact_me" id="contact_me">
+			  <div className="contact_me_info" id="myphone">
+				<p><span><MdLocalPhone class="contact_icon"/>&nbsp;</span>
+				(904) 506-8535</p>
+			  </div>
+			  <div className="contact_me_info" id="myemail">
+				<p><span><BiMailSend class="contact_icon"/>&nbsp;</span>
+				wwpspllc@gmail.com</p>
+			  </div>
+			  <div className="contact_me_info" id="myaddtess">
+				<p><span><MdOutlineLocationOn class="contact_icon"/>&nbsp;</span>
+				2027 IVY PL. Sarasota, FL 34235</p>
+			  </div>
+			</div>
+		  </div>
+		</section>
     </>
   )
 }
-
-export default CompMain

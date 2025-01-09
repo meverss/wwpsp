@@ -7,12 +7,12 @@ import { formatDate } from '../libs/formatDate.js'
 import { RiDoubleQuotesL, RiDoubleQuotesR } from "react-icons/ri";
 import { PiUserFill } from "react-icons/pi"
 import { LiaCalendar } from "react-icons/lia"
+import { MdClose } from "react-icons/md"
 
 export const CompReviews = ({ getReviews, reviews, notify }) => {
   const server = useContext(serverContext)
   const URI = `${server}/reviews/`
   
-//  const [reviews, setReviews] = useState()
   const [author, setAuthor] = useState('')
   const [email, setEmail] = useState('')
   const [review, setReview] = useState('')
@@ -34,16 +34,6 @@ export const CompReviews = ({ getReviews, reviews, notify }) => {
 	if(review.length === 0)setReviewLength(0)
   },[review])
 
-  // Get all reviews
-/*  const getReviews =  async ()=> {
-	try {
-	  const res = await axios.get(URI)
-		setReviews(res.data.filter(r => r.enabled === true))
-	} catch (error) {
-		notify('err', error)
-	}
-  }*/
-  
   // Hide 'Submit a review' form
   const  hideSubmitReview = ()=> {
 	if(reviewFormBox){
@@ -85,10 +75,10 @@ export const CompReviews = ({ getReviews, reviews, notify }) => {
 	e.preventDefault()
 	
 	try {
-	  await axios.post(URI, { author, email, review })
-	  notify('ok', 'Your review has been submitted')
 	  hideSubmitReview()
+	  await axios.post(URI, { author, email, review })
 	  getReviews()
+	  notify('ok', 'Your review has been submitted')
 	} catch (error) {
 	  notify('err', error)
 	}
@@ -101,7 +91,7 @@ export const CompReviews = ({ getReviews, reviews, notify }) => {
 		<div className="review_form_back" id="review_form_back">
 		  <div className="review_form_box" id="review_form_box">
 			<div className="review_close_btn" id="review_close_btn" onClick={hideSubmitReview}>
-			  <p style={{fontFamily: 'Symbols'}} >  </p>
+			  <p style={{color: 'var(--text-main)'}} ><MdClose /> </p>
 			</div>
 			<div className="review_form_title" id="review_form_title">
 			  <h2>Submit a review</h2>

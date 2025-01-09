@@ -1,6 +1,20 @@
+import { useEffect, useRef } from 'react'
 import budget from "../media/images/budget.webp"
+import { MdClose } from "react-icons/md"
 
 const CompBudgetFloat = ()=> {
+  const budgetIconFloat = useRef()
+
+  if(budgetIconFloat){
+	setInterval(()=> {
+	  budgetIconFloat.current.classList.add('animate__animated', 'animate__tada')
+
+	  setTimeout(()=> {
+		budgetIconFloat.current.classList.remove('animate__animated', 'animate__tada')
+	  }, 1000)
+	}, 30000)
+  }
+  
   return (
     <>
   	  {/* Budget request form */}
@@ -29,7 +43,7 @@ const CompBudgetFloat = ()=> {
 	  </section>
     
   	  {/* Budget floating button */}
-	  <div className="budget_float" id="budget_float">
+	  <div className="budget_float" ref={budgetIconFloat} id="budget_float">
 		<img className="budget_icon_float budget_btn" id="budget_icon_float" data-service="Budget"
 		  src={budget} alt="WWP Budget - Float" />
 	  </div>
