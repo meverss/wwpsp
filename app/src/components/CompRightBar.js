@@ -1,4 +1,4 @@
-const CompRightBar = () => {
+export const CompRightBar = () => {
   return (
     <>
 	  <aside className="service" id="service">
@@ -14,5 +14,3 @@ const CompRightBar = () => {
     </>
   )
 }
-
-export default CompRightBar

@@ -1,8 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useRef, useEffect } from 'react'
 import { CompServices } from './CompServices.js'
 import { CompOurTeam } from './CompOurTeam.js'
 import { CompReviews } from './CompReviews.js'
 import { CompContactUs } from './CompContactUs.js'
+import { CompMenu } from '../components/CompMenu.js'
+import { CompBudgetFloat } from '../components/CompBudgetFloat.js'
 import { FaCircleCheck, FaTriangleExclamation, FaCircleExclamation } from "react-icons/fa6";
 import { IoSunnyOutline, IoLogOutOutline } from "react-icons/io5"
 import { RiMoonLine } from "react-icons/ri"
@@ -21,12 +24,58 @@ import preasureWashing from "../media/images/preasure_washing.webp"
 import rescreening from "../media/images/rescreening.webp"
 
 export const CompMain = ({ getReviews, reviews, notify }) => {
+  const s_welcome = useRef('')
+  const s_about_us = useRef('')
+  const [sesServices, setSesServices] = useState('')
+  const [sesTeam, setSesTeam] = useState('')
+  const [sesReviews, setSesReviews] = useState('')
+  const [sesContact, setSesContact] = useState('')
+  const [navs, setNavs] = useState([])
+  const [maxHeight, setMaxHeight] = useState([])
+
+  const allPosSet = (sesServices > 0 && sesTeam > 0 && sesReviews > 0 && sesContact > 0)
+  const main = useRef('')
+  
+  useEffect(()=>{
+	getNavPos()
+	if(main.current)setMaxHeight(main.current.scrollHeight)
+  },[allPosSet])
+
+  // Set navigators
+  const getNavPos = ()=> {
+    const wel_pos = s_welcome.current.offsetTop
+    const about_pos = s_about_us.current.offsetTop
+	if(s_welcome.current){
+	  setNavs({
+		's_welcome':{'pos': wel_pos },
+		's_about_us':{'pos': about_pos },
+		's_services':{'pos': sesServices},
+		's_our_team':{'pos': sesTeam},
+		's_reviews':{'pos': sesReviews},
+		's_contact_us':{'pos': sesContact}
+	  })
+	}
+  }
+  
+  // Catch ESC key
+  const getEscKey = (func) => {
+	window.addEventListener("keydown", (e)=> {
+	  let k = e.key
+	  if(k === 27 || k === "Escape" || k === "Esc"){
+		func()
+		window.removeEventListener("keydown", null)
+	  }
+	})
+  }
   
   return (
     <>
-	  <section className="main" id="main_container">
+  	  <CompMenu navs={navs} maxHeight={maxHeight} getEscKey={getEscKey} />
+  	  
+	  <section className="main" id="main_container" ref={main}>
 
-		{/* Welcome! */}		
+		{/* Welcome! */}
+		<nav id="s_welcome" ref={s_welcome}></nav>		
 		<section className="welcome box" id="welcome">
 		  <h2 className="welcome_title" id="welcome_title">Welcome!</h2>
 		  <p className="welcome_msg" id="welcome_msg">
@@ -46,13 +95,15 @@ export const CompMain = ({ getReviews, reviews, notify }) => {
 		<br /><br />
 
 		{/* About Us */}
-		<section className="s_about_us" id="s_about_us">
+		<nav id="s_about_us" ref={s_about_us}></nav>
+		<section className="s_about_us box" id="s_about_us">
 		  <div className="about_us_box" id="about_us_box">
+			<h2 className="about_us_title" id="about_us_title">About Us</h2>
+			<div className="about_us_content box">
 			<div className="about_us_img box" id="about_us_img">
 			  <img src={aboutThumb} alt="Working at WWP Screening & Painting LLC" />
 			</div>
 			<div className="about_us_text box" id="about_us_text">
-			  <h2 className="about_us_title" id="about_us_title">About Us</h2>
 			  <p>
 				<span style={{fontWeight: 'bold'}}> WWP SCREENING & PAINTING LLC</span> was founded in
 				2021, with one mission, to be the highest
@@ -66,8 +117,8 @@ export const CompMain = ({ getReviews, reviews, notify }) => {
 				product
 				that
 				is as good as new.
-
 			  </p>
+			</div>
 			</div>
 		  </div>
 		</section>
@@ -113,10 +164,11 @@ export const CompMain = ({ getReviews, reviews, notify }) => {
 		  </div>
 		</article>
 		
-		<CompServices />
-		<CompOurTeam />
-		<CompReviews getReviews={getReviews} reviews={reviews} notify={notify}/>
-		<CompContactUs />
+		<CompServices sesServices={sesServices} setSesServices={setSesServices} />
+		<CompOurTeam sesTeam={sesTeam} setSesTeam={setSesTeam} />
+		<CompReviews sesReviews={sesReviews} setSesReviews={setSesReviews} getReviews={getReviews} reviews={reviews} notify={notify} getEscKey={getEscKey} />
+		<CompContactUs sesContact={sesContact} setSesContact={setSesContact} />
+		<CompBudgetFloat getEscKey={getEscKey} />
 	  </section>
     </>
   )

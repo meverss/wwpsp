@@ -1,14 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { CompServices } from './CompServices.js'
+import { CompMenu} from '../components/CompMenu.js'
 
-export const CompPortfolio = () => {
+
+export const CompPortfolio = ({ navs }) => {
   
   return (
     <>
-	  <section className="main" id="main_container">
-		<br /><br />
-		<CompServices />
-	  </section>
+  	  <CompMenu navs={navs} />
+	  <h3> Here goes the Portfolio </h3>
     </>
   )
 }

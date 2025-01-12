@@ -1,6 +1,6 @@
 import logo from "../media/images/logo.webp"
 
-const CompHeaderTop = () => {
+export const CompHeaderTop = () => {
   return (
     <>
 	  <section className="header_top bg_transp" id="header_top">
@@ -25,5 +25,3 @@ const CompHeaderTop = () => {
     </>
   )
 }
-
-export default CompHeaderTop

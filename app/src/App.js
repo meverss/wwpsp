@@ -9,9 +9,8 @@ import { RiMoonLine } from "react-icons/ri"
 import { PiGearFill } from "react-icons/pi"
 
 // Components
-import CompHeaderTop from './components/CompHeaderTop.js'
-import CompMenu from './components/CompMenu.js'
-import CompBudgetFloat from './components/CompBudgetFloat.js'
+import { CompHeaderTop } from './components/CompHeaderTop.js'
+import { CompMenu } from './components/CompMenu.js'
 
 //Pages
 import { CompMain } from './pages/CompMain.js'
@@ -19,13 +18,13 @@ import { CompPortfolio } from './pages/CompPortfolio.js'
 
 // API Server
 export const serverContext = createContext()
-//const server = `http://${window.location.hostname}:4000/api`
-const server = `https://wwpsp-server.vercel.app/api`
+const server = `http://${window.location.hostname}:4000/api`
+//const server = `https://wwpsp-server.vercel.app/api`
 const URI = `${server}/reviews`
 
 // App Component
 const App = () => {
-  const [reviews, setReviews] = useState([])
+  const [reviews, setReviews] = useState()
   const [notifyIcon, setNotifyIcon] = useState('')
   const [notifyText, setNotifyText] = useState('')
   const [notify, setNotify] = useState()
@@ -42,8 +41,7 @@ const App = () => {
 	  document.addEventListener("DOMContentLoaded", showPage())    
 	}
   }, [reviews])
-
-
+  
   // Get all reviews
   const getReviews =  async ()=> {
     try {
@@ -81,7 +79,7 @@ const App = () => {
 	  if (entry.isIntersecting) {
 		entry.target.classList.remove("animate__animated", "animate__fadeOut", "hide")
 		entry.target.classList.add("animate__animated", "animate__fadeIn", "show")
-		obBoxes.unobserve(entry.target)
+		//obBoxes.unobserve(entry.target)
 	  } else {
 		entry.target.classList.remove("animate__animated", "animate__fadeIn", "show")
 		entry.target.classList.add("animate__animated", "animate__fadeOut", "hide")
@@ -109,7 +107,7 @@ const App = () => {
   	getTheme()
   })
 
-  const getTheme = () => {
+  const getTheme = ()=> {
   	const dark = <IoSunnyOutline className='themeSwitch menuIcon animate__animated animate__bounceIn' size='28px' />
   	const light = <RiMoonLine className='themeSwitch menuIcon animate__animated animate__bounceIn' size='28px' />
   	const userTheme = localStorage.getItem('Theme')
@@ -199,14 +197,13 @@ const App = () => {
       notifications.current.style['transform'] = 'translate(102%)'
     }, 2500)
   }
-    
+  
   return (
     <serverContext.Provider value={server}>
       <>
     	<CompHeaderTop />
-    	<CompMenu />
 
-    	<div className="page_content" ref={pageContent} id="page_content">
+    	<div className="page_content" ref={pageContent} id="page_content" >
 
     	{/* Loader */}
     	<div className="loader_container" ref={loaderContainer} id="loader_container" >
@@ -237,9 +234,8 @@ const App = () => {
         </BrowserRouter>
         </div>
         <div className='footer'>
-          <p id='footer' >Created by KiniunDev™ - Copyright© {getYear()}</p>
+          <p id='footer' >Designed by KiniunDev™ - Copyright© {getYear()}</p>
         </div>
-        <CompBudgetFloat />
       </>
     </serverContext.Provider>
   )

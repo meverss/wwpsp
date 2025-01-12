@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import budget from "../media/images/budget.webp"
 import { MdClose } from "react-icons/md"
 
-const CompBudgetFloat = ()=> {
+export const CompBudgetFloat = ()=> {
   const budgetIconFloat = useRef()
 
   if(budgetIconFloat){
@@ -50,5 +50,3 @@ const CompBudgetFloat = ()=> {
     </>
   )
 }
-
-export default CompBudgetFloat

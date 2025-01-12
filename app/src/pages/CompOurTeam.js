@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useRef } from 'react'
 import winta from "../media/images/team/winta.jpg"
 import yoandra from "../media/images/team/yoandra.jpg"
 import yoander from "../media/images/team/yoander.jpg"
@@ -9,14 +10,27 @@ import igor from "../media/images/team/igor.jpg"
 import tasha from "../media/images/team/tasha.jpg"
 import stephen from "../media/images/team/stephen.jpg"
 
-export const CompOurTeam = () => {
+export const CompOurTeam = ({ sesTeam, setSesTeam }) => {
+const s_our_team = useRef('')
 
+  useEffect(()=>{
+    getNavPos()
+  },[sesTeam])
+
+  // Set navigators
+  const getNavPos = ()=> {
+    const pos = s_our_team.current.offsetTop
+    if(s_our_team.current){
+      setSesTeam(pos)
+    }
+  }
+  
   return (
     <>
+  	  <nav id="s_our_team" ref={s_our_team}></nav>
 	  <section className="s_our_team box" id="s_our_team">
-		  <nav id="s_m_our_team"></nav>
 		  <h2 className="team_title" id="team_title">Our Team</h2>
-		  <div className="team_box " id="team_box">
+		  <div className="team_box box" id="team_box">
 			<div className="team_card">
 			  <div className="team_card_img">
 				<img src={winta} alt="Walfrido Winta Pérez" />
@@ -103,7 +117,7 @@ export const CompOurTeam = () => {
 			  </div>
 			  <hr />
 			  <div className="team_card_text" id="team_card_text">
-				<h3>Sephen McNamara</h3>
+				<h3>Stephen McNamara</h3>
 				<span>Fence Builder</span>
 			  </div>
 			</div>

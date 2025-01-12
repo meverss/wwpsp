@@ -1,4 +1,4 @@
-const CompLeftBar = () => {
+export const CompLeftBar = () => {
   return (
 	<>
 	  <aside className="info" id="info">
@@ -20,5 +20,3 @@ const CompLeftBar = () => {
 	</>
   )
 }
-
-export default CompLeftBar

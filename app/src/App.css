@@ -28,6 +28,7 @@
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
+	scroll-behavior: auto;	
 }
 
 *,
@@ -42,12 +43,12 @@ html {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	-ms-overflow-style: -ms-autohiding-scrollbar;
-	scroll-behavior: smooth;
 }
 
 body {
 	overflow: hidden;
 	width: 100%;
+	height: 100%;
 }
 
 /* GENERAL */
@@ -77,6 +78,12 @@ body {
 	font-weight: normal;
 	font-size: 15Ppt;
 	margin: 0;
+}
+
+nav {
+	margin-bottom: 20px;
+	padding: 0;
+	height: 3px;
 }
 
 p {
@@ -212,7 +219,7 @@ a {
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: left;
-	z-index: 1000;
+	z-index: 1005;
 }
 
 .header_box {
@@ -407,7 +414,7 @@ a {
 	flex-direction: column;
 	position: fixed;
 	top: 138px;
-	background-color: rgb(30, 30, 30, 0.95);
+	background-color: rgb(20, 20, 20, 0.95);
 	backdrop-filter: blur(3px);
 	border: 1px solid var(--border);
 	border-bottom-left-radius: 10px;
@@ -466,7 +473,7 @@ a {
 	padding: 0;
 	animation-duration: 0.3s;
 	right: 10px;
-	transition: .3s;
+/*	transition: .3s; */
 }
 
 .m_menu_btn:hover {
@@ -722,22 +729,25 @@ a {
 
 .about_us_title {
 	width: 100%;
-	padding: 20px;
+	padding-bottom: 20px;
 	color: #085c97;
 }
 
 .about_us_box {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	width: 100%;
+}
+
+.about_us_content {
+	display: flex;
+	flex-direction: row;
 	gap: 10px;
 }
 
 .about_us_img {
-	width: 40%;
-	justify-content: center;
-	align-items: center;
-	margin: auto;
+	width: 50%;
+	margin-top: 10px;
 }
 
 .about_us_img img {
@@ -949,24 +959,22 @@ a {
 	justify-content: center;
 	align-items: center;
 	width: 100%;
-	height: auto;
 	background-color: var(--background-body);
 }
 
 .reviews_box {
 	display: flex;
 	flex-direction: column;
-	justify-content: left;
+	justify-content: center;
 	align-items: center;
 	gap: 25px;
 	width: 100%;
-	height: auto;
 	padding: 15px;
 	margin-bottom: 10px;
 }
 
 .reviews_title {
-	padding: 20px;
+	padding-bottom: 20px;
 }
 
 .review_labels {
@@ -988,9 +996,8 @@ a {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 380px;
-	height: auto;
-	min-width: 280px;
+	width: 100%;
+	min-width: 380px;
 	background-color: transparent;
 	border: 1px solid var(--border);
 	border-radius: 8px;
@@ -1045,12 +1052,12 @@ display: flex;
 }
 
 .team_title {
-	padding: 50px;
+	padding-bottom: 20px;
 }
 
 .team_box {
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 	align-items: center;
 	padding-left: 20px;
 	padding-right: 20px;
@@ -1067,7 +1074,6 @@ display: flex;
 	align-items: center;
 	min-width: 230px;
 	height: 300px;
-	border-radius: 8px;
 }
 
 .team_card_img {
@@ -1107,27 +1113,6 @@ display: flex;
 	width: 100%;
 }
 
-/* FOOTER */
-
-.footer {
-	display: flex;
-	position: fixed;
-	z-index: 1000;
-	width: 100%;
-	height: 40px;
-	background-color: #111;
-	bottom: 0;
-	justify-content: center;
-	margin: auto;
-}
-
-#footer {
-	color: #ccc;
-	font-size: 11pt;
-	text-align: center;
-	margin: auto;
-	padding: 0;
-}
 
 /* CONTACT */
 
@@ -1135,8 +1120,9 @@ display: flex;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 98%;
+	width: 100%;
 	height: fit-content;
+	margin-bottom: 75px;
 }
 
 .contact_title,
@@ -1298,15 +1284,9 @@ textarea {
 	align-items: center;
 	background-color: #011326;
 	width: 100%;
-	padding: 10px;
+	padding-top: 15px;
 }
 
-.contact_icon {
-	color: #fbbb40;
-	font-size: 14pt;
-	margin: 0;
-	padding: 0;
-}
 
 .contact_me_info {
 	display: flex;
@@ -1316,6 +1296,16 @@ textarea {
 	height: 35px;
 	width: 100%;
 	padding: 5px;
+}
+
+.contact_me_info p {
+	padding: 0;
+	text-align: center;
+}
+
+.contact_icon {
+	color: #fbbb40;
+	font-size: 15pt;
 }
 
 /* BUDGET FORM - REVIEW FORM*/
@@ -1763,18 +1753,24 @@ textarea {
 	background-color: transparent;
 	color: #ea5421;
 }
-
 /* FOOTER */
 
 .footer {
 	display: flex;
 	position: fixed;
 	bottom: 0;
-	z-index: 1000000;
+	justify-content: center;
 	width: 100%;
 	height: 40px;
-	background-color: #000;
-	justify-content: center;
+	background-color: #111;
+	z-index: 1000;
+}
+
+.footer p {
+	color: #ccc;
+	font-size: 11pt;
+	margin: auto;
+	padding: 0;
 }
 
 /* COOKIES */
@@ -1991,18 +1987,14 @@ p a {
 		gap: 2px;
 	}
 
-	.about_us_box {
+	.about_us_box,
+	.about_us_content {
 		flex-direction: column;
 	}
 
 	.about_us_img,
 	.about_us_text {
-		width: 96%;
-	}
-
-	.s_contact_us {
-		margin-top: 80px;
-		margin-bottom: 80px;
+		width: 98%;
 	}
 
 	.contact_message {

@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios'
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useRef, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { serverContext } from '../App.js'
 import { formatDate } from '../libs/formatDate.js'
@@ -9,7 +9,7 @@ import { PiUserFill } from "react-icons/pi"
 import { LiaCalendar } from "react-icons/lia"
 import { MdClose } from "react-icons/md"
 
-export const CompReviews = ({ getReviews, reviews, notify }) => {
+export const CompReviews = ({ getReviews, reviews, notify, sesReviews, setSesReviews }) => {
   const server = useContext(serverContext)
   const URI = `${server}/reviews/`
   
@@ -25,6 +25,8 @@ export const CompReviews = ({ getReviews, reviews, notify }) => {
   const formReviewEmail = document.getElementById('rv_email')
   const formReviewMessage = document.getElementById('rv_message')
 
+  const s_reviews = useRef('')
+
   useEffect(()=>{
 	getReviews()
   },[])
@@ -33,6 +35,18 @@ export const CompReviews = ({ getReviews, reviews, notify }) => {
 	setReviewLength(review.length)
 	if(review.length === 0)setReviewLength(0)
   },[review])
+
+  useEffect(()=>{
+    getNavPos()
+  },[sesReviews])
+
+  // Set navigators
+  const getNavPos = ()=> {
+    const pos = s_reviews.current.offsetTop
+    if(s_reviews.current){
+        setSesReviews(pos)
+    }
+  }
 
   // Hide 'Submit a review' form
   const  hideSubmitReview = ()=> {
@@ -87,6 +101,7 @@ export const CompReviews = ({ getReviews, reviews, notify }) => {
   return (
     <>
   	  {/* Create new review form */}
+
 	  <section className="s_review_form" id="s_review_form">
 		<div className="review_form_back" id="review_form_back">
 		  <div className="review_form_box" id="review_form_box">
@@ -113,6 +128,7 @@ export const CompReviews = ({ getReviews, reviews, notify }) => {
 	  </section>
     
   	  {/* Show reviews */}
+  	  <nav id="s_reviews" ref={s_reviews}></nav>
 	  <section className="s_reviews box" id="s_reviews">
 		<h2 className="reviews_title" id="reviews_title">Reviews</h2>
 		<article className="reviews_box" id="reviews_box">

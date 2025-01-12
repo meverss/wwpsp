@@ -1,13 +1,28 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useRef } from 'react'
 import metalRepair from "../media/images/metal_repair.webp"
 import painting from "../media/images/painting.webp"
 import preasureWashing from "../media/images/preasure_washing.webp"
 import rescreening from "../media/images/rescreening.webp"
 
-export const CompServices = ({ getname, notify }) => {
+export const CompServices = ({ sesServices, setSesServices })=> {
+  const s_services = useRef('')
+
+  useEffect(()=>{
+    getNavPos()
+  },[sesServices])
+
+  // Set navigators
+  const getNavPos = ()=> {
+    const pos = s_services.current.offsetTop
+    if(s_services.current){
+        setSesServices(pos)
+    }
+  }
 
   return (
     <>
+  	  <nav id="s_services" ref={s_services}></nav>
   	  <section className="services_container" id="services_container">
 		<div className="services_box box" id="services_box">
 		  <h2>Services</h2>
