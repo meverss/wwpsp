@@ -85,7 +85,7 @@ export const CompMenu = ({ navs, maxHeight, getEscKey }) => {
   	  window.location.pathname = '/portfolio'
 	} else if(section === 's_contact_us'){
 	  window.scrollTo({
-		top: maxHeight + 980 
+		top: maxHeight + 550
 	  })
 	}
   }

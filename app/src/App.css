@@ -219,7 +219,7 @@ a {
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: left;
-	z-index: 1005;
+	z-index: 1000;
 }
 
 .header_box {
@@ -235,6 +235,7 @@ a {
 	width: 25%;
 	max-height: 200px;
 	transition: .3s;
+
 }
 
 #h_logo {
@@ -245,6 +246,7 @@ a {
 	margin: -100px;
 	margin-left: -35px;
 	object-fit: contain;
+	z-index: 1005;
 }
 
 .header_text_box {
