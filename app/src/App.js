@@ -18,8 +18,8 @@ import { CompPortfolio } from './pages/CompPortfolio.js'
 
 // API Server
 export const serverContext = createContext()
-const server = `http://${window.location.hostname}:4000/api`
-//const server = `https://wwpsp-server.vercel.app/api`
+//const server = `http://${window.location.hostname}:4000/api`
+const server = `https://wwpsp-server.vercel.app/api`
 const URI = `${server}/reviews`
 
 // App Component
