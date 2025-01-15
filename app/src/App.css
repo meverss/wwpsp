@@ -38,6 +38,10 @@
 	box-sizing: inherit;
 }
 
+:root {
+ --animate-duration: .5s;
+}
+
 html {
 	font-family: "IBM";
 	-webkit-box-sizing: border-box;
@@ -855,23 +859,23 @@ a {
 }
 
 #experienced_technicians {
-	animation-delay: .2s;
+	animation-delay: .1s;
 }
 
 #parts_quality {
-	animation-delay: .4s;
+	animation-delay: .2s;
 }
 
 #work_waranteed {
-	animation-delay: .6s;
+	animation-delay: .3s;
 }
 
 #service_on_time {
-	animation-delay: .8s;
+	animation-delay: .4s;
 }
 
 #cover_major_brands {
-	animation-delay: 1s;
+	animation-delay: .5s;
 }
 
 /* SERVICES */
@@ -942,11 +946,11 @@ a {
 }
 
 #e_service_washing {
-	animation-delay: 0.4s;
+	animation-delay: 0.3s;
 }
 
 #e_service_rescreening {
-	animation-delay: 0.6s;
+	animation-delay: 0.4s;
 }
 
 #e_service_painting {

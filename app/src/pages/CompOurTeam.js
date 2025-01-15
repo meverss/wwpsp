@@ -30,6 +30,9 @@ const s_our_team = useRef('')
   	  <nav id="s_our_team" ref={s_our_team}></nav>
 	  <section className="s_our_team box" id="s_our_team">
 		  <h2 className="team_title" id="team_title">Our Team</h2>
+		  <p>
+		  We have an excellent family of professionals to offer a service that meets the highest quality standards.
+		  </p>
 		  <div className="team_box box" id="team_box">
 			<div className="team_card">
 			  <div className="team_card_img">

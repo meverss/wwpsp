@@ -23,7 +23,7 @@ import painting from "../media/images/painting.webp"
 import preasureWashing from "../media/images/preasure_washing.webp"
 import rescreening from "../media/images/rescreening.webp"
 
-export const CompMain = ({ getReviews, reviews, notify }) => {
+export const CompMain = ({ getReviews, reviews, notify, selSection, setSelSection, ss }) => {
   const s_welcome = useRef('')
   const s_about_us = useRef('')
   const [sesServices, setSesServices] = useState('')
@@ -57,21 +57,9 @@ export const CompMain = ({ getReviews, reviews, notify }) => {
 	}
   }
   
-  // Catch ESC key
-  const getEscKey = (func) => {
-	window.addEventListener("keydown", (e)=> {
-	  let k = e.key
-	  if(k === 27 || k === "Escape" || k === "Esc"){
-		func()
-		window.removeEventListener("keydown", null)
-	  }
-	})
-  }
-  
   return (
     <>
-  	  <CompMenu navs={navs} maxHeight={maxHeight} getEscKey={getEscKey} />
-  	  
+  	  <CompMenu navs={navs} maxHeight={maxHeight} selSection={selSection} setSelSection={setSelSection} ss={ss} />
 	  <section className="main" id="main_container" ref={main}>
 
 		{/* Welcome! */}
@@ -166,9 +154,9 @@ export const CompMain = ({ getReviews, reviews, notify }) => {
 		
 		<CompServices sesServices={sesServices} setSesServices={setSesServices} />
 		<CompOurTeam sesTeam={sesTeam} setSesTeam={setSesTeam} />
-		<CompReviews sesReviews={sesReviews} setSesReviews={setSesReviews} getReviews={getReviews} reviews={reviews} notify={notify} getEscKey={getEscKey} />
+		<CompReviews sesReviews={sesReviews} setSesReviews={setSesReviews} getReviews={getReviews} reviews={reviews} notify={notify} />
 		<CompContactUs sesContact={sesContact} setSesContact={setSesContact} />
-		<CompBudgetFloat getEscKey={getEscKey} />
+		<CompBudgetFloat />
 	  </section>
     </>
   )

@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { getEscKey } from '../libs/getEscKey.js'
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaRegNewspaper } from "react-icons/fa6"
 import { FaHome, FaUsers, FaToolbox, FaPhotoVideo, FaMailBulk } from "react-icons/fa"
 import { BsFillInfoCircleFill } from "react-icons/bs"
@@ -6,16 +7,19 @@ import { TfiMenu } from "react-icons/tfi"
 import { MdClose } from "react-icons/md"
 import { AiOutlineClose } from "react-icons/ai"
 
-export const CompMenu = ({ navs, maxHeight, getEscKey }) => {
+export const CompMenu = ({ navs, maxHeight, ss }) => {
   const [menuIcon, setMenuIcon] = useState(<TfiMenu />)
   const [menuHidden, setMenuHidden] = useState(true)
 
   const menuitem = document.querySelectorAll('.m_menu_item')
+  const path = window.location.pathname
+  const sec = document.getElementById(ss)
   
   useEffect(()=>{
-	menuitem.forEach((e)=> {
-	  e.addEventListener('click', ()=> scrollToSection(e.dataset.menuitem))
-	})
+	if(sec && path === '/'){
+	  scrollToSection(ss)
+	  localStorage.removeItem('actSection')
+	}
   },[navs])
 
   // Sow/Hide Movile menu
@@ -50,13 +54,14 @@ export const CompMenu = ({ navs, maxHeight, getEscKey }) => {
 	  m_menu_container.addEventListener('click', hideMenu)
 	}
   }
-  
+
+
   // Scroll to sections
   const scrollToSection = (section)=>{
-	if(section !== 's_portfolio'){
-	  const position = `navs.${section}.pos`
-	  let gap = ''
+	const position = `navs.${section}.pos`
+	let gap = ''
 
+	if(section !== 's_portfolio' && path !== '/portfolio'){
 	  switch (section) {
 		case "s_welcome":
 			gap = 50
@@ -80,15 +85,31 @@ export const CompMenu = ({ navs, maxHeight, getEscKey }) => {
 
 	  window.scrollTo(0, eval(position) - gap )
 	}
-	
+
 	if(section === 's_portfolio'){
-  	  window.location.pathname = '/portfolio'
+	  setTimeout(()=> {
+  		window.location.pathname = '/portfolio'
+	  },200)
 	} else if(section === 's_contact_us'){
 	  window.scrollTo({
-		top: maxHeight + 550
+		top: maxHeight + 750
 	  })
 	}
+
+	if(path === '/portfolio'){
+	  setTimeout(()=>{
+		window.location.pathname = '/'
+	  }, 200)
+	} 
   }
+
+  menuitem.forEach((e)=> {
+	e.addEventListener('click', ()=> {
+	  localStorage.setItem('actSection', e.dataset.menuitem)
+	  scrollToSection(e.dataset.menuitem)
+	})
+  })
+  
   
   return (
     <>
@@ -101,7 +122,7 @@ export const CompMenu = ({ navs, maxHeight, getEscKey }) => {
 			<p className="menu_item" data-menuitem="s_portfolio" id="portfolio"><FaPhotoVideo className="mIcon"/>&nbsp; Portfolio </p>
 			<p className="menu_item" data-menuitem="s_our_team" id="our_team"><FaUsers className="mIcon"/>&nbsp; Our Team </p>
 			<p className="menu_item" data-menuitem="s_reviews" id="reviews"><FaRegNewspaper className="mIcon"/>&nbsp; Reviews </p>
-			<p className="menu_item" data-menuitem="s_contact_us" id="contact_us"><FaMailBulk className="mIcon"/>&nbsp; Contact </p>
+			<p className="menu_item" data-menuitem="s_contact_us" id="contact_us"><FaMailBulk className="mIcon"/>&nbsp; Contact Us </p>
 		  </div>
 		  <div className="social" id="social">
 			<p className="social_item" id="facebook" title="Share on Facebook"><FaFacebookF /></p>
@@ -122,7 +143,7 @@ export const CompMenu = ({ navs, maxHeight, getEscKey }) => {
 				<li className="m_menu_item" data-menuitem="s_portfolio" id="m_portfolio"><FaPhotoVideo className="mIcon" />&nbsp;Portfolio</li>
 				<li className="m_menu_item" data-menuitem="s_our_team" id="m_our_team"><FaUsers className="mIcon" />&nbsp;Our Team</li>
 				<li className="m_menu_item" data-menuitem="s_reviews" id="m_reviews"><FaRegNewspaper className="mIcon" />&nbsp;Reviews</li>
-				<li className="m_menu_item" data-menuitem="s_contact_us" id="m_contact_us"><FaMailBulk className="mIcon" />&nbsp;Contact</li>
+				<li className="m_menu_item" data-menuitem="s_contact_us" id="m_contact_us"><FaMailBulk className="mIcon" />&nbsp;Contact Us</li>
 			  </ul>
 			</div>
 		  </div>

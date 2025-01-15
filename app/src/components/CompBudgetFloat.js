@@ -1,10 +1,11 @@
 import { useEffect, useRef } from 'react'
 import budget from "../media/images/budget.webp"
 import { MdClose } from "react-icons/md"
+import { getEscKey } from '../libs/getEscKey.js'
 
 export const CompBudgetFloat = ()=> {
   const budgetIconFloat = useRef()
-
+  
   if(budgetIconFloat){
 	setInterval(()=> {
 	  budgetIconFloat.current.classList.add('animate__animated', 'animate__tada')

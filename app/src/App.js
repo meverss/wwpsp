@@ -18,18 +18,20 @@ import { CompPortfolio } from './pages/CompPortfolio.js'
 
 // API Server
 export const serverContext = createContext()
-//const server = `http://${window.location.hostname}:4000/api`
-const server = `https://wwpsp-server.vercel.app/api`
+const server = `http://${window.location.hostname}:4000/api`
+//const server = `https://wwpsp-server.vercel.app/api`
 const URI = `${server}/reviews`
 
 // App Component
 const App = () => {
-  const [reviews, setReviews] = useState()
+  const [reviews, setReviews] = useState('')
   const [notifyIcon, setNotifyIcon] = useState('')
   const [notifyText, setNotifyText] = useState('')
   const [notify, setNotify] = useState()
   const [theme, setTheme] = useState('')
   const [themeIcon, setThemeIcon] = useState('')
+  
+  const ss = localStorage.getItem('actSection') || ''
 
   useEffect(() => {
 	getReviews()
@@ -37,7 +39,7 @@ const App = () => {
   }, [])
 
   useEffect(() => {
-    if(reviews && reviews.length !== 0){
+    if(reviews.length !== 0){
 	  document.addEventListener("DOMContentLoaded", showPage())    
 	}
   }, [reviews])
@@ -69,8 +71,6 @@ const App = () => {
 	if(!rootDir) loaderContainer.current.style.zIndex = '999'
   }}
 
-  // document.addEventListener("DOMContentLoaded", showPage())
-
   // Trigger animation
   const boxes = document.querySelectorAll(".box")
 
@@ -89,8 +89,8 @@ const App = () => {
 
   const options = {
 	root: null,
-	rootMargin: "-150px",
-	//threshold: .5
+	rootMargin: "-120px",
+	//threshold: .1
   }
 
   const obBoxes = new IntersectionObserver(triggerAnimation, options)
@@ -227,8 +227,8 @@ const App = () => {
             
         <BrowserRouter forceRefresh={true}>
           <Routes>
-        	<Route path='/' element={<CompMain reviews={reviews} getReviews={getReviews} notify={showNotification} />} />
-            <Route path='/portfolio' element={<CompPortfolio />} />
+        	<Route path='/' element={<CompMain reviews={reviews} getReviews={getReviews} notify={showNotification} ss={ss} />} />
+            <Route path='/portfolio' element={<CompPortfolio ss={ss} />} />
 	        <Route path='*' element={<Navigate to="/" />} />
           </Routes>
         </BrowserRouter>
