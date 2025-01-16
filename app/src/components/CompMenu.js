@@ -18,10 +18,9 @@ export const CompMenu = ({ navs, maxHeight, ss }) => {
   useEffect(()=>{
 	if(sec && path === '/'){
 	  scrollToSection(ss)
-	  localStorage.removeItem('actSection')
 	}
   },[navs])
-
+  
   // Sow/Hide Movile menu
   const m_menu_container = document.getElementById('m_menu_container')
   const m_menu = document.getElementById('m_menu')
@@ -55,48 +54,17 @@ export const CompMenu = ({ navs, maxHeight, ss }) => {
 	}
   }
 
-
   // Scroll to sections
   const scrollToSection = (section)=>{
 	const position = `navs.${section}.pos`
-	let gap = ''
 
 	if(section !== 's_portfolio' && path !== '/portfolio'){
-	  switch (section) {
-		case "s_welcome":
-			gap = 50
-			break
-		case "s_about_us":
-			gap = 40
-			break
-		case "s_services":
-			gap = -220
-			break
-		case "s_reviews":
-			gap = -640
-			break
-		case "s_our_team":
-		  gap = -640
-		  break
-		default:
-		  gap = 0
-		  break
-	  }
-
-	  window.scrollTo(0, eval(position) - gap )
-	}
-
-	if(section === 's_portfolio'){
+	  window.scrollTo(0, eval(position) - 40)
+	} else if(section === 's_portfolio' && path !== '/portfolio'){
 	  setTimeout(()=> {
   		window.location.pathname = '/portfolio'
 	  },200)
-	} else if(section === 's_contact_us'){
-	  window.scrollTo({
-		top: maxHeight + 750
-	  })
-	}
-
-	if(path === '/portfolio'){
+	} else if(path === '/portfolio'){
 	  setTimeout(()=>{
 		window.location.pathname = '/'
 	  }, 200)

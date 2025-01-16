@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { CompMenu } from '../components/CompMenu.js'
 
-export const CompPortfolio = ({ navs, ss })=> {
+const CompPortfolio = ({ navs, ss })=> {
   
   return (
     <>
@@ -11,6 +11,7 @@ export const CompPortfolio = ({ navs, ss })=> {
   )
 }
 
+export default CompPortfolio
 
 
   

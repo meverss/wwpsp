@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useRef, useEffect } from 'react'
-import { CompServices } from './CompServices.js'
-import { CompOurTeam } from './CompOurTeam.js'
-import { CompReviews } from './CompReviews.js'
-import { CompContactUs } from './CompContactUs.js'
+import CompServices from './CompServices.js'
+import CompOurTeam from './CompOurTeam.js'
+import CompReviews from './CompReviews.js'
+import CompContactUs from './CompContactUs.js'
 import { CompMenu } from '../components/CompMenu.js'
 import { CompBudgetFloat } from '../components/CompBudgetFloat.js'
-import { FaCircleCheck, FaTriangleExclamation, FaCircleExclamation } from "react-icons/fa6";
+import { FaCircleCheck, FaTriangleExclamation, FaCircleExclamation } from "react-icons/fa6"
 import { IoSunnyOutline, IoLogOutOutline } from "react-icons/io5"
 import { RiMoonLine } from "react-icons/ri"
 import { PiGearFill } from "react-icons/pi"
@@ -23,7 +23,7 @@ import painting from "../media/images/painting.webp"
 import preasureWashing from "../media/images/preasure_washing.webp"
 import rescreening from "../media/images/rescreening.webp"
 
-export const CompMain = ({ getReviews, reviews, notify, selSection, setSelSection, ss }) => {
+const CompMain = ({ getReviews, reviews, notify, selSection, setSelSection, ss }) => {
   const s_welcome = useRef('')
   const s_about_us = useRef('')
   const [sesServices, setSesServices] = useState('')
@@ -31,15 +31,19 @@ export const CompMain = ({ getReviews, reviews, notify, selSection, setSelSectio
   const [sesReviews, setSesReviews] = useState('')
   const [sesContact, setSesContact] = useState('')
   const [navs, setNavs] = useState([])
-  const [maxHeight, setMaxHeight] = useState([])
+  const [height, setHeight] = useState('')
+  const [maxHeight, setMaxHeight] = useState('')
 
-  const allPosSet = (sesServices > 0 && sesTeam > 0 && sesReviews > 0 && sesContact > 0)
   const main = useRef('')
   
   useEffect(()=>{
 	getNavPos()
-	if(main.current)setMaxHeight(main.current.scrollHeight)
-  },[allPosSet])
+	if(main.current){
+	  setMaxHeight(main.current.scrollHeight)
+	}
+  },[maxHeight])
+
+  useEffect(()=> {setMaxHeight(document.documentElement.scrollHeight)})
 
   // Set navigators
   const getNavPos = ()=> {
@@ -54,15 +58,20 @@ export const CompMain = ({ getReviews, reviews, notify, selSection, setSelSectio
 		's_reviews':{'pos': sesReviews},
 		's_contact_us':{'pos': sesContact}
 	  })
+	  main.current.style.height = height
 	}
   }
   
+
+//style={{height: `${maxHeight}px`}}
+
   return (
     <>
   	  <CompMenu navs={navs} maxHeight={maxHeight} selSection={selSection} setSelSection={setSelSection} ss={ss} />
-	  <section className="main" id="main_container" ref={main}>
+	  <section className="main"  id="main_container" ref={main}>
 
 		{/* Welcome! */}
+		{/*<div className="gossip"><p ref={gossip}></p></div>*/}
 		<nav id="s_welcome" ref={s_welcome}></nav>		
 		<section className="welcome box" id="welcome">
 		  <h2 className="welcome_title" id="welcome_title">Welcome!</h2>
@@ -151,17 +160,14 @@ export const CompMain = ({ getReviews, reviews, notify, selSection, setSelSectio
 			</div>
 		  </div>
 		</article>
-		
-		<CompServices sesServices={sesServices} setSesServices={setSesServices} />
-		<CompOurTeam sesTeam={sesTeam} setSesTeam={setSesTeam} />
-		<CompReviews sesReviews={sesReviews} setSesReviews={setSesReviews} getReviews={getReviews} reviews={reviews} notify={notify} />
-		<CompContactUs sesContact={sesContact} setSesContact={setSesContact} />
+		<CompServices sesServices={sesServices} setSesServices={setSesServices} mh={maxHeight} />
+		<CompOurTeam sesTeam={sesTeam} setSesTeam={setSesTeam} mh={maxHeight} />
+		<CompReviews sesReviews={sesReviews} setSesReviews={setSesReviews} getReviews={getReviews} reviews={reviews} notify={notify} mh={maxHeight} />
+		<CompContactUs sesContact={sesContact} setSesContact={setSesContact} mh={maxHeight} />
 		<CompBudgetFloat />
 	  </section>
     </>
   )
 }
 
-
-
-  
+export default CompMain  

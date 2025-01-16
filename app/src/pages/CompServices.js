@@ -5,12 +5,12 @@ import painting from "../media/images/painting.webp"
 import preasureWashing from "../media/images/preasure_washing.webp"
 import rescreening from "../media/images/rescreening.webp"
 
-export const CompServices = ({ sesServices, setSesServices })=> {
+const CompServices = ({ sesServices, setSesServices, mh})=> {
   const s_services = useRef('')
 
   useEffect(()=>{
     getNavPos()
-  },[sesServices])
+  },[mh])
 
   // Set navigators
   const getNavPos = ()=> {
@@ -80,3 +80,5 @@ export const CompServices = ({ sesServices, setSesServices })=> {
     </>
   )
 }
+
+export default CompServices

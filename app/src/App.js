@@ -13,8 +13,8 @@ import { CompHeaderTop } from './components/CompHeaderTop.js'
 import { CompMenu } from './components/CompMenu.js'
 
 //Pages
-import { CompMain } from './pages/CompMain.js'
-import { CompPortfolio } from './pages/CompPortfolio.js'
+import CompMain from './pages/CompMain.js'
+import CompPortfolio from './pages/CompPortfolio.js'
 
 // API Server
 export const serverContext = createContext()
@@ -31,7 +31,7 @@ const App = () => {
   const [theme, setTheme] = useState('')
   const [themeIcon, setThemeIcon] = useState('')
   
-  const ss = localStorage.getItem('actSection') || ''
+  const ss = localStorage.getItem('actSection') || 's_welcome'
 
   useEffect(() => {
 	getReviews()
@@ -61,6 +61,7 @@ const App = () => {
 
   const showPage = ()=> {
   if(loaderContainer.current){
+	pageContent.current.style.height = document.documentElement.scrollHeight
 	pageContent.current.style.opacity = "1"
 	document.body.style.overflow = "auto"
   

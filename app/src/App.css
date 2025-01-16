@@ -57,6 +57,20 @@ body {
 
 /* GENERAL */
 
+.gossip {
+  display: flex;
+  position: fixed;
+  top: 0;
+  width: 85%;
+  height: 150px;
+  justify-content: center;
+  left: 0;
+  align-items: center;
+  color: red;
+  font-size: 16pt;
+  z-index: 1000;
+}
+
 .msg_box {
 	display: flex;
 	flex-direction: column;
@@ -479,7 +493,6 @@ a {
 	padding: 0;
 	animation-duration: 0.3s;
 	right: 10px;
-/*	transition: .3s; */
 }
 
 .m_menu_btn:hover {
@@ -680,7 +693,6 @@ a {
 
 .page_content {
     display: flex;
-    flex: 1;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -690,6 +702,7 @@ a {
     padding-left: 10px;
     padding-right: 10px;
 	padding-bottom: 50px;
+	overflow: visible;
 }
 
 .main {
@@ -908,8 +921,8 @@ a {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	max-width: 239px;
 	min-width: 142.5px;
+	max-width: 240px;
 	margin: 0;
 	padding: 10px;
 	border: 1px solid var(--border);

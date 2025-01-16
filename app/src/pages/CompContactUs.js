@@ -3,12 +3,12 @@ import { useEffect, useRef } from 'react'
 import { BiMailSend } from "react-icons/bi"
 import { MdLocalPhone, MdOutlineLocationOn } from "react-icons/md"
 
-export const CompContactUs = ({ sesContact, setSesContact }) => {
+const CompContactUs = ({ sesContact, setSesContact, mh }) => {
   const s_contact_us = useRef('')
 
   useEffect(()=>{
-    getNavPos()
-  },[sesContact])
+  	getNavPos()
+  },[s_contact_us.current, mh])
 
   // Set navigators
   const getNavPos = ()=> {
@@ -17,7 +17,7 @@ export const CompContactUs = ({ sesContact, setSesContact }) => {
         setSesContact(pos)
     }
   }
-
+  
   return (
     <>
 		<nav id="s_contact_us" ref={s_contact_us} ></nav>
@@ -65,3 +65,5 @@ export const CompContactUs = ({ sesContact, setSesContact }) => {
     </>
   )
 }
+
+export default CompContactUs

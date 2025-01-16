@@ -10,12 +10,12 @@ import igor from "../media/images/team/igor.jpg"
 import tasha from "../media/images/team/tasha.jpg"
 import stephen from "../media/images/team/stephen.jpg"
 
-export const CompOurTeam = ({ sesTeam, setSesTeam }) => {
+const CompOurTeam = ({ sesTeam, setSesTeam, mh }) => {
 const s_our_team = useRef('')
 
   useEffect(()=>{
     getNavPos()
-  },[sesTeam])
+  },[mh])
 
   // Set navigators
   const getNavPos = ()=> {
@@ -129,3 +129,5 @@ const s_our_team = useRef('')
     </>
   )
 }
+
+export default CompOurTeam

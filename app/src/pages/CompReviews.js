@@ -9,7 +9,7 @@ import { PiUserFill } from "react-icons/pi"
 import { LiaCalendar } from "react-icons/lia"
 import { MdClose } from "react-icons/md"
 
-export const CompReviews = ({ getReviews, reviews, notify, sesReviews, setSesReviews }) => {
+const CompReviews = ({ getReviews, reviews, notify, sesReviews, setSesReviews, mh }) => {
   const server = useContext(serverContext)
   const URI = `${server}/reviews/`
   
@@ -38,7 +38,7 @@ export const CompReviews = ({ getReviews, reviews, notify, sesReviews, setSesRev
 
   useEffect(()=>{
     getNavPos()
-  },[sesReviews])
+  },[mh])
 
   // Set navigators
   const getNavPos = ()=> {
@@ -151,3 +151,5 @@ export const CompReviews = ({ getReviews, reviews, notify, sesReviews, setSesRev
     </>
   )
 }
+
+export default CompReviews
