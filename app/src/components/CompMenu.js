@@ -7,7 +7,7 @@ import { TfiMenu } from "react-icons/tfi"
 import { MdClose } from "react-icons/md"
 import { AiOutlineClose } from "react-icons/ai"
 
-export const CompMenu = ({ navs, maxHeight, ss }) => {
+export const CompMenu = ({ navs, ss }) => {
   const [menuIcon, setMenuIcon] = useState(<TfiMenu />)
   const [menuHidden, setMenuHidden] = useState(true)
 

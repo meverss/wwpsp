@@ -13,7 +13,7 @@ export const CompBudgetFloat = ()=> {
 	  setTimeout(()=> {
 		budgetIconFloat.current.classList.remove('animate__animated', 'animate__tada')
 	  }, 1000)
-	}, 30000)
+	}, 60000)
   }
   
   return (

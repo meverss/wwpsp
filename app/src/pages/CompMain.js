@@ -31,47 +31,40 @@ const CompMain = ({ getReviews, reviews, notify, selSection, setSelSection, ss }
   const [sesReviews, setSesReviews] = useState('')
   const [sesContact, setSesContact] = useState('')
   const [navs, setNavs] = useState([])
-  const [height, setHeight] = useState('')
   const [maxHeight, setMaxHeight] = useState('')
 
   const main = useRef('')
-  
+  let rHeight = useRef('')
+  const gossip = useRef('')
+
   useEffect(()=>{
 	getNavPos()
-	if(main.current){
-	  setMaxHeight(main.current.scrollHeight)
-	}
-  },[maxHeight])
+  },[sesServices,sesTeam,sesReviews,sesContact])
 
-  useEffect(()=> {setMaxHeight(document.documentElement.scrollHeight)})
+  useEffect(()=> setMaxHeight(document.documentElement.scrollHeight),[navs])
 
   // Set navigators
   const getNavPos = ()=> {
-    const wel_pos = s_welcome.current.offsetTop
-    const about_pos = s_about_us.current.offsetTop
-	if(s_welcome.current){
+    const sesWelcome = s_welcome.current.offsetTop
+    const sesAbout = s_about_us.current.offsetTop
+    
 	  setNavs({
-		's_welcome':{'pos': wel_pos },
-		's_about_us':{'pos': about_pos },
+		's_welcome':{'pos': sesWelcome},
+		's_about_us':{'pos': sesAbout},
 		's_services':{'pos': sesServices},
 		's_our_team':{'pos': sesTeam},
 		's_reviews':{'pos': sesReviews},
 		's_contact_us':{'pos': sesContact}
 	  })
-	  main.current.style.height = height
-	}
+	  main.current.style.height = maxHeight
   }
   
-
-//style={{height: `${maxHeight}px`}}
-
   return (
     <>
-  	  <CompMenu navs={navs} maxHeight={maxHeight} selSection={selSection} setSelSection={setSelSection} ss={ss} />
-	  <section className="main"  id="main_container" ref={main}>
+  	  <CompMenu navs={navs} ss={ss} getNavPos={getNavPos} />
+	  <section className="main" id="main_container" ref={main}>
 
 		{/* Welcome! */}
-		{/*<div className="gossip"><p ref={gossip}></p></div>*/}
 		<nav id="s_welcome" ref={s_welcome}></nav>		
 		<section className="welcome box" id="welcome">
 		  <h2 className="welcome_title" id="welcome_title">Welcome!</h2>

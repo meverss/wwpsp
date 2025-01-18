@@ -17,6 +17,7 @@ const CompReviews = ({ getReviews, reviews, notify, sesReviews, setSesReviews, m
   const [email, setEmail] = useState('')
   const [review, setReview] = useState('')
   const [reviewLength, setReviewLength] = useState(0)
+  const [reviewsHeight, setReviewsHeight] = useState(0)
 
   const reviewForm = document.getElementById('s_review_form')
   const reviewFormBox = document.getElementById('review_form_box')
@@ -26,6 +27,7 @@ const CompReviews = ({ getReviews, reviews, notify, sesReviews, setSesReviews, m
   const formReviewMessage = document.getElementById('rv_message')
 
   const s_reviews = useRef('')
+  const reviews_box = useRef('')
 
   useEffect(()=>{
 	getReviews()
@@ -38,7 +40,8 @@ const CompReviews = ({ getReviews, reviews, notify, sesReviews, setSesReviews, m
 
   useEffect(()=>{
     getNavPos()
-  },[mh])
+	setReviewsHeight(Math.round(reviews_box.current.getBoundingClientRect().height))
+  }, [mh]) //[reviewsHeight])
 
   // Set navigators
   const getNavPos = ()=> {
@@ -111,7 +114,7 @@ const CompReviews = ({ getReviews, reviews, notify, sesReviews, setSesReviews, m
 			<div className="review_form_title" id="review_form_title">
 			  <h2>Submit a review</h2>
 			</div>
-			<form id="review_form" className="review_form form" action="https://api.web3forms.com/submit" onSubmit={createReview}>
+			<form id="review_form" className="review_form form" action="https://api.web3forms.com/submit" onSubmit={createReview} >
 			  <label className="text" for="rv_name">Full Name<span className="important">*</span></label>
 			  <input className="frm_text" name="name" id="rv_name" autocomplete="off" placeholder="What's your name?" data-frminfo="name" onChange={(e)=> setAuthor(e.target.value)} value={author}/>
 			  <label className="text" for="br_email">E-mail<span className="important">*</span></label>
@@ -131,7 +134,7 @@ const CompReviews = ({ getReviews, reviews, notify, sesReviews, setSesReviews, m
   	  <nav id="s_reviews" ref={s_reviews}></nav>
 	  <section className="s_reviews box" id="s_reviews">
 		<h2 className="reviews_title" id="reviews_title">Reviews</h2>
-		<article className="reviews_box" id="reviews_box">
+		<article className="reviews_box" ref={reviews_box} id="reviews_box">
 		  {reviews ? reviews.map((r) => (
 			<div className="review_card" id="review_card" key='_id' >
 			  <div className="review_card_text" >

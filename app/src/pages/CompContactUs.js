@@ -8,7 +8,7 @@ const CompContactUs = ({ sesContact, setSesContact, mh }) => {
 
   useEffect(()=>{
   	getNavPos()
-  },[s_contact_us.current, mh])
+  },[mh])
 
   // Set navigators
   const getNavPos = ()=> {

@@ -56,6 +56,7 @@ const App = () => {
 
   // Show page
   const pageContent = useRef()
+  const scrollArea = useRef('')
   const loaderContainer = useRef()
   const rootDir = window.location.pathname === '/'
 
@@ -90,8 +91,8 @@ const App = () => {
 
   const options = {
 	root: null,
-	rootMargin: "-120px",
-	//threshold: .1
+	rootMargin: "-125px",
+	//threshold: 0.5
   }
 
   const obBoxes = new IntersectionObserver(triggerAnimation, options)
@@ -203,9 +204,8 @@ const App = () => {
     <serverContext.Provider value={server}>
       <>
     	<CompHeaderTop />
-
     	<div className="page_content" ref={pageContent} id="page_content" >
-
+		
     	{/* Loader */}
     	<div className="loader_container" ref={loaderContainer} id="loader_container" >
 		  <div className='loader' ></div>
