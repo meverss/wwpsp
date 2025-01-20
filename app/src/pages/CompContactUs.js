@@ -4,7 +4,7 @@ import { BiMailSend } from "react-icons/bi"
 import { MdLocalPhone, MdOutlineLocationOn } from "react-icons/md"
 
 const CompContactUs = ({ sesContact, setSesContact, mh }) => {
-  const s_contact_us = useRef('')
+  const s_contact = useRef('')
 
   useEffect(()=>{
   	getNavPos()
@@ -12,16 +12,16 @@ const CompContactUs = ({ sesContact, setSesContact, mh }) => {
 
   // Set navigators
   const getNavPos = ()=> {
-    const pos = s_contact_us.current.offsetTop
-    if(s_contact_us.current){
+    const pos = s_contact.current.offsetTop
+    if(s_contact.current){
         setSesContact(pos)
     }
   }
   
   return (
     <>
-		<nav id="s_contact_us" ref={s_contact_us} ></nav>
-		<section className="s_contact_us box" id="s_contact_us">
+		<nav id="s_contact" ref={s_contact} ></nav>
+		<section className="s_contact box" id="s_contact">
 		  <div className="contact_box" id="contact_box">
 			<div className="contact_title" id="contact_title">
 			  <h2>Contact</h2>

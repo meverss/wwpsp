@@ -133,8 +133,8 @@ h3 {
 	padding-bottom: 0;
 }
 
-a {
-	text-decoration: none;
+a, a:active {
+	text-decoration: bold;
 	color: #057c85;
 }
 
@@ -433,7 +433,7 @@ a {
 	display: flex;
 	flex-direction: column;
 	position: fixed;
-	top: 138px;
+	top: 140px;
 	background-color: rgb(20, 20, 20, 0.95);
 	backdrop-filter: blur(3px);
 	border: 1px solid var(--border);
@@ -446,7 +446,7 @@ a {
 	transform: translate(100%);
 	right: -2px;
 	padding: 20px;
-	z-index: 99999;
+	z-index: 9999;
 }
 
 .m_menu ul {
@@ -462,14 +462,13 @@ a {
 }
 
 .m_menu_item {
-	text-align: left;
-	vertical-align: middle;
-	width: 130px;
-	margin: auto;
+	display: flex;
+	justify-content: left;
+	width: 100%;
+	font-size: 13pt;
 	font-weight: bold;
 	color: #eee;
 	list-style: none;
-	margin-left: 40px;
 	transition: .3s;
 }
 
@@ -697,16 +696,22 @@ a {
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 100px;
+    top: 140px;
     width: 100%;
+    height: 100vh;
     padding-left: 10px;
     padding-right: 10px;
-	padding-bottom: 50px;
 }
 
 .main {
+	position: fixed;
+	top: 140px;
+	overflow: scroll;
 	width: 100%;
-	height: 100%;
+	height: calc(100% - 180px);
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 85px;
 }
 
 /***** CONTENT *****/
@@ -1339,7 +1344,7 @@ textarea {
 	left: 0;
 	margin: auto;
 	background-color: rgba(20, 20, 20, 0.7);
-	backdrop-filter: blur(2px);
+	backdrop-filter: blur(2.5px);
 	z-index: 10000;
 }
 

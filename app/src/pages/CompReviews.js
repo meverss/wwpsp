@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios'
+import { disableSendButton, enableSendButton, validateAll} from '../libs/validator.js'
 import { useState, useEffect, useRef, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { serverContext } from '../App.js'
@@ -18,6 +19,7 @@ const CompReviews = ({ getReviews, reviews, notify, sesReviews, setSesReviews, m
   const [review, setReview] = useState('')
   const [reviewLength, setReviewLength] = useState(0)
   const [reviewsHeight, setReviewsHeight] = useState(0)
+  const [allDataVerifief, setAllDataVerified] = useState(false)
 
   const reviewForm = document.getElementById('s_review_form')
   const reviewFormBox = document.getElementById('review_form_box')
@@ -30,6 +32,7 @@ const CompReviews = ({ getReviews, reviews, notify, sesReviews, setSesReviews, m
   const reviews_box = useRef('')
 
   useEffect(()=>{
+	validateAll()
 	getReviews()
   },[])
 
@@ -41,7 +44,7 @@ const CompReviews = ({ getReviews, reviews, notify, sesReviews, setSesReviews, m
   useEffect(()=>{
     getNavPos()
 	setReviewsHeight(Math.round(reviews_box.current.getBoundingClientRect().height))
-  }, [mh]) //[reviewsHeight])
+  }, [mh])
 
   // Set navigators
   const getNavPos = ()=> {
@@ -75,10 +78,12 @@ const CompReviews = ({ getReviews, reviews, notify, sesReviews, setSesReviews, m
 	  reviewForm.style.display = 'flex'
 	  document.body.style.overflow = 'hidden'
   
-	  //disableSendButton()
+	  disableSendButton()
 
-	  reviewFormBox.classList.add('animate__animated', 'animate__zoomIn');
-	  formReviewName.focus()
+	  reviewFormBox.classList.add('animate__animated', 'animate__zoomIn')
+	  if(window.innerHeight >= 800){
+	   formReviewName.focus()
+	  }
   
 	  setTimeout(() => {
 		reviewFormBox.classList.remove('animate__animated', 'animate__zoomIn')
@@ -91,13 +96,17 @@ const CompReviews = ({ getReviews, reviews, notify, sesReviews, setSesReviews, m
   const createReview = async (e)=> {
 	e.preventDefault()
 	
-	try {
-	  hideSubmitReview()
-	  await axios.post(URI, { author, email, review })
-	  getReviews()
-	  notify('ok', 'Your review has been submitted')
-	} catch (error) {
-	  notify('err', error)
+	if(author && email && review){
+	  try {
+		hideSubmitReview()
+	  	await axios.post(URI, { author, email, review })
+		getReviews()
+		notify('ok', 'Your review has been submitted')
+	  } catch (error) {
+		notify('err', error)
+	  }
+	} else {
+		notify('inf', 'Please, provide all required info')	
 	}
   }
   
@@ -116,9 +125,9 @@ const CompReviews = ({ getReviews, reviews, notify, sesReviews, setSesReviews, m
 			</div>
 			<form id="review_form" className="review_form form" action="https://api.web3forms.com/submit" onSubmit={createReview} >
 			  <label className="text" for="rv_name">Full Name<span className="important">*</span></label>
-			  <input className="frm_text" name="name" id="rv_name" autocomplete="off" placeholder="What's your name?" data-frminfo="name" onChange={(e)=> setAuthor(e.target.value)} value={author}/>
+			  <input className="frm_text" name="fullname" id="rv_name" autocomplete="off" placeholder="What's your name?" data-frminfo="fullname" onChange={(e)=> setAuthor(e.target.value)} value={author}/>
 			  <label className="text" for="br_email">E-mail<span className="important">*</span></label>
-			  <input className="frm_text" name="email" id="rv_email" autocomplete="off"	placeholder="your@email.here" data-frminfo="email" onChange={(e)=> setEmail(e.target.value.toLowerCase().trim())} value={email}/>
+			  <input className="frm_text" name="email" id="rv_email" type="email" autocomplete="off"	placeholder="your@email.here" data-frminfo="email" onChange={(e)=> setEmail(e.target.value.toLowerCase().trim())} value={email}/>
 			  <div className="review_labels">
 				<label className="text" for="br_message" id="review_message">Review<span className="important">*</span></label>
 				<label className="text" for="br_message" id="review_counter">({reviewLength}/160)</label>
@@ -134,6 +143,7 @@ const CompReviews = ({ getReviews, reviews, notify, sesReviews, setSesReviews, m
   	  <nav id="s_reviews" ref={s_reviews}></nav>
 	  <section className="s_reviews box" id="s_reviews">
 		<h2 className="reviews_title" id="reviews_title">Reviews</h2>
+		<p>This is what our clients think about the services we provide:</p>
 		<article className="reviews_box" ref={reviews_box} id="reviews_box">
 		  {reviews ? reviews.map((r) => (
 			<div className="review_card" id="review_card" key='_id' >

@@ -17,9 +17,10 @@ import CompMain from './pages/CompMain.js'
 import CompPortfolio from './pages/CompPortfolio.js'
 
 // API Server
-export const serverContext = createContext()
 //const server = `http://${window.location.hostname}:4000/api`
 const server = `https://wwpsp-server.vercel.app/api`
+
+export const serverContext = createContext()
 const URI = `${server}/reviews`
 
 // App Component
@@ -31,7 +32,7 @@ const App = () => {
   const [theme, setTheme] = useState('')
   const [themeIcon, setThemeIcon] = useState('')
   
-  const ss = localStorage.getItem('actSection') || 's_welcome'
+  const ss = localStorage.getItem('actSection') || 's_home'
 
   useEffect(() => {
 	getReviews()
@@ -62,9 +63,9 @@ const App = () => {
 
   const showPage = ()=> {
   if(loaderContainer.current){
-	pageContent.current.style.height = document.documentElement.scrollHeight
+	//pageContent.current.style.height = document.documentElement.scrollHeight
 	pageContent.current.style.opacity = "1"
-	document.body.style.overflow = "auto"
+	document.body.style.overflow = "scroll"
   
 	setTimeout(()=> {
 	  loaderContainer.current.style.display = 'none'
@@ -81,7 +82,6 @@ const App = () => {
 	  if (entry.isIntersecting) {
 		entry.target.classList.remove("animate__animated", "animate__fadeOut", "hide")
 		entry.target.classList.add("animate__animated", "animate__fadeIn", "show")
-		//obBoxes.unobserve(entry.target)
 	  } else {
 		entry.target.classList.remove("animate__animated", "animate__fadeIn", "show")
 		entry.target.classList.add("animate__animated", "animate__fadeOut", "hide")
@@ -90,7 +90,7 @@ const App = () => {
   }
 
   const options = {
-	root: null,
+	root: null, //pageContent.current,
 	rootMargin: "-125px",
 	//threshold: 0.5
   }

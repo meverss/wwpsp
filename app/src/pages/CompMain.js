@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useRef, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import CompServices from './CompServices.js'
 import CompOurTeam from './CompOurTeam.js'
 import CompReviews from './CompReviews.js'
@@ -24,8 +25,6 @@ import preasureWashing from "../media/images/preasure_washing.webp"
 import rescreening from "../media/images/rescreening.webp"
 
 const CompMain = ({ getReviews, reviews, notify, selSection, setSelSection, ss }) => {
-  const s_welcome = useRef('')
-  const s_about_us = useRef('')
   const [sesServices, setSesServices] = useState('')
   const [sesTeam, setSesTeam] = useState('')
   const [sesReviews, setSesReviews] = useState('')
@@ -33,9 +32,17 @@ const CompMain = ({ getReviews, reviews, notify, selSection, setSelSection, ss }
   const [navs, setNavs] = useState([])
   const [maxHeight, setMaxHeight] = useState('')
 
+  const s_home = useRef('')
+  const s_about_us = useRef('')
   const main = useRef('')
   let rHeight = useRef('')
   const gossip = useRef('')
+  const navigate = useNavigate()  
+  
+  useEffect(()=>{
+//	navigate(`/#${ss}`)
+//	localStorage.removeItem('actSection')
+  },[])
 
   useEffect(()=>{
 	getNavPos()
@@ -45,27 +52,27 @@ const CompMain = ({ getReviews, reviews, notify, selSection, setSelSection, ss }
 
   // Set navigators
   const getNavPos = ()=> {
-    const sesWelcome = s_welcome.current.offsetTop
+    const sesHome = s_home.current.offsetTop
     const sesAbout = s_about_us.current.offsetTop
     
 	  setNavs({
-		's_welcome':{'pos': sesWelcome},
+		's_welcome':{'pos': sesHome},
 		's_about_us':{'pos': sesAbout},
 		's_services':{'pos': sesServices},
 		's_our_team':{'pos': sesTeam},
 		's_reviews':{'pos': sesReviews},
 		's_contact_us':{'pos': sesContact}
 	  })
-	  main.current.style.height = maxHeight
+	  main.current.style.height = maxHeight 
   }
   
   return (
     <>
   	  <CompMenu navs={navs} ss={ss} getNavPos={getNavPos} />
 	  <section className="main" id="main_container" ref={main}>
-
+		
 		{/* Welcome! */}
-		<nav id="s_welcome" ref={s_welcome}></nav>		
+		<nav id="s_home" ref={s_home}></nav>		
 		<section className="welcome box" id="welcome">
 		  <h2 className="welcome_title" id="welcome_title">Welcome!</h2>
 		  <p className="welcome_msg" id="welcome_msg">

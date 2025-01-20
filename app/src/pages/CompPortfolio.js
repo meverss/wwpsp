@@ -6,7 +6,9 @@ const CompPortfolio = ({ navs, ss })=> {
   return (
     <>
   	  <CompMenu navs={navs} ss={ss}/>
-	  <h3> Here goes the Portfolio </h3>
+  	  <div className="main">
+		<h3> Here goes the Portfolio </h3>
+	  </div>
     </>
   )
 }
