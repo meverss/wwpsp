@@ -72,7 +72,8 @@ const CompMain = ({ getReviews, reviews, notify, selSection, setSelSection, ss }
 	  <section className="main" id="main_container" ref={main}>
 		
 		{/* Welcome! */}
-		<nav id="s_home" ref={s_home}></nav>		
+		<nav id="s_home" ref={s_home}></nav>
+		<p className="gossip" ref={gossip}></p>
 		<section className="welcome box" id="welcome">
 		  <h2 className="welcome_title" id="welcome_title">Welcome!</h2>
 		  <p className="welcome_msg" id="welcome_msg">
@@ -161,7 +162,7 @@ const CompMain = ({ getReviews, reviews, notify, selSection, setSelSection, ss }
 		  </div>
 		</article>
 		<CompServices sesServices={sesServices} setSesServices={setSesServices} mh={maxHeight} />
-		<CompOurTeam sesTeam={sesTeam} setSesTeam={setSesTeam} mh={maxHeight} />
+		<CompOurTeam gossip={gossip} sesTeam={sesTeam} setSesTeam={setSesTeam} mh={maxHeight} />
 		<CompReviews sesReviews={sesReviews} setSesReviews={setSesReviews} getReviews={getReviews} reviews={reviews} notify={notify} mh={maxHeight} />
 		<CompContactUs sesContact={sesContact} setSesContact={setSesContact} mh={maxHeight} />
 		<CompBudgetFloat />

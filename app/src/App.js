@@ -33,11 +33,22 @@ const App = () => {
   const [themeIcon, setThemeIcon] = useState('')
   
   const ss = localStorage.getItem('actSection') || 's_home'
+  const images = document.getElementsByTagName('img')
+
+  useEffect(()=> {
+	//document.querySelector("meta[name=viewport]").setAttribute('content', 'width=device-width, user-scalable=no, initial-scale='+(1/window.devicePixelRatio)+'')
+	Object.keys(images).forEach((i)=>{
+	  images[i].addEventListener('touchstart', (e)=> {
+		e.preventDefault()
+	  })
+	})
+  },[])
 
   useEffect(() => {
 	getReviews()
     getTheme()
   }, [])
+
 
   useEffect(() => {
     if(reviews.length !== 0){
@@ -63,9 +74,8 @@ const App = () => {
 
   const showPage = ()=> {
   if(loaderContainer.current){
-	//pageContent.current.style.height = document.documentElement.scrollHeight
 	pageContent.current.style.opacity = "1"
-	document.body.style.overflow = "scroll"
+	document.body.style.overflowY = "scroll"
   
 	setTimeout(()=> {
 	  loaderContainer.current.style.display = 'none'
