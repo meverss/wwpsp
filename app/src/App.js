@@ -17,8 +17,13 @@ import CompMain from './pages/CompMain.js'
 import CompPortfolio from './pages/CompPortfolio.js'
 
 // API Server
-//const server = `http://${window.location.hostname}:4000/api`
-const server = `https://wwpsp-server.vercel.app/api`
+let server
+if(window.location.hostname.includes('localhost') || window.location.hostname.includes('192.168.')){
+  server = `http://${window.location.hostname}:4000/api`
+} else {
+  server = `https://wwpsp-server.vercel.app/api`
+}
+
 
 export const serverContext = createContext()
 const URI = `${server}/reviews`
@@ -36,11 +41,13 @@ const App = () => {
   const images = document.getElementsByTagName('img')
 
   useEffect(()=> {
-	//document.querySelector("meta[name=viewport]").setAttribute('content', 'width=device-width, user-scalable=no, initial-scale='+(1/window.devicePixelRatio)+'')
 	Object.keys(images).forEach((i)=>{
-	  images[i].addEventListener('touchstart', (e)=> {
-		e.preventDefault()
-	  })
+	  const exceptions = ['budget_icon_float']
+	  if(!exceptions.includes(images[i].id)){
+		images[i].addEventListener('touchstart', (e)=> {
+		  e.preventDefault()
+		})
+	  }
 	})
   },[])
 
@@ -67,6 +74,7 @@ const App = () => {
   }
 
   // Show page
+  const tcr = useRef()
   const pageContent = useRef()
   const scrollArea = useRef('')
   const loaderContainer = useRef()
@@ -92,6 +100,7 @@ const App = () => {
 	  if (entry.isIntersecting) {
 		entry.target.classList.remove("animate__animated", "animate__fadeOut", "hide")
 		entry.target.classList.add("animate__animated", "animate__fadeIn", "show")
+		obBoxes.unobserve(entry.target)
 	  } else {
 		entry.target.classList.remove("animate__animated", "animate__fadeIn", "show")
 		entry.target.classList.add("animate__animated", "animate__fadeOut", "hide")
@@ -215,7 +224,7 @@ const App = () => {
       <>
     	<CompHeaderTop />
     	<div className="page_content" ref={pageContent} id="page_content" >
-		
+
     	{/* Loader */}
     	<div className="loader_container" ref={loaderContainer} id="loader_container" >
 		  <div className='loader' ></div>

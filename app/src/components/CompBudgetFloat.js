@@ -16,6 +16,10 @@ export const CompBudgetFloat = ()=> {
 	}, 60000)
   }
   
+  const showBudgetForm = ()=> {
+	alert('Budget form here...!!')
+  }
+  
   return (
     <>
   	  {/* Budget request form */}
@@ -46,7 +50,7 @@ export const CompBudgetFloat = ()=> {
   	  {/* Budget floating button */}
 	  <div className="budget_float" ref={budgetIconFloat} id="budget_float">
 		<img className="budget_icon_float budget_btn" id="budget_icon_float" data-service="Budget"
-		  src={budget} alt="WWP Budget - Float" />
+		  src={budget} alt="WWP Budget - Float" onClick={showBudgetForm}/>
 	  </div>
     </>
   )

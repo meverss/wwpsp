@@ -11,15 +11,15 @@ import igor from "../media/images/team/igor.jpg"
 import tasha from "../media/images/team/tasha.jpg"
 import stephen from "../media/images/team/stephen.jpg"
 
-const CompOurTeam = ({ sesTeam, setSesTeam, mh, gossip }) => {
+const CompOurTeam = ({ sesTeam, setSesTeam, mh }) => {
   const s_our_team = useRef('')
   const team_box = useRef('')
   const team_card = document.querySelectorAll('.team_card')
   const team_member = document.querySelectorAll('.team_member')
-  const reference = document.getElementById('.team_card_reference')
+  const reference = document.getElementById('team_card_reference')
 
   useEffect(()=>{
-	smoothDragScroll(team_box.current)
+	smoothDragScroll(team_box.current, 'horizontal')
   },[team_box.current])
   
   useEffect(()=>{
@@ -33,34 +33,32 @@ const CompOurTeam = ({ sesTeam, setSesTeam, mh, gossip }) => {
       setSesTeam(pos)
     }
   }
-  
-  // Trigger animation
-  const triggerAnimation = (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.remove("anim_image_shrink")
-        entry.target.classList.add("anim_image_grow")
-      } else {
-        entry.target.classList.remove("anim_image_grow")
-        entry.target.classList.add("anim_image_shrink")
-      }
-    })
-  }
-
-  const options = {
-  root: null, //reference,
-  //rootMargin: "-10px",
-  threshold: 1
-  }
-
-  const obImages = new IntersectionObserver(triggerAnimation, options)
 
   useEffect(()=>{
-  if(team_member.length > 0){
-	team_member.forEach((t) => {
-  	  obImages.observe(t)
-	})
-  }
+	// Trigger animation
+	const triggerAnimation = (entries) => {
+  	  entries.forEach((entry) => {
+    	if (entry.isIntersecting) {
+      	  entry.target.classList.remove("anim_image_shrink")
+      	  entry.target.classList.add("anim_image_grow")
+    	} else {
+      	  entry.target.classList.remove("anim_image_grow")
+      	  entry.target.classList.add("anim_image_shrink")
+    	}
+  	  })
+	}
+
+	  const options = {
+		root: null, //reference,
+		//rootMargin: '100px',
+  		threshold: 1
+	  }
+  
+	  const obImages = new IntersectionObserver(triggerAnimation, options)
+
+	  team_member.forEach((t) => {
+  		obImages.observe(t)
+	  })
   },[team_member])
   
   return (
@@ -71,8 +69,9 @@ const CompOurTeam = ({ sesTeam, setSesTeam, mh, gossip }) => {
 		  <p>
 		  We have an excellent staff of professionals, each one commited to offer our costumers a service that meets the highest quality standards.
 		  </p>
+
 		  <div className="team_box box" id="team_box" ref={team_box} >
-			<div className="team_card"></div>
+			{/*<div className="team_card"></div>*/}
 			<div className="team_card">
 			  <div className="team_card_img">
 				<img className="team_member" src={winta} alt="Walfrido Winta Pérez" />
@@ -163,7 +162,7 @@ const CompOurTeam = ({ sesTeam, setSesTeam, mh, gossip }) => {
 				<span>Fence Builder</span>
 			  </div>
 			</div>
-			<div className="team_card"></div>
+			{/*<div className="team_card"></div>*/}
 		  </div>
 		</section>
     </>

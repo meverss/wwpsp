@@ -1,55 +1,116 @@
-export const smoothDragScroll = (element)=> {
+export const smoothDragScroll = (element, direction)=> {
 
   // Touch scroll
   let touchstartX
   let touchstartY
   let touchendX
   let touchendY
-    
+  let touches
+  
+  // Global variables
   const gap = Number(getComputedStyle(element).gap.split('px')[0])
   const width = Number(getComputedStyle(element.firstChild).width.split('px')[0])
-  const div = document.createElement("div")
-  const sliderOffset = element.firstChild.offsetLeft
+  const height = Number(getComputedStyle(element.firstChild).height.split('px')[0])
+  const slideH = width + gap
+  const slideV = height + gap
+
+  // Create frame and make it scrollable
+  /*const div = document.createElement("div")
+
+  div.id = 'team_frame'
+  div.style.position = 'absolute'
+  div.style.width = '100%'
+  div.style.height = '280px'
+  div.style.left = '0'
+  div.style.marginTop = '120px'
+  div.style.borderLeft = '10px solid var(--background-body)'
+  div.style.borderRight = '10px solid var(--background-body)'
+  div.style.zIndex = '99'
   
-  div.id = 'team_card_reference'
-  div.classList.add("team_card_reference")
+  element.parentElement.appendChild(div)
   
-  document.getElementById('s_our_team').appendChild(div)
-  const slide = width + gap
-  
-  element.addEventListener('touchstart', (e)=> {
+  // Touch events  
+  div.addEventListener('touchstart', (e)=> {
   e.preventDefault()
-    touchstartX = e.changedTouches[0].screenX * 100
-    //touchstartY = e.changedTouches[0].screenY
+    touchstartX = e.changedTouches[0].screenX
+    touchstartY = e.changedTouches[0].screenY
   }, false)
 
-  element.addEventListener('touchend', (e)=> {
-    touchendX = e.changedTouches[0].screenX * 100
-    //touchendY = e.changedTouches[0].screenY
+  div.addEventListener('touchend', (e)=> {
+    touchendX = e.changedTouches[0].screenX
+    touchendY = e.changedTouches[0].screenY
     handleGesture()
   }, false)
 
-  const handleGesture = ()=> {
-    if (touchendX < touchstartX) {
-      element.scrollBy({left: slide})
-      element.removeEventListener('touchstart', ()=> {alert('gjjd')})
-//      element.removeEventListener('touchend', ()=> {return})
-    }
+  div.addEventListener('touchcancel', (e)=> {
+    touchendX = e.changedTouches[0].screenX
+    touchendY = e.changedTouches[0].screenY
+    handleGesture()
+  }, false)*/
 
-    if (touchendX > touchstartX) {
-      element.scrollBy({left: - slide})
-      element.removeEventListener('touchstart', ()=> {return})
-//      element.removeEventListener('touchend', ()=> {return})
-    }
+  element.addEventListener('touchstart', (e)=> {
+	e.preventDefault()
+    touchstartX = e.changedTouches[0].screenX
+    touchstartY = e.changedTouches[0].screenY
+  }, false)
 
-    if (touchendY < touchstartY) {
-      //element.scrollBy({top: -200})
-    }
+  element.addEventListener('touchend', (e)=> {
+    touchendX = e.changedTouches[0].screenX
+    touchendY = e.changedTouches[0].screenY
+    handleGesture()
+  }, false)
+  
+  element.addEventListener('touchcancel', (e)=> {
+    touchendX = e.changedTouches[0].screenX
+    touchendY = e.changedTouches[0].screenY
+    handleGesture()
+  }, false)
 
-    if (touchendY > touchstartY) {
-      //element.scrollBy({top: -200})
-    }
+
+  const reset = ()=> {
+	return
   }
+  
+  
+  const handleGesture = ()=> {
+  switch(direction){
+	case 'horizontal':
+	  if(Math.abs(touchendY - touchstartY) >= 20) return
+	  if(Math.abs(touchendX - touchstartX) <= 10) return
+
+  	  if (touchendX < touchstartX) {
+  		setTimeout(()=>{
+    	  element.scrollTo({left: element.scrollLeft + slideH})
+    	  element.removeEventListener('touchstart', reset)
+    	  element.removeEventListener('touchend', reset)
+  		},10)
+  	  }
+
+  	  if (touchendX > touchstartX) {
+  		setTimeout(()=> {
+    	  element.scrollTo({left: element.scrollLeft - slideH})
+    	  element.removeEventListener('touchstart', reset)
+    	  element.removeEventListener('touchend', reset)
+  		},10)
+  	  }
+
+	  break
+	case 'vertical':
+	  if(Math.abs(touchendX - touchstartX) >= 20) return
+	  if(Math.abs(touchendY - touchstartY) <= 10) return
+
+  	  if (touchendY < touchstartY) {
+    	//element.scrollBy({top: -200})
+  	  }
+
+  	  if (touchendY > touchstartY) {
+    	//element.scrollBy({top: -200})
+  	  }
+
+	  break
+	}
+  }
+
 
   // Mouse scroll
     let isDown = false

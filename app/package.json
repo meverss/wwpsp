@@ -23,6 +23,7 @@
     "serve": "^14.2.1",
     "standard": "17.1.0",
     "styled-components": "^5.3.11",
+    "swiper": "^11.2.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
