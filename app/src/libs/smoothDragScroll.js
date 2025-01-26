@@ -15,19 +15,18 @@ export const smoothDragScroll = (element, direction)=> {
   const slideV = height + gap
 
   // Create frame and make it scrollable
-  /*const div = document.createElement("div")
+  const div = document.createElement("div")
 
   div.id = 'team_frame'
   div.style.position = 'absolute'
   div.style.width = '100%'
   div.style.height = '280px'
   div.style.left = '0'
-  div.style.marginTop = '120px'
   div.style.borderLeft = '10px solid var(--background-body)'
   div.style.borderRight = '10px solid var(--background-body)'
   div.style.zIndex = '99'
   
-  element.parentElement.appendChild(div)
+  element.appendChild(div)
   
   // Touch events  
   div.addEventListener('touchstart', (e)=> {
@@ -46,7 +45,7 @@ export const smoothDragScroll = (element, direction)=> {
     touchendX = e.changedTouches[0].screenX
     touchendY = e.changedTouches[0].screenY
     handleGesture()
-  }, false)*/
+  }, false)
 
   element.addEventListener('touchstart', (e)=> {
 	e.preventDefault()
@@ -73,43 +72,47 @@ export const smoothDragScroll = (element, direction)=> {
   
   
   const handleGesture = ()=> {
-  switch(direction){
-	case 'horizontal':
-	  if(Math.abs(touchendY - touchstartY) >= 20) return
-	  if(Math.abs(touchendX - touchstartX) <= 10) return
-
-  	  if (touchendX < touchstartX) {
-  		setTimeout(()=>{
-    	  element.scrollTo({left: element.scrollLeft + slideH})
-    	  element.removeEventListener('touchstart', reset)
-    	  element.removeEventListener('touchend', reset)
-  		},10)
-  	  }
-
-  	  if (touchendX > touchstartX) {
-  		setTimeout(()=> {
-    	  element.scrollTo({left: element.scrollLeft - slideH})
-    	  element.removeEventListener('touchstart', reset)
-    	  element.removeEventListener('touchend', reset)
-  		},10)
-  	  }
-
-	  break
-	case 'vertical':
-	  if(Math.abs(touchendX - touchstartX) >= 20) return
-	  if(Math.abs(touchendY - touchstartY) <= 10) return
-
-  	  if (touchendY < touchstartY) {
-    	//element.scrollBy({top: -200})
-  	  }
-
-  	  if (touchendY > touchstartY) {
-    	//element.scrollBy({top: -200})
-  	  }
-
-	  break
+	const scrollV = ()=> {
+	  element.parentElement.parentElement.scrollBy({top: -(Math.round(touchendY - touchstartY) * 3), behavior: 'smooth'})
 	}
-  }
+	
+	switch(direction){
+	  case 'horizontal':
+		if(Math.abs(touchendY - touchstartY) >= 30) scrollV()
+		if(Math.abs(touchendX - touchstartX) <= 10) return
+
+  		if (touchendX < touchstartX) {
+  		  setTimeout(()=>{
+    		element.scrollTo({left: element.scrollLeft + slideH})
+    		element.removeEventListener('touchstart', reset)
+    		element.removeEventListener('touchend', reset)
+  		  },10)
+  		}
+
+  		if (touchendX > touchstartX) {
+  		  setTimeout(()=> {
+    		element.scrollTo({left: element.scrollLeft - slideH})
+    		element.removeEventListener('touchstart', reset)
+    		element.removeEventListener('touchend', reset)
+  		  },10)
+  		}
+
+		break
+	  case 'vertical':
+		if(Math.abs(touchendX - touchstartX) >= 20) return
+		if(Math.abs(touchendY - touchstartY) <= 10) return
+
+  		if (touchendY < touchstartY) {
+    	  //element.scrollBy({top: -200})
+  		}
+
+  		if (touchendY > touchstartY) {
+    	  //element.scrollBy({top: -200})
+  		}
+
+		break
+	  }
+	}
 
 
   // Mouse scroll
