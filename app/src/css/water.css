@@ -5,6 +5,7 @@
  */
 
 :root {
+  --box-shadow: #ddd;
   --background-body: #fff;
   --background: #efefef;
   --background-alt: #f7f7f7;
@@ -30,6 +31,7 @@
 
 @media (prefers-color-scheme: dark) {
 :root {
+  --box-shadow: #111;
   --background-body: #222;
   --background: #161f27;
   --background-alt: #1a242f;

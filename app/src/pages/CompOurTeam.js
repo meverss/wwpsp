@@ -45,6 +45,7 @@ const CompOurTeam = ({ sesTeam, setSesTeam, mh }) => {
 	  cardsToShow.forEach((card)=> {
 		const newCard = card.cloneNode(true)
 		newCard.setAttribute('id',`card${document.querySelectorAll('.team_card').length + 1}`)
+		newCard.classList.add('anim_image_shrink')
 		team_box.current.appendChild(newCard)
 	  })
 	  cardsToShow = []
@@ -56,6 +57,7 @@ const CompOurTeam = ({ sesTeam, setSesTeam, mh }) => {
 	  cardsToShow.forEach((card)=> {
 		const newCard = card.cloneNode(true)
 		newCard.setAttribute('id',`card${document.querySelectorAll('.team_card').length + 1}`)
+		newCard.classList.add('anim_image_shrink')
 		team_box.current.insertBefore(newCard, firstCard)
 	  })
 	  team_box.current.style.overflow = 'hidden'
@@ -120,7 +122,7 @@ const CompOurTeam = ({ sesTeam, setSesTeam, mh }) => {
 	  <section className="s_our_team box" id="s_our_team">
 		  <h2 className="team_title" id="team_title">Our Team</h2>
 		  <p>
-		  We have an excellent staff of professionals, each one commited to offer our costumers a service that meets the highest quality standards.
+		  We have an excellent staff of professionals, each one committed to offer our costumers a service that meets the highest quality standards.
 		  </p>
 		  <br />
 		  <h3 className="team_member_text" id="name" style={{color: '#37a1c6', fontWeight: 'bold', width: '100%', fontSize: '100%'}}></h3>
