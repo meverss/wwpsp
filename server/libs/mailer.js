@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer'
 
-const sendEmail = (motive, user, email, message) => {
+const sendEmail = (reason, user, email, message) => {
 	const transporter = nodemailer.createTransport({
 	  host: "smtp.gmail.com",
 	  port: 465,
@@ -15,10 +15,10 @@ const sendEmail = (motive, user, email, message) => {
 	  const msg = await transporter.sendMail({
 	    from: '"KiniunDev" <no-replay@kiniun.dev>',
 	    to: "meverss@my.com",
-	    subject: `You have a ${motive}`,
+	    subject: `You have a ${reason}`,
 	    html: `
 	    <p style='color: #085c97'>
-	  	  <b>You have received a ${motive}.</b>
+	  	  <b>You have received a ${reason}.</b>
 	    </p>
 	    <p style='color: #37a1c6'>
 	  	  <b>Details:</b>

@@ -24,7 +24,7 @@ const CompOurTeam = ({ sesTeam, setSesTeam, mh }) => {
 	const cardRectLeft = Math.round(team_box.current.children[window.innerWidth <= 700 ? 1:2].getBoundingClientRect().left)
 	const centerPos = cardRectLeft - parentRectLeft + 10
 
-	const teamScroll = ()=> {
+	const animateTeamScroll = ()=> {
 	  document.querySelectorAll('.team_card').forEach((card)=> {
 		const centered = Math.round(card.getBoundingClientRect().left) >= (centerPos - 30) && Math.round(card.getBoundingClientRect().left) <= (centerPos + 30)
 		  if(centered){
@@ -40,6 +40,8 @@ const CompOurTeam = ({ sesTeam, setSesTeam, mh }) => {
 	  })
 	}
 
+	// Infinite scroll
+	let loading = false
 	const addMoreCardsRight = ()=> {
 	  cardsToShow.push(...team_cards)
 	  cardsToShow.forEach((card)=> {
@@ -65,24 +67,22 @@ const CompOurTeam = ({ sesTeam, setSesTeam, mh }) => {
 	  team_box.current.style.overflow = 'auto'
 	  },10)
 	  cardsToShow = []
-
 	}
 
 	team_box.current.addEventListener('scroll', ()=>{
 	//document.querySelector('#gossip').innerHTML = `ScrollLeft:${team_box.current.scrollLeft}<br /> ClientWidth:${team_box.current.clientWidth}<br /> ScrollWidth:${team_box.current.scrollWidth}`
-	  if (team_box.current.scrollLeft + team_box.current.clientWidth >= team_box.current.scrollWidth){
+	  if (team_box.current.scrollLeft + team_box.current.clientWidth >= team_box.current.scrollWidth - 130){
         addMoreCardsRight()
       }
-	  if (team_box.current.scrollLeft === 0){
+	  if (team_box.current.scrollLeft === 130){
 		addMoreCardsLeft()
-		//alert(team_box.current.children[0].id)
       }
-	  teamScroll()
+	  animateTeamScroll()
 	},false)
 	
-	const startInfinitLoop = ()=> {
+	const startInfinitScroll = ()=> {
 	  addMoreCardsLeft()
-	  teamScroll()
+	  animateTeamScroll()
 
 	setInterval(()=> {
 	  const width = (getComputedStyle(document.querySelector('#card1')).width).split('px')[0]
@@ -99,7 +99,7 @@ const CompOurTeam = ({ sesTeam, setSesTeam, mh }) => {
 
 	}
 	
-	team_box.current.onLoad = startInfinitLoop()
+	team_box.current.onLoad = startInfinitScroll()
 	
 
   },[team_box.current])

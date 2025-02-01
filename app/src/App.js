@@ -39,6 +39,12 @@ const App = () => {
   
   const ss = localStorage.getItem('actSection') || 's_home'
   const images = document.getElementsByTagName('img')
+  let imagesLoaded = 0
+
+  useEffect(() => {
+	getReviews()
+    getTheme()
+  }, [])
 
   useEffect(()=> {
 	Object.keys(images).forEach((i)=>{
@@ -48,20 +54,17 @@ const App = () => {
 		  e.preventDefault()
 		})
 	  }
+	  images[i].setAttribute('onload', imagesLoaded ++)
 	})
-  },[])
+  },[images.length])
 
-  useEffect(() => {
-	getReviews()
-    getTheme()
-  }, [])
 
 
   useEffect(() => {
-    if(reviews.length !== 0){
-	  document.addEventListener("DOMContentLoaded", showPage())    
+    if(reviews.length !== 0 && images.length === imagesLoaded){
+	  document.addEventListener("DOMContentLoaded", showPage())
 	}
-  }, [reviews])
+  }, [images.length])
   
   // Get all reviews
   const getReviews =  async ()=> {
@@ -91,6 +94,8 @@ const App = () => {
 
 	if(!rootDir) loaderContainer.current.style.zIndex = '999'
   }}
+
+
 
   // Trigger animation
   const boxes = document.querySelectorAll(".box")

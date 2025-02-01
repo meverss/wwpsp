@@ -1092,6 +1092,7 @@ display: flex;
 	align-items: center;
 	width: 390px;  /*95% for Desktop */
 	overflow-x: auto;
+	white-space: nowrap;
 	scroll-behavior: smooth;
 	scroll-snap-type: x mandatory;
 	scrollbar-width: none;
