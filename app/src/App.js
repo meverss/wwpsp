@@ -46,6 +46,7 @@ const App = () => {
     getTheme()
   }, [])
 
+
   useEffect(()=> {
 	Object.keys(images).forEach((i)=>{
 	  const exceptions = ['budget_icon_float']
@@ -55,10 +56,9 @@ const App = () => {
 		})
 	  }
 	  images[i].setAttribute('onload', imagesLoaded ++)
+	  images[i].style.zIndex = '-1'
 	})
   },[images.length])
-
-
 
   useEffect(() => {
     if(reviews.length !== 0 && images.length === imagesLoaded){

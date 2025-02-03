@@ -148,10 +148,11 @@ a, a:active {
 	width: auto;
 	color: #fff;
 	background-color: #085c97;
-	border: 1px solid var(--border); /*555*/
+	border: 1px solid var(--border);
 	border-radius: 5px;
 	transition: .2s;
-	height: fit-content;
+	text-align: center;
+	height: 40px;
 	padding: 8px;
 	padding-left: 15px;
 	padding-right: 15px;
@@ -702,8 +703,6 @@ a, a:active {
     top: 140px;
     width: 100%;
     height: 100vh;
-    padding-left: 10px;
-    padding-right: 10px;
 }
 
 .main {
@@ -1090,18 +1089,16 @@ display: flex;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	width: 390px;  /*95% for Desktop */
+	width: 98%;
 	overflow-x: auto;
 	white-space: nowrap;
 	scroll-behavior: smooth;
 	scroll-snap-type: x mandatory;
 	scrollbar-width: none;
+	padding-top: 10px;
 	padding-bottom: 50px;
 	scroll-snap-padding: 10px;
-}
-
-@media screen and (min-width: 800px) {
-	width: 650px;  /*95% for Desktop */
+	box-shadow: inset 10px 1px 15px 10px var(--background-body);
 }
 
 .team_card {
@@ -1114,6 +1111,7 @@ display: flex;
 	height: 180px;
 	font-size: 90%;
 	scroll-snap-align: center;
+	transition: .5s;
 }
 
 .team_card_reference {
@@ -1152,9 +1150,6 @@ display: flex;
 	width: 100%;
 }
 
-.team_member_text {
-/*  transition: .3s;*/
-}
 .team_card_text h3 {
 	color: #37a1c6;
 	font-weight: bold;
@@ -1164,22 +1159,20 @@ display: flex;
 
 .anim_image_grow {
 	animation: grow .2s linear;
-	z-index: 10;
 }
 
 .anim_image_shrink {
 	animation: shrink .2s linear;
-	z-index: -1;
 }
 
 @keyframes grow {
 	  0% {width: 90px;}
-	100% {width: 155px;}
+	100% {width: 160px; z-index: 10;}
 }
 
 @keyframes shrink {
-	  0% {width: 155px;}
-	100% {width: 90px; filter: grayscale(100%);}
+	  0% {width: 160px;}
+	100% {width: 90px; filter: grayscale(100%); z-index: -1;}
 }
 
 

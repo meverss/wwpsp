@@ -133,7 +133,7 @@ const CompReviews = ({ getReviews, reviews, notify, sesReviews, setSesReviews, m
 				<label className="text" for="br_message" id="review_counter">({reviewLength}/160)</label>
 			  </div>
 			  <textarea className="frm_text frm_message" name="message" id="rv_message" rows="5" autocomplete="off" placeholder="What's your opinion about our service?" data-frminfo="message" onChange={(e)=> setReview(e.target.value)} value={review} maxlength="160"></textarea>
-			  <input id="rv_btn_send" type="submit" className="button form_btn" value="Submit" />
+			  <input id="rv_btn_send" type="submit" className="button " value="Submit" />
 			</form>
 		  </div>
 		</div>
