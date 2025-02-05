@@ -11,10 +11,9 @@ import igor from "../media/images/team/igor.jpg"
 import tasha from "../media/images/team/tasha.jpg"
 import stephen from "../media/images/team/stephen.jpg"
 
-const CompOurTeam = ({ sesTeam, setSesTeam, mh }) => {
+const CompOurTeam = () => {
   const [teamCards, setTeamCards] = useState(document.querySelectorAll('.team_card'))
 
-  const s_our_team = useRef('')
   const team_box = useRef('')
   const team_member = document.querySelectorAll('.team_member')
   let cardsToShow = []
@@ -111,21 +110,9 @@ const CompOurTeam = ({ sesTeam, setSesTeam, mh }) => {
 
   },[team_box.current])
   
-  useEffect(()=>{
-    getNavPos()
-  },[mh])
-  
-  // Set navigators
-  const getNavPos = ()=> {
-    const pos = s_our_team.current.offsetTop
-    if(s_our_team.current){
-      setSesTeam(pos)
-    }
-  }
-  
   return (
     <>
-	  <nav id="s_our_team" ref={s_our_team}></nav>
+	  <nav id="s_our_team"></nav>
     <section className="s_our_team box" id="s_our_team">
 	  <h2 className="team_title" id="team_title">Our Team</h2>
 	  <p>

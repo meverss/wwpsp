@@ -10,7 +10,7 @@ import { PiUserFill } from "react-icons/pi"
 import { LiaCalendar } from "react-icons/lia"
 import { MdClose } from "react-icons/md"
 
-const CompReviews = ({ getReviews, reviews, notify, sesReviews, setSesReviews, mh }) => {
+const CompReviews = ({ getReviews, reviews, notify }) => {
   const server = useContext(serverContext)
   const URI = `${server}/reviews/`
   
@@ -18,8 +18,6 @@ const CompReviews = ({ getReviews, reviews, notify, sesReviews, setSesReviews, m
   const [email, setEmail] = useState('')
   const [review, setReview] = useState('')
   const [reviewLength, setReviewLength] = useState(0)
-  const [reviewsHeight, setReviewsHeight] = useState(0)
-  const [allDataVerifief, setAllDataVerified] = useState(false)
 
   const reviewForm = document.getElementById('s_review_form')
   const reviewFormBox = document.getElementById('review_form_box')
@@ -28,7 +26,6 @@ const CompReviews = ({ getReviews, reviews, notify, sesReviews, setSesReviews, m
   const formReviewEmail = document.getElementById('rv_email')
   const formReviewMessage = document.getElementById('rv_message')
 
-  const s_reviews = useRef('')
   const reviews_box = useRef('')
 
   useEffect(()=>{
@@ -40,19 +37,6 @@ const CompReviews = ({ getReviews, reviews, notify, sesReviews, setSesReviews, m
 	setReviewLength(review.length)
 	if(review.length === 0)setReviewLength(0)
   },[review])
-
-  useEffect(()=>{
-    getNavPos()
-	setReviewsHeight(Math.round(reviews_box.current.getBoundingClientRect().height))
-  }, [mh])
-
-  // Set navigators
-  const getNavPos = ()=> {
-    const pos = s_reviews.current.offsetTop
-    if(s_reviews.current){
-        setSesReviews(pos)
-    }
-  }
 
   // Hide 'Submit a review' form
   const  hideSubmitReview = ()=> {
@@ -133,14 +117,14 @@ const CompReviews = ({ getReviews, reviews, notify, sesReviews, setSesReviews, m
 				<label className="text" for="br_message" id="review_counter">({reviewLength}/160)</label>
 			  </div>
 			  <textarea className="frm_text frm_message" name="message" id="rv_message" rows="5" autocomplete="off" placeholder="What's your opinion about our service?" data-frminfo="message" onChange={(e)=> setReview(e.target.value)} value={review} maxlength="160"></textarea>
-			  <input id="rv_btn_send" type="submit" className="button " value="Submit" />
+			  <input id="rv_btn_send" type="submit" className="button form_btn" value="Submit" />
 			</form>
 		  </div>
 		</div>
 	  </section>
     
   	  {/* Show reviews */}
-  	  <nav id="s_reviews" ref={s_reviews}></nav>
+  	  <nav id="s_reviews"></nav>
 	  <section className="s_reviews box" id="s_reviews">
 		<h2 className="reviews_title" id="reviews_title">Reviews</h2>
 		<p>This is what our clients think about the services we provide:</p>

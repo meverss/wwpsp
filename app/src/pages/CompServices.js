@@ -5,24 +5,11 @@ import painting from "../media/images/painting.webp"
 import preasureWashing from "../media/images/preasure_washing.webp"
 import rescreening from "../media/images/rescreening.webp"
 
-const CompServices = ({ sesServices, setSesServices, mh})=> {
-  const s_services = useRef('')
-
-  useEffect(()=>{
-    getNavPos()
-  },[mh])
-
-  // Set navigators
-  const getNavPos = ()=> {
-    const pos = s_services.current.offsetTop
-    if(s_services.current){
-        setSesServices(pos)
-    }
-  }
+const CompServices = ()=> {
 
   return (
     <>
-  	  <nav id="s_services" ref={s_services}></nav>
+  	  <nav id="s_services"></nav>
   	  <section className="services_container" id="services_container">
 		<div className="services_box box" id="services_box">
 		  <h2>Services</h2>

@@ -18,12 +18,14 @@ import CompPortfolio from './pages/CompPortfolio.js'
 
 // API Server
 let server
+let path
 if(window.location.hostname.includes('localhost') || window.location.hostname.includes('192.168.')){
   server = `http://${window.location.hostname}:4000/api`
+  path = `http://${window.location.hostname}:3000`
 } else {
   server = `https://wwpsp-server.vercel.app/api`
+  path = `https://wwpsp.vercel.app`
 }
-
 
 export const serverContext = createContext()
 const URI = `${server}/reviews`
@@ -61,7 +63,7 @@ const App = () => {
   },[images.length])
 
   useEffect(() => {
-    if(reviews.length !== 0 && images.length === imagesLoaded){
+    if((reviews.length !== 0 && images.length === imagesLoaded) || window.location.pathname === '/portfolio' ){
 	  document.addEventListener("DOMContentLoaded", showPage())
 	}
   }, [images.length])
@@ -252,7 +254,7 @@ const App = () => {
             
         <BrowserRouter forceRefresh={true}>
           <Routes>
-        	<Route path='/' element={<CompMain reviews={reviews} getReviews={getReviews} notify={showNotification} ss={ss} />} />
+        	<Route path='/' element={<CompMain reviews={reviews} getReviews={getReviews} notify={showNotification} ss={ss} path={path} />} />
             <Route path='/portfolio' element={<CompPortfolio ss={ss} />} />
 	        <Route path='*' element={<Navigate to="/" />} />
           </Routes>

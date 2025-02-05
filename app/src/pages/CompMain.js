@@ -24,50 +24,15 @@ import painting from "../media/images/painting.webp"
 import preasureWashing from "../media/images/preasure_washing.webp"
 import rescreening from "../media/images/rescreening.webp"
 
-const CompMain = ({ getReviews, reviews, notify, selSection, setSelSection, ss }) => {
-  const [sesServices, setSesServices] = useState('')
-  const [sesTeam, setSesTeam] = useState('')
-  const [sesReviews, setSesReviews] = useState('')
-  const [sesContact, setSesContact] = useState('')
-  const [navs, setNavs] = useState([])
-  const [maxHeight, setMaxHeight] = useState('')
+const CompMain = ({ getReviews, reviews, notify, ss, path }) => {
 
-  const s_home = useRef('')
-  const s_about_us = useRef('')
-  const main = useRef('')
-  let rHeight = useRef('')
-  const gossip = useRef('')
-  const navigate = useNavigate()  
-  
-  useEffect(()=>{
-	getNavPos()
-  },[sesServices,sesTeam,sesReviews,sesContact])
-
-  useEffect(()=> setMaxHeight(document.documentElement.scrollHeight),[navs])
-
-  // Set navigators
-  const getNavPos = ()=> {
-    const sesHome = s_home.current.offsetTop
-    const sesAbout = s_about_us.current.offsetTop
-    
-	  setNavs({
-		's_welcome':{'pos': sesHome},
-		's_about_us':{'pos': sesAbout},
-		's_services':{'pos': sesServices},
-		's_our_team':{'pos': sesTeam},
-		's_reviews':{'pos': sesReviews},
-		's_contact_us':{'pos': sesContact}
-	  })
-	  main.current.style.height = maxHeight 
-  }
-  
   return (
     <>
-  	  <CompMenu navs={navs} ss={ss} getNavPos={getNavPos} />
-	  <section className="main" id="main_container" ref={main}>
+  	  <CompMenu ss={ss} path={path} />
+	  <section className="main" id="main_container" >
+
 		{/* Welcome! */}
-		<nav id="s_home" ref={s_home}></nav>
-		<p className="gossip" ref={gossip}></p>
+		<nav id="s_home"></nav>
 		<section className="welcome box" id="welcome">
 		  <h2 className="welcome_title" id="welcome_title">Welcome!</h2>
 		  <p className="welcome_msg" id="welcome_msg">
@@ -87,7 +52,7 @@ const CompMain = ({ getReviews, reviews, notify, selSection, setSelSection, ss }
 		<br /><br />
 
 		{/* About Us */}
-		<nav id="s_about_us" ref={s_about_us}></nav>
+		<nav id="s_about_us" ></nav>
 		<section className="s_about_us box" id="s_about_us">
 		  <div className="about_us_box" id="about_us_box">
 			<h2 className="about_us_title" id="about_us_title">About Us</h2>
@@ -155,10 +120,10 @@ const CompMain = ({ getReviews, reviews, notify, selSection, setSelSection, ss }
 			</div>
 		  </div>
 		</article>
-		<CompServices sesServices={sesServices} setSesServices={setSesServices} mh={maxHeight} />
-		<CompOurTeam sesTeam={sesTeam} setSesTeam={setSesTeam} mh={maxHeight} />
-		<CompReviews sesReviews={sesReviews} setSesReviews={setSesReviews} getReviews={getReviews} reviews={reviews} notify={notify} mh={maxHeight} />
-		<CompContactUs sesContact={sesContact} setSesContact={setSesContact} mh={maxHeight} />
+		<CompServices />
+		<CompOurTeam />
+		<CompReviews getReviews={getReviews} reviews={reviews} notify={notify} />
+		<CompContactUs />
 		<CompBudgetFloat />
 	  </section>
     </>

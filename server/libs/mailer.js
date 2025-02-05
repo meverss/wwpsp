@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer'
 
-const sendEmail = (reason, user, email, message) => {
+const sendEmail = (mailType, user, email, message) => {
 	const transporter = nodemailer.createTransport({
 	  host: "smtp.gmail.com",
 	  port: 465,
@@ -15,10 +15,10 @@ const sendEmail = (reason, user, email, message) => {
 	  const msg = await transporter.sendMail({
 	    from: '"KiniunDev" <no-replay@kiniun.dev>',
 	    to: "meverss@my.com",
-	    subject: `You have a ${reason}`,
+	    subject: `You have a ${mailType}`,
 	    html: `
 	    <p style='color: #085c97'>
-	  	  <b>You have received a ${reason}.</b>
+	  	  <b>You have received a ${mailType}.</b>
 	    </p>
 	    <p style='color: #37a1c6'>
 	  	  <b>Details:</b>
@@ -31,7 +31,7 @@ const sendEmail = (reason, user, email, message) => {
 	    `,
 	  })
 	
-	  console.log("Message sent: ID %s", msg.messageId)
+	  console.log("Message sent! E-mail ID: %s", msg.messageId)
 	}
 	
 	main().catch(console.error)

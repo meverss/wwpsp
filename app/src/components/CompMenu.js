@@ -8,51 +8,38 @@ import { TfiMenu } from "react-icons/tfi"
 import { MdClose } from "react-icons/md"
 import { AiOutlineClose } from "react-icons/ai"
 
-export const CompMenu = ({ navs, ss }) => {
+export const CompMenu = ({ navs, ss, path }) => {
   const [menuIcon, setMenuIcon] = useState(<TfiMenu />)
   const [menuHidden, setMenuHidden] = useState(true)
 
-  const menuitem = document.querySelectorAll('.m_menu_item')
-  const path = window.location.pathname
+  const menuitems = document.querySelectorAll('.m_menu_item')
+  const currentPath = window.location.pathname
   const sec = document.getElementById(ss)
-  const navigate = useNavigate()
   
   const s_portfolio = useRef()
   const s_m_portfolio = useRef()
+  const encSection = encodeURIComponent(ss)
   
   useEffect(()=>{
-	if(sec && path === '/#s_portfolio'){
-	  //window.location.pathname = `/#${ss}`
-	  //if(ss !== 'portfolio')navigate(`/#${ss}`)
-	  scrollToSection(ss)
-	//  alert(ss)
+	if(sec && currentPath !== '/portfolio'){
+	  window.location.href = `${path}/#${encSection}`
 	}
-  },[])
+  },[document.querySelector(`#${ss}`)])
 
-  // Scroll to sections
-  const scrollToSection = (section)=>{
-	const position = `navs.${section}.pos`
-
-	if(section !== 's_portfolio' && path !== '/portfolio'){
-	  navigate(`/#${section}`)
-	  window.scrollTo(0, eval(position) - 40)
-	} else if(section === 's_portfolio' && path !== '/portfolio'){
-	  setTimeout(()=> {
-//		navigate('/portfolio')
-//  		window.location.pathname = '/portfolio'
-	  },200)
-	} else if(path === '/portfolio'){
-	  setTimeout(()=>{
-		navigate('/')
-//		window.location.pathname = '/'
-	  }, 200)
-	} 
-  }
-
-  menuitem.forEach((e)=> {
+  // Scroll to Sections
+  menuitems.forEach((e)=> {
 	e.addEventListener('click', ()=> {
-	  localStorage.setItem('actSection', e.dataset.menuitem)
-//	  scrollToSection(e.dataset.menuitem)
+	  if(e.dataset.menuitem !== 's_portfolio'){
+		localStorage.setItem('actSection', e.dataset.menuitem)
+		const encSection = encodeURIComponent(e.dataset.menuitem)
+		setTimeout(()=>{
+		  window.location.href = `${path}/#${encSection}`
+		},200)
+	  } else {
+		setTimeout(()=>{
+		  window.location.href = `http://localhost:3000/portfolio`
+		},200)
+	  }
 	})
   })
 
@@ -101,7 +88,7 @@ export const CompMenu = ({ navs, ss }) => {
 			<p className="menu_item" data-menuitem="s_portfolio" id="portfolio" ref={s_portfolio}><FaPhotoVideo className="mIcon"/>&nbsp; Portfolio </p>
 			<p className="menu_item" data-menuitem="s_our_team" id="our_team"><FaUsers className="mIcon"/>&nbsp; Our Team </p>
 			<p className="menu_item" data-menuitem="s_reviews" id="reviews"><FaRegNewspaper className="mIcon"/>&nbsp; Reviews </p>
-			<p className="menu_item" data-menuitem="s_contact_us" id="contact_us"><FaMailBulk className="mIcon"/>&nbsp; Contact Us </p>
+			<p className="menu_item" data-menuitem="s_contact_us" id="contact"><FaMailBulk className="mIcon"/>&nbsp; Contact Us </p>
 		  </div>
 		  <div className="social" id="social">
 			<p className="social_item" id="facebook" title="Share on Facebook"><FaFacebookF /></p>
@@ -116,23 +103,14 @@ export const CompMenu = ({ navs, ss }) => {
 		  <div className="m_menu_container" id="m_menu_container">
 			<div className="m_menu" id="m_menu">
 			  <ul>
-				{/*<li className="m_menu_item" data-menuitem="s_home" id="m_welcome"><FaHome className="mIcon" />&nbsp;HOME</li>
+				<li className="m_menu_item" data-menuitem="s_home" id="m_welcome"><FaHome className="mIcon" />&nbsp;HOME</li>
 				<li className="m_menu_item" data-menuitem="s_about_us" id="m_about_us"><BsFillInfoCircleFill className="mIcon" />&nbsp;About Us</li>
 				<li className="m_menu_item" data-menuitem="s_services" id="m_services"><FaToolbox className="mIcon" />&nbsp;Services</li>
 				<li className="m_menu_item" data-menuitem="s_portfolio" id="m_portfolio" ref={s_m_portfolio}><FaPhotoVideo className="mIcon" />&nbsp;Portfolio</li>
 				<li className="m_menu_item" data-menuitem="s_our_team" id="m_our_team"><FaUsers className="mIcon" />&nbsp;Our Team</li>
 				<li className="m_menu_item" data-menuitem="s_reviews" id="m_reviews"><FaRegNewspaper className="mIcon" />&nbsp;Reviews</li>
-				<li className="m_menu_item" data-menuitem="s_contact_us" id="m_contact_us"><FaMailBulk className="mIcon" />&nbsp;Contact Us</li>
-				*/}
+				<li className="m_menu_item" data-menuitem="s_contact" id="m_contact_us"><FaMailBulk className="mIcon" />&nbsp;Contact Us</li>
 				
-				<a href="/#s_home" className="m_menu_item" data-menuitem="s_home" id="m_home"><FaHome className="mIcon" />&nbsp;HOME</a>
-				<a href="/#s_about_us" className="m_menu_item" data-menuitem="s_about_us" id="m_about_us"><BsFillInfoCircleFill className="mIcon" />&nbsp;About Us</a>
-				<a href="/#s_services" className="m_menu_item" data-menuitem="s_services" id="m_services"><FaToolbox className="mIcon" />&nbsp;Services</a>
-				<a href="/portfolio" className="m_menu_item" data-menuitem="s_portfolio" id="m_portfolio" ref={s_m_portfolio}><FaPhotoVideo className="mIcon" />&nbsp;Portfolio</a>
-				<a href="/#s_our_team" className="m_menu_item" data-menuitem="s_our_team" id="m_our_team"><FaUsers className="mIcon" />&nbsp;Our Team</a>
-				<a href="/#s_reviews" className="m_menu_item" data-menuitem="s_reviews" id="m_reviews"><FaRegNewspaper className="mIcon" />&nbsp;Reviews</a>
-				<a href="/#s_contact" className="m_menu_item" data-menuitem="s_contact_us" id="m_contact_us"><FaMailBulk className="mIcon" />&nbsp;Contact Us</a>
-
 			  </ul>
 			</div>
 		  </div>

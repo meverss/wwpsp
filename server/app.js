@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import ReviewsRoutes from './routes/reviewsRoutes.js'
+import WorkersRoutes from './routes/workersRoutes.js'
 import { SERVERIP } from './config.js'
 import morgan from 'morgan'
 
@@ -18,6 +19,7 @@ app.use(morgan('dev'))
 
 // Routes
 app.use('/api/reviews', ReviewsRoutes)
+app.use('/api/workers', WorkersRoutes)
 app.use('/api/error',  (req, res) => {
   res.status(404).render('404error', { title: 'Error 404 - Page not found' })
 })
