@@ -1,4 +1,4 @@
-import Worker from '../database/models/Workerss.model.js'
+import Worker from '../database/models/workers.model.js'
 import sendEmail from '../libs/mailer.js'
 
 const passAuth = (req) => {
@@ -35,8 +35,6 @@ export const getOneWorker = async (req, res) => {
 	createdAt,
 	updatedAt
 	})
-    }
-
   } catch (error) {
     return res.status(500).json({
       message: `ONE Worker: Something went wrong: ${error}`
@@ -73,7 +71,7 @@ export const updateWorker = async (req, res) => {
   const { id } = req.params
 
   try {
-    const updt = await Worker.updateOne({_id:id}, {name, ocupation, image}
+    const updt = await Worker.updateOne({_id:id}, {name, ocupation, image})
     if (updt.matchedCount === 1) {
       console.log(`Updated Worker ${name}`)
       res.sendStatus(204)
