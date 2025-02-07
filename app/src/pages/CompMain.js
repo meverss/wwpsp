@@ -121,7 +121,7 @@ const CompMain = ({ getReviews, reviews, notify, ss, path }) => {
 		  </div>
 		</article>
 		<CompServices />
-		<CompOurTeam />
+		<CompOurTeam path={path} />
 		<CompReviews getReviews={getReviews} reviews={reviews} notify={notify} />
 		<CompContactUs />
 		<CompBudgetFloat />

@@ -3,16 +3,26 @@ import axios from 'axios'
 import { serverContext } from '../App.js'
 import { useState, useEffect, useRef, useContext } from 'react'
 import { smoothDragScroll } from '../libs/smoothDragScroll.js'
+import winta from "../media/images/team/winta.jpg"
+import yoandra from "../media/images/team/yoandra.jpg"
+import yoander from "../media/images/team/yoander.jpg"
+import elon from "../media/images/team/elon.jpg"
+import joshua from "../media/images/team/joshua.jpg"
+import cinthia from "../media/images/team/cinthia.jpg"
+import igor from "../media/images/team/igor.jpg"
+import tasha from "../media/images/team/tasha.jpg"
+import stephen from "../media/images/team/stephen.jpg"
 
 const CompOurTeam = ({ path }) => {
   const server = useContext(serverContext)
   const URI = `${server}/workers/`
   
+  const [teamCards, setTeamCards] = useState(document.querySelectorAll('.team_card'))
   const [workers, setWorkers] = useState([])
 
   const team_box = useRef('')
   const team_member = document.querySelectorAll('.team_member')
-  let team_cards = []
+  let team_cards = document.querySelectorAll('.team_card')
   let cardsToShow = []
 
   useEffect(()=>{
@@ -23,9 +33,9 @@ const CompOurTeam = ({ path }) => {
 	  const res = await axios.get(URI)
 	  setWorkers(res.data)
   }
-  
-  const animateScroll = ()=> {
-	if(workers.length !== 0){
+
+  useEffect(()=> {
+	const animateScroll = ()=> {
 	  const parentRectLeft = Math.round(team_box.current.getBoundingClientRect().left)
 	  const boxWidth = Number(getComputedStyle(team_box.current).width.split('px')[0])
 	  const centerPos = parentRectLeft + (boxWidth / 2)
@@ -44,16 +54,16 @@ const CompOurTeam = ({ path }) => {
 		  card.children[0].children[0].classList.add('anim_image_shrink')
 		}
 
-		if(card.getBoundingClientRect().left < (team_box.current.getBoundingClientRect().left - 70) || card.getBoundingClientRect().left > Number(getComputedStyle(team_box.current).width.split('px')[0]) - 40){
+		if(card.getBoundingClientRect().left < (team_box.current.getBoundingClientRect().left - 80) || card.getBoundingClientRect().left > Number(getComputedStyle(team_box.current).width.split('px')[0]) - 40){
 		  card.style.opacity = '0'
 		} else {
 	  	  card.style.opacity = '1'
 		}
   	  })
 	}
-	}
 
 	const addMoreCardsRight = ()=> {
+	  //team_cards = document.querySelectorAll('.team_card')
   	  cardsToShow.push(...team_cards)
   	  cardsToShow.forEach((card)=> {
 		const newCard = card.cloneNode(true)
@@ -65,8 +75,9 @@ const CompOurTeam = ({ path }) => {
 	}
 
 	const addMoreCardsLeft = ()=> {
+	  //team_cards = document.querySelectorAll('.team_card')
   	  cardsToShow.push(...team_cards)
-  	  if(cardsToShow.length !== 0){
+  	  //if(team_cards.length >0){
   		const firstCard = document.getElementById(team_box.current.children[0].id)
   		cardsToShow.forEach((card)=> {
 		  const newCard = card.cloneNode(true)
@@ -78,21 +89,19 @@ const CompOurTeam = ({ path }) => {
   		setTimeout(()=>{
   		  team_box.current.style.overflow = 'auto'
   		},10) 
-  	  }
+  	  //}
   	  cardsToShow = []
 	}
 
-	if(team_box.current){
-	  team_box.current.addEventListener('scroll', ()=>{
-  		if (team_box.current.scrollLeft + team_box.current.clientWidth >= team_box.current.scrollWidth - 145){
-    	  addMoreCardsRight()
-  		}
-  		if (team_box.current.scrollLeft <= 145){
-		  addMoreCardsLeft()
-  		}
-  		animateScroll()
-	  })
-	}
+	team_box.current.addEventListener('scroll', ()=>{
+  	  if (team_box.current.scrollLeft + team_box.current.clientWidth >= team_box.current.scrollWidth - 145){
+    	addMoreCardsRight()
+  	  }
+  	  if (team_box.current.scrollLeft <= 145){
+		addMoreCardsLeft()
+  	  }
+  	  animateScroll()
+	})
 
 	const startInfiniteLoop = ()=> {
   	  addMoreCardsLeft()
@@ -108,17 +117,12 @@ const CompOurTeam = ({ path }) => {
 		  document.querySelector('#name').classList.remove("animate__animated", "animate__fadeInRight")
 		  document.querySelector('#job').classList.remove("animate__animated", "animate__fadeInLeft")		
 		},200)
-	  },3000)
+	  },4000)
 	}
   
-  useEffect(()=>{
-	team_cards = document.querySelectorAll('.team_card')
-	if(team_cards.length > 0){
-  	  startInfiniteLoop()
-  	}
-  },[team_cards])
+	startInfiniteLoop()
 
-
+  },[])
   
   return (
     <>

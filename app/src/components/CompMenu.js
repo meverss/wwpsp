@@ -12,38 +12,38 @@ export const CompMenu = ({ navs, ss, path }) => {
   const [menuIcon, setMenuIcon] = useState(<TfiMenu />)
   const [menuHidden, setMenuHidden] = useState(true)
 
-  const menuitems = document.querySelectorAll('.m_menu_item')
-  const currentPath = window.location.pathname
-  const sec = document.getElementById(ss)
-  
-  const s_portfolio = useRef()
-  const s_m_portfolio = useRef()
+  const sectionLinks = document.querySelectorAll('.section_link')
   const encSection = encodeURIComponent(ss)
   
   useEffect(()=>{
-	if(sec && currentPath !== '/portfolio'){
-	  window.location.href = `${path}/#${encSection}`
+	if(ss !== 's_portfolio'){
+	  window.location = `${path}/#${encSection}`
+	  setTimeout(()=> {
+		localStorage.removeItem('actSection')
+	  },500)
 	}
   },[document.querySelector(`#${ss}`)])
 
   // Scroll to Sections
-  menuitems.forEach((e)=> {
+  sectionLinks.forEach((e)=> {
 	e.addEventListener('click', ()=> {
+	  localStorage.setItem('actSection', e.dataset.menuitem)
 	  if(e.dataset.menuitem !== 's_portfolio'){
-		localStorage.setItem('actSection', e.dataset.menuitem)
 		const encSection = encodeURIComponent(e.dataset.menuitem)
 		setTimeout(()=>{
-		  window.location.href = `${path}/#${encSection}`
+		  window.location = `${path}/#${encSection}`
 		},200)
-	  } else {
+	  } else if(!window.location.pathname.includes('portfolio')){
 		setTimeout(()=>{
-		  window.location.href = `http://localhost:3000/portfolio`
+		  window.location = `${path}/portfolio`
 		},200)
 	  }
+	  if(ss === 's_portfolio' && window.location.pathname.includes('portfolio')) return
+	  return e.removeEventListener('click', null)
 	})
   })
 
-  // Sow/Hide Movile menu
+  // Sow/Hide Mobile menu
   const m_menu_container = document.getElementById('m_menu_container')
   const m_menu = document.getElementById('m_menu')
 
@@ -82,13 +82,13 @@ export const CompMenu = ({ navs, ss, path }) => {
 	  <section className="main_menu" id="main_menu">
 		<div className="menu_bar" id="menu_bar">
 		  <div className="menu" id="menu">
-			<p className="menu_item" data-menuitem="s_home" id="welcome"><FaHome className="mIcon"/>&nbsp; HOME </p>
-			<p className="menu_item" data-menuitem="s_about_us" id="about_us"><BsFillInfoCircleFill className="mIcon"/>&nbsp; About Us </p>
-			<p className="menu_item" data-menuitem="s_services" id="services"><FaToolbox className="mIcon"/>&nbsp; Services </p>
-			<p className="menu_item" data-menuitem="s_portfolio" id="portfolio" ref={s_portfolio}><FaPhotoVideo className="mIcon"/>&nbsp; Portfolio </p>
-			<p className="menu_item" data-menuitem="s_our_team" id="our_team"><FaUsers className="mIcon"/>&nbsp; Our Team </p>
-			<p className="menu_item" data-menuitem="s_reviews" id="reviews"><FaRegNewspaper className="mIcon"/>&nbsp; Reviews </p>
-			<p className="menu_item" data-menuitem="s_contact_us" id="contact"><FaMailBulk className="mIcon"/>&nbsp; Contact Us </p>
+			<p className="menu_item section_link" data-menuitem="s_home" id="welcome"><FaHome className="mIcon"/>&nbsp; HOME </p>
+			<p className="menu_item section_link" data-menuitem="s_about_us" id="about_us"><BsFillInfoCircleFill className="mIcon"/>&nbsp; About Us </p>
+			<p className="menu_item section_link" data-menuitem="s_services" id="services"><FaToolbox className="mIcon"/>&nbsp; Services </p>
+			<p className="menu_item section_link" data-menuitem="s_portfolio" id="portfolio"><FaPhotoVideo className="mIcon"/>&nbsp; Portfolio </p>
+			<p className="menu_item section_link" data-menuitem="s_our_team" id="our_team"><FaUsers className="mIcon"/>&nbsp; Our Team </p>
+			<p className="menu_item section_link" data-menuitem="s_reviews" id="reviews"><FaRegNewspaper className="mIcon"/>&nbsp; Reviews </p>
+			<p className="menu_item section_link" data-menuitem="s_contact_us" id="contact"><FaMailBulk className="mIcon"/>&nbsp; Contact Us </p>
 		  </div>
 		  <div className="social" id="social">
 			<p className="social_item" id="facebook" title="Share on Facebook"><FaFacebookF /></p>
@@ -103,13 +103,13 @@ export const CompMenu = ({ navs, ss, path }) => {
 		  <div className="m_menu_container" id="m_menu_container">
 			<div className="m_menu" id="m_menu">
 			  <ul>
-				<li className="m_menu_item" data-menuitem="s_home" id="m_welcome"><FaHome className="mIcon" />&nbsp;HOME</li>
-				<li className="m_menu_item" data-menuitem="s_about_us" id="m_about_us"><BsFillInfoCircleFill className="mIcon" />&nbsp;About Us</li>
-				<li className="m_menu_item" data-menuitem="s_services" id="m_services"><FaToolbox className="mIcon" />&nbsp;Services</li>
-				<li className="m_menu_item" data-menuitem="s_portfolio" id="m_portfolio" ref={s_m_portfolio}><FaPhotoVideo className="mIcon" />&nbsp;Portfolio</li>
-				<li className="m_menu_item" data-menuitem="s_our_team" id="m_our_team"><FaUsers className="mIcon" />&nbsp;Our Team</li>
-				<li className="m_menu_item" data-menuitem="s_reviews" id="m_reviews"><FaRegNewspaper className="mIcon" />&nbsp;Reviews</li>
-				<li className="m_menu_item" data-menuitem="s_contact" id="m_contact_us"><FaMailBulk className="mIcon" />&nbsp;Contact Us</li>
+				<li className="m_menu_item section_link" data-menuitem="s_home" id="m_welcome"><FaHome className="mIcon" />&nbsp;HOME</li>
+				<li className="m_menu_item section_link" data-menuitem="s_about_us" id="m_about_us"><BsFillInfoCircleFill className="mIcon" />&nbsp;About Us</li>
+				<li className="m_menu_item section_link" data-menuitem="s_services" id="m_services"><FaToolbox className="mIcon" />&nbsp;Services</li>
+				<li className="m_menu_item section_link" data-menuitem="s_portfolio" id="m_portfolio"><FaPhotoVideo className="mIcon" />&nbsp;Portfolio</li>
+				<li className="m_menu_item section_link" data-menuitem="s_our_team" id="m_our_team"><FaUsers className="mIcon" />&nbsp;Our Team</li>
+				<li className="m_menu_item section_link" data-menuitem="s_reviews" id="m_reviews"><FaRegNewspaper className="mIcon" />&nbsp;Reviews</li>
+				<li className="m_menu_item section_link" data-menuitem="s_contact" id="m_contact_us"><FaMailBulk className="mIcon" />&nbsp;Contact Us</li>
 				
 			  </ul>
 			</div>

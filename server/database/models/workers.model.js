@@ -13,7 +13,12 @@ const workerSchema = new Schema({
 	image: {
 		type: String,
 		required: true
+	},
+	reference: {
+		type: String,
+		required: true
 	}
+
 },{
 	timestamps: true
 })

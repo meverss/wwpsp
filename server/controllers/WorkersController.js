@@ -11,11 +11,11 @@ const passAuth = (req) => {
 // Get All Workers
 export const getAllWorkers = async (req, res) => {
     try {
-      const Workers = await Worker.find().sort({'createdAt': 1})
-        res.json(Workers)
+      const workers = await Worker.find().sort({'createdAt': 1})
+        res.json(workers)
     } catch (error) {
       return res.status(500).json({
-        message: `ALL WorkerSS: Something went wrong: ${error}`
+        message: `ALL Workers: Something went wrong: ${error}`
       })
     }
 }
@@ -26,12 +26,13 @@ export const getOneWorker = async (req, res) => {
   
   try {
     const workerFound = await Worker.findOne({_id:id})
-	const { name, ocupation, image, createdAt, updatedAt } = workerFound
+	const { name, ocupation, image, reference, createdAt, updatedAt } = workerFound
 	
 	res.status(200).json({ 
 	name,
 	ocupation,
 	image,
+	reference,
 	createdAt,
 	updatedAt
 	})
@@ -50,7 +51,8 @@ export const createWorker = async (req, res) => {
   	const newWorker = new Worker({
   	    name,
   	    ocupation,
-  	    image
+  	    image,
+  	    reference
   	})
   	  
   	await newWorker.save()
@@ -67,11 +69,11 @@ export const createWorker = async (req, res) => {
 
 // Update a Worker
 export const updateWorker = async (req, res) => {
-  const { name, ocupation, image } = req.body
+  const { name, ocupation, image, reference } = req.body
   const { id } = req.params
 
   try {
-    const updt = await Worker.updateOne({_id:id}, {name, ocupation, image})
+    const updt = await Worker.updateOne({_id:id}, {name, ocupation, image, reference})
     if (updt.matchedCount === 1) {
       console.log(`Updated Worker ${name}`)
       res.sendStatus(204)

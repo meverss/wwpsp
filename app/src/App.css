@@ -1090,6 +1090,7 @@ display: flex;
 	justify-content: space-between;
 	align-items: center;
 	width: 98%;
+	max-width: 750px;
 	overflow-x: auto;
 	white-space: nowrap;
 	scroll-behavior: smooth;
@@ -1111,7 +1112,7 @@ display: flex;
 	height: 180px;
 	font-size: 90%;
 	scroll-snap-align: center;
-	transition: .5s;
+	transition: .2s;
 }
 
 .team_card_reference {
