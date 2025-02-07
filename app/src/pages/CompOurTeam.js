@@ -113,10 +113,11 @@ const CompOurTeam = ({ path }) => {
   
   useEffect(()=>{
 	team_cards = document.querySelectorAll('.team_card')
-	if(team_cards.length > 0){
+	if(workers.length !== 0){
   	  startInfiniteLoop()
   	}
-  },[team_cards])
+  	return
+  },[workers.length])
 
 
   
