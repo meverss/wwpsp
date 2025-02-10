@@ -229,9 +229,9 @@ const App = () => {
   return (
     <serverContext.Provider value={server}>
       <>
-    	<CompHeaderTop />
-    	<div className="page_content" ref={pageContent} id="page_content" >
 
+    	<div className="page_content" ref={pageContent} id="page_content" >
+    	<CompHeaderTop />
     	{/* Loader */}
     	<div className="loader_container" ref={loaderContainer} id="loader_container" >
 		  <div className='loader' ></div>

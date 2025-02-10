@@ -716,6 +716,7 @@ a, a:active {
 	top: 140px;
 	overflow-x: hidden;
 	width: 100%;
+	max-width: 980px;
 	height: calc(100% - 180px);
 	padding-left: 10px;
 	padding-right: 10px;
