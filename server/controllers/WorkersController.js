@@ -11,7 +11,7 @@ const passAuth = (req) => {
 // Get All Workers
 export const getAllWorkers = async (req, res) => {
     try {
-      const workers = await Worker.find().sort({'createdAt': 1})
+      const workers = await Worker.find().sort({'reference': 1})
         res.json(workers)
     } catch (error) {
       return res.status(500).json({

@@ -20,13 +20,14 @@ export const CompMenu = ({ navs, ss, path }) => {
 	  window.location = `${path}/#${encSection}`
 	  setTimeout(()=> {
 		localStorage.removeItem('actSection')
-	  },500)
+	  },2000)
 	}
   },[document.querySelector(`#${ss}`)])
 
   // Scroll to Sections
   sectionLinks.forEach((e)=> {
 	e.addEventListener('click', ()=> {
+	  const secNav = document.querySelector(`#${ss}`)
 	  localStorage.setItem('actSection', e.dataset.menuitem)
 	  if(e.dataset.menuitem !== 's_portfolio'){
 		const encSection = encodeURIComponent(e.dataset.menuitem)
@@ -82,13 +83,13 @@ export const CompMenu = ({ navs, ss, path }) => {
 	  <section className="main_menu" id="main_menu">
 		<div className="menu_bar" id="menu_bar">
 		  <div className="menu" id="menu">
-			<p className="menu_item section_link" data-menuitem="s_home" id="welcome"><FaHome className="mIcon"/>&nbsp; HOME </p>
-			<p className="menu_item section_link" data-menuitem="s_about_us" id="about_us"><BsFillInfoCircleFill className="mIcon"/>&nbsp; About Us </p>
-			<p className="menu_item section_link" data-menuitem="s_services" id="services"><FaToolbox className="mIcon"/>&nbsp; Services </p>
-			<p className="menu_item section_link" data-menuitem="s_portfolio" id="portfolio"><FaPhotoVideo className="mIcon"/>&nbsp; Portfolio </p>
-			<p className="menu_item section_link" data-menuitem="s_our_team" id="our_team"><FaUsers className="mIcon"/>&nbsp; Our Team </p>
-			<p className="menu_item section_link" data-menuitem="s_reviews" id="reviews"><FaRegNewspaper className="mIcon"/>&nbsp; Reviews </p>
-			<p className="menu_item section_link" data-menuitem="s_contact_us" id="contact"><FaMailBulk className="mIcon"/>&nbsp; Contact Us </p>
+			<p className="menu_item section_link" data-menuitem="s_home" id="welcome"><FaHome className="mIcon"/>&nbsp;HOME </p>
+			<p className="menu_item section_link" data-menuitem="s_about_us" id="about_us"><BsFillInfoCircleFill className="mIcon"/>&nbsp;About Us </p>
+			<p className="menu_item section_link" data-menuitem="s_services" id="services"><FaToolbox className="mIcon"/>&nbsp;Services </p>
+			<p className="menu_item section_link" data-menuitem="s_portfolio" id="portfolio"><FaPhotoVideo className="mIcon"/>&nbsp;Portfolio </p>
+			<p className="menu_item section_link" data-menuitem="s_our_team" id="our_team"><FaUsers className="mIcon"/>&nbsp;Our Team </p>
+			<p className="menu_item section_link" data-menuitem="s_reviews" id="reviews"><FaRegNewspaper className="mIcon"/>&nbsp;Reviews </p>
+			<p className="menu_item section_link" data-menuitem="s_contact" id="contact"><FaMailBulk className="mIcon"/>&nbsp;Contact Us </p>
 		  </div>
 		  <div className="social" id="social">
 			<p className="social_item" id="facebook" title="Share on Facebook"><FaFacebookF /></p>

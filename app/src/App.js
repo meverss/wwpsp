@@ -255,7 +255,7 @@ const App = () => {
         <BrowserRouter forceRefresh={true}>
           <Routes>
         	<Route path='/' element={<CompMain reviews={reviews} getReviews={getReviews} notify={showNotification} ss={ss} path={path} />} />
-            <Route path='/portfolio' element={<CompPortfolio ss={ss} />} />
+            <Route path='/portfolio' element={<CompPortfolio ss={ss} path={path} />} />
 	        <Route path='*' element={<Navigate to="/" />} />
           </Routes>
         </BrowserRouter>

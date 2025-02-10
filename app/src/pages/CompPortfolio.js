@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { CompMenu } from '../components/CompMenu.js'
 
-const CompPortfolio = ({ navs, ss })=> {
+const CompPortfolio = ({ ss, path })=> {
   
   return (
     <>
-  	  <CompMenu navs={navs} ss={ss}/>
+  	  <CompMenu ss={ss} path={path} />
   	  <div className="main">
 		<h3> Here goes the Portfolio </h3>
 	  </div>

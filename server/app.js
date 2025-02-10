@@ -20,6 +20,7 @@ app.use(morgan('dev'))
 // Routes
 app.use('/api/reviews', ReviewsRoutes)
 app.use('/api/workers', WorkersRoutes)
+app.use('/api/media', (req, res)=>{res.sendStatus(204)})
 app.use('/api/error',  (req, res) => {
   res.status(404).render('404error', { title: 'Error 404 - Page not found' })
 })

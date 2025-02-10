@@ -139,7 +139,7 @@ const CompReviews = ({ getReviews, reviews, notify }) => {
 				</p>
 			  </div>
 			</div>
-		  )).slice(0, 11)
+		  )).slice(0, 10)
 		  : null
 		  } 
 		</article>
