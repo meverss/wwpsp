@@ -4,7 +4,7 @@ import { serverContext } from '../App.js'
 import { useState, useEffect, useRef, useContext } from 'react'
 import { smoothDragScroll } from '../libs/smoothDragScroll.js'
 
-const CompOurTeam = ({ path }) => {
+const CompOurTeam = () => {
   const server = useContext(serverContext)
   const URI = `${server}/workers/`
   
@@ -43,7 +43,7 @@ const CompOurTeam = ({ path }) => {
 		card.children[0].children[0].classList.add('anim_image_shrink')
 	  }
 
-	  if(card.getBoundingClientRect().left < (team_box.current.getBoundingClientRect().left - 70) || card.getBoundingClientRect().left > Number(getComputedStyle(team_box.current).width.split('px')[0]) + (window.innerWidth <= 980 ? - 40 : 130)){
+	  if(card.getBoundingClientRect().left < (team_box.current.getBoundingClientRect().left + (window.innerWidth <= 640 ? - 70 : -40)) || card.getBoundingClientRect().left > Number(getComputedStyle(team_box.current).width.split('px')[0]) + (window.innerWidth > 640 ? - 40 : 130)){
 		card.style.opacity = '0'
 	  } else {
 	  	card.style.opacity = '1'
@@ -140,7 +140,7 @@ const CompOurTeam = ({ path }) => {
 		{ workers && workers.map((worker, index)=> (
 		<div className="team_card" id={`card${index + 1}`} data-key={worker.id}>
 	  	  <div className="team_card_img">
-			<img className="team_member" src={`${path}${worker.image}`} alt={worker.name} />
+			<img className="team_member" src={`${server}${worker.image}`} alt={worker.name} />
 	  	  </div>
 	  	  <div className="team_card_text" id="team_card_text">
 			<h3>{worker.name}</h3>

@@ -32,7 +32,7 @@ const CompServices = ()=> {
 			</p>
 		  </div>
 		  <article className="e_services" id="e_services">
-			<div className="e_services_cards_box" id="e_services_cards_box">
+			<div className="e_services_cards_box" id="e_services_cards_box" >
 			  <div className="e_services_card box" id="e_service_metal">
 				<a href={metalRepair} data-lightbox='services'
 				  data-title='Metal repair' className="e_services_img">

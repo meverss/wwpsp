@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { serverContext } from '../App.js'
 import CompServices from './CompServices.js'
 import CompOurTeam from './CompOurTeam.js'
 import CompReviews from './CompReviews.js'
@@ -12,24 +13,28 @@ import { IoSunnyOutline, IoLogOutOutline } from "react-icons/io5"
 import { RiMoonLine } from "react-icons/ri"
 import { PiGearFill } from "react-icons/pi"
 
-import aboutThumb from "../media/images/about_thumb.webp"
-import freeConsultation from "../media/images/free_consultation.svg"
-import experiencedTechnician from "../media/images/experienced_technician.svg"
-import qualityParts from "../media/images/parts_quality.svg"
-import workGuaranteed from "../media/images/work_guaranteed.svg"
-import serviceOnTime from "../media/images/service_on_time.svg"
-import majorBrands from "../media/images/cover_major_brands.svg"
-import metalRepair from "../media/images/metal_repair.webp"
-import painting from "../media/images/painting.webp"
-import preasureWashing from "../media/images/preasure_washing.webp"
-import rescreening from "../media/images/rescreening.webp"
 
 const CompMain = ({ getReviews, reviews, notify, ss, path }) => {
+  const server = useContext(serverContext)
+  const mainContainer = useRef('')
+  const sCards = document.querySelectorAll('.e_services_card')
+
+  const aboutThumb = `../media/images/about_thumb.webp`
+  const freeConsultation = `../media/images/free_consultation.svg`
+  const experiencedTechnician = `../media/images/experienced_technician.svg`
+  const qualityParts = `../media/images/parts_quality.svg`
+  const workGuaranteed = `../media/images/work_guaranteed.svg`
+  const serviceOnTime = `../media/images/service_on_time.svg`
+  const majorBrands = `../media/images/cover_major_brands.svg`
+  const metalRepair = `../media/images/metal_repair.webp`
+  const painting = `../media/images/painting.webp`
+  const preasureWashing = `../media/images/preasure_washing.webp`
+  const rescreening = `../media/images/rescreening.webp`
 
   return (
     <>
   	  <CompMenu ss={ss} path={path} />
-	  <section className="main" id="main_container" >
+	  <section className="main" id="main_container" ref={mainContainer}>
 		<div style={{position: 'absolute', left: '0', width: '100%', margin: '0', paddingLeft: '10px', paddingRight: '10px'}}>
 		{/* Welcome! */}
 		<nav id="s_home"></nav>
@@ -58,7 +63,7 @@ const CompMain = ({ getReviews, reviews, notify, ss, path }) => {
 			<h2 className="about_us_title" id="about_us_title">About Us</h2>
 			<div className="about_us_content box">
 			<div className="about_us_img box" id="about_us_img">
-			  <img src={aboutThumb} alt="Working at WWP Screening & Painting LLC" />
+			  <img src={aboutThumb} id="aboutThumb" alt="Working at WWP Screening & Painting LLC" />
 			</div>
 			<div className="about_us_text box" id="about_us_text">
 			  <p>
