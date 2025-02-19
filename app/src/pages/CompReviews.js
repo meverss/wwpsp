@@ -115,17 +115,15 @@ const CompReviews = ({ mainContainer, getReviews, reviews, notify }) => {
   }
   
   const reviewsMoreLess = (e, opt)=> {
-
 	let rts = reviewsToShow
 	switch(opt){
 	  case"more":
-	alert(e.target.innerText)
 		if(rts <= reviews.length){
 		  rts += 5
 		} else {
 		  rts = reviews.length + 1
 		}
-		if(rts > reviews.length +1)rts = reviews.length + 1
+		if(rts > reviews.length + 1)rts = reviews.length + 1
 		break
 	  case"less":
 		const reviewIndex = (reviews_box.current.lastChild.id).split('_')
