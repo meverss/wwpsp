@@ -4,7 +4,7 @@ import { serverContext } from '../App.js'
 import { useState, useEffect, useRef, useContext } from 'react'
 import { smoothDragScroll } from '../libs/smoothDragScroll.js'
 
-const CompOurTeam = () => {
+const CompOurTeam = ({ mediaServer }) => {
   const server = useContext(serverContext)
   const URI = `${server}/workers/`
   
@@ -140,7 +140,7 @@ const CompOurTeam = () => {
 		{ workers && workers.map((worker, index)=> (
 		<div className="team_card" id={`card${index + 1}`} data-key={worker.id}>
 	  	  <div className="team_card_img">
-			<img className="team_member" src={`${server}${worker.image}`} alt={worker.name} />
+			<img className="team_member" src={`${mediaServer}${worker.image}`} alt={worker.name} />
 	  	  </div>
 	  	  <div className="team_card_text" id="team_card_text">
 			<h3>{worker.name}</h3>

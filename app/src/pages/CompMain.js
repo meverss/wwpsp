@@ -14,7 +14,7 @@ import { RiMoonLine } from "react-icons/ri"
 import { PiGearFill } from "react-icons/pi"
 
 
-const CompMain = ({ getReviews, reviews, notify, ss, path }) => {
+const CompMain = ({ mediaServer, getReviews, reviews, notify, ss }) => {
   const server = useContext(serverContext)
   const mainContainer = useRef('')
   const sCards = document.querySelectorAll('.e_services_card')
@@ -33,7 +33,7 @@ const CompMain = ({ getReviews, reviews, notify, ss, path }) => {
 
   return (
     <>
-  	  <CompMenu ss={ss} path={path} />
+  	  <CompMenu ss={ss} />
 	  <section className="main" id="main_container" ref={mainContainer}>
 		<div style={{position: 'absolute', left: '0', width: '100%', margin: '0', paddingLeft: '10px', paddingRight: '10px', paddingBottom: '95px'}}>
 		{/* Welcome! */}
@@ -126,8 +126,8 @@ const CompMain = ({ getReviews, reviews, notify, ss, path }) => {
 		  </div>
 		</article>
 		<CompServices />
-		<CompOurTeam path={path} />
-		<CompReviews mainContainer={mainContainer.current} getReviews={getReviews} reviews={reviews} notify={notify} />
+		<CompOurTeam mediaServer={mediaServer} />
+		<CompReviews mediaServer={mediaServer} mainContainer={mainContainer.current} getReviews={getReviews} reviews={reviews} notify={notify} />
 		<CompContactUs notify={notify} />
 		<CompBudgetFloat />
 		</div>

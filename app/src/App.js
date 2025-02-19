@@ -16,12 +16,16 @@ import { CompMenu } from './components/CompMenu.js'
 import CompMain from './pages/CompMain.js'
 import CompPortfolio from './pages/CompPortfolio.js'
 
-// API Server
+// API & Media Server
 let server
+let mediaServer
+
 if(window.location.hostname.includes('localhost') || window.location.hostname.includes('192.168.') || window.location.hostname.includes('127.0.')){
   server = `http://${window.location.hostname}:4000/api`
+  mediaServer = `http://${window.location.hostname}:4000/api`
 } else {
   server = `https://wwpsp-server.vercel.app/api`
+  mediaServer = `https://wwpsp-server.vercel.app/api`
 }
 
 export const serverContext = createContext()
@@ -259,8 +263,8 @@ const App = () => {
 
         <BrowserRouter forceRefresh={true}>
           <Routes>
-        	<Route path='/' element={<CompMain reviews={reviews} getReviews={getReviews} notify={showNotification} ss={ss} />} />
-            <Route path='/portfolio' element={<CompPortfolio ss={ss} />} />
+        	<Route path='/' element={<CompMain mediaServer={mediaServer} reviews={reviews} getReviews={getReviews} notify={showNotification} ss={ss} />} />
+            <Route path='/portfolio' element={<CompPortfolio mediaServer={mediaServer} ss={ss} />} />
 	        <Route path='*' element={<Navigate to="/" />} />
           </Routes>
         </BrowserRouter>

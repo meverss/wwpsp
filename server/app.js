@@ -43,10 +43,10 @@ const corsOptions = {
 app.use(cors(corsOptions))
 
 // Routes
+app.use('/api/media', express.static('./media'))
 app.use('/api/reviews', ReviewsRoutes)
 app.use('/api/workers', WorkersRoutes)
 app.use('/api/messages', MessagesRoutes)
-app.use('/api/media', express.static('./media'))
 app.use('/api/error',  (req, res) => {
   res.status(404).render('404error', { title: 'Error 404 - Page not found' })
 })

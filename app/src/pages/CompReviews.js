@@ -12,7 +12,7 @@ import { LiaCalendar } from "react-icons/lia"
 import { MdClose } from "react-icons/md"
 import { IoMdStar, IoMdStarOutline, IoMdStarHalf } from "react-icons/io";
 
-const CompReviews = ({ mainContainer, getReviews, reviews, notify }) => {
+const CompReviews = ({ mediaServer, mainContainer, getReviews, reviews, notify }) => {
   const server = useContext(serverContext)
   const URI = `${server}/reviews/`
   
