@@ -4,18 +4,16 @@ import ReviewsRoutes from './routes/reviewsRoutes.js'
 import WorkersRoutes from './routes/workersRoutes.js'
 import MessagesRoutes from './routes/messagesRoutes.js'
 import { SERVERIP } from './config.js'
-import path from 'path'
 import morgan from 'morgan'
 
 const app = express()
-const URI = `http://${SERVERIP}:3000`
 
+// Configuration
 app.disable('x-powered-by')
 
 // Middlewares
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-
 app.use(morgan('dev'))
 
 const allowedOrigins = [
@@ -47,14 +45,10 @@ app.use('/api/media', express.static('./media'))
 app.use('/api/reviews', ReviewsRoutes)
 app.use('/api/workers', WorkersRoutes)
 app.use('/api/messages', MessagesRoutes)
-app.use('/api/error',  (req, res) => {
-  res.status(404).render('404error', { title: 'Error 404 - Page not found' })
-})
-
 app.use((req, res) => {
   if (req.url === '/') {
   try {
-    res.redirect('/api/reviews')  
+    res.redirect('/api/reviews')
   } catch (err) {
     res.redirect('/api/error')
   }

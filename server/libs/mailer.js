@@ -15,6 +15,7 @@ const sendEmail = (mailType, data) => {
 	  let msg
 	  switch(mailType){
 		case('NEW REVIEW'):
+		  const rate = '⭐'.repeat(data.rate)
 		  msg = await transporter.sendMail({
 	  		from: '"KiniunDev" <no-replay@kiniun.dev>',
 	  		to: "meverss@my.com",
@@ -29,7 +30,7 @@ const sendEmail = (mailType, data) => {
 	  		  <p>
 	  			<span style='color: #A2B992'>Name:</span>&nbsp;${data.author}<br /><br />
 	  			<span style='color: #A2B992'>E-mail:</span>&nbsp;${data.email}<br /><br />
-	  			<span style='color: #A2B992'>Service rate:</span>&nbsp;${data.rate} stars!<br /><br />
+	  			<span style='color: #A2B992'>Service rate:</span>&nbsp;${rate}<br /><br />
 	  			<span style='color: #A2B992'>Review:</span><br />${data.review}
 	  		  </p>   
 	  		`,
