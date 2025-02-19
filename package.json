@@ -1,0 +1,21 @@
+{
+	"name": "wwpsp",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"server": "npm start --prefix server",
+		"app": "npm start --prefix app",
+		"dev": "concurrently \"npm run server\" \"npm run app\""
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"concurrently": "^8.2.2"
+	},
+	"devDependencies": {
+		"@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+	}
+}

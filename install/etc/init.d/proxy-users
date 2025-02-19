@@ -1,0 +1,49 @@
+#!/bin/bash
+
+### BEGIN INIT INFO
+# Provides:          Proxy Users
+# Required-Start:    $local_fs
+# Required-Stop:     $local_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Proxy Users Management
+# Description:       Proxy Users Management
+### END INIT INFO
+
+# Author: MeVeRsS <meverss@my.com>
+
+NAME="Proxy Users Management"
+DAEMON="cd /var/www/html/proxy-users/ && npm run dev > /var/www/html/proxy-users/proxy-users.log &"
+PID_DIR=/var/run
+PID_FILE=$PID_DIR/proxy-users.pid
+LOG_DIR=/var/log
+LOG_FILE=$LOG_DIR/proxy-users.log
+RET_VAL=0
+
+case "$1" in
+  start)
+	s=$( ps | grep 'node' | awk '{print $1}')
+	kill $s 2>/dev/null &
+	cd /var/www/html/proxy-users/ && npm run dev > /var/www/html/proxy-users/proxy-users.log & 
+	echo 'Proxy Users Management started and running'
+	;;
+  restart|force-reload|reload)
+	s=$( ps | grep 'node' | awk '{print $1}')
+	kill $s 2>/dev/null &
+	cd /var/www/html/proxy-users/ && npm run dev > /var/www/html/proxy-users/proxy-users.log & 
+	echo 'Proxy Users Management restarted'
+    ;;
+  stop)
+	s=$( pgrep node)
+	kill $s 2>/dev/null &
+    ;;
+  status)
+#    status_of_proc -p "$PID_FILE" jserver && exit 0 || exit $?
+    ;;
+  *)
+    echo "Usage: proxy-users {start|stop|restart}"
+    exit 2
+    ;;
+esac
+
+exit 0
