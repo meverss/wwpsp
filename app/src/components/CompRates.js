@@ -60,7 +60,7 @@ return (
   <>
   <div className="rateTableContainer">
 	<div className="rateGeneral">
-	  <p className="rate">{rate}</p>
+	  <p className="rate">{rate && rate !== 'NaN' ? rate : 0}</p>
 	  <div className="rateStarsGeneral">
 		<span className="rateStar">{rate && rate >= 1 ? <IoMdStar /> : <IoMdStarOutline />}</span>
 		<span className="rateStar">{rate && rate > 1 && rate < 2 ? <IoMdStarHalf /> : rate >= 2 ? <IoMdStar /> : <IoMdStarOutline />}</span>
