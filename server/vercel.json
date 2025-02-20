@@ -7,11 +7,6 @@
     }
   ],
   "routes": [
-
-    {
-      "src": "/api/media/(.*)",
-      "dest": "/media"
-    },
     {
       "src": "/(.*)",
       "dest": "index.js"
