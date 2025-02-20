@@ -6,15 +6,15 @@ import MessagesRoutes from './routes/messagesRoutes.js'
 import { SERVERIP } from './config.js'
 import morgan from 'morgan'
 
+// Get project's gull path
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-const app = express()
-
 // Configuration
+const app = express()
 app.disable('x-powered-by')
 
 // Middlewares
