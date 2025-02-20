@@ -6,6 +6,12 @@ import MessagesRoutes from './routes/messagesRoutes.js'
 import { SERVERIP } from './config.js'
 import morgan from 'morgan'
 
+import { fileURLToPath } from 'url'
+import { dirname } from 'path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+
 const app = express()
 
 // Configuration
@@ -41,7 +47,7 @@ const corsOptions = {
 app.use(cors(corsOptions))
 
 // Routes
-app.use('/api/media', express.static('media', {maxAge: 86400000, redirect: true}))
+app.use('/api/media', express.static(`${__dirname}/media`, {maxAge: 86400000, redirect: true}))
 app.use('/api/reviews', ReviewsRoutes)
 app.use('/api/workers', WorkersRoutes)
 app.use('/api/messages', MessagesRoutes)
