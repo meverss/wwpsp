@@ -33,6 +33,7 @@ const CompContactUs = ({ notify }) => {
 
 	  await axios.post(URI, {name, email, subject, message})
 	  notify('ok', 'Your message has been sent')
+	  window.location = '/#s_contact'
 	} catch (error) {
 	  notify('err', error)
 	}
@@ -65,7 +66,7 @@ const CompContactUs = ({ notify }) => {
 				  <label className="text" for="subj">Subject</label>
 				  <input className="frm_text" name="subj" id="subj" autocomplete="off"
 					placeholder="What's the affair?" data-frminfo="subject" value={subject}
-					onChange={(e)=> setSubject(e.target.value.trim())} />
+					onChange={(e)=> setSubject(e.target.value)} />
 				  <div className="message_labels">
 					<label className="text" for="message" id="contact_message_label">Message<span className="important">*</span></label>
 					<label className="counter" for="message" id="message_counter">({messageLength}/160)</label>
