@@ -8,8 +8,12 @@
 		"start": "nodemon index.js"
 	},
 	"keywords": [],
-	"author": "",
-	"license": "ISC",
+	"author": "Marvin Eversley Silva <meverss@gmail.com>",
+	"license": "MIT",
+	"repository": {
+  		"type": "git",
+  		"url": "https://github.com/meverss/wwpsp.git"
+	},
 	"dependencies": {
 		"aws-sdk": "^2.1692.0",
 		"cookie-parser": "^1.4.6",

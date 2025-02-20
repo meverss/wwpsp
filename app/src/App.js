@@ -20,7 +20,7 @@ import CompPortfolio from './pages/CompPortfolio.js'
 let server
 let mediaServer
 
-if(window.location.hostname.includes('localhost') || window.location.hostname.includes('192.168.') || window.location.hostname.includes('127.0.')){
+if(window.location.hostname.includes('localhost') || window.location.hostname.includes('192.168.') || window.location.hostname.includes('127.0.') || window.location.hostname.includes('10.')){
   server = `http://${window.location.hostname}:4000/api`
   mediaServer = `http://${window.location.hostname}:4000/api`
 } else {

@@ -10,8 +10,12 @@
 		"dev": "concurrently \"npm run server\" \"npm run app\""
 	},
 	"keywords": [],
-	"author": "",
-	"license": "ISC",
+	"author": "Marvin Eversley Silva <meverss@gmail.com>",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/meverss/wwpsp.git"
+	},
 	"dependencies": {
 		"concurrently": "^8.2.2"
 	},

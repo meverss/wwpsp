@@ -41,10 +41,11 @@ const corsOptions = {
 app.use(cors(corsOptions))
 
 // Routes
-app.use('/api/media', express.static('./media'))
+app.use('/api/media', express.static('media', {maxAge: 86400000, redirect: true}))
 app.use('/api/reviews', ReviewsRoutes)
 app.use('/api/workers', WorkersRoutes)
 app.use('/api/messages', MessagesRoutes)
+
 app.use((req, res) => {
   if (req.url === '/') {
   try {

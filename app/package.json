@@ -2,6 +2,12 @@
   "name": "wwpsp-app",
   "version": "0.2.1",
   "private": true,
+  "author": "Marvin Eversley Silva <meverss@gmail.com>",
+  "license": "MIT",
+  "repository": {
+	  "type": "git",
+	  "url": "https://github.com/meverss/wwpsp.git"
+  },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "@react-icons/all-files": "^4.1.0",
