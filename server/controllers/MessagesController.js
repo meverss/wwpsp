@@ -46,19 +46,16 @@ export const getOneMessage = async (req, res) => {
 // Add a Message
 export const createMessage = async (req, res) => {
   const { name, email, subject, message } = req.body
-  let sub
-  if(subject === ''){
-	sub = '(No subject)'
-  } else {
-	sub = subject
-  }
+  let sub = subject
+  if(!subject)sub = '(No subject)'
   
   try {
   	const newMessage = new Message({
   	    name,
   	    email,
   	    subject: sub,
-  	    message
+  	    message,
+  	    pending: false
   	})
   	  
   	await newMessage.save()

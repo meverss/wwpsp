@@ -17,6 +17,10 @@ const messageSchema = new Schema({
 	message: {
 		type: String,
 		required: true
+	},
+	pending: {
+		type: Boolean,
+		required: true
 	}
 
 },{

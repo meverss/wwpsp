@@ -9,5 +9,6 @@ app.set('appName', 'wwpsp-server')
 // Run Server
 connectDB()
 app.listen(PORT, () => {
-  console.log(`>>> Server listenning on port ${PORT}.`)
+  console.log('---------|\x1b[33m Server status\x1b[0m |---------')
+  console.log(`\x1b[32m>>> Server listenning on port \x1b[36m${PORT}.\x1b[0m`)
 })
