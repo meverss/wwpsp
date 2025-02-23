@@ -1,8 +1,8 @@
 import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema
-const reviewSchema = new Schema({
-	author: {
+const budgetSchema = new Schema({
+	name: {
 		type: String,
 		required: true
 	},
@@ -10,18 +10,8 @@ const reviewSchema = new Schema({
 		type: String,
 		required: true
 	},
-	review: {
+	budget: {
 		type: String,
-		required: true
-	},
-	rate: {
-		type: Number,
-		min: 1,
-		max: 5,
-		required: true
-	},
-	enabled: {
-		type: Boolean,
 		required: true
 	},
 	pending: {
@@ -32,7 +22,7 @@ const reviewSchema = new Schema({
 	timestamps: true
 })
 
-reviewSchema.set('toJSON', {
+budgetSchema.set('toJSON', {
 	transform: (document,returnedObject) => {
 		returnedObject.id = returnedObject._id
 		delete returnedObject._id
@@ -41,4 +31,4 @@ reviewSchema.set('toJSON', {
 	}
 })
 
-export default mongoose.model('Review', reviewSchema)
+export default mongoose.model('budget', budgetSchema)

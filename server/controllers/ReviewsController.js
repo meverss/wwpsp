@@ -55,6 +55,7 @@ export const createReview = async (req, res) => {
   	    review,
   	    rate,
   	    enabled: true,
+  	    pending: true
   	})
   	  
   	await newReview.save()

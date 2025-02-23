@@ -51,8 +51,7 @@ export const createWorker = async (req, res) => {
   	const newWorker = new Worker({
   	    name,
   	    ocupation,
-  	    image,
-  	    reference
+  	    image
   	})
   	  
   	await newWorker.save()

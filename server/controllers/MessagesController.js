@@ -55,7 +55,7 @@ export const createMessage = async (req, res) => {
   	    email,
   	    subject: sub,
   	    message,
-  	    pending: false
+  	    pending: true
   	})
   	  
   	await newMessage.save()
