@@ -1,7 +1,11 @@
 import Message from '../database/models/messages.model.js'
+import Review from '../database/models/reviews.model.js'
+import Budget from '../database/models/budgets.model.js'
 import nodemailer from 'nodemailer'
 
 const sendEmail = (mailType, mailData) => {
+	let mt = mailType
+	let mailSent
 	
 	// Mail Server configuration:
 	const transporter = nodemailer.createTransport({
@@ -17,16 +21,17 @@ const sendEmail = (mailType, mailData) => {
 	  async function send(data) {
 		try {
 		  let msg
-		  switch(mailType){
+
+		  switch(mt){
 			case('NEW REVIEW'):
 			  const rate = '⭐'.repeat(data.rate)
 			  msg = await transporter.sendMail({
 	  		  from: '"KiniunDev" <no-replay@kiniun.dev>',
 	  		  to: "meverss@my.com",
-	  		  subject: `You have a ${mailType}`,
+	  		  subject: `You have a ${mt}`,
 	  		  html: `
 	  			<p style='color: #085c97'>
-	  			  <b>You have received a ${mailType}.</b>
+	  			  <b>You have received a ${mt}.</b>
 	  			</p>
 	  			<p style='color: #37a1c6'>
 	  			  <b>Details:</b>
@@ -39,16 +44,17 @@ const sendEmail = (mailType, mailData) => {
 	  			</p>   
 	  		  `,
 			  })
+			  await Review.updateOne({_id:data.id}, {pending: false})
+			  console.log(`\x1b[32mMessage sent! E-mail ID: \x1b[36m${msg.messageId}\x1b[0m`)
 			  break
 			case('NEW BUDGET REQUEST'):
 			  msg = await transporter.sendMail({
 	  		  from: '"KiniunDev" <no-replay@kiniun.dev>',
 	  		  to: "meverss@my.com",
-	  		  subject: `You have a ${mailType}`,
+	  		  subject: `You have a ${mt}`,
 	  		  html: `
 	  			<p style='color: #085c97'>
-	  			  <b>You have received a ${mailType}.</b>
-	  			</p>
+	  			  <b>You have received a ${mt}.</b>	  			</p>
 	  			<p style='color: #37a1c6'>
 	  			  <b>Details:</b>
 	  			</p>
@@ -59,15 +65,17 @@ const sendEmail = (mailType, mailData) => {
 	  			</p>   
 	  			`,
 			  })
+			  await Budget.updateOne({_id:data.id}, {pending: false})
+			  console.log(`\x1b[32mMessage sent! E-mail ID: \x1b[36m${msg.messageId}\x1b[0m`)
 			  break
 			case('NEW MESSAGE'):
 			  msg = await transporter.sendMail({
 	  	  	  from: '"KiniunDev" <no-replay@kiniun.dev>',
 	  		  to: "meverss@my.com",
-	  		  subject: `You have a ${mailType}`,
+	  		  subject: `You have a ${mt}`,
 	  		  html: `
 	  			<p style='color: #085c97'>
-	  			  <b>You have received a ${mailType}.</b>
+	  			  <b>You have received a ${mt}.</b>
 	  			</p>
 	  			<p style='color: #37a1c6'>
 	  			  <b>Details:</b>
@@ -80,30 +88,43 @@ const sendEmail = (mailType, mailData) => {
 	  			</p>   
 	  			`,
 				})
-				break
+			  await Message.updateOne({_id:data.id}, {pending: false})
+			  console.log(`\x1b[32mMessage sent! E-mail ID: \x1b[36m${msg.messageId}\x1b[0m`)
+			  break
 		  }
-		  const mailSent = await Message.updateOne({_id:data.id}, {pending: false})
-		  if(mailSent.matchedCount === 1)console.log(`\x1b[32mMessage sent! E-mail ID: \x1b[36m${msg.messageId}\x1b[0m`)
-		} catch (err) {
-		  console.log(`\x1b[31mError sending the email.\n\x1b[31mCouldn't resolve server ${err.hostname}\x1b[0m`)
-		  const emailToQueue = await Message.updateOne({_id:md.id}, {pending: true})
+		} catch (error) {
+		  console.log(`\x1b[31mError sending the email.\n\x1b[31mCouldn't resolve server ${transporter.options.host}\x1b[0m`)
 		}
 	}
 
 	async function checkIfPendings() {
 	  setInterval(async ()=> {
-		const queuedEmails = await Message.find({pending:true})
-		if(queuedEmails.length !== 0){
-		  queuedEmails.forEach(email => {
+		const pendingMessages = await Message.find({pending:true})
+		const pendingReviews = await Review.find({pending:true})
+		const pendingBudgets = await Budget.find({pending:true})
+		const pendingEmails = [...pendingMessages,...pendingReviews,...pendingBudgets]
+		if(pendingEmails.length !== 0){
+		  console.log(`${pendingEmails.length} emails pending`)
+		  pendingEmails.forEach(email => {
+			switch(true){
+			  case(email.review !== undefined):
+				mt = 'NEW REVIEW'
+				break
+			  case(email.message !== undefined):
+				mt = 'NEW MESSAGE'
+				break
+			  case(email.budget !== undefined):
+				mt = 'NEW BUDGET REQUEST'
+				break
+			}
 			send(email)
 		  })
 		}
-		//console.log(`${queuedEmails.length} emails pending`)
-	  },60000)
+	  },20000)
 	}
 	
 	if(mailType && mailData) send(mailData)
-	checkIfPendings()	
+	checkIfPendings()
 }
 
 export default sendEmail
