@@ -181,7 +181,10 @@ const CompReviews = ({ mediaServer, mainContainer, getReviews, reviews, notify }
   	  <nav id="s_reviews"></nav>
 	  <section className="s_reviews box" id="s_reviews">
 		<h2 className="reviews_title" id="reviews_title">Reviews</h2>
-		<p>This is what our clients think about the services we provide:</p>
+		<p>
+		  Please, read what our clients think about the services we have provided
+		  them and, once we are done with your job, feel free to rate us and share your experience with others.
+		</p>
 		<CompRates data={reviews} mainContainer={mainContainer} />
 		<article className="reviews_box" ref={reviews_box} id="reviews_box">
 		  {reviews ? reviews.map((r, index) => (

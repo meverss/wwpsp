@@ -21,8 +21,11 @@ const messageSchema = new Schema({
 	pending: {
 		type: Boolean,
 		required: true
+	},
+	mailtype: {
+		type: String,
+		required: true
 	}
-
 },{
 	timestamps: true
 })

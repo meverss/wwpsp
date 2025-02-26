@@ -10,6 +10,10 @@ const budgetSchema = new Schema({
 		type: String,
 		required: true
 	},
+	phone: {
+		type: String,
+		required: true
+	},
 	budget: {
 		type: String,
 		required: true
@@ -17,7 +21,12 @@ const budgetSchema = new Schema({
 	pending: {
 		type: Boolean,
 		required: true
+	},
+	mailtype: {
+		type: String,
+		required: true
 	}
+
 },{
 	timestamps: true
 })

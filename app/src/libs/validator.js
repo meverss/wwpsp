@@ -120,7 +120,7 @@ export const validateAll = (user, fullname) => {
                 e.classList.remove("wrong", "animate__animated", "animate__shakeX")
               }, 1000)
               setTimeout(()=> {
-                e.placeholder = "Where can we call you?"
+                e.placeholder = "Where can we call you to?"
               }, 3500)
             }
           })
@@ -154,9 +154,9 @@ export const validateAll = (user, fullname) => {
 			  case "budget_form":
 				e.addEventListener('keyup', ()=> {
 				  if (formBudgetName.value !== "" && formBudgetEmail.value !== "" && formBudgetPhone.value != "" && e.value.length >= 5) {
-					enableSendButton('bd_btn_send')
+					enableSendButton('br_btn_send')
 				  } else {
-					disableSendButton('bd_btn_send')		
+					disableSendButton('br_btn_send')		
 				  }
 				})
 				break
@@ -169,8 +169,8 @@ export const validateAll = (user, fullname) => {
 				  }
 				})
       		  default:
-      		  }
-      		  })
-	}
+      		}
+      	  })
+		}
   })
 }

@@ -129,7 +129,7 @@ const CompMain = ({ mediaServer, getReviews, reviews, notify, ss }) => {
 		<CompOurTeam mediaServer={mediaServer} />
 		<CompReviews mediaServer={mediaServer} mainContainer={mainContainer.current} getReviews={getReviews} reviews={reviews} notify={notify} />
 		<CompContactUs notify={notify} />
-		<CompBudgetFloat />
+		<CompBudgetFloat notify={notify} />
 		</div>
 	  </section>
     </>

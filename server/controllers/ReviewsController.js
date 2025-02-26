@@ -55,11 +55,12 @@ export const createReview = async (req, res) => {
   	    review,
   	    rate,
   	    enabled: true,
-  	    pending: true
+  	    pending: true,
+  	    mailtype:'NEW REVIEW'
   	})
   	  
   	await newReview.save()
-  	sendEmail('NEW REVIEW', newReview)
+  	sendEmail(newReview)
   	
     console.log(`${author} added a new review`)
     res.sendStatus(204)

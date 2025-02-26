@@ -55,11 +55,12 @@ export const createMessage = async (req, res) => {
   	    email,
   	    subject: sub,
   	    message,
-  	    pending: true
+  	    pending: true,
+  	    mailtype: 'NEW MESSAGE'
   	})
   	  
   	await newMessage.save()
-  	sendEmail('NEW MESSAGE', newMessage)
+  	sendEmail(newMessage)
   	
     console.log(`New Message from ${name}`)
     res.sendStatus(204)

@@ -3,10 +3,10 @@ import Review from '../database/models/reviews.model.js'
 import Budget from '../database/models/budgets.model.js'
 import nodemailer from 'nodemailer'
 
-const sendEmail = (mailType, mailData) => {
-	let mt = mailType
-	let mailSent
+const sendEmail = (mailData) => {
+	let sending = []
 	
+
 	// Mail Server configuration:
 	const transporter = nodemailer.createTransport({
 	  host: "smtp.gmail.com",
@@ -17,21 +17,23 @@ const sendEmail = (mailType, mailData) => {
 	    pass: process.env.GMAIL_KEY,
 	  },
 	})
-
-	  async function send(data) {
+	
+	  const send = (data)=> {
 		try {
 		  let msg
-
-		  switch(mt){
+		  if(!sending.includes(data.id)) sending.push(data.id)
+		  
+		  const notifyByEmail = async ()=> {
+		  switch(data.mailtype){
 			case('NEW REVIEW'):
 			  const rate = '⭐'.repeat(data.rate)
 			  msg = await transporter.sendMail({
 	  		  from: '"KiniunDev" <no-replay@kiniun.dev>',
 	  		  to: "meverss@my.com",
-	  		  subject: `You have a ${mt}`,
+	  		  subject: `You have a ${data.mailtype}`,
 	  		  html: `
 	  			<p style='color: #085c97'>
-	  			  <b>You have received a ${mt}.</b>
+	  			  <b>You have received a ${data.mailtype}.</b>
 	  			</p>
 	  			<p style='color: #37a1c6'>
 	  			  <b>Details:</b>
@@ -51,17 +53,18 @@ const sendEmail = (mailType, mailData) => {
 			  msg = await transporter.sendMail({
 	  		  from: '"KiniunDev" <no-replay@kiniun.dev>',
 	  		  to: "meverss@my.com",
-	  		  subject: `You have a ${mt}`,
+	  		  subject: `You have a ${data.mailtype}`,
 	  		  html: `
 	  			<p style='color: #085c97'>
-	  			  <b>You have received a ${mt}.</b>	  			</p>
+	  			  <b>You have received a ${data.mailtype}.</b>	  			</p>
 	  			<p style='color: #37a1c6'>
 	  			  <b>Details:</b>
 	  			</p>
 	  			<p>
-	  			  <span style='color: #A2B992'>Name:</span>&nbsp;${data.user}<br /><br />
+	  			  <span style='color: #A2B992'>Name:</span>&nbsp;${data.name}<br /><br />
 	  			  <span style='color: #A2B992'>E-mail:</span>&nbsp;${data.email}<br /><br />
-	  			  <span style='color: #A2B992'>Budget request:</span><br />${data.message}
+	  			  <span style='color: #A2B992'>Phone:</span>&nbsp;${data.phone}<br /><br />
+	  			  <span style='color: #A2B992'>Budget request:</span><br />${data.budget}
 	  			</p>   
 	  			`,
 			  })
@@ -72,10 +75,10 @@ const sendEmail = (mailType, mailData) => {
 			  msg = await transporter.sendMail({
 	  	  	  from: '"KiniunDev" <no-replay@kiniun.dev>',
 	  		  to: "meverss@my.com",
-	  		  subject: `You have a ${mt}`,
+	  		  subject: `You have a ${data.mailtype}`,
 	  		  html: `
 	  			<p style='color: #085c97'>
-	  			  <b>You have received a ${mt}.</b>
+	  			  <b>You have received a ${data.mailtype}.</b>
 	  			</p>
 	  			<p style='color: #37a1c6'>
 	  			  <b>Details:</b>
@@ -92,38 +95,34 @@ const sendEmail = (mailType, mailData) => {
 			  console.log(`\x1b[32mMessage sent! E-mail ID: \x1b[36m${msg.messageId}\x1b[0m`)
 			  break
 		  }
-		} catch (error) {
-		  console.log(`\x1b[31mError sending the email.\n\x1b[31mCouldn't resolve server ${transporter.options.host}\x1b[0m`)
+		  }
+		  
+		  notifyByEmail()
+		} catch (err){
+		  console.log(`\x1b[33mError sending the email.\n\x1b[31mCouldn't resolve server ${transporter.options.host}\x1b[0m`)
+		  setTimeout(()=> {notifyByEmail()}, 5000)
 		}
 	}
 
-	async function checkIfPendings() {
-	  setInterval(async ()=> {
+	const checkIfPendings = async ()=> {
 		const pendingMessages = await Message.find({pending:true})
 		const pendingReviews = await Review.find({pending:true})
 		const pendingBudgets = await Budget.find({pending:true})
 		const pendingEmails = [...pendingMessages,...pendingReviews,...pendingBudgets]
 		if(pendingEmails.length !== 0){
 		  console.log(`${pendingEmails.length} emails pending`)
-		  pendingEmails.forEach(email => {
-			switch(true){
-			  case(email.review !== undefined):
-				mt = 'NEW REVIEW'
-				break
-			  case(email.message !== undefined):
-				mt = 'NEW MESSAGE'
-				break
-			  case(email.budget !== undefined):
-				mt = 'NEW BUDGET REQUEST'
-				break
-			}
-			send(email)
-		  })
+		  setInterval(()=> {
+			pendingEmails.forEach((email) => {
+			  transporter.verify().then(()=> {
+				if(!sending.includes(email.id)) send(email)
+  			  })
+			  .catch (err=> console.log(`\x1b[31mError sending the email.\n\x1b[31mCouldn't resolve server ${transporter.options.host}\x1b[0m`))
+			})
+		  }, 10000)
 		}
-	  },20000)
 	}
 	
-	if(mailType && mailData) send(mailData)
+	if(mailData) send(mailData)
 	checkIfPendings()
 }
 

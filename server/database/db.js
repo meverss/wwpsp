@@ -2,9 +2,6 @@ import mongoose from 'mongoose'
 import { SERVERIP } from '../config.js'
 import sendMail from '../libs/mailer.js'
 
-const IPlist = ['127.0.0.1','192.168.','10.','169.']
-let dbServer
-
 export const connectDB = async ()=> {
   try {
 //	await mongoose.connect('mongodb://localhost/wwpsp')

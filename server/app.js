@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import ReviewsRoutes from './routes/reviewsRoutes.js'
+import BudgetsRoutes from './routes/budgetsRoutes.js'
 import WorkersRoutes from './routes/workersRoutes.js'
 import MessagesRoutes from './routes/messagesRoutes.js'
 import { SERVERIP } from './config.js'
@@ -49,6 +50,7 @@ app.use(cors(corsOptions))
 // Routes
 app.use('/api/media', express.static(`${__dirname}/media`, {maxAge: 86400000, redirect: true}))
 app.use('/api/reviews', ReviewsRoutes)
+app.use('/api/budgets', BudgetsRoutes)
 app.use('/api/workers', WorkersRoutes)
 app.use('/api/messages', MessagesRoutes)
 
