@@ -1,16 +1,13 @@
 import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema
-const workerSchema = new Schema({
+const mediaSchema = new Schema({
 	name: {
 		type: String,
-		required: true
+		required: true,
+		unique: true
 	},
-	ocupation: {
-		type: String,
-		required: true
-	},
-	image: {
+	album: {
 		type: String,
 		required: true
 	}
@@ -18,7 +15,7 @@ const workerSchema = new Schema({
 	timestamps: true
 })
 
-workerSchema.set('toJSON', {
+mediaSchema.set('toJSON', {
 	transform: (document,returnedObject) => {
 		returnedObject.id = returnedObject._id
 		delete returnedObject._id
@@ -27,4 +24,4 @@ workerSchema.set('toJSON', {
 	}
 })
 
-export default mongoose.model('worker', workerSchema)
+export default mongoose.model('media', mediaSchema)

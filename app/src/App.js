@@ -22,10 +22,10 @@ let mediaServer
 
 if(window.location.hostname.includes('localhost') || window.location.hostname.includes('192.168.') || window.location.hostname.includes('127.0.') || window.location.hostname.includes('10.')){
   server = `http://${window.location.hostname}:4000/api`
-  mediaServer = `http://${window.location.hostname}:4000/api`
+  mediaServer = server
 } else {
   server = `https://wwpsp-server.vercel.app/api`
-  mediaServer = `https://wwpsp-server.vercel.app/api`
+  mediaServer = server
 }
 
 export const serverContext = createContext()
@@ -259,7 +259,7 @@ const App = () => {
         </section>
         <br />
 
-		<p id="gossip" style={{position: 'fixed', top: '60px', zIndex: '9999999999', color: 'green'}}></p>            
+		<p id="gossip" style={{position: 'fixed', top: '60px', zIndex: '9999999999', color: 'green'}}></p>
 
         <BrowserRouter forceRefresh={true}>
           <Routes>

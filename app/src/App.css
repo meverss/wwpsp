@@ -1166,18 +1166,18 @@ display: flex;
 }
 
 .rateBar .rateStar {
-	font-size: 18px;
+	font-size: 16px;
 	height: 100%;
-	padding: 0;
+	padding-bottom: 1px;
 }
 
 .ratePercentBar {
 	display: flex;
 	min-width: 80%;
-	height: 9.5px;
+	height: 9.8px;
 	background: transparent;
 	border: 1px solid var(--border);
-	border-radius: 9px;
+	border-radius: 8px;
 	padding: 0;
 }
 
@@ -1696,98 +1696,120 @@ textarea {
 .s_portfolio {
 	display: flex;
 	flex-direction: column;
-	position: absolute;
-	top: 100px;
-	justify-content: top;
 	align-items: center;
 	width: 100%;
-	height: 100%;
-	min-width: 360px;
+	min-width: 400px;
+	margin-top: 20px;
 }
 
 .portfolio_box {
 	width: 98%;
-	width: 100%;
-	margin-top: 20px;
 }
 
 .media_tags {
 	display: flex;
 	justify-content: left;
+	align-items: end;
 	width: 100%;
 }
 
-.pictures_box,
+.images_box,
 .videos_box {
 	display: flex;
-	justify-content: center;
+	justify-content: left;
 	align-items: center;
-	flex-wrap: wrap;
-	position: absolute;
-	width: 100%;
-	height: fit-content;
-	background-color: #fff;
+	width: 98%;
+	height: 280px;
+	background-color: var(--background-body);
+	box-shadow: 1px 1px 10px 1px var(--box-shadow);
+	border-radius: 0px 2px 2px 2px;
+	border: 1px solid var(--border);
+	transition: .1s;
+	overflow-x: scroll;
+	scroll-snap-type: x mandatory;
+	scrollbar-width: none;
+	z-Index: 15;
 }
 
-.pictures_box {
-	z-index: 100;
-}
-
-.videos_box {
-	display: none;
-	z-index: 99;
-	height: auto;
-}
-
-.pictures_tag,
+.images_tag,
 .videos_tag {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	width: 180px;
-	border-top-right-radius: 30px;
-	border-top-left-radius: 30px;
+	padding: 0;
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+	box-shadow: 1px 1px 10px 1px var(--box-shadow);
+	transition: .1s;
 }
 
-.pictures_tag:hover,
+.images_tag:hover,
 .videos_tag:hover {
 	cursor: pointer;
 }
 
-.pictures_tag {
-	z-index: 150;
+.videos_tag {
+	margin-left: -10px;
+}
+
+.images_tag h3,
+.videos_tag h3 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 14pt;
+	padding: 5px;
+}
+
+.tagIcon {
+	font-size: 32px;
+}
+
+.tag_active {
+	z-index: 10;
+	height: 40px;
 	background-color: #085c97;
 }
 
-.videos_tag {
-	z-index: 149;
-	margin-left: -20px;
-	color: #555;
+.tag_inactive {
+	z-index: 9;
+	height: 36px;
 	background-color: #ddd;
 }
 
-.pictures_tag h3,
-.videos_tag h3 {
-	font-size: 16pt;
-	padding: 10px;
+.images_album,
+.videos_album {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	min-width: 200px;
+	height: 250px;
+
+	
 }
 
-.pictures_tag h3 {
-	color: #eee;
-}
-
-.pictures,
-.videos {
+.album_thumbnail {
 	display: flex;
 	justify-content: center;
-	flex-wrap: wrap;
-	gap: 30px;
-	row-gap: inherit;
-	align-items: baseline;
 	width: 100%;
-	height: 100%;
-	border: 1px solid #bbb;
-	background-color: #fff;
+	scroll-snap-align: center;
+	position: relative;
+}
+
+.album_thumbnail img {
+	max-width: 140px;
+	border-radius: 5px;
+	position: absolute;
+	top: -90px;
+}
+
+.album_label {
+	text-align: center;
+	font-size: 14px;
+	height: 20px;
+	position: relative;
+	top: 100px;
 }
 
 .videos {
@@ -1859,8 +1881,7 @@ textarea {
 .img_thumbnail {
 	display: flex;
 	justify-content: center;
-	width: 100%;
-	height: 0%;
+	width: 130px;
 	margin-top: 10px;
 	align-items: center;
 	padding: 10px;
@@ -1871,17 +1892,16 @@ textarea {
 	margin-top: -70px;
 	display: flex;
 	justify-content: center;
-	width: 100%;
+	width: 130px;
 	height: 180px;
 	align-items: center;
 	padding: 10px;
 }
 
-.img_thumbnail .image {
-	object-fit: fill;
-	position: absolute;
-	width: 90%;
-	height: 40%;
+.img_thumbnail img {
+	object-fit: cover;
+	/*position: absolute;*/
+	width: 98%;
 	top: 0;
 	transition: .2s;
 	border-radius: 5px;
@@ -2101,7 +2121,7 @@ p a {
 }
 
 @media screen and (max-width: 459px) {
-	.gallery_box {
+/*	.gallery_box {
 		width: 300px;
 		height: 450px;
 		margin-bottom: -130px;
@@ -2142,7 +2162,7 @@ p a {
 
 	.p_social {
 		margin-top: -125px;
-	}
+	} */
 }
 
 @media screen and (max-width: 700px) {
@@ -2185,11 +2205,6 @@ p a {
 		justify-content: left;
 	}
 
-	.s_portfolio {
-		width: 96%;
-		height: 100%;
-		margin-top: -80px;
-	}
 }
 
 @media screen and (max-width: 850px) {
@@ -2320,10 +2335,6 @@ p a {
 
 	.main_container {
 		margin-top: 70px;
-	}
-
-	.portfolio_box {
-		min-width: 360px;
 	}
 
 	.e_services_card p {
