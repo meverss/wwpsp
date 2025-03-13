@@ -112,12 +112,12 @@ const App = () => {
   const triggerAnimation = (entries) => {
 	entries.forEach((entry) => {
 	  if (entry.isIntersecting) {
-		entry.target.classList.remove("animate__animated", "animate__fadeOut", "hide")
-		entry.target.classList.add("animate__animated", "animate__fadeIn", "show")
-		obBoxes.unobserve(entry.target)
+		entry.target.classList.remove("animFadeOut") //animate__animated", "animate__fadeOut")
+		entry.target.classList.add("animFadeIn") //animate__animated", "animate__fadeIn")
+		//obBoxes.unobserve(entry.target)
 	  } else {
-		entry.target.classList.remove("animate__animated", "animate__fadeIn", "show")
-		entry.target.classList.add("animate__animated", "animate__fadeOut", "hide")
+		entry.target.classList.remove("animFadeIn") //animate__animated", "animate__fadeIn")
+		entry.target.classList.add("animFadeOut") //animate__animated", "animate__fadeOut")
 	  }
 	})
   }
@@ -264,7 +264,7 @@ const App = () => {
         <BrowserRouter forceRefresh={true}>
           <Routes>
         	<Route path='/' element={<CompMain mediaServer={mediaServer} reviews={reviews} getReviews={getReviews} notify={showNotification} ss={ss} />} />
-            <Route path='/portfolio' element={<CompPortfolio mediaServer={mediaServer} ss={ss} />} />
+            <Route path='/portfolio' element={<CompPortfolio mediaServer={mediaServer} ss={ss} notify={showNotification} />} />
 	        <Route path='*' element={<Navigate to="/" />} />
           </Routes>
         </BrowserRouter>

@@ -1,30 +1,30 @@
 export const smoothDragScroll = (element, direction)=> {
-
   // Touch scroll
   let touchstartX
   let touchstartY
   let touchendX
   let touchendY
   let touches
-  
+
   // Global variables
   const gap = Number(getComputedStyle(element).gap.split('px')[0])
   const width = Number(getComputedStyle(element.firstChild).width.split('px')[0])
   const height = Number(getComputedStyle(element.firstChild).height.split('px')[0])
   const slideH = width + gap
   const slideV = height + gap
-
+  
   // Create frame and make it scrollable
   const div = document.createElement("div")
 
-  div.id = 'team_frame'
+  div.id = 'fake_frame'
   div.style.position = 'absolute'
   div.style.width = '100%'
+  div.style.background = 'red'  
   div.style.height = '280px'
   div.style.left = '0'
   div.style.borderLeft = '10px solid var(--background-body)'
   div.style.borderRight = '10px solid var(--background-body)'
-  div.style.zIndex = '99'
+  div.style.zIndex = '99999999999'
   
   element.appendChild(div)
   

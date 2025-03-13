@@ -1,4 +1,5 @@
 import Album from '../database/models/albums.model.js'
+import Media from '../database/models/medias.model.js'
 import sendEmail from '../libs/mailer.js'
 
 const passAuth = (req) => {
@@ -10,9 +11,15 @@ const passAuth = (req) => {
 
 // Get All Albums
 export const getAllAlbums = async (req, res) => {
+  const {mediatype} = req.params
     try {
-      const albums = await Album.find().sort({'createdAt': -1}).populate('medias')
-        res.json(albums)
+  	  if(mediatype === 'images'){
+    	const images = await Album.find({name: {$ne: 'videos'}}).sort({'createdAt': -1}).populate('medias')
+        res.json(images)
+      } else if(mediatype === 'videos'){
+    	const videos = await Album.find({name: 'videos'}).sort({'createdAt': -1}).populate('medias')
+        res.json(videos)
+      }
     } catch (error) {
       return res.status(500).json({
         message: `ALL Albums: Something went wrong: ${error}`
