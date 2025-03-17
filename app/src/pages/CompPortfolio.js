@@ -16,6 +16,7 @@ const CompPortfolio = ({ ss, mediaServer, notify })=> {
   
   const [albums, setAlbums] = useState()
   const [videos, setVideos] = useState()
+  const [isPreview, setIsPreview] = useState(true)
   const [activeImage, setActiveImage] = useState()
   const [isZoomed, setIsZoomed] = useState(false)
   const [activeTag, setActiveTag] = useState('images_tag')
@@ -130,7 +131,6 @@ const CompPortfolio = ({ ss, mediaServer, notify })=> {
 		const closeBtn = document.querySelector('.closeButton')
 
 		scrollingBox.scrollTo({left: 0})
-
   		
 		const getShownCard = ()=> {
   		  closeBtn.style.right = `${parentRectLeft + 20}px`
@@ -196,7 +196,9 @@ const CompPortfolio = ({ ss, mediaServer, notify })=> {
 	const videosFiles = document.querySelectorAll('.video')
 
 	if(videosFiles.length){
+	  if(isPreview){
 	  videosFiles.forEach((video, index)=> {
+
 		let nextVideo = document.getElementById(`video_${index + 2}`)
 	  	
 		video.addEventListener('pause', ()=> {
@@ -219,17 +221,36 @@ const CompPortfolio = ({ ss, mediaServer, notify })=> {
 		  })
 		  return video.removeEventListener('loadedmetadata', null)
 		})
+
 	  })
+	} 	  
 	}
   },[videos])
   
-  const playVideo = (video)=> {
-	const media = document.getElementById(video)
-	if(media.paused || media.ended){
-	  media.play()
-	} else {
-	  media.pause()
+  const playVideo = (vtp)=> {
+	const videoPlayer = document.querySelector('.videoPlayer')
+	const video = document.querySelector('.videoPlaying')
+	const parentRectLeft = Math.ceil(video.getBoundingClientRect().left)
+	
+	if(videoToPlay === vtp){
+	  setIsPreview(false)
+	  videoPlayer.style.display = 'flex'
+	  video.muted = false
+	  video.play()
+	  
 	}
+  }
+
+  const closeVideoPlayer = ()=> {
+	const videoPlayer = document.querySelector('.videoPlayer')
+
+	videoPlayer.style.animation = 'fadeOut 0.3s forwards'
+	setTimeout(()=> {
+	  setIsPreview(true)
+	  videoPlayer.style.display = 'none'
+	  videoPlayer.style.animation = 'fadeIn 0.3s forwards'
+	  setVideoToPlay()
+	}, 500)
   }
 
   return (
@@ -314,10 +335,11 @@ const CompPortfolio = ({ ss, mediaServer, notify })=> {
 				  <>
 				  <div className="video_thumbnail media animate__animated animate__fadeIn" id={video.id} key={video.id}>
 					<video className="video" id={`video_${index + 1}`} alt={`video_${index + 1}`} muted autoplay={index === 0 ? 'true' : null}
-					src={`${mediaServer}/media/videos/${video.name}`}
-					poster='../media/images/video_file_1.png' />
+					src={`${mediaServer}/media/videos/${video.name}`} />
 					<img className="video_frame" id="video_frame_${id}" src="../media/images/video_frame.webp" alt="frame" data-src="${path}" 
-					onClick={()=> playVideo(`video_${index + 1}`)}/>
+					onMouseEnter={()=> setVideoToPlay(video.name)}
+					onMouseLeave={()=> setVideoToPlay()}
+					onClick={()=> playVideo(video.name)} />
 				  </div>
 				  </>
 				))
@@ -325,7 +347,15 @@ const CompPortfolio = ({ ss, mediaServer, notify })=> {
 			</div>
 			{/* Video player */}
 			<div className="videoPlayer" id="videoPlayer" ref={videoPlayer}>
-			  {/* video player here*/}
+			  <div className="video_player_back">
+				<span className="closeButton"><IoMdCloseCircleOutline 
+				  onClick={closeVideoPlayer}/>
+				</span>
+				<div id="video_player_box" className="video_player_box">
+				  <video id="videoPlaying" className="videoPlaying" controls
+				  src = {`${mediaServer}/media/videos/${videoToPlay}`} />
+				</div>
+			  </div>
 			</div>
 		  </div>
 		</section>
