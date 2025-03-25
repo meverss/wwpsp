@@ -21,8 +21,8 @@ const CompPortfolio = ({ ss, mediaServer, notify })=> {
   const [isZoomed, setIsZoomed] = useState(false)
   const [activeTag, setActiveTag] = useState('images_tag')
   const [selectedAlbum, setSelectedAlbum] = useState('')
-  const [imagesToView, setImagesToView] = useState(0)
-  const [videoToPlay, setVideoToPlay] = useState()
+  const [imagesToView, setImagesToView] = useState([])
+  const [videoToPlay, setVideoToPlay] = useState('')
   
   let albumsThumbnails = document.querySelectorAll('.album_thumbnail')
   
@@ -54,8 +54,8 @@ const CompPortfolio = ({ ss, mediaServer, notify })=> {
 	return ()=> systemTheme.removeEventListener('change', handler)
   }, [])
   
-  useEffect(()=>{
-	const medias = document.querySelectorAll('.media')
+  const setMediaCardDelay = (mediaType)=> {
+	const medias = document.querySelectorAll(mediaType)
 
 	if(medias.length > 0){
 	  let delay = 0
@@ -64,7 +64,7 @@ const CompPortfolio = ({ ss, mediaServer, notify })=> {
 		delay += 0.1
 	  })
 	}
-  },[albums, videos])
+  }
   
   const handleAlbumHover = (albumId, lastIndex, e) => {
 	setSelectedAlbum(albumId)
@@ -105,10 +105,12 @@ const CompPortfolio = ({ ss, mediaServer, notify })=> {
 	}
 
 	if(activeTag === 'images_tag'){
+	  setMediaCardDelay('.mediaImagesAlbum')
   	  toggleTags(imagesTagElement, videosTagElement)
   	  document.querySelector('.images_box').style.display = 'flex'
   	  document.querySelector('.videos_box').style.display = 'none'
 	} else if(activeTag === 'videos_tag') {
+	  setMediaCardDelay('.mediaVideo')
   	  toggleTags(videosTagElement, imagesTagElement)
   	  document.querySelector('.videos_box').style.display = 'flex'
   	  document.querySelector('.images_box').style.display = 'none'
@@ -176,20 +178,22 @@ const CompPortfolio = ({ ss, mediaServer, notify })=> {
 	const scrollingIndicator = document.querySelector('.scrolling_indicator')
 	const closeBtn = document.querySelector('.closeButton')
 	
+	setIsZoomed((prev)=> !prev)
 	if(!isZoomed){
 	  scrollingBox.style.overflowX = 'hidden'
 	  scrollingIndicator.style.display = 'none'
 	  closeBtn.style.display = 'none'
-	  cardDiv.style.transform = 'scale(1.1)'
 	  scrollingBox.style.width = '100%'
+	  cardDiv.style.transform = 'scale(1.05)'
 	} else {
 	  scrollingBox.style.overflowX = 'scroll'
-	  scrollingIndicator.style.display = 'flex'
-	  closeBtn.style.display = 'flex'
-	  cardDiv.style.transform = 'scale(1)'
 	  scrollingBox.style.width = '80%'
+	  cardDiv.style.transform = 'scale(1)'
+	  setTimeout(()=> {
+		closeBtn.style.display = 'flex'
+		scrollingIndicator.style.display = 'flex'
+	  },100)
 	}
-	setIsZoomed((prev)=> !prev)
   }
 
   useEffect(()=> {
@@ -227,30 +231,24 @@ const CompPortfolio = ({ ss, mediaServer, notify })=> {
 	}
   },[videos])
   
-  const playVideo = (vtp)=> {
+  const videoPlayerWindow = (opt)=> {
 	const videoPlayer = document.querySelector('.videoPlayer')
 	const video = document.querySelector('.videoPlaying')
-	const parentRectLeft = Math.ceil(video.getBoundingClientRect().left)
-	
-	if(videoToPlay === vtp){
+
+	if(opt === videoToPlay){
 	  setIsPreview(false)
 	  videoPlayer.style.display = 'flex'
 	  video.muted = false
 	  video.play()
-	  
+	} else if(opt === 'close'){
+	  videoPlayer.style.animation = 'fadeOut 0.3s forwards'
+	  setTimeout(()=> {
+		setIsPreview(true)
+		setVideoToPlay()
+		videoPlayer.style.display = 'none'
+		videoPlayer.style.animation = 'fadeIn 0.3s forwards'
+	  }, 500)
 	}
-  }
-
-  const closeVideoPlayer = ()=> {
-	const videoPlayer = document.querySelector('.videoPlayer')
-
-	videoPlayer.style.animation = 'fadeOut 0.3s forwards'
-	setTimeout(()=> {
-	  setIsPreview(true)
-	  videoPlayer.style.display = 'none'
-	  videoPlayer.style.animation = 'fadeIn 0.3s forwards'
-	  setVideoToPlay()
-	}, 500)
   }
 
   return (
@@ -280,7 +278,7 @@ const CompPortfolio = ({ ss, mediaServer, notify })=> {
   				<div
     			  key={album.id}
     			  id={`images_album_${album.name}`}
-    			  className="images_album media animate__animated animate__fadeIn"
+    			  className="images_album mediaImagesAlbum animFadeIn"
     			  onMouseEnter={(e)=> handleAlbumHover(album.id, lastIndex, e)}
     			  onMouseLeave={(e)=> handleAlbumLeave(lastIndex, e)}>
     			  {album && album.medias.map((image, index) => (
@@ -333,13 +331,13 @@ const CompPortfolio = ({ ss, mediaServer, notify })=> {
 				:
 				videos[0].medias.map((video, index)=> (
 				  <>
-				  <div className="video_thumbnail media animate__animated animate__fadeIn" id={video.id} key={video.id}>
+				  <div className="video_thumbnail mediaVideo animFadeIn" id={video.id} key={video.id}>
 					<video className="video" id={`video_${index + 1}`} alt={`video_${index + 1}`} muted autoplay={index === 0 ? 'true' : null}
 					src={`${mediaServer}/media/videos/${video.name}`} />
 					<img className="video_frame" id="video_frame_${id}" src="../media/images/video_frame.webp" alt="frame" data-src="${path}" 
 					onMouseEnter={()=> setVideoToPlay(video.name)}
 					onMouseLeave={()=> setVideoToPlay()}
-					onClick={()=> playVideo(video.name)} />
+					onClick={()=> videoPlayerWindow(video.name)} />
 				  </div>
 				  </>
 				))
@@ -349,7 +347,7 @@ const CompPortfolio = ({ ss, mediaServer, notify })=> {
 			<div className="videoPlayer" id="videoPlayer" ref={videoPlayer}>
 			  <div className="video_player_back">
 				<span className="closeButton"><IoMdCloseCircleOutline 
-				  onClick={closeVideoPlayer}/>
+				  onClick={()=> videoPlayerWindow('close')}/>
 				</span>
 				<div id="video_player_box" className="video_player_box">
 				  <video id="videoPlaying" className="videoPlaying" controls

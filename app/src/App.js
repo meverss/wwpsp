@@ -50,6 +50,68 @@ const App = () => {
     getTheme()
   }, [])
 
+
+
+    // ==========
+/*    document.addEventListener('DOMContentLoaded', ()=> {
+    // Mostrar loader inicialmente
+    document.querySelector('.loader_container').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+
+    const Images = document.querySelectorAll('img');
+    let loadedImages = 0;
+    const totalImages = Images.length;
+    // Si no hay imágenes, mostrar contenido inmediatamente
+    if (totalImages === 0) {
+        hideLoader();
+        return;
+    }
+
+    // Función para verificar carga completada
+    const imageLoaded = ()=> {
+        loadedImages++;
+        
+        alert(loadedImages === totalImages)
+        if (loadedImages === totalImages) {
+            hideLoader();
+        }
+    };
+
+    // Verificar cada imagen
+    images.forEach(img => {
+        if (img.complete) {
+            // Si ya está en cache
+            imageLoaded();
+        } else {
+            // Escuchar carga y errores
+            img.addEventListener('load', imageLoaded());
+            img.addEventListener('error', imageLoaded()); // En caso de imágenes rotas
+        }
+    });
+
+    // Timeout de seguridad por si falla alguna carga
+    setTimeout(hideLoader, 5000);
+
+function hideLoader() {
+    // Eliminar listeners pendientes para evitar leaks de memoria
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+        img.removeEventListener('load',  imageLoaded());
+        img.removeEventListener('error', imageLoaded());
+    });
+
+    // Ocultar loader y mostrar contenido
+    showPage()
+    //document.querySelector('.loader_container').style.display = 'none';
+    //document.body.style.overflow = 'scroll';
+}
+
+});*/
+
+//=========
+    
+
+
   useEffect(()=> {
 	Object.keys(images).forEach((i)=>{
 	  const exceptions = ['budget_icon_float']
@@ -58,7 +120,8 @@ const App = () => {
 		  e.preventDefault()
 		})
 	  }
-	  images[i].setAttribute('onload', imagesLoaded ++)
+	  //images[i].setAttribute('onload', imagesLoaded ++)
+	  if(images[i].complete) imagesLoaded ++
 	  images[i].style.zIndex = '-1'
 	})
 	
@@ -112,12 +175,12 @@ const App = () => {
   const triggerAnimation = (entries) => {
 	entries.forEach((entry) => {
 	  if (entry.isIntersecting) {
-		entry.target.classList.remove("animFadeOut") //animate__animated", "animate__fadeOut")
-		entry.target.classList.add("animFadeIn") //animate__animated", "animate__fadeIn")
+		entry.target.classList.remove("animate__animated","animate__fadeOut")
+		entry.target.classList.add("animate__animated","animate__fadeIn")
 		//obBoxes.unobserve(entry.target)
 	  } else {
-		entry.target.classList.remove("animFadeIn") //animate__animated", "animate__fadeIn")
-		entry.target.classList.add("animFadeOut") //animate__animated", "animate__fadeOut")
+		entry.target.classList.remove("animate__animated","animate__fadeIn")
+		entry.target.classList.add("animate__animated","animate__fadeOut")
 	  }
 	})
   }

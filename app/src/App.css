@@ -29,7 +29,6 @@
 	margin: 0;
 	box-sizing: border-box;
 	scroll-behavior: auto;
-	animation-duration: .2s;
 }
 
 *,
@@ -40,7 +39,7 @@
 }
 
 :root {
- --animate-duration: .2s;
+ /*--animate-duration: .8s;*/
  --min-width: 130px;
 }
 
@@ -73,17 +72,12 @@ body {
   z-index: 99999;
 }
 
-.box {
-	--animate-duration: .2s;
-	animation-duration: .2s;
-}
-
 .animFadeIn {
-	animation: fadeIn .2s forwards;
+	animation: fadeIn .3s forwards;
 }
 
 .animFadeOut {
-	animation: fadeOut .2s forwards;
+	animation: fadeOut .3s forwards;
 }
 
 .msg_box {
@@ -397,7 +391,7 @@ a, a:active {
 .m_menu_item:hover::before {
 	border-color: #ea5421;
 	transition: transform .3s;
-	transform: scaleX(1);
+	transform: scaleX(.95);
 	transform-origin: left center;
 }
 
@@ -883,11 +877,10 @@ a, a:active {
 }
 
 @media (prefers-color-scheme: dark) {
-.card p {
-	background-color: #085c97;
+	.card p {
+	  background-color: #085c97;
+	}
 }
-}
-
 
 .card_text {
 	display: flex;
@@ -1578,7 +1571,7 @@ textarea {
 	padding: 5px;
 	margin: 10px;
 	background-color: var(--background-body);
-	animate-duration: .5s;
+	animation-duration: .5s;
 }
 
 .budget_close_btn,
@@ -1651,7 +1644,7 @@ textarea {
 .review_form textarea {
 	width: 95%;
 	color: #555;
-	--animate-duration: .8s;
+	animation-duration: .8s;
 }
 
 .budget_form label,
@@ -1803,7 +1796,6 @@ textarea {
 
 .images_album {
 	display: flex;
-	flex-direction: column;
 	justify-content: center;
 	min-width: 190px;
 	height: 220px;
@@ -1838,6 +1830,7 @@ textarea {
 }
 
 .video_thumbnail {
+	opacity: 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -2016,11 +2009,13 @@ textarea {
 }
 
 @keyframes fadeIn {
-  to { opacity: 1; }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @keyframes fadeOut {
-  to { opacity: 0; }
+  0% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 /* ========= */
@@ -2165,13 +2160,7 @@ p a {
 }
 
 @keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
+  to { transform: rotate(360deg); }
 }
 
 

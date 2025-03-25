@@ -34,31 +34,31 @@ const CompServices = ()=> {
 		  <article className="e_services" id="e_services">
 			<div className="e_services_cards_box" id="e_services_cards_box" >
 			  <div className="e_services_card box" id="e_service_metal">
-				<a href={metalRepair} data-lightbox='services'
+				<span data-lightbox='services'
 				  data-title='Metal repair' className="e_services_img">
 				  <img src={metalRepair} alt="Metal repair" />
-				</a>
+				</span>
 				<p> METAL REPAIR </p>
 			  </div>
 			  <div className="e_services_card box" id="e_service_painting">
-				<a href={painting} data-lightbox='services' data-title='Painting'
+				<span data-lightbox='services' data-title='Painting'
 				  className="e_services_img">
 				  <img src={painting} alt="Metal repair" />
-				</a>
+				</span>
 				<p> PAINTING </p>
 			  </div>
 			  <div className="e_services_card box" id="e_service_washing">
-				<a href={preasureWashing} data-lightbox='services'
+				<span data-lightbox='services'
 				  data-title='Preasure washing' className="e_services_img">
 				  <img src={preasureWashing} alt="Metal repair" />
-				</a>
+				</span>
 				<p> PREASURE WASHING </p>
 			  </div>
 			  <div className="e_services_card box" id="e_service_rescreening">
-				<a href={rescreening} data-lightbox='services'
+				<span data-lightbox='services'
 				  data-title='Rescreening' className="e_services_img">
 				  <img src={rescreening} alt="Metal repair" />
-				</a>
+				</span>
 				<p> RESCREENING </p>
 			  </div>
 			</div>

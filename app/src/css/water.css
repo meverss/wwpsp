@@ -17,7 +17,7 @@
   --focus: #0096bfab;
   --border: #dbdbdb;
   --code: #000;
-  --animation-duration: 0.1s;
+  --animation-duration: 0.3s;
   --button-base: #d0cfcf;
   --button-hover: #9b9b9b;
   --scrollbar-thumb: rgb(170, 170, 170);
@@ -43,7 +43,7 @@
   --focus: #0096bfab;
   --border: #526980;
   --code: #ffbe85;
-  --animation-duration: 0.1s;
+  --animation-duration: 0.3s;
   --button-base: #0c151c;
   --button-hover: #040a0f;
   --scrollbar-thumb: var(--button-hover);
