@@ -50,88 +50,37 @@ const App = () => {
     getTheme()
   }, [])
 
-
-
-    // ==========
-/*    document.addEventListener('DOMContentLoaded', ()=> {
-    // Mostrar loader inicialmente
-    document.querySelector('.loader_container').style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-
-    const Images = document.querySelectorAll('img');
-    let loadedImages = 0;
-    const totalImages = Images.length;
-    // Si no hay imágenes, mostrar contenido inmediatamente
-    if (totalImages === 0) {
-        hideLoader();
-        return;
-    }
-
-    // Función para verificar carga completada
-    const imageLoaded = ()=> {
-        loadedImages++;
-        
-        alert(loadedImages === totalImages)
-        if (loadedImages === totalImages) {
-            hideLoader();
-        }
-    };
-
-    // Verificar cada imagen
-    images.forEach(img => {
-        if (img.complete) {
-            // Si ya está en cache
-            imageLoaded();
-        } else {
-            // Escuchar carga y errores
-            img.addEventListener('load', imageLoaded());
-            img.addEventListener('error', imageLoaded()); // En caso de imágenes rotas
-        }
-    });
-
-    // Timeout de seguridad por si falla alguna carga
-    setTimeout(hideLoader, 5000);
-
-function hideLoader() {
-    // Eliminar listeners pendientes para evitar leaks de memoria
-    const images = document.querySelectorAll('img');
-    images.forEach(img => {
-        img.removeEventListener('load',  imageLoaded());
-        img.removeEventListener('error', imageLoaded());
-    });
-
-    // Ocultar loader y mostrar contenido
-    showPage()
-    //document.querySelector('.loader_container').style.display = 'none';
-    //document.body.style.overflow = 'scroll';
-}
-
-});*/
-
-//=========
-    
-
-
   useEffect(()=> {
+	const imageLoaded = ()=> {
+	  const loaderPercentBar = document.querySelector('.loaderPercentBar')	  
+	  imagesLoaded ++
+
+	  const percent = `${Math.ceil(imagesLoaded / images.length * 100)}%`
+	  loaderPercentBar.style.width = percent
+	  return
+	}
+
 	Object.keys(images).forEach((i)=>{
 	  const exceptions = ['budget_icon_float']
 	  if(!exceptions.includes(images[i].id)){
 		images[i].addEventListener('touchstart', (e)=> {
 		  e.preventDefault()
+		  return images[i].removeEventListener('touchstart', null)
 		})
 	  }
-	  //images[i].setAttribute('onload', imagesLoaded ++)
-	  if(images[i].complete) imagesLoaded ++
-	  images[i].style.zIndex = '-1'
+	  
+	  if(images[i].complete) {
+		imageLoaded()
+	  } else {
+		images[i].addEventListener('error', imageLoaded())
+	  }
 	})
 	
 	if(teamBox){
 	  teamBox.addEventListener('scroll',()=>{
 		images = document.getElementsByTagName('img')
-		//document.querySelector('#gossip').innerText = `Images: ${images.length} | Loaded: ${imagesLoaded}`
 	  })
 	}
-	
   },[images.length])
 
   useEffect(() => {
@@ -166,6 +115,10 @@ function hideLoader() {
 	}, 700)
 
 	if(!rootDir) loaderContainer.current.style.zIndex = '999'
+	
+	Object.keys(images).forEach((i)=> {
+	  images[i].removeEventListener('error', null)
+	})
   }
 
 
@@ -303,8 +256,10 @@ function hideLoader() {
     	<CompHeaderTop />
     	{/* Loader */}
     	<div className="loader_container" ref={loaderContainer} id="loader_container" >
-		  <div className='loader' ></div>
-
+		  <div className='loader' ></div><br />
+		  <div className='loaderPercent'>
+			<div className='loaderPercentBar'></div>
+		  </div>
   		</div>
 
     	{/* Notification */}

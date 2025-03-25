@@ -232,6 +232,24 @@ a, a:active {
     19px 19px  0 5px, 38px 19px  0 0px, 57px 19px  0 0px}
 }
 
+.loaderPercent {
+	display: flex;
+	justify-content: center;
+	position: relative;
+	width: 25px;
+	height: 15px;
+	border: 2px solid #085c97;
+	border-radius: 10px;
+}
+
+.loaderPercentBar {
+	position: absolute;
+	left: 0;
+	height: 100%;
+	border-radius: 10px;
+	background: #085c97;
+}
+
 /* TOP SECTION */
 
 .header_top {
