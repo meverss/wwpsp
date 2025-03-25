@@ -50,7 +50,7 @@ const App = () => {
     getTheme()
   }, [])
 
-//  useEffect(()=> {
+  useEffect(()=> {
 	const imageLoaded = ()=> {
 	  const gsp = document.querySelector('.gossip')
 	  const loaderPercentBar = document.querySelector('.loaderPercentBar')	  
@@ -58,7 +58,7 @@ const App = () => {
 
 	  const loadingPercent = `${Math.ceil(imagesLoaded / images.length * 100)}%`
 	  loaderPercentBar.style.width = loadingPercent
-	  gsp.innerText = `${imagesLoaded} | L: ${images.length} | ${loadingPercent}`
+	  //gsp.innerText = `${imagesLoaded} | L: ${images.length} | ${loadingPercent}`
 	  return
 	}
 	
@@ -86,11 +86,11 @@ const App = () => {
 	}
 	
 	document.addEventListener("DOMContentLoaded", checkLoadedMedia())
-  //},[images])
+  },[images])
 
   useEffect(() => {
     if(images.length === imagesLoaded || (window.location.pathname === '/portfolio' && images.length === imagesLoaded )){
-	  //showPage()
+	  showPage()
 	}
   },[images])
 
