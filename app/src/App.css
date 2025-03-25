@@ -236,8 +236,8 @@ a, a:active {
 	display: flex;
 	justify-content: center;
 	position: relative;
-	width: 25px;
-	height: 15px;
+	width: 50px;
+	height: 10px;
 	border: 2px solid #085c97;
 	border-radius: 10px;
 }

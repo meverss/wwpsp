@@ -42,52 +42,57 @@ const App = () => {
   
   const ss = localStorage.getItem('actSection') || 's_home'
   const teamBox = document.querySelector('.team_box')
-  let images = document.getElementsByTagName('img')
+  let images = []
   let imagesLoaded = 0
-
+  
   useEffect(() => {
 	getReviews()
     getTheme()
   }, [])
 
-  useEffect(()=> {
+//  useEffect(()=> {
 	const imageLoaded = ()=> {
+	  const gsp = document.querySelector('.gossip')
 	  const loaderPercentBar = document.querySelector('.loaderPercentBar')	  
 	  imagesLoaded ++
 
-	  const percent = `${Math.ceil(imagesLoaded / images.length * 100)}%`
-	  loaderPercentBar.style.width = percent
+	  const loadingPercent = `${Math.ceil(imagesLoaded / images.length * 100)}%`
+	  loaderPercentBar.style.width = loadingPercent
+	  gsp.innerText = `${imagesLoaded} | L: ${images.length} | ${loadingPercent}`
 	  return
 	}
-
-	Object.keys(images).forEach((i)=>{
+	
+	const checkLoadedMedia = ()=> {
+	images = document.querySelectorAll('img')	
+	images.forEach((image)=>{
 	  const exceptions = ['budget_icon_float']
-	  if(!exceptions.includes(images[i].id)){
-		images[i].addEventListener('touchstart', (e)=> {
+	  if(!exceptions.includes(image.id)){
+		image.addEventListener('touchstart', (e)=> {
 		  e.preventDefault()
-		  return images[i].removeEventListener('touchstart', null)
+		  return image.removeEventListener('touchstart', null)
 		})
 	  }
 	  
-	  if(images[i].complete) {
+	  if(image.complete) {
 		imageLoaded()
-	  } else {
-		images[i].addEventListener('error', imageLoaded())
+	  }  else {
+		//image.addEventListener('error', imageLoaded())
 	  }
+	  setTimeout(()=> {
+		document.querySelector('.loaderPercentBar').style.width = '100%'
+		showPage()
+	  },10000)
 	})
-	
-	if(teamBox){
-	  teamBox.addEventListener('scroll',()=>{
-		images = document.getElementsByTagName('img')
-	  })
 	}
-  },[images.length])
+	
+	document.addEventListener("DOMContentLoaded", checkLoadedMedia())
+  //},[images])
 
   useEffect(() => {
     if(images.length === imagesLoaded || (window.location.pathname === '/portfolio' && images.length === imagesLoaded )){
-	  document.addEventListener("DOMContentLoaded", showPage())
+	  //showPage()
 	}
-  },[images.length])
+  },[images])
 
   // Get all reviews
   const getReviews =  async ()=> {
@@ -115,12 +120,12 @@ const App = () => {
 	}, 700)
 
 	if(!rootDir) loaderContainer.current.style.zIndex = '999'
-	
-	Object.keys(images).forEach((i)=> {
-	  images[i].removeEventListener('error', null)
+
+	document.removeEventListener("DOMContentLoaded", null)
+	images.forEach((image)=> {
+	  image.removeEventListener('error', null)
 	})
   }
-
 
   // Trigger animation
   const boxes = document.querySelectorAll(".box")
@@ -260,6 +265,7 @@ const App = () => {
 		  <div className='loaderPercent'>
 			<div className='loaderPercentBar'></div>
 		  </div>
+		  <p className="gossip" style={{position: 'fixed', bottom: '60px', color: 'green', width: '100%'}}></p>
   		</div>
 
     	{/* Notification */}
@@ -276,8 +282,6 @@ const App = () => {
           </div>
         </section>
         <br />
-
-		<p id="gossip" style={{position: 'fixed', top: '60px', zIndex: '9999999999', color: 'green'}}></p>
 
         <BrowserRouter forceRefresh={true}>
           <Routes>
