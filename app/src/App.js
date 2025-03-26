@@ -66,11 +66,7 @@ const App = () => {
 	}, 1000)
 
 	if(!rootDir) loaderContainer.current.style.zIndex = '999'
-
 	document.removeEventListener("DOMContentLoaded", null)
-	images.forEach((image)=> {
-	  image.removeEventListener('error', null)
-	})
   }
 
   useEffect(()=> {
@@ -98,20 +94,14 @@ const App = () => {
 		})
 	  }
 	  
-	  if(image.complete) {
-		imageLoaded()
-	  }  else {
-		//image.addEventListener('error', imageLoaded())
-	  }
+	  if(image.complete) imageLoaded()
 
-
-	  setTimeout(()=> {
+	  /*setTimeout(()=> {
 		document.querySelector('.loaderPercentBar').style.width = '100%'
 		showPage()
-	  },30000)
+	  },30000)*/
 	})
 	}
-	
 	document.addEventListener("DOMContentLoaded", checkLoadedMedia())
   },[images])
 
