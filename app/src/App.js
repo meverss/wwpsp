@@ -43,12 +43,35 @@ const App = () => {
   const ss = localStorage.getItem('actSection') || 's_home'
   const teamBox = document.querySelector('.team_box')
   let images = []
-  let imagesLoaded = 0
+  let imagesLoaded = -1
   
   useEffect(() => {
 	getReviews()
     getTheme()
   }, [])
+
+  // Show page
+  const tcr = useRef()
+  const pageContent = useRef()
+  const scrollArea = useRef('')
+  const loaderContainer = useRef('')
+  const rootDir = window.location.pathname === '/'
+
+  const showPage = ()=> {
+	pageContent.current.style.opacity = "1"
+	document.body.style.overflowY = "scroll"
+  
+	setTimeout(()=> {
+	  loaderContainer.current.style.display = 'none'
+	}, 1000)
+
+	if(!rootDir) loaderContainer.current.style.zIndex = '999'
+
+	document.removeEventListener("DOMContentLoaded", null)
+	images.forEach((image)=> {
+	  image.removeEventListener('error', null)
+	})
+  }
 
   useEffect(()=> {
 	const imageLoaded = ()=> {
@@ -61,6 +84,8 @@ const App = () => {
 	  //gsp.innerText = `${imagesLoaded} | L: ${images.length} | ${loadingPercent}`
 	  return
 	}
+	
+	if(reviews.length > 0) imagesLoaded += 1
 	
 	const checkLoadedMedia = ()=> {
 	images = document.querySelectorAll('img')	
@@ -78,10 +103,12 @@ const App = () => {
 	  }  else {
 		//image.addEventListener('error', imageLoaded())
 	  }
+
+
 	  setTimeout(()=> {
 		document.querySelector('.loaderPercentBar').style.width = '100%'
 		showPage()
-	  },10000)
+	  },30000)
 	})
 	}
 	
@@ -89,7 +116,8 @@ const App = () => {
   },[images])
 
   useEffect(() => {
-    if(images.length === imagesLoaded || (window.location.pathname === '/portfolio' && images.length === imagesLoaded )){
+
+    if(imagesLoaded === images.length || (window.location.pathname === '/portfolio' && imagesLoaded === images.length)){
 	  showPage()
 	}
   },[images])
@@ -104,28 +132,6 @@ const App = () => {
     }
   }
 
-  // Show page
-  const tcr = useRef()
-  const pageContent = useRef()
-  const scrollArea = useRef('')
-  const loaderContainer = useRef('')
-  const rootDir = window.location.pathname === '/'
-
-  const showPage = ()=> {
-	pageContent.current.style.opacity = "1"
-	document.body.style.overflowY = "scroll"
-  
-	setTimeout(()=> {
-	  loaderContainer.current.style.display = 'none'
-	}, 700)
-
-	if(!rootDir) loaderContainer.current.style.zIndex = '999'
-
-	document.removeEventListener("DOMContentLoaded", null)
-	images.forEach((image)=> {
-	  image.removeEventListener('error', null)
-	})
-  }
 
   // Trigger animation
   const boxes = document.querySelectorAll(".box")
