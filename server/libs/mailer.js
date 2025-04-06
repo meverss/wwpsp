@@ -6,7 +6,6 @@ import nodemailer from 'nodemailer'
 const sendEmail = (mailData) => {
 	let sending = []
 	
-
 	// Mail Server configuration:
 	const transporter = nodemailer.createTransport({
 	  host: "smtp.gmail.com",
@@ -29,7 +28,7 @@ const sendEmail = (mailData) => {
 			  const rate = '⭐'.repeat(data.rate)
 			  msg = await transporter.sendMail({
 	  		  from: '"KiniunDev" <no-replay@kiniun.dev>',
-	  		  to: "meverss@my.com",
+	  		  to: "meverss@proton.me",
 	  		  subject: `You have a ${data.mailtype}`,
 	  		  html: `
 	  			<p style='color: #085c97'>
@@ -52,7 +51,7 @@ const sendEmail = (mailData) => {
 			case('NEW BUDGET REQUEST'):
 			  msg = await transporter.sendMail({
 	  		  from: '"KiniunDev" <no-replay@kiniun.dev>',
-	  		  to: "meverss@my.com",
+	  		  to: "meverss@proton.me",
 	  		  subject: `You have a ${data.mailtype}`,
 	  		  html: `
 	  			<p style='color: #085c97'>
@@ -74,7 +73,7 @@ const sendEmail = (mailData) => {
 			case('NEW MESSAGE'):
 			  msg = await transporter.sendMail({
 	  	  	  from: '"KiniunDev" <no-replay@kiniun.dev>',
-	  		  to: "meverss@my.com",
+	  		  to: "meverss@proton.me",
 	  		  subject: `You have a ${data.mailtype}`,
 	  		  html: `
 	  			<p style='color: #085c97'>
