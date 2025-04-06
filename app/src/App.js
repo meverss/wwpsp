@@ -49,6 +49,7 @@ const App = () => {
 	getReviews()
     getTheme()
   }, [])
+  
 
   // Show page
   const tcr = useRef()
@@ -56,34 +57,34 @@ const App = () => {
   const scrollArea = useRef('')
   const loaderContainer = useRef('')
   const rootDir = window.location.pathname === '/'
-
+  
   const showPage = ()=> {
 	pageContent.current.style.opacity = "1"
 	document.body.style.overflowY = "scroll"
-  
-	setTimeout(()=> {
-	  loaderContainer.current.style.display = 'none'
-	}, 1000)
-
-	if(!rootDir) loaderContainer.current.style.zIndex = '999'
+	loaderContainer.current.style.display = 'none'
 	document.removeEventListener("DOMContentLoaded", null)
   }
 
-  useEffect(()=> {
 	const imageLoaded = ()=> {
 	  const gsp = document.querySelector('.gossip')
 	  const loaderPercentBar = document.querySelector('.loaderPercentBar')	  
 	  imagesLoaded ++
-
+	
 	  const loadingPercent = `${Math.ceil(imagesLoaded / images.length * 100)}%`
 	  loaderPercentBar.style.width = loadingPercent
 	  //gsp.innerText = `${imagesLoaded} | L: ${images.length} | ${loadingPercent}`
-	  return
+	  setTimeout(()=> {
+        loaderPercentBar.style.width = '100%'
+        setTimeout(()=> {
+          showPage()
+        },2000)
+      },10000)
 	}
-	
+
 	if(reviews.length > 0) imagesLoaded += 1
-	
+
 	const checkLoadedMedia = ()=> {
+	if(rootDir){
 	images = document.querySelectorAll('img')	
 	images.forEach((image)=>{
 	  const exceptions = ['budget_icon_float']
@@ -96,32 +97,27 @@ const App = () => {
 	  
 	  if(image.complete) imageLoaded()
 
-	  /*setTimeout(()=> {
-		document.querySelector('.loaderPercentBar').style.width = '100%'
-		showPage()
-	  },30000)*/
 	})
 	}
-	document.addEventListener("DOMContentLoaded", checkLoadedMedia())
-  },[images])
+	}
 
   useEffect(() => {
-
-    if(imagesLoaded === images.length || (window.location.pathname === '/portfolio' && imagesLoaded === images.length)){
-	  showPage()
+	document.addEventListener("DOMContentLoaded", checkLoadedMedia())
+    if(rootDir && imagesLoaded === images.length){
+	  setTimeout(()=> {
+		showPage()
+	  },2000)
 	}
   },[images])
-
+  
   // Get all reviews
   const getReviews =  async ()=> {
-    try {
-      const res = await axios.get(URI)
-        setReviews(res.data.filter(r => r.enabled === true))
-    } catch (error) {
-        showNotification('err', error)
-    }
+    await axios.get(URI)
+      .then((res)=> setReviews(res.data.filter(r => r.enabled === true)))
+      .catch((err)=> {
+		showNotification('err', err.response?.dsta?.message || err.message)
+      })
   }
-
 
   // Trigger animation
   const boxes = document.querySelectorAll(".box")
@@ -246,13 +242,12 @@ const App = () => {
     notifications.current.style['transform'] = 'translate(-3%)'
     setTimeout(() => {
       notifications.current.style['transform'] = 'translate(102%)'
-    }, 2500)
+    }, 5000)
   }
   
   return (
     <serverContext.Provider value={server}>
       <>
-
     	<div className="page_content" ref={pageContent} id="page_content" >
     	<CompHeaderTop />
     	{/* Loader */}
@@ -282,7 +277,7 @@ const App = () => {
         <BrowserRouter forceRefresh={true}>
           <Routes>
         	<Route path='/' element={<CompMain mediaServer={mediaServer} reviews={reviews} getReviews={getReviews} notify={showNotification} ss={ss} />} />
-            <Route path='/portfolio' element={<CompPortfolio mediaServer={mediaServer} ss={ss} notify={showNotification} />} />
+            <Route path='/portfolio' element={<CompPortfolio mediaServer={mediaServer} ss={ss} notify={showNotification} reviews={reviews} />} />
 	        <Route path='*' element={<Navigate to="/" />} />
           </Routes>
         </BrowserRouter>

@@ -10,7 +10,7 @@ import { IoMdCloseCircleOutline, IoMdCloseCircle } from "react-icons/io"
 import { ImPrevious, ImNext } from "react-icons/im"
 import { RxDotFilled } from "react-icons/rx"
 
-const CompPortfolio = ({ ss, mediaServer, notify })=> {
+const CompPortfolio = ({ ss, mediaServer, notify, reviews })=> {
   const server = useContext(serverContext)
   const URI = `${server}/albums/`
   
@@ -25,6 +25,8 @@ const CompPortfolio = ({ ss, mediaServer, notify })=> {
   const [videoToPlay, setVideoToPlay] = useState('')
   
   let albumsThumbnails = document.querySelectorAll('.album_thumbnail')
+  let images = []
+  let imagesLoaded = -1
   
   const imagesTag = useRef()
   const videosTag = useRef()
@@ -36,16 +38,61 @@ const CompPortfolio = ({ ss, mediaServer, notify })=> {
   },[])
 
   const getAlbums = async ()=> {
-	try {
-	  const images = await axios.get(URI + 'images')
-	  setAlbums(images.data)
-	  const videos = await axios.get(URI + 'videos')
-	  setVideos(videos.data)
-	} catch (err) {
-	  notify('err', err)
-	}
+	await axios.get(URI + 'images')
+	  .then((images)=> setAlbums(images.data))
+	  .catch((err)=> notify('err', err))
+	await axios.get(URI + 'videos')
+	  .then((videos)=> setVideos(videos.data))
+	  .catch((err)=> notify('err', err))
   }
 
+  // Show page
+  const pageContent = useRef()
+  const loaderContainer = document.querySelectorAll('.loader_container')//useRef('')
+  
+  const showPage = ()=> {
+	pageContent.current.style.opacity = "1"
+	document.body.style.overflowY = "scroll"
+	loaderContainer.forEach((lc)=> {
+	  lc.style.display = 'none'
+	})
+  }
+
+  useEffect(() => {
+	const imageLoaded = ()=> {
+  	  const gsp = document.querySelector('.gossip')
+  	  const loaderPercentBar = document.querySelector('.loaderPercentBar')
+  	  imagesLoaded ++
+
+  	  let loadingPercent = `${Math.ceil(imagesLoaded / images.length * 100)}%`
+  	  loaderPercentBar.style.width = loadingPercent
+  	  //gsp.innerText = `${imagesLoaded} | L: ${images.length} | ${loadingPercent}`
+	  setTimeout(()=> {
+  		loaderPercentBar.style.width = '100%'
+  		setTimeout(()=> {
+  		  showPage()
+  		},2000)
+	  },10000)
+	}
+
+	if((albums?.length > 0) && (videos?.length > 0)) imagesLoaded += 1
+
+	const checkLoadedMedia = ()=> {
+	  images = document.querySelectorAll('img')	
+	  images.forEach((image)=>{
+  		if(image.complete) imageLoaded()
+	  })
+	}
+
+	document.addEventListener("DOMContentLoaded", checkLoadedMedia())
+    if(imagesLoaded === images.length){
+    setTimeout(()=> {
+  	  showPage()
+    },2000)
+  }
+  },[images])
+
+  // Theme switch  
   useEffect(() => {
 	const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
 	const handler = ()=> getAlbums()
@@ -91,6 +138,7 @@ const CompPortfolio = ({ ss, mediaServer, notify })=> {
 	elements[lastIndex - 2].style.transform = 'rotate(0deg) scale(1)'
   }
 
+  // Switch media tags
   useEffect(()=> {
 	const imagesTagElement = imagesTag.current
 	const videosTagElement = videosTag.current
@@ -254,7 +302,16 @@ const CompPortfolio = ({ ss, mediaServer, notify })=> {
   return (
     <>
   	  <CompMenu ss={ss} />
-  	  <div className="main">
+  	  <div className="main" ref={pageContent}>
+  	    {/* Loader */}
+  		<div className="loader_container" ref={loaderContainer} id="loader_container">
+		  <div className='loader' ></div><br />
+		  <div className='loaderPercent'>
+			<div className='loaderPercentBar'></div>
+		  </div>
+		  <p className="gossip" style={{position: 'fixed', bottom: '60px', color: 'green', width: '100%'}}></p>
+		</div>
+  	  
 		<section className="s_portfolio" id="s_portfolio">
 		  <h2 className="portfolio_title" id="portfolio_title">Portfolio</h2><br />
 		  <div className="portfolio_box" id="portfolio_box">
