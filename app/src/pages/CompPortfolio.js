@@ -347,6 +347,7 @@ const CompPortfolio = ({ ss, mediaServer, notify, reviews })=> {
         			  <img
           				id={`Image_${index + 1}`}
           				src={`${mediaServer}/media/images/portfolio/${image.album}/${image.name}`}
+          				loading="lazy"
           				alt={image.name} />
       				  </div>
     				  ))}
@@ -368,6 +369,7 @@ const CompPortfolio = ({ ss, mediaServer, notify, reviews })=> {
 					  <img
           				id={`image_${index + 1}`}
           				classNsme="image_card"
+          				loading="lazy"
           				onClick={(e)=> zoomImage(e)}					  
           				src={`${mediaServer}/media/images/portfolio/${image.album}/${image.name}`} />
 					</div>

@@ -36,28 +36,28 @@ const CompServices = ()=> {
 			  <div className="e_services_card box" id="e_service_metal">
 				<span data-lightbox='services'
 				  data-title='Metal repair' className="e_services_img">
-				  <img src={metalRepair} alt="Metal repair" />
+				  <img src={metalRepair} loading="lazy" alt="Metal repair" />
 				</span>
 				<p> METAL REPAIR </p>
 			  </div>
 			  <div className="e_services_card box" id="e_service_painting">
 				<span data-lightbox='services' data-title='Painting'
 				  className="e_services_img">
-				  <img src={painting} alt="Metal repair" />
+				  <img src={painting} loading="lazy" alt="Metal repair" />
 				</span>
 				<p> PAINTING </p>
 			  </div>
 			  <div className="e_services_card box" id="e_service_washing">
 				<span data-lightbox='services'
 				  data-title='Preasure washing' className="e_services_img">
-				  <img src={preasureWashing} alt="Metal repair" />
+				  <img src={preasureWashing} loading="lazy" alt="Metal repair" />
 				</span>
 				<p> PREASURE WASHING </p>
 			  </div>
 			  <div className="e_services_card box" id="e_service_rescreening">
 				<span data-lightbox='services'
 				  data-title='Rescreening' className="e_services_img">
-				  <img src={rescreening} alt="Metal repair" />
+				  <img src={rescreening} loading="lazy" alt="Metal repair" />
 				</span>
 				<p> RESCREENING </p>
 			  </div>

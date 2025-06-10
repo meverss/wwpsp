@@ -20,7 +20,7 @@ import CompPortfolio from './pages/CompPortfolio.js'
 let server
 let mediaServer
 
-if(window.location.hostname.includes('localhost') || window.location.hostname.includes('192.168.') || window.location.hostname.includes('127.0.') || window.location.hostname.includes('10.')){
+if(!window.location.hostname.includes('vercel.app')){ //('localhost') || window.location.hostname.includes('192.168.') || window.location.hostname.includes('127.0.') || window.location.hostname.includes('10.')){
   server = `http://${window.location.hostname}:4000/api`
   mediaServer = server
 } else {
@@ -283,7 +283,7 @@ const App = () => {
         </BrowserRouter>
         </div>
         <div className='footer'>
-          <p id='footer' >Designed by KiniunDev™ - Copyright© {getYear()}</p>
+          <p id='footer' >Powered by KiniunDev™ - Copyright© {getYear()}</p>
         </div>
       </>
     </serverContext.Provider>
