@@ -63,7 +63,7 @@ const CompMain = ({ mediaServer, getReviews, reviews, notify, ss }) => {
 			<h2 className="about_us_title" id="about_us_title">About Us</h2>
 			<div className="about_us_content box">
 			<div className="about_us_img box" id="about_us_img">
-			  <img src={aboutThumb} id="aboutThumb" alt="Working at WWP Screening & Painting LLC" />
+			  <img src={aboutThumb} id="aboutThumb" loading="lazy" alt="Working at WWP Screening & Painting LLC" />
 			</div>
 			<div className="about_us_text box" id="about_us_text">
 			  <p>

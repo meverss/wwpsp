@@ -19,8 +19,9 @@ export const CompRates = ({ mainContainer, data })=> {
 	getRates()
 	if(mainContainer){
 	  mainContainer.addEventListener('scroll', ()=>{
-		if(rateTableContainer.getBoundingClientRect().top <= 160){
-		  rateTableContainer.style.transform = 'scale(0.7)'
+		const top = rateTableContainer.getBoundingClientRect().top - 5
+		if(top <= 160){
+		  rateTableContainer.style.transform = 'scale(0.5)'
 		} else {
 		  rateTableContainer.style.transform = 'scale(1)'		
 		}
