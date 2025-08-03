@@ -117,7 +117,7 @@ const App = () => {
     await fetch('https://api.ipify.org?format=json')
 	  .then(res => res.json())
 	  .then(res => ip = res.ip)
-	  .catch((err)=> showNotification('err', err)
+	  .catch((err)=> showNotification('err', err))
 	await axios.post(`${server}/ipinfo`, {ip:ip})
 	  .then(res => {
 		const msg = `IP: ${res.data.ip} \n Country: ${res.data.location.country} \n ISP: ${res.data.isp.org}`
