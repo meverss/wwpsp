@@ -46,7 +46,7 @@ const App = () => {
   let imagesLoaded = -1
   
   useEffect(() => {
-	getIpInfo()
+	checkIp()
 	getReviews()
     getTheme()
   }, [])
@@ -112,17 +112,30 @@ const App = () => {
   },[images])
   
   //Get IP Info
-  const getIpInfo = async ()=> {
-	let ip = ''
+  const checkIp = async ()=> {
     await fetch('https://api.ipify.org?format=json')
 	  .then(res => res.json())
-	  .then(res => ip = res.ip)
-	  .catch((err)=> showNotification('err', err))
-	await axios.post(`${server}/ipinfo`, {ip:ip})
 	  .then(res => {
-		const msg = `IP: ${res.data.ip} \n Country: ${res.data.location.country} \n ISP: ${res.data.isp.org}`
-		showNotification('inf', msg)
+		if(!localStorage.getItem('ip') || localStorage.getItem('ip') !== res.ip){
+		  getIpInfo(res.ip)
+		} else {
+		  const info = JSON.parse(localStorage.getItem('ipData'))
+		  const msg = `IP: ${info.ip} \n Country: ${info.location.country} \n ISP: ${info.isp.org}`
+		  showNotification('inf', msg)
+		}
 	  })
+	  .catch((err)=> showNotification('err', err))
+  }
+  
+  const getIpInfo = async (ip)=> {
+	  await axios.post(`${server}/ipinfo`, {ip})
+		.then(res => {
+		  localStorage.setItem('ipData', JSON.stringify(res.data))
+		  const info = JSON.parse(localStorage.getItem('ipData'))
+		  localStorage.setItem('ip', info.ip)
+		  const msg = `IP: ${info.ip} \n Country: ${info.location.country} \n ISP: ${info.isp.org}`
+		  showNotification('inf', msg)
+		}) 
   }
   
   // Get all reviews
