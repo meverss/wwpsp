@@ -7,10 +7,11 @@ import WorkersRoutes from './routes/workersRoutes.js'
 import AlbumsRoutes from './routes/albumsRoutes.js'
 import MediasRoutes from './routes/mediasRoutes.js'
 import MessagesRoutes from './routes/messagesRoutes.js'
+import ToolsRoutes from './routes/toolsRoutes.js'
 import { SERVERIP } from './config.js'
 import morgan from 'morgan'
 
-// Get project's gull path
+// Get project's full path
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
 
@@ -58,21 +59,7 @@ app.use('/api/reviews', ReviewsRoutes)
 app.use('/api/budgets', BudgetsRoutes)
 app.use('/api/workers', WorkersRoutes)
 app.use('/api/messages', MessagesRoutes)
-app.use('/api/ipinfo', (req, res)=> {
-  const getIpInfo = async ()=>{
-	try {
-	  const ipOrigin = await axios.get('https://api.ipify.org?format=json')
-	  const ipData = await axios.get(`https://api.ipquery.io/${ipOrigin.data.ip}`)
-	  res.status(200).json(ipData.data)
-	  //console.log(ipData.data)
-	} catch (error){
-	  return res.status(500).json({
-        message: 'Sorry, there were some network issues.'
-	  })
-	}
-	}
-	getIpInfo()
-})
+app.use('/api/ipinfo', ToolsRoutes)
 
 app.use((req, res) => {
   if (req.url === '/') {

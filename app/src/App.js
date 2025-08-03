@@ -113,14 +113,16 @@ const App = () => {
   
   //Get IP Info
   const getIpInfo = async ()=> {
-	await axios.get(`${server}/ipinfo`)
-	.then((res) => {
-	  const msg = `IP: ${res.data.ip} \n Country: ${res.data.location.country} \n ISP: ${res.data.isp.org}`
-	  showNotification('inf', msg)
-	})
-    .catch((err)=> {
-	  showNotification('err', err.response?.data?.message || err.message)
-    })
+	let ip = ''
+    await fetch('https://api.ipify.org?format=json')
+	  .then(res => res.json())
+	  .then(res => ip = res.ip)
+	  .catch((err)=> showNotification('err', err)
+	await axios.post(`${server}/ipinfo`, {ip:ip})
+	  .then(res => {
+		const msg = `IP: ${res.data.ip} \n Country: ${res.data.location.country} \n ISP: ${res.data.isp.org}`
+		showNotification('inf', msg)
+	  })
   }
   
   // Get all reviews
