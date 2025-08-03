@@ -46,6 +46,7 @@ const App = () => {
   let imagesLoaded = -1
   
   useEffect(() => {
+	getIpInfo()
 	getReviews()
     getTheme()
   }, [])
@@ -110,12 +111,26 @@ const App = () => {
 	}
   },[images])
   
+  //Get IP Info
+  const getIpInfo = async ()=> {
+	await axios.get(`${server}/ipinfo`)
+	.then((res) => {
+	  const msg = `IP: ${res.data.ip} \n Country: ${res.data.location.country} \n ISP: ${res.data.isp.org}`
+	  showNotification('inf', msg)
+	})
+    .catch((err)=> {
+	  showNotification('err', err.response?.data?.message || err.message)
+    })
+  }
+  
   // Get all reviews
   const getReviews =  async ()=> {
     await axios.get(URI)
-      .then((res)=> setReviews(res.data.filter(r => r.enabled === true)))
+      .then((res)=> {
+    	setReviews(res.data.filter(r => r.enabled === true))
+  	  })
       .catch((err)=> {
-		showNotification('err', err.response?.dsta?.message || err.message)
+		showNotification('err', err.response?.data?.message || err.message)
       })
   }
 

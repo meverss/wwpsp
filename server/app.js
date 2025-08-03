@@ -1,5 +1,6 @@
 import express from 'express'
 import cors from 'cors'
+import axios from 'axios'
 import ReviewsRoutes from './routes/reviewsRoutes.js'
 import BudgetsRoutes from './routes/budgetsRoutes.js'
 import WorkersRoutes from './routes/workersRoutes.js'
@@ -57,6 +58,21 @@ app.use('/api/reviews', ReviewsRoutes)
 app.use('/api/budgets', BudgetsRoutes)
 app.use('/api/workers', WorkersRoutes)
 app.use('/api/messages', MessagesRoutes)
+app.use('/api/ipinfo', (req, res)=> {
+  const getIpInfo = async ()=>{
+	try {
+	  const ipOrigin = await axios.get('https://api.ipify.org?format=json')
+	  const ipData = await axios.get(`https://api.ipquery.io/${ipOrigin.data.ip}`)
+	  res.status(200).json(ipData.data)
+	  //console.log(ipData.data)
+	} catch (error){
+	  return res.status(500).json({
+        message: 'Sorry, there were some network issues.'
+	  })
+	}
+	}
+	getIpInfo()
+})
 
 app.use((req, res) => {
   if (req.url === '/') {

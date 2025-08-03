@@ -1,5 +1,6 @@
 import Review from '../database/models/reviews.model.js'
 import sendEmail from '../libs/mailer.js'
+import axios from 'axios'
 
 const passAuth = (req) => {
   const auth = req.get('authorization')
@@ -10,39 +11,12 @@ const passAuth = (req) => {
 
 // Get All Reviews
 export const getAllReviews = async (req, res) => {
-    try {
-      const reviews = await Review.find().sort({'createdAt': -1}).populate('author')
-        res.json(reviews)
-    } catch (error) {
-      return res.status(500).json({
-        message: `ALL REVIEWS: Something went wrong: ${error}`
-      })
-    }
+  await Review.find().sort({'createdAt': -1}).populate('author')
+	.then((reviews)=> res.json(reviews))
+    .catch(()=> res.status(500).json({
+      message: 'Sorry, something went wrong retriving the reviews.'
+    }))
 }
-
-// Get One Review
-/*export const getOneReview = async (req, res) => {
-  const { id } = req.params
-  
-  try {
-	const { author, review, enabled, createdAt } = reviewFound
-	
-	res.status(200).json({ 
-	review,
-	fullname,
-	enabled,
-	createdAt,
-	updatedAt,
-	authreview 
-	})
-    }
-
-  } catch (error) {
-    return res.status(500).json({
-      message: `ONE review: Something went wrong: ${error}`
-    })
-  }
-}*/
 
 // Create a review
 export const createReview = async (req, res) => {
@@ -97,7 +71,6 @@ export const updateReview = async (req, res) => {
 export const updateReviewNoPass = async (req, res) => {
   const { review, enabled, fullname } = req.body
   const { id } = req.params
-
 
   try {
     const updt = await review.updateOne({_id:id}, {review,fullname,enabled})

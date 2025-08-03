@@ -588,9 +588,11 @@ a, a:active {
   padding: 0;
   margin: 0;
   font-size: 13pt;
-  color: #fff;
+  color: #eee;
   text-align: left;
+  white-space: pre-line;
 }
+
 /* LEFT SIDE BAR - INFO */
 
 .info {
