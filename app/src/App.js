@@ -1,5 +1,5 @@
 import './App.css'
-import axios from './libs/axios'
+import axios from './libs/axios.js'
 import { React, useState, useRef, useEffect, createContext } from 'react'
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
 import { getYear } from './libs/formatDate.js'
@@ -120,7 +120,7 @@ const App = () => {
 		  getIpInfo(res.ip)
 		} else {
 		  const info = JSON.parse(localStorage.getItem('ipData'))
-		  const msg = `IP: ${info.ip} \n Country: ${info.location.country} \n ISP: ${info.isp.org}`
+		  const msg = `IP: ${info.ip} \n Country: ${info.country_flag} ${info.location.country} \n ISP: ${info.isp.org}`
 		  showNotification('inf', msg)
 		}
 	  })
@@ -133,7 +133,7 @@ const App = () => {
 		  localStorage.setItem('ipData', JSON.stringify(res.data))
 		  const info = JSON.parse(localStorage.getItem('ipData'))
 		  localStorage.setItem('ip', info.ip)
-		  const msg = `IP: ${info.ip} \n Country: ${info.location.country} \n ISP: ${info.isp.org}`
+		  const msg = `IP: ${info.ip} \n Country: ${info.country_flag} ${info.location.country} \n ISP: ${info.isp.org}`
 		  showNotification('inf', msg)
 		}) 
   }
