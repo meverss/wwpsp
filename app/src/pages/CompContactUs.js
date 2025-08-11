@@ -28,20 +28,19 @@ const CompContactUs = ({ notify }) => {
 
   const handleSubmit = async (e)=> {
 	e.preventDefault()
-	
-	try {
-
-	  await axios.post(URI, {name, email, subject, message})
-	  notify('ok', 'Your message has been sent')
-	  window.location = '/#s_contact'
-	} catch (error) {
-	  notify('err', error)
-	}
-	  setName('')
-	  setEmail('')
-	  setSubject('')
-	  setMessage('')
-	  disableSendButton('ct_btn_send')
+	await axios.post(URI, {name, email, subject, message})
+	  .then(res => {
+		notify(res.data.icon, res.data.message)
+		window.location = '/#s_contact'
+	  })
+	  .catch(err => {
+		notify(err.response.data.icon, err.response.data.message)
+	  })
+	setName('')
+	setEmail('')
+	setSubject('')
+	setMessage('')
+	disableSendButton('ct_btn_send')
   }
 
   return (

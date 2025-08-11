@@ -1,12 +1,12 @@
 import './App.css'
 import axios from './libs/axios.js'
 import { React, useState, useRef, useEffect, createContext } from 'react'
+import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
+import { useNotify } from './hooks/useNotify.js'
 import { getYear } from './libs/formatDate.js'
-import { FaCircleCheck, FaTriangleExclamation, FaCircleExclamation } from "react-icons/fa6"
 import { IoSunnyOutline, IoLogOutOutline } from "react-icons/io5"
 import { RiMoonLine } from "react-icons/ri"
-import { PiGearFill } from "react-icons/pi"
 
 // Components
 import { CompHeaderTop } from './components/CompHeaderTop.js'
@@ -34,14 +34,12 @@ const URI = `${server}/reviews`
 // App Component
 const App = () => {
   const [reviews, setReviews] = useState('')
-  const [notifyIcon, setNotifyIcon] = useState('')
-  const [notifyText, setNotifyText] = useState('')
-  const [notify, setNotify] = useState()
   const [theme, setTheme] = useState('')
   const [themeIcon, setThemeIcon] = useState('')
   
   const ss = localStorage.getItem('actSection') || 's_home'
   const teamBox = document.querySelector('.team_box')
+  const notiPopup = useNotify()
   let images = []
   let imagesLoaded = -1
   
@@ -50,7 +48,6 @@ const App = () => {
 	getReviews()
     getTheme()
   }, [])
-  
 
   // Show page
   const tcr = useRef()
@@ -113,40 +110,55 @@ const App = () => {
   
   //Get IP Info
   const checkIp = async ()=> {
-    await fetch('https://api.ipify.org?format=json')
-	  .then(res => res.json())
-	  .then(res => {
-		if(!localStorage.getItem('ip') || localStorage.getItem('ip') !== res.ip){
-		  getIpInfo(res.ip)
-		} else {
-		  const info = JSON.parse(localStorage.getItem('ipData'))
-		  const msg = `IP: ${info.ip} \n Country: ${info.country_flag} ${info.location.country} \n ISP: ${info.isp.org}`
-		  showNotification('inf', msg)
+	try {
+  	  const res = await fetch('https://api.ipify.org?format=json')
+	  const { ip: currentIp } = await res.json()
+
+	  const storedIp = localStorage.getItem('ip')
+	  const storedIpData = localStorage.getItem('ipData')
+	  
+	  if(!storedIp || storedIp !== currentIp){
+		  await getIpInfo(currentIp)
+		} else if(storedIpData){
+		  showNotification(JSON.parse(storedIpData))
 		}
-	  })
-	  .catch((err)=> showNotification('err', err))
+	} catch(err){
+	  handleErr(err)
+	}
+  }
+
+  const getIpInfo = async (ip)=> {
+	try {
+	  const res = await axios.post(`${server}/ipinfo`, {ip})
+	  const ipData = res.data
+	  
+	  localStorage.setItem('ipData', JSON.stringify(ipData))
+	  localStorage.setItem('ip', ipData.ip)
+	  
+	  showNotification(ipData)
+	} catch(err){
+	  handleErr(err)
+	}
   }
   
-  const getIpInfo = async (ip)=> {
-	  await axios.post(`${server}/ipinfo`, {ip})
-		.then(res => {
-		  localStorage.setItem('ipData', JSON.stringify(res.data))
-		  const info = JSON.parse(localStorage.getItem('ipData'))
-		  localStorage.setItem('ip', info.ip)
-		  const msg = `IP: ${info.ip} \n Country: ${info.country_flag} ${info.location.country} \n ISP: ${info.isp.org}`
-		  showNotification('inf', msg)
-		}) 
+  const showNotification = (ipData)=> {
+	const message = `IP: ${ipData.ip} \n Country: ${ipData.country_flag} ${ipData.location.country} \n ISP: ${ipData.isp.org}`
+	notiPopup.showNotification('inf', message)	
+  }
+
+  const handleErr = (err)=> {
+	notiPopup.showNotification('err', err.response?.data?.message || err.message)
   }
   
   // Get all reviews
   const getReviews =  async ()=> {
-    await axios.get(URI)
-      .then((res)=> {
-    	setReviews(res.data.filter(r => r.enabled === true))
-  	  })
-      .catch((err)=> {
-		showNotification('err', err.response?.data?.message || err.message)
-      })
+	notiPopup.showNotification('ok')
+	try {
+  	  const res = await axios.get(URI)
+  	  setReviews(res.data.filter(r => r.enabled === true))
+  	} catch(err){
+      notiPopup.showNotification('err', err.response?.data?.message || err.message)
+    }
   }
 
   // Trigger animation
@@ -228,53 +240,6 @@ const App = () => {
 	})
   })
   
-
-  // Notification Box
-  const notifications = useRef()
-  const ntf_icon = useRef()
-  const ntf_text = useRef()
-
-  const showNotification = (notiType, message) => {
-
-    switch (notiType) {
-      case "ok":
-        setNotifyIcon(
-          <div id="ntf_icon" className="ntf_icon">
-            <FaCircleCheck style={{ color: 'green' }} />
-          </div>
-        )
-        break
-      case "err":
-        setNotifyIcon(
-          <div id="ntf_icon" className="ntf_icon" >
-            <FaTriangleExclamation style={{ color: 'red' }} />
-          </div>
-        )
-        break
-      case "inf":
-        setNotifyIcon(
-          <div id="ntf_icon" className="ntf_icon">
-            <FaCircleExclamation style={{ color: 'yellow' }} />
-          </div>
-        )
-        break
-      case "sys":
-        setNotifyIcon(
-          <div id="ntf_icon" className="ntf_icon spinn">
-            <PiGearFill style={{ color: 'chocolate' }} />
-          </div>
-        )
-        break
-      default:
-    }
-
-    setNotifyText(<p>{message}</p>)
-    notifications.current.style['transform'] = 'translate(-3%)'
-    setTimeout(() => {
-      notifications.current.style['transform'] = 'translate(102%)'
-    }, 5000)
-  }
-  
   return (
     <serverContext.Provider value={server}>
       <>
@@ -290,30 +255,31 @@ const App = () => {
   		</div>
 
     	{/* Notification */}
-        <section className="s_notifications" ref={notifications} id="s_notifications">
-      	  <div className="ntf_box" id="ntf_box">
-        	<div className="ntf_msg" id="ntf_msg">
-        	  <div className="ntf_icon">
-				{notifyIcon}
+        <section className="s_notifications" ref={notiPopup.ntf_popup} id="s_notifications">
+      	  <div className="ntf_box" id="ntf_box" ref={notiPopup.ntf_box} >
+        	<div className="ntf_msg" id="ntf_msg" ref={notiPopup.ntf_msg} >
+        	  <div className="ntf_icon" ref={notiPopup.ntf_icon}>
+				{notiPopup.notifyIcon}
         	  </div>
-        	  <div className="ntf_text" ref={ntf_text} id="ntf_text">
-				{notifyText}
+        	  <div className="ntf_text" ref={notiPopup.ntf_text} id="ntf_text">
+				{notiPopup.notifyText}
         	  </div>
             </div>
           </div>
+		  {/*<Notification icon={'ok'} text={'Testing'} />*/}
         </section>
         <br />
 
         <BrowserRouter forceRefresh={true}>
           <Routes>
-        	<Route path='/' element={<CompMain mediaServer={mediaServer} reviews={reviews} getReviews={getReviews} notify={showNotification} ss={ss} />} />
-            <Route path='/portfolio' element={<CompPortfolio mediaServer={mediaServer} ss={ss} notify={showNotification} reviews={reviews} />} />
+        	<Route path='/' element={<CompMain mediaServer={mediaServer} reviews={reviews} getReviews={getReviews} notify={notiPopup.showNotification} ss={ss} />} />
+            <Route path='/portfolio' element={<CompPortfolio mediaServer={mediaServer} ss={ss} notify={notiPopup.showNotification} reviews={reviews} />} />
 	        <Route path='*' element={<Navigate to="/" />} />
           </Routes>
         </BrowserRouter>
         </div>
         <div className='footer'>
-          <p id='footer' >Powered by KiniunDev™ - Copyright© {getYear()}</p>
+          <p id='footer'>Powered by KiniunDev™ - Copyright© {getYear()}</p>
         </div>
       </>
     </serverContext.Provider>

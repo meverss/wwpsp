@@ -18,15 +18,17 @@ export const ipInfo = (req, res)=> {
 		  }
 	
 		  countryFlag = getFlagEmoji(countryCode)
-	  	  console.log({...ipData.data, country_flag: countryFlag})
+	  	  //console.log({...ipData.data, country_flag: countryFlag})
 		
 		  res.status(200).json({...ipData.data, country_flag: countryFlag})
 		})
 		.catch((err)=> {
 		  res.status(500).json({
-      		message: 'Sorry, there were some network issues.'		
+      		...err, message: 'Sorry, there were some network issues.'		
 		  })
+		  console.log(err)
 		})
   }
   getIpInfo()
+
 }

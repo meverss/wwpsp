@@ -10,65 +10,48 @@ const passAuth = (req) => {
 
 // Get All Messages
 export const getAllMessages = async (req, res) => {
-    try {
-      const Messages = await Message.find().sort({'createdAt': -1})
-        res.json(Messages)
-    } catch (error) {
-      return res.status(500).json({
-        message: `ALL Messages: Something went wrong: ${error}`
-      })
-    }
-}
-
-// Get One Message
-export const getOneMessage = async (req, res) => {
-  const { id } = req.params
-  
-  try {
-    const MessageFound = await Message.findOne({_id:id})
-	const { name, ocupation, image, reference, createdAt, updatedAt } = MessageFound
-	
-	res.status(200).json({ 
-	name,
-	ocupation,
-	image,
-	reference,
-	createdAt,
-	updatedAt
-	})
-  } catch (error) {
-    return res.status(500).json({
-      message: `ONE Message: Something went wrong: ${error}`
+  await Message.find().sort({'createdAt': -1})
+    .then(messages => {
+      res.json(messages)
     })
-  }
+    .catch(err => {
+      res.status(500).json({
+    	icon: 'err',
+        message: 'Sorry, unable to retrive messages from tve server'
+  	  })
+    })
 }
 
 // Add a Message
 export const createMessage = async (req, res) => {
   const { name, email, subject, message } = req.body
   let sub = subject
-  if(!subject)sub = '(No subject)'
+  if(!subject) sub = '(No subject)'
   
-  try {
-  	const newMessage = new Message({
-  	    name,
-  	    email,
-  	    subject: sub,
-  	    message,
-  	    pending: true,
-  	    mailtype: 'NEW MESSAGE'
+  const newMessage = new Message({
+    name,
+    email,
+    subject: sub,
+    message,
+    pending: true,
+    mailtype: 'NEW MESSAGE'
+  })
+  	  
+  await newMessage.save()
+	.then(newMsg => {
+  	  sendEmail(newMessage)
+  	  console.log(`New Message from ${name}`)
+  	  res.status(200).json({
+		icon: 'ok',
+		message: 'Your message has been sent successfully'
+  	  })
   	})
-  	  
-  	await newMessage.save()
-  	sendEmail(newMessage)
-  	
-    console.log(`New Message from ${name}`)
-    res.sendStatus(204)
-  	  
-  } catch (error){
-	return res.status(500).json({
-	message: `CREATE Message: Something went wrong: ${error}`})
-  }
+	.catch(err => {
+	  res.status(500).json({
+		icon: 'err',
+		message: 'Sorry, something went wrong trying to send the message'
+	  })
+  })
 }
 
 // Update a Message
@@ -76,20 +59,28 @@ export const updateMessage = async (req, res) => {
   const { name, ocupation, image, reference } = req.body
   const { id } = req.params
 
-  try {
-    const updt = await Message.updateOne({_id:id}, {name, ocupation, image, reference})
-    if (updt.matchedCount === 1) {
-      console.log(`Updated Message ${name}`)
-      res.sendStatus(204)
-    } else {
-      console.log('Record not found')
-      res.sendStatus(404)
-    }
-  } catch (error) {
-    return res.status(500).json({
-      message: `UPDATE Message: Something went wrong: ${error}`
+  await Message.updateOne({_id:id}, {name, ocupation, image, reference})
+    .then(updt => {
+  	  if (updt.matchedCount === 1) {
+    	console.log(`Updated Message ${name}`)
+    	res.status(200).json({
+    	  icon: 'ok',
+    	  message: 'Message status updated successfully'
+    	})
+  	  } else {
+    	console.log('Record not found')
+    	res.status(404).json({
+    	  icon: 'inf',
+    	  message: 'Record not found'
+    	})
+  	  }
     })
-  }
+  .catch(err => {
+    res.status(500).json({
+  	  icon: 'err',
+      message: 'Sorry, there was an error trying to update the record'
+	})
+  })
 }
 
 // Delete a Message
@@ -102,7 +93,7 @@ export const deleteMessage = async (req, res) => {
       res.sendStatus(204)
         
 	console.log(`Message ${wkr.name} has been deleted`)        
-    } catch (error) {
-	console.log(error)
+    } catch (err) {
+	console.log(err)
     }
 }

@@ -542,13 +542,8 @@ a, a:active {
   align-items: center;
   position: fixed;
   margin: 0;
-  max-width: fit-content;
   right: 0;
-  bottom: 45px;
-  transition: .3s;
-  transform: translate(100%);
-  background-color: rgb(10, 10, 10, 0.8);
-  border-radius: 5px;
+  bottom: 42px;
   z-index: 10000;
 }
 
@@ -557,7 +552,11 @@ a, a:active {
   justify-content: center;
   align-items: center;
   padding: 15px;
-
+  max-width: fit-content;
+  background-color: rgb(10, 10, 10, 0.8);
+  border-radius: 5px;
+  transition: .3s;
+  transform: translate(100%);
 }
 
 .ntf_msg {

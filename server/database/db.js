@@ -4,6 +4,7 @@ import sendMail from '../libs/mailer.js'
 
 export const connectDB = ()=> {
   let isConnected = false
+
   const connect = async ()=> {
 //	await mongoose.connect('mongodb://localhost/wwpsp')
 	await mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.l4evt.mongodb.net/wwpsp`)
@@ -15,6 +16,9 @@ export const connectDB = ()=> {
 	})
 	.catch((err)=> console.log('\x1b[31m>>> Error connecting to database.\x1b[0m'))
   }
+  
+  mongoose.connection.on('error', ()=> console.log('Found an error'))
+  
   connect()
   setInterval(()=> {
 	if(isConnected !== true){

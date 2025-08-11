@@ -11,11 +11,14 @@ const passAuth = (req) => {
 
 // Get All Reviews
 export const getAllReviews = async (req, res) => {
-  await Review.find().sort({'createdAt': -1}).populate('author')
-	.then((reviews)=> res.json(reviews))
-    .catch(()=> res.status(500).json({
+  try {
+	const reviews = await Review.find().sort({'createdAt': -1}).populate('author')
+	res.json(reviews)
+  } catch(err){
+	res.status(500).json({
       message: 'Sorry, something went wrong retriving the reviews.'
-    }))
+	})
+  }
 }
 
 // Create a review
@@ -39,9 +42,10 @@ export const createReview = async (req, res) => {
     console.log(`${author} added a new review`)
     res.sendStatus(204)
   	  
-  } catch (error){
-	return res.status(500).json({
-	message: `CREATE Review: Something went wrong: ${error}`})
+  } catch (err){
+	res.status(500).json({
+	  message: 'Sorry, an error has occurred sending your review'
+	})
   }
 }
 
@@ -60,41 +64,19 @@ export const updateReview = async (req, res) => {
       console.log('Record not found')
       res.sendStatus(404)
     }
-  } catch (error) {
-    return res.status(500).json({
-      message: `UPDATE review: Something went wrong: ${error}`
-    })
-  }
-}
-
-// Update a review (No-Password)
-export const updateReviewNoPass = async (req, res) => {
-  const { review, enabled, fullname } = req.body
-  const { id } = req.params
-
-  try {
-    const updt = await review.updateOne({_id:id}, {review,fullname,enabled})
-    if (updt.matchedCount === 1) {
-      console.log(`Updated review ${fullname}`)
-      res.sendStatus(204)
-    } else {
-      console.log('Record not found')
-      res.sendStatus(404)
-    }
-  } catch (error) {
-    return res.status(500).json({
-      message: `UPDATE review: Something went wrong: ${error}`
+  } catch (err) {
+    res.status(500).json({
+      message: 'Sorry, and error has occurred updating the review'
     })
   }
 }
 
 // Delete a review
 export const deleteReview = async (req, res) => {
-    const { id } = req.params
+  const { id } = req.params
 
-    try {
-	const usr = await review.findById({ _id:id})
-        await review.findByIdAndDelete({_id:id})
+  try {
+	const review = await review.findByIdAndDelete({_id:id})
         res.sendStatus(204)
         
 	console.log(`review ${usr.fullname} has been deleted`)        
