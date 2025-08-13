@@ -14,6 +14,10 @@ export const CompMenu = ({ navs, ss }) => {
 
   const sectionLinks = document.querySelectorAll('.section_link')
   const encSection = encodeURIComponent(ss)
+
+  const m_menu_container = useRef(null)
+  const m_menu = useRef(null)
+
   
   useEffect(()=>{
 	if(ss !== 's_portfolio'){
@@ -31,11 +35,11 @@ export const CompMenu = ({ navs, ss }) => {
 	  localStorage.setItem('actSection', e.dataset.menuitem)
 	  if(e.dataset.menuitem !== 's_portfolio'){
 		const encSection = encodeURIComponent(e.dataset.menuitem)
-		setTimeout(()=>{
+		setTimeout(()=> {
 		  window.location = `/#${encSection}`
 		},200)
 	  } else if(!window.location.pathname.includes('portfolio')){
-		setTimeout(()=>{
+		setTimeout(()=> {
 		  window.location = `/portfolio`
 		},200)
 	  }
@@ -45,27 +49,24 @@ export const CompMenu = ({ navs, ss }) => {
   })
   
   // Sow/Hide Mobile menu
-  const m_menu_container = document.getElementById('m_menu_container')
-  const m_menu = document.getElementById('m_menu')
-
   const showmenu = ()=> {
-	if(m_menu_container){
-	  const hideMenu = () => {
+	if(m_menu_container.current){
+	  const hideMenu = ()=> {
 		setMenuIcon(<TfiMenu />)
-		setMenuHidden(true)
-		m_menu.style["transform"] = "translate(100%)"
-		setTimeout(() => {
-		  m_menu_container.style["display"] = "none"
-		  m_menu_container.removeEventListener('click', null)
+		setMenuHidden(prev => !prev)
+		m_menu.current.style["transform"] = "translate(100%)"
+		setTimeout(()=> {
+		  m_menu_container.current.style["display"] = "none"
+		  m_menu_container.current.removeEventListener('click', null)
 		}, 200)
 	  }
 
 	  if(menuHidden){
-		m_menu_container.style["display"] = "flex"
+		m_menu_container.current.style["display"] = "flex"
 		setTimeout(() => {
 		  setMenuHidden(false)
 		  setMenuIcon(<AiOutlineClose />)
-		  m_menu.style["transform"] = "translate(0%)"
+		  m_menu.current.style["transform"] = "translate(0%)"
 		}, 10)
 	
 	  } else {
@@ -73,7 +74,7 @@ export const CompMenu = ({ navs, ss }) => {
 	  }
 
 	  getEscKey(hideMenu)
-	  m_menu_container.addEventListener('click', hideMenu)
+	  m_menu_container.current.addEventListener('click', hideMenu)
 	}
   }
 
@@ -101,8 +102,8 @@ export const CompMenu = ({ navs, ss }) => {
 		  <div className="m_menu_btn animate__animated animate__heartBeat" id="m_menu_btn" onClick={showmenu}>
 			<span>{menuIcon}</span>
 		  </div>
-		  <div className="m_menu_container" id="m_menu_container">
-			<div className="m_menu" id="m_menu">
+		  <div className="m_menu_container" id="m_menu_container" ref={m_menu_container}>
+			<div className="m_menu" id="m_menu" ref={m_menu}>
 			  <ul>
 				<li className="m_menu_item section_link" data-menuitem="s_home" id="m_welcome"><FaHome className="mIcon" />&nbsp;HOME</li>
 				<li className="m_menu_item section_link" data-menuitem="s_about_us" id="m_about_us"><BsFillInfoCircleFill className="mIcon" />&nbsp;About Us</li>
@@ -111,7 +112,6 @@ export const CompMenu = ({ navs, ss }) => {
 				<li className="m_menu_item section_link" data-menuitem="s_our_team" id="m_our_team"><FaUsers className="mIcon" />&nbsp;Our Team</li>
 				<li className="m_menu_item section_link" data-menuitem="s_reviews" id="m_reviews"><FaRegNewspaper className="mIcon" />&nbsp;Reviews</li>
 				<li className="m_menu_item section_link" data-menuitem="s_contact" id="m_contact_us"><FaMailBulk className="mIcon" />&nbsp;Contact Us</li>
-				
 			  </ul>
 			</div>
 		  </div>

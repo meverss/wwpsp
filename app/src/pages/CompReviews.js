@@ -23,15 +23,13 @@ const CompReviews = ({ mediaServer, mainContainer, getReviews, reviews, notify }
   const [reviewsToShow, setReviewsToShow] = useState(5)
   const [rate, setRate] = useState(4)
 
-  const reviewForm = document.getElementById('s_review_form')
-  const reviewFormBox = document.getElementById('review_form_box')
-  const reviewCloseBtn = document.getElementById('review_close_btn')
-  const formReviewName = document.getElementById('rv_name')
-  const formReviewEmail = document.getElementById('rv_email')
-  const formReviewMessage = document.getElementById('rv_message')
+  const reviews_box = useRef(null)
+  const reviewForm = useRef(null)
+  const reviewFormBox = useRef(null)
+  const formReviewName = useRef(null)
+  const formReviewEmail = useRef(null)
+  const formReviewMessage = useRef(null) 
   const ratingStars = document.querySelectorAll('.rateStarVote')
-
-  const reviews_box = useRef('')
 
   useEffect(()=>{
 	validateAll()
@@ -57,20 +55,20 @@ const CompReviews = ({ mediaServer, mainContainer, getReviews, reviews, notify }
 
   // Hide 'Submit a review' form
   const  hideSubmitReview = ()=> {
-	if(reviewFormBox){
-  	  reviewFormBox.classList.remove('animate__animated', 'animate__zoomIn')
-  	  reviewFormBox.classList.add('animate__animated', 'animate__zoomOut')
+	if(reviewFormBox.current){
+  	  reviewFormBox.current.classList.remove('animate__animated', 'animate__zoomIn')
+  	  reviewFormBox.current.classList.add('animate__animated', 'animate__zoomOut')
 	  setReviewsToShow(5)
 	  window.location = '/#s_reviews'
 
   	  setTimeout(()=> {
-  		reviewFormBox.classList.remove('animate__animated', 'animate__zoomOut')
+  		reviewFormBox.current.classList.remove('animate__animated', 'animate__zoomOut')
 		setAuthor('')
 		setEmail('')
 		setReview('')
 		setRate(4)
 		setReviewLength(0)
-		reviewForm.style.display = 'none'
+		reviewForm.current.style.display = 'none'
 		document.body.style.overflow = 'auto'
 	  }, 200)
 	}
@@ -78,19 +76,19 @@ const CompReviews = ({ mediaServer, mainContainer, getReviews, reviews, notify }
 
   // Create a new review
   const showCreateReview = ()=> {
-	if(reviewForm){
-	  reviewForm.style.display = 'flex'
+	if(reviewForm.current){
+	  reviewForm.current.style.display = 'flex'
 	  document.body.style.overflow = 'hidden'
   
 	  disableSendButton('rv_btn_send')
 
-	  reviewFormBox.classList.add('animate__animated', 'animate__zoomIn')
+	  reviewFormBox.current.classList.add('animate__animated', 'animate__zoomIn')
 	  if(window.innerHeight >= 800){
-	   formReviewName.focus()
+	   formReviewName.current.focus()
 	  }
   
 	  setTimeout(() => {
-		reviewFormBox.classList.remove('animate__animated', 'animate__zoomIn')
+		reviewFormBox.current.classList.remove('animate__animated', 'animate__zoomIn')
 	  }, 1000)
 
 	  //getEscKey(hideSubmitReview)
@@ -145,10 +143,10 @@ const CompReviews = ({ mediaServer, mainContainer, getReviews, reviews, notify }
   return (
     <>
   	  {/* Create new review form */}
-	  <section className="s_review_form" id="s_review_form">
-		<div className="review_form_back" id="review_form_back">
-		  <div className="review_form_box" id="review_form_box">
-			<div className="review_close_btn" id="review_close_btn" onClick={hideSubmitReview}>
+	  <section className="s_review_form" id="s_review_form" ref={reviewForm}>
+		<div className="review_form_back" id="review_form_back" >
+		  <div className="review_form_box" id="review_form_box" ref={reviewFormBox}>
+			<div className="review_close_btn" id="review_close_btn" onClick={hideSubmitReview} >
 			  <p style={{color: 'var(--text-main)'}} ><MdClose /> </p>
 			</div>
 			<div className="review_form_title" id="review_form_title">
@@ -156,14 +154,14 @@ const CompReviews = ({ mediaServer, mainContainer, getReviews, reviews, notify }
 			</div>
 			<form id="review_form" className="review_form form" action="https://api.web3forms.com/submit" onSubmit={createReview} >
 			  <label className="text" for="rv_name">Full Name<span className="important">*</span></label>
-			  <input className="frm_text" name="fullname" id="rv_name" autocomplete="off" placeholder="What's your name?" data-frminfo="name" onChange={(e)=> setAuthor(e.target.value)} value={author}/>
+			  <input className="frm_text" ref={formReviewName} name="fullname" id="rv_name" autocomplete="off" placeholder="What's your name?" data-frminfo="name" onChange={(e)=> setAuthor(e.target.value)} value={author}/>
 			  <label className="text" for="br_email">E-mail<span className="important">*</span></label>
-			  <input className="frm_text" name="email" id="rv_email" type="email" autocomplete="off" placeholder="your@email.here" data-frminfo="email" onChange={(e)=> setEmail(e.target.value.toLowerCase().trim())} value={email}/>
+			  <input className="frm_text" ref={formReviewEmail} name="email" id="rv_email" type="email" autocomplete="off" placeholder="your@email.here" data-frminfo="email" onChange={(e)=> setEmail(e.target.value.toLowerCase().trim())} value={email}/>
 			  <div className="review_labels">
 				<label className="text" for="br_message" id="review_message">Review<span className="important">*</span></label>
 				<label className="text" for="br_message" id="review_counter">({reviewLength}/160)</label>
 			  </div>
-			  <textarea className="frm_text frm_message" name="message" id="rv_message" rows="5" autocomplete="off" placeholder="What's your opinion about our service?" data-frminfo="message" onChange={(e)=> setReview(e.target.value)} value={review} maxlength="160"></textarea>
+			  <textarea className="frm_text frm_message" ref={formReviewMessage} name="message" id="rv_message" rows="5" autocomplete="off" placeholder="What's your opinion about our service?" data-frminfo="message" onChange={(e)=> setReview(e.target.value)} value={review} maxlength="160"></textarea>
 			  <div className="rateContainer">
 				<span className="rateStar rateStarVote">{rate && rate >= 1 ? <IoMdStar /> : <IoMdStarOutline />}</span>
 				<span className="rateStar rateStarVote">{rate && rate >= 2 ? <IoMdStar /> : <IoMdStarOutline />}</span>

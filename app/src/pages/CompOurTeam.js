@@ -4,7 +4,7 @@ import { serverContext } from '../App.js'
 import { useState, useEffect, useRef, useContext } from 'react'
 import { smoothDragScroll } from '../libs/smoothDragScroll.js'
 
-const CompOurTeam = ({ mediaServer }) => {
+const CompOurTeam = ({ mediaServer, notify }) => {
   const server = useContext(serverContext)
   const URI = `${server}/workers/`
   
@@ -20,8 +20,12 @@ const CompOurTeam = ({ mediaServer }) => {
   },[])
   
   const getWorkers = async ()=> {
-	const res = await axios.get(URI)
-	setWorkers(res.data)
+	try{
+	  const res = await axios.get(URI)
+	  setWorkers(res.data)
+	}catch (err){
+	  notify('err', err.response?.data?.message)
+	}
   }
   
   const animateScroll = ()=> {

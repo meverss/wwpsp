@@ -126,7 +126,7 @@ const CompMain = ({ mediaServer, getReviews, reviews, notify, ss }) => {
 		  </div>
 		</article>
 		<CompServices />
-		<CompOurTeam mediaServer={mediaServer} />
+		<CompOurTeam mediaServer={mediaServer} notify={notify}/>
 		<CompReviews mediaServer={mediaServer} mainContainer={mainContainer.current} getReviews={getReviews} reviews={reviews} notify={notify} />
 		<CompContactUs notify={notify} />
 		<CompBudgetFloat notify={notify} />

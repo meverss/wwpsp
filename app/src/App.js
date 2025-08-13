@@ -152,12 +152,15 @@ const App = () => {
   
   // Get all reviews
   const getReviews =  async ()=> {
-	notiPopup.showNotification('ok')
 	try {
   	  const res = await axios.get(URI)
   	  setReviews(res.data.filter(r => r.enabled === true))
   	} catch(err){
+  	  if(err.response){
       notiPopup.showNotification('err', err.response?.data?.message || err.message)
+  	  } else if(err.request){
+  		alert(err.request)
+  	  }
     }
   }
 
@@ -266,11 +269,10 @@ const App = () => {
         	  </div>
             </div>
           </div>
-		  {/*<Notification icon={'ok'} text={'Testing'} />*/}
         </section>
         <br />
 
-        <BrowserRouter forceRefresh={true}>
+        <BrowserRouter>
           <Routes>
         	<Route path='/' element={<CompMain mediaServer={mediaServer} reviews={reviews} getReviews={getReviews} notify={notiPopup.showNotification} ss={ss} />} />
             <Route path='/portfolio' element={<CompPortfolio mediaServer={mediaServer} ss={ss} notify={notiPopup.showNotification} reviews={reviews} />} />
