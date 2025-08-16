@@ -39,7 +39,7 @@ const App = () => {
   
   const ss = localStorage.getItem('actSection') || 's_home'
   const teamBox = document.querySelector('.team_box')
-  const notiPopup = useNotify()
+  const { showNotification, NotificationsContainer } = useNotify()
   let images = []
   let imagesLoaded = -1
   
@@ -120,7 +120,7 @@ const App = () => {
 	  if(!storedIp || storedIp !== currentIp){
 		  await getIpInfo(currentIp)
 		} else if(storedIpData){
-		  showNotification(JSON.parse(storedIpData))
+		  showNoti(JSON.parse(storedIpData))
 		}
 	} catch(err){
 	  handleErr(err)
@@ -135,19 +135,21 @@ const App = () => {
 	  localStorage.setItem('ipData', JSON.stringify(ipData))
 	  localStorage.setItem('ip', ipData.ip)
 	  
-	  showNotification(ipData)
+	  showNoti(ipData)
 	} catch(err){
 	  handleErr(err)
 	}
   }
   
-  const showNotification = (ipData)=> {
-	const message = `IP: ${ipData.ip} \n Country: ${ipData.country_flag} ${ipData.location.country} \n ISP: ${ipData.isp.org}`
-	notiPopup.showNotification('inf', message)	
+  const showNoti = (ipData)=> {
+	const message = `IP: ${ipData.ip} \n Country: ${ipData.country_flag} ${ipData.location.country} \n State: ${ipData.location.state} \n City: ${ipData.location.city} \n ISP: ${ipData.isp.org}`
+	setTimeout(()=> {
+	  showNotification('inf', message, {title: 'IP Information'})		
+	},1000)
   }
 
   const handleErr = (err)=> {
-	notiPopup.showNotification('err', err.response?.data?.message || err.message)
+	showNotification('err', err.response?.data?.message || err.message, {title: 'Error'})
   }
   
   // Get all reviews
@@ -157,9 +159,9 @@ const App = () => {
   	  setReviews(res.data.filter(r => r.enabled === true))
   	} catch(err){
   	  if(err.response){
-      notiPopup.showNotification('err', err.response?.data?.message || err.message)
+      showNotification('err', err.response?.data?.message || err.message, {title: 'Error'})
   	  } else if(err.request){
-  		alert(err.request)
+      showNotification('err', err.request, {title: 'Error'})
   	  }
     }
   }
@@ -248,6 +250,7 @@ const App = () => {
       <>
     	<div className="page_content" ref={pageContent} id="page_content" >
     	<CompHeaderTop />
+
     	{/* Loader */}
     	<div className="loader_container" ref={loaderContainer} id="loader_container" >
 		  <div className='loader' ></div><br />
@@ -257,29 +260,19 @@ const App = () => {
 		  <p className="gossip" style={{position: 'fixed', bottom: '60px', color: 'green', width: '100%'}}></p>
   		</div>
 
-    	{/* Notification */}
-        <section className="s_notifications" ref={notiPopup.ntf_popup} id="s_notifications">
-      	  <div className="ntf_box" id="ntf_box" ref={notiPopup.ntf_box} >
-        	<div className="ntf_msg" id="ntf_msg" ref={notiPopup.ntf_msg} >
-        	  <div className="ntf_icon" ref={notiPopup.ntf_icon}>
-				{notiPopup.notifyIcon}
-        	  </div>
-        	  <div className="ntf_text" ref={notiPopup.ntf_text} id="ntf_text">
-				{notiPopup.notifyText}
-        	  </div>
-            </div>
-          </div>
-        </section>
-        <br />
-
+    	{/* Notifications */}
+		<NotificationsContainer />
+		
+		{/* Routes */}
         <BrowserRouter>
           <Routes>
-        	<Route path='/' element={<CompMain mediaServer={mediaServer} reviews={reviews} getReviews={getReviews} notify={notiPopup.showNotification} ss={ss} />} />
-            <Route path='/portfolio' element={<CompPortfolio mediaServer={mediaServer} ss={ss} notify={notiPopup.showNotification} reviews={reviews} />} />
+        	<Route path='/' element={<CompMain mediaServer={mediaServer} reviews={reviews} getReviews={getReviews} showNotification={showNotification} ss={ss} />} />
+            <Route path='/portfolio' element={<CompPortfolio mediaServer={mediaServer} ss={ss} showNotification={showNotification} reviews={reviews} />} />
 	        <Route path='*' element={<Navigate to="/" />} />
           </Routes>
         </BrowserRouter>
         </div>
+
         <div className='footer'>
           <p id='footer'>Powered by KiniunDev™ - Copyright© {getYear()}</p>
         </div>

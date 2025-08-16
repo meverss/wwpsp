@@ -61,11 +61,14 @@ export const createBudget = async (req, res) => {
   	sendEmail(newBudget)
   	
     console.log(`${name} requested a budget`)
-    res.sendStatus(204)
+    res.status(200).json({
+  	  message: 'Your budget request has been sent. We will contact you soon.'
+    })
   	  
-  } catch (error){
-	return res.status(500).json({
-	message: `CREATE Budget: Something went wrong: ${error}`})
+  } catch (err){
+	res.status(500).json({
+	  message: `Sorry, something went wrong creating a new budget request.`
+	})
   }
 }
 

@@ -4,7 +4,7 @@ import { serverContext } from '../App.js'
 import { useState, useEffect, useRef, useContext } from 'react'
 import { smoothDragScroll } from '../libs/smoothDragScroll.js'
 
-const CompOurTeam = ({ mediaServer, notify }) => {
+const CompOurTeam = ({ mediaServer, showNotification }) => {
   const server = useContext(serverContext)
   const URI = `${server}/workers/`
   
@@ -23,8 +23,9 @@ const CompOurTeam = ({ mediaServer, notify }) => {
 	try{
 	  const res = await axios.get(URI)
 	  setWorkers(res.data)
+	  showNotification('ok', 'All workers retrived successfully')
 	}catch (err){
-	  notify('err', err.response?.data?.message)
+	  showNotification('err', err.response?.data?.message, {title: 'Error'})
 	}
   }
   
@@ -140,7 +141,7 @@ const CompOurTeam = ({ mediaServer, notify }) => {
 		<h3 className="team_member_text" id="name" style={{color: '#37a1c6', fontWeight: 'bold', width: '100%', fontSize: '100%'}}></h3>
 		<span className="team_member_text" id="job"></span>
 		<p id="gossip"></p>		  
-		<div className="team_box box" id="team_box" ref={team_box} >
+		<div className="team_box" id="team_box" ref={team_box} >
 		{ workers && workers.map((worker, index)=> (
 		<div className="team_card" id={`card${index + 1}`} data-key={worker.id}>
 	  	  <div className="team_card_img">

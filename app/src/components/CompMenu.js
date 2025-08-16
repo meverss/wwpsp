@@ -18,7 +18,6 @@ export const CompMenu = ({ navs, ss }) => {
   const m_menu_container = useRef(null)
   const m_menu = useRef(null)
 
-  
   useEffect(()=>{
 	if(ss !== 's_portfolio'){
 	  window.location = `/#${encSection}`
@@ -40,6 +39,7 @@ export const CompMenu = ({ navs, ss }) => {
 		},200)
 	  } else if(!window.location.pathname.includes('portfolio')){
 		setTimeout(()=> {
+		  setMenuHidden(prev => !prev)
 		  window.location = `/portfolio`
 		},200)
 	  }
@@ -53,7 +53,7 @@ export const CompMenu = ({ navs, ss }) => {
 	if(m_menu_container.current){
 	  const hideMenu = ()=> {
 		setMenuIcon(<TfiMenu />)
-		setMenuHidden(prev => !prev)
+		setMenuHidden(true)//prev => !prev)
 		m_menu.current.style["transform"] = "translate(100%)"
 		setTimeout(()=> {
 		  m_menu_container.current.style["display"] = "none"
@@ -67,7 +67,7 @@ export const CompMenu = ({ navs, ss }) => {
 		  setMenuHidden(false)
 		  setMenuIcon(<AiOutlineClose />)
 		  m_menu.current.style["transform"] = "translate(0%)"
-		}, 10)
+		}, 100)
 	
 	  } else {
 		hideMenu()
@@ -77,7 +77,6 @@ export const CompMenu = ({ navs, ss }) => {
 	  m_menu_container.current.addEventListener('click', hideMenu)
 	}
   }
-
   
   return (
     <>

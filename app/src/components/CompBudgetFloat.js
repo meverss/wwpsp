@@ -6,7 +6,7 @@ import budgetIcon from "../media/images/budget.webp"
 import { MdClose } from "react-icons/md"
 import { getEscKey } from '../libs/getEscKey.js'
 
-export const CompBudgetFloat = ({ notify })=> {
+export const CompBudgetFloat = ({ showNotification })=> {
   const server = useContext(serverContext)
   const URI = `${server}/budgets/`
 
@@ -95,12 +95,12 @@ export const CompBudgetFloat = ({ notify })=> {
     try {
 	  hideBudgetForm()
   	  await axios.post(URI, { name, email, phone, budget })
-	  notify('ok', 'Your request has been sent. We will contact you shortly.')
-    } catch (error) {
-	  notify('err', error)
+	  showNotification('ok', 'Your request has been sent. We will contact you shortly.', {title: 'New budget request'})
+    } catch (err) {
+	  showNotification('err', err.response?.data?.message || err.message, {title: 'Error'})
     }
   } else {
-	notify('inf', 'Please, provide all required information')	
+	showNotification('inf', 'Please, provide all required information', {title: 'New budget request'})	
   }
   }
   

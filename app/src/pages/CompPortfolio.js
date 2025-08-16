@@ -10,7 +10,7 @@ import { IoMdCloseCircleOutline, IoMdCloseCircle } from "react-icons/io"
 import { ImPrevious, ImNext } from "react-icons/im"
 import { RxDotFilled } from "react-icons/rx"
 
-const CompPortfolio = ({ ss, mediaServer, notify, reviews })=> {
+const CompPortfolio = ({ ss, mediaServer, showNotification, reviews })=> {
   const server = useContext(serverContext)
   const URI = `${server}/albums/`
   
@@ -38,12 +38,14 @@ const CompPortfolio = ({ ss, mediaServer, notify, reviews })=> {
   },[])
 
   const getAlbums = async ()=> {
-	await axios.get(URI + 'images')
-	  .then((images)=> setAlbums(images.data))
-	  .catch((err)=> notify('err', err))
-	await axios.get(URI + 'videos')
-	  .then((videos)=> setVideos(videos.data))
-	  .catch((err)=> notify('err', err))
+	try{
+	  const images = await axios.get(URI + 'images')
+	  const videos = await axios.get(URI + 'videos')
+	  setAlbums(images.data)
+	  setVideos(videos.data)
+	} catch( err){
+	  showNotification('err', 'Sorry, something went wrong retriving media', {title: 'Error'})
+	}
   }
 
   // Show page
@@ -304,14 +306,14 @@ const CompPortfolio = ({ ss, mediaServer, notify, reviews })=> {
   	  <CompMenu ss={ss} />
   	  <div className="main" ref={pageContent}>
   	    {/* Loader */}
-  		<div className="loader_container" ref={loaderContainer} id="loader_container">
+{/*  		<div className="loader_container" ref={loaderContainer} id="loader_container">
 		  <div className='loader' ></div><br />
 		  <div className='loaderPercent'>
 			<div className='loaderPercentBar'></div>
 		  </div>
 		  <p className="gossip" style={{position: 'fixed', bottom: '60px', color: 'green', width: '100%'}}></p>
 		</div>
-  	  
+*/}  	  
 		<section className="s_portfolio" id="s_portfolio">
 		  <h2 className="portfolio_title" id="portfolio_title">Portfolio</h2><br />
 		  <div className="portfolio_box" id="portfolio_box">

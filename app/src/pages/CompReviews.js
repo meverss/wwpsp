@@ -12,7 +12,7 @@ import { LiaCalendar } from "react-icons/lia"
 import { MdClose } from "react-icons/md"
 import { IoMdStar, IoMdStarOutline, IoMdStarHalf } from "react-icons/io";
 
-const CompReviews = ({ mediaServer, mainContainer, getReviews, reviews, notify }) => {
+const CompReviews = ({ mediaServer, mainContainer, getReviews, reviews, showNotification }) => {
   const server = useContext(serverContext)
   const URI = `${server}/reviews/`
   
@@ -103,12 +103,12 @@ const CompReviews = ({ mediaServer, mainContainer, getReviews, reviews, notify }
 		hideSubmitReview()
 	  	await axios.post(URI, { author, email, review, rate })
 		getReviews()
-		notify('ok', 'Your review has been submitted')
-	  } catch (error) {
-		notify('err', error)
+		showNotification('ok', 'Your review has been submitted', {title: 'New review'})
+	  } catch (err) {
+		showNotification('err', err.response?.data?.message || err.message, {title: 'Error'})
 	  }
 	} else {
-		notify('inf', 'Please, provide all required info')	
+		showNotification('inf', 'Please, provide all required info', {title: 'New review'})
 	}
   }
   

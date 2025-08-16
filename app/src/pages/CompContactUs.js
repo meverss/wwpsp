@@ -6,7 +6,7 @@ import { useState, useEffect, useRef, useContext } from 'react'
 import { BiMailSend } from "react-icons/bi"
 import { MdLocalPhone, MdOutlineLocationOn } from "react-icons/md"
 
-const CompContactUs = ({ notify }) => {
+const CompContactUs = ({ showNotification }) => {
   const server = useContext(serverContext)
   const URI = `${server}/messages`
   
@@ -30,11 +30,11 @@ const CompContactUs = ({ notify }) => {
 	e.preventDefault()
 	await axios.post(URI, {name, email, subject, message})
 	  .then(res => {
-		notify(res.data.icon, res.data.message)
+		showNotification('ok', res.data.message)
 		window.location = '/#s_contact'
 	  })
 	  .catch(err => {
-		notify(err.response.data.icon, err.response.data.message)
+		showNotification('err', err.response.data.message, {title: 'Error'})
 	  })
 	setName('')
 	setEmail('')

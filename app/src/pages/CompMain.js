@@ -14,7 +14,7 @@ import { RiMoonLine } from "react-icons/ri"
 import { PiGearFill } from "react-icons/pi"
 
 
-const CompMain = ({ mediaServer, getReviews, reviews, notify, ss }) => {
+const CompMain = ({ mediaServer, getReviews, reviews, showNotification, ss }) => {
   const server = useContext(serverContext)
   const mainContainer = useRef('')
   const sCards = document.querySelectorAll('.e_services_card')
@@ -34,7 +34,7 @@ const CompMain = ({ mediaServer, getReviews, reviews, notify, ss }) => {
   return (
     <>
   	  <CompMenu ss={ss} />
-	  <section className="main" id="main_container" ref={mainContainer}>
+	  <section className="main" id="main_container" ref={mainContainer} data-theme="dark" >
 		<div style={{position: 'absolute', left: '0', width: '100%', margin: '0', paddingLeft: '10px', paddingRight: '10px', paddingBottom: '95px'}}>
 		{/* Welcome! */}
 		<nav id="s_home"></nav>
@@ -126,10 +126,10 @@ const CompMain = ({ mediaServer, getReviews, reviews, notify, ss }) => {
 		  </div>
 		</article>
 		<CompServices />
-		<CompOurTeam mediaServer={mediaServer} notify={notify}/>
-		<CompReviews mediaServer={mediaServer} mainContainer={mainContainer.current} getReviews={getReviews} reviews={reviews} notify={notify} />
-		<CompContactUs notify={notify} />
-		<CompBudgetFloat notify={notify} />
+		<CompOurTeam mediaServer={mediaServer} showNotification={showNotification}/>
+		<CompReviews mediaServer={mediaServer} mainContainer={mainContainer.current} getReviews={getReviews} reviews={reviews} showNotification={showNotification} />
+		<CompContactUs showNotification={showNotification} />
+		<CompBudgetFloat showNotification={showNotification} />
 		</div>
 	  </section>
     </>

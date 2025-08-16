@@ -17,8 +17,6 @@ export const connectDB = ()=> {
 	.catch((err)=> console.log('\x1b[31m>>> Error connecting to database.\x1b[0m'))
   }
   
-  mongoose.connection.on('error', ()=> console.log('Found an error'))
-  
   connect()
   setInterval(()=> {
 	if(isConnected !== true){
