@@ -571,15 +571,6 @@ a, a:active {
   width: fit-content;
 }
 
-.ntf_icon {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  left: 8px;
-  font-size: 30pt;
-  height: 100%;
-  font-size: 36px;
-}
 
 .ntf_text {
   display: flex;
@@ -618,6 +609,16 @@ a, a:active {
 
 }
 
+.ntf_icon {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 8px;
+  font-size: 30pt;
+  height: 100%;
+  font-size: 36px;
+}
+
 @keyframes show {
   0% {
     opacity: 0;
@@ -631,8 +632,25 @@ a, a:active {
   }
 }
 
+@keyframes hide {
+  0% {
+    opacity: 1;
+    max-height: fit-content;
+    transform: translateX(0%);
+  }
+  100% {
+    opacity: 0;
+    max-height: 0;
+    transform: translateX(100%);
+  }
+}
+
 .animate-show {
   animation: show 0.3s forwards;
+}
+
+.animate-hide {
+  animation: hide 0.3s forwards;
 }
 
 /* LEFT SIDE BAR - INFO */
