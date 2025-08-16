@@ -69,7 +69,7 @@ export const useNotify = ()=> {
   // Container for ALL notifications
   const NotificationsContainer = useMemo(()=> {
     return ()=> (
-      <section className="s_notifications" id="s_notifications">
+      <section className="s_notifications" id="s_notifications" onLoad={()=> alert('fgggg')}>
         {notifications.map(notification => (
           <NotificationItem
             key={notification.id}

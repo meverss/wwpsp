@@ -305,15 +305,6 @@ const CompPortfolio = ({ ss, mediaServer, showNotification, reviews })=> {
     <>
   	  <CompMenu ss={ss} />
   	  <div className="main" ref={pageContent}>
-  	    {/* Loader */}
-{/*  		<div className="loader_container" ref={loaderContainer} id="loader_container">
-		  <div className='loader' ></div><br />
-		  <div className='loaderPercent'>
-			<div className='loaderPercentBar'></div>
-		  </div>
-		  <p className="gossip" style={{position: 'fixed', bottom: '60px', color: 'green', width: '100%'}}></p>
-		</div>
-*/}  	  
 		<section className="s_portfolio" id="s_portfolio">
 		  <h2 className="portfolio_title" id="portfolio_title">Portfolio</h2><br />
 		  <div className="portfolio_box" id="portfolio_box">
