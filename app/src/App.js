@@ -36,12 +36,14 @@ const App = () => {
   const [reviews, setReviews] = useState('')
   const [theme, setTheme] = useState('')
   const [themeIcon, setThemeIcon] = useState('')
+  const [pageReady, setPageReady] = useState(false)
   
   const ss = localStorage.getItem('actSection') || 's_home'
   const teamBox = document.querySelector('.team_box')
   const { showNotification, NotificationsContainer } = useNotify()
   let images = []
   let imagesLoaded = -1
+  let loadingPercent = ''
   
   useEffect(() => {
 	checkIp()
@@ -55,6 +57,7 @@ const App = () => {
   const scrollArea = useRef('')
   const loaderContainer = useRef('')
   const rootDir = window.location.pathname === '/'
+  const section = localStorage.getItem('actSection')
   
   const showPage = ()=> {
 	pageContent.current.style.opacity = "1"
@@ -63,48 +66,50 @@ const App = () => {
 	document.removeEventListener("DOMContentLoaded", null)
   }
 
-	const imageLoaded = ()=> {
-	  const gsp = document.querySelector('.gossip')
-	  const loaderPercentBar = document.querySelector('.loaderPercentBar')	  
-	  imagesLoaded ++
+  setTimeout(()=> {
+	if(rootDir && section !== '') window.location = `/#${section}`
+	localStorage.removeItem('actSection')
+	showPage()
+  }, 10000)
+
+  const imageLoaded = ()=> {
+	const gsp = document.querySelector('.gossip')
+	const loaderPercentBar = document.querySelector('.loaderPercentBar')	  
+	imagesLoaded ++
 	
-	  const loadingPercent = `${Math.ceil(imagesLoaded / images.length * 100)}%`
-	  loaderPercentBar.style.width = loadingPercent
-	  //gsp.innerText = `${imagesLoaded} | L: ${images.length} | ${loadingPercent}`
-	  setTimeout(()=> {
-        loaderPercentBar.style.width = '100%'
-        setTimeout(()=> {
-          showPage()
-        },2000)
-      },10000)
-	}
+	loadingPercent = `${Math.ceil(imagesLoaded / images.length * 100)}%`
+	loaderPercentBar.style.width = loadingPercent
+	gsp.innerText = `${loadingPercent}` //| L: ${images.length} | ${loadingPercent}`
+  }
 
 	if(reviews.length > 0) imagesLoaded += 1
 
 	const checkLoadedMedia = ()=> {
-	if(rootDir){
-	images = document.querySelectorAll('img')	
-	images.forEach((image)=>{
-	  const exceptions = ['budget_icon_float']
-	  if(!exceptions.includes(image.id)){
-		image.addEventListener('touchstart', (e)=> {
-		  e.preventDefault()
-		  return image.removeEventListener('touchstart', null)
+	  if(rootDir){
+		images = document.querySelectorAll('img')	
+		images.forEach((image)=>{
+		  const exceptions = ['budget_icon_float']
+		  if(!exceptions.includes(image.id)){
+			image.addEventListener('touchstart', (e)=> {
+			  e.preventDefault()
+			  return image.removeEventListener('touchstart', null)
+			})
+		  }
+		  
+		  if(image.complete) imageLoaded()
+		  
 		})
 	  }
-	  
-	  if(image.complete) imageLoaded()
-
-	})
-	}
 	}
 
   useEffect(() => {
 	document.addEventListener("DOMContentLoaded", checkLoadedMedia())
-    if(rootDir && imagesLoaded === images.length){
+	if(loadingPercent === '105%'){
 	  setTimeout(()=> {
+		if(section !== '') window.location = `/#${section}`
+		localStorage.removeItem('actSection')
 		showPage()
-	  },2000)
+	  },1500) 
 	}
   },[images])
   
@@ -158,11 +163,8 @@ const App = () => {
   	  const res = await axios.get(URI)
   	  setReviews(res.data.filter(r => r.enabled === true))
   	} catch(err){
-  	  if(err.response){
-      showNotification('err', err.response?.data?.message || err.message, {title: 'Error'})
-  	  } else if(err.request){
-      showNotification('err', err.request, {title: 'Error'})
-  	  }
+    	showNotification('err', err.response?.data?.message || err.message, {title: 'Error'})
+  		await axios.get(URI)
     }
   }
 

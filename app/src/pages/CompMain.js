@@ -35,7 +35,7 @@ const CompMain = ({ mediaServer, getReviews, reviews, showNotification, ss }) =>
     <>
   	  <CompMenu ss={ss} />
 	  <section className="main" id="main_container" ref={mainContainer} data-theme="dark" >
-		<div style={{position: 'absolute', left: '0', width: '100%', margin: '0', paddingLeft: '10px', paddingRight: '10px', paddingBottom: '95px'}}>
+		<div style={{position: 'absolute', left: '0', width: '100%', margin: '0', paddingLeft: '10px', paddingRight: '10px', paddingBottom: '230px'}}>
 		{/* Welcome! */}
 		<nav id="s_home"></nav>
 		<section className="welcome box" id="welcome">

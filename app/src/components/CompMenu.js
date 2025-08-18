@@ -11,12 +11,14 @@ import { AiOutlineClose } from "react-icons/ai"
 export const CompMenu = ({ navs, ss }) => {
   const [menuIcon, setMenuIcon] = useState(<TfiMenu />)
   const [menuHidden, setMenuHidden] = useState(true)
-
+  
   const sectionLinks = document.querySelectorAll('.section_link')
   const encSection = encodeURIComponent(ss)
 
   const m_menu_container = useRef(null)
   const m_menu = useRef(null)
+  const menuBar = useRef()
+  const actSection = localStorage.getItem('actSection')
 
   useEffect(()=>{
 	if(ss !== 's_portfolio'){
@@ -25,7 +27,11 @@ export const CompMenu = ({ navs, ss }) => {
 		localStorage.removeItem('actSection')
 	  },60000 * 60)
 	}
-  },[document.querySelector(`#${ss}`)])
+  },[actSection])//document.querySelector(`#${ss}`)])
+  
+  useEffect(()=>{
+	if(menuBar.target) alert(menuBar.target)
+  },[menuBar.target])
 
   // Scroll to Sections
   sectionLinks.forEach((e)=> {
@@ -53,7 +59,7 @@ export const CompMenu = ({ navs, ss }) => {
 	if(m_menu_container.current){
 	  const hideMenu = ()=> {
 		setMenuIcon(<TfiMenu />)
-		setMenuHidden(true)//prev => !prev)
+		setMenuHidden(true)
 		m_menu.current.style["transform"] = "translate(100%)"
 		setTimeout(()=> {
 		  m_menu_container.current.style["display"] = "none"
@@ -80,8 +86,8 @@ export const CompMenu = ({ navs, ss }) => {
   
   return (
     <>
-	  <section className="main_menu" id="main_menu">
-		<div className="menu_bar" id="menu_bar">
+	  <section className="s_menu_bar" id="s_menu_bar">
+		<div className="menu_bar" id="menu_bar" ref={menuBar}>
 		  <div className="menu" id="menu">
 			<p className="menu_item section_link" data-menuitem="s_home" id="welcome"><FaHome className="mIcon"/>&nbsp;HOME </p>
 			<p className="menu_item section_link" data-menuitem="s_about_us" id="about_us"><BsFillInfoCircleFill className="mIcon"/>&nbsp;About Us </p>
@@ -100,7 +106,7 @@ export const CompMenu = ({ navs, ss }) => {
 		  {/* MOVILE MENU */}
 		  <div className="m_menu_btn animate__animated animate__heartBeat" id="m_menu_btn" onClick={showmenu}>
 			<span>{menuIcon}</span>
-		  </div>
+		  </div>*
 		  <div className="m_menu_container" id="m_menu_container" ref={m_menu_container}>
 			<div className="m_menu" id="m_menu" ref={m_menu}>
 			  <ul>

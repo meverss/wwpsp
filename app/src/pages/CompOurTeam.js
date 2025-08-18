@@ -23,7 +23,6 @@ const CompOurTeam = ({ mediaServer, showNotification }) => {
 	try{
 	  const res = await axios.get(URI)
 	  setWorkers(res.data)
-	  showNotification('ok', 'All workers retrived successfully')
 	}catch (err){
 	  showNotification('err', err.response?.data?.message, {title: 'Error'})
 	}
@@ -33,7 +32,7 @@ const CompOurTeam = ({ mediaServer, showNotification }) => {
 	const parentRectLeft = Math.round(team_box.current.getBoundingClientRect().left)
 	const boxWidth = Number(getComputedStyle(team_box.current).width.split('px')[0])
 	const centerPos = parentRectLeft + (boxWidth / 2)
-	//document.querySelector('#gossip').innerHTML = teamCards.length
+	document.querySelector('#gossip').innerHTML = window.innerWidth
 
   	document.querySelectorAll('.team_card').forEach((card)=> {
 	  const intercepting = Math.round(card.getBoundingClientRect().left) >= (centerPos - 75) && Math.round(card.getBoundingClientRect().left) <= (centerPos + 10)
@@ -145,7 +144,7 @@ const CompOurTeam = ({ mediaServer, showNotification }) => {
 		{ workers && workers.map((worker, index)=> (
 		<div className="team_card" id={`card${index + 1}`} data-key={worker.id}>
 	  	  <div className="team_card_img">
-			<img className="team_member" src={`${server}${worker.image}`} loading="lazy" alt={worker.name} />
+			<img className="team_member" src={`${server}${worker.image}`} alt={worker.name} />
 	  	  </div>
 	  	  <div className="team_card_text" id="team_card_text">
 			<h3>{worker.name}</h3>
