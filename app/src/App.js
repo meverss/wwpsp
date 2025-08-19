@@ -36,7 +36,6 @@ const App = () => {
   const [reviews, setReviews] = useState('')
   const [theme, setTheme] = useState('')
   const [themeIcon, setThemeIcon] = useState('')
-  const [pageReady, setPageReady] = useState(false)
   
   const ss = localStorage.getItem('actSection') || 's_home'
   const teamBox = document.querySelector('.team_box')
@@ -65,18 +64,7 @@ const App = () => {
 	document.body.style.overflowY = "scroll"
 	loaderContainer.current.style.display = 'none'
 	document.removeEventListener("DOMContentLoaded", null)
-
-	if(loadingPercent === 'Done!') {
-	  window.location = `/#${section}`
-	  localStorage.removeItem('actSection')
-	}
   }
-
-  setTimeout(()=> {
-//	if(rootDir && section !== '') window.location = `/#${section}`
-	loadingPercent = 'Done!'
-	showPage()
-  }, 10000)
 
   const imageLoaded = ()=> {
 	const gsp = document.querySelector('.gossip')
@@ -85,17 +73,19 @@ const App = () => {
 	
 	loadingPercent = `${Math.ceil(imagesLoaded / images.length * 100)}%`
 	loaderPercentBar.style.width = loadingPercent
-	//gsp.innerText = `${loadingPercent}` //| L: ${images.length} | ${loadingPercent}`
+	gsp.innerText = `${loadingPercent}` //| L: ${images.length} | ${loadingPercent}`
 
-  if(loadingPercent === '100%') {
-	loadingPercent = 'Done!'
-	loaderPercentBar.style.width = loadingPercent
-	setTimeout(()=> showPage(), 2000)
-  }
+	if(loadingPercent === '100%') {
+	  loaderPercentBar.style.width = loadingPercent
+	  setTimeout(()=> showPage(), 2000)
+	  window.location = `/#${section}`
+	}else if(rootDir && section !== '') {
+	  loaderPercentBar.style.width = loadingPercent
+	  setTimeout(()=> showPage(), 10000)
+	}
   }
 
   if(reviews.length > 0) imagesLoaded += 1
-
 
   const checkLoadedMedia = ()=> {
 	if(rootDir){
@@ -113,7 +103,7 @@ const App = () => {
 	}
   }
 
-	document.addEventListener("DOMContentLoaded", checkLoadedMedia())
+  document.addEventListener("DOMContentLoaded", checkLoadedMedia())
 /*  useEffect(() => {
 //	document.addEventListener("DOMContentLoaded", checkLoadedMedia())
 /*alert(pageReady)
