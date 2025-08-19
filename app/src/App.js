@@ -1,6 +1,6 @@
 import './App.css'
 import axios from './libs/axios.js'
-import { React, useState, useRef, useEffect, createContext } from 'react'
+import { React, useState, useRef, useEffect, useCallback, useMemo, createContext } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
 import { useNotify } from './hooks/useNotify.js'
@@ -40,6 +40,7 @@ const App = () => {
   
   const ss = localStorage.getItem('actSection') || 's_home'
   const teamBox = document.querySelector('.team_box')
+  const loaderPercentBar = document.querySelector('.loaderPercentBar')	  
   const { showNotification, NotificationsContainer } = useNotify()
   let images = []
   let imagesLoaded = -1
@@ -58,17 +59,22 @@ const App = () => {
   const loaderContainer = useRef('')
   const rootDir = window.location.pathname === '/'
   const section = localStorage.getItem('actSection')
-  
+
   const showPage = ()=> {
 	pageContent.current.style.opacity = "1"
 	document.body.style.overflowY = "scroll"
 	loaderContainer.current.style.display = 'none'
 	document.removeEventListener("DOMContentLoaded", null)
+
+	if(loadingPercent === 'Done!') {
+	  window.location = `/#${section}`
+	  localStorage.removeItem('actSection')
+	}
   }
 
   setTimeout(()=> {
-	if(rootDir && section !== '') window.location = `/#${section}`
-	localStorage.removeItem('actSection')
+//	if(rootDir && section !== '') window.location = `/#${section}`
+	loadingPercent = 'Done!'
 	showPage()
   }, 10000)
 
@@ -79,39 +85,48 @@ const App = () => {
 	
 	loadingPercent = `${Math.ceil(imagesLoaded / images.length * 100)}%`
 	loaderPercentBar.style.width = loadingPercent
-	gsp.innerText = `${loadingPercent}` //| L: ${images.length} | ${loadingPercent}`
+	//gsp.innerText = `${loadingPercent}` //| L: ${images.length} | ${loadingPercent}`
+
+  if(loadingPercent === '100%') {
+	loadingPercent = 'Done!'
+	loaderPercentBar.style.width = loadingPercent
+	setTimeout(()=> showPage(), 2000)
+  }
   }
 
-	if(reviews.length > 0) imagesLoaded += 1
+  if(reviews.length > 0) imagesLoaded += 1
 
-	const checkLoadedMedia = ()=> {
-	  if(rootDir){
-		images = document.querySelectorAll('img')	
-		images.forEach((image)=>{
-		  const exceptions = ['budget_icon_float']
+
+  const checkLoadedMedia = ()=> {
+	if(rootDir){
+	  images = document.querySelectorAll('img')	
+	  images.forEach((image)=>{
+		  /*const exceptions = ['budget_icon_float']
 		  if(!exceptions.includes(image.id)){
 			image.addEventListener('touchstart', (e)=> {
 			  e.preventDefault()
 			  return image.removeEventListener('touchstart', null)
 			})
-		  }
-		  
-		  if(image.complete) imageLoaded()
-		  
-		})
-	  }
+		  } */
+		if(image.complete) imageLoaded()
+	  })
 	}
+  }
 
-  useEffect(() => {
 	document.addEventListener("DOMContentLoaded", checkLoadedMedia())
-	if(loadingPercent === '105%'){
+/*  useEffect(() => {
+//	document.addEventListener("DOMContentLoaded", checkLoadedMedia())
+/*alert(pageReady)
+	if(pageReady){//loadingPercent === '100%'){
 	  setTimeout(()=> {
+
 		if(section !== '') window.location = `/#${section}`
-		localStorage.removeItem('actSection')
+//		localStorage.removeItem('actSection')
+		setPageReady(false)
 		showPage()
 	  },1500) 
-	}
-  },[images])
+	} 
+  },[images])*/
   
   //Get IP Info
   const checkIp = async ()=> {

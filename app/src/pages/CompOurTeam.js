@@ -32,7 +32,7 @@ const CompOurTeam = ({ mediaServer, showNotification }) => {
 	const parentRectLeft = Math.round(team_box.current.getBoundingClientRect().left)
 	const boxWidth = Number(getComputedStyle(team_box.current).width.split('px')[0])
 	const centerPos = parentRectLeft + (boxWidth / 2)
-	document.querySelector('#gossip').innerHTML = window.innerWidth
+	//document.querySelector('#gossip').innerHTML = window.innerWidth
 
   	document.querySelectorAll('.team_card').forEach((card)=> {
 	  const intercepting = Math.round(card.getBoundingClientRect().left) >= (centerPos - 75) && Math.round(card.getBoundingClientRect().left) <= (centerPos + 10)

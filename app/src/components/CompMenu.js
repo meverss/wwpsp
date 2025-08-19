@@ -8,53 +8,40 @@ import { TfiMenu } from "react-icons/tfi"
 import { MdClose } from "react-icons/md"
 import { AiOutlineClose } from "react-icons/ai"
 
-export const CompMenu = ({ navs, ss }) => {
+export const CompMenu = ()=> {
   const [menuIcon, setMenuIcon] = useState(<TfiMenu />)
   const [menuHidden, setMenuHidden] = useState(true)
   
   const sectionLinks = document.querySelectorAll('.section_link')
-  const encSection = encodeURIComponent(ss)
-
   const m_menu_container = useRef(null)
   const m_menu = useRef(null)
-  const menuBar = useRef()
+  const menuBar = useRef(null)
   const actSection = localStorage.getItem('actSection')
 
-  useEffect(()=>{
-	if(ss !== 's_portfolio'){
-	  window.location = `/#${encSection}`
-	  setTimeout(()=> {
-		localStorage.removeItem('actSection')
-	  },60000 * 60)
-	}
-  },[actSection])//document.querySelector(`#${ss}`)])
-  
-  useEffect(()=>{
-	if(menuBar.target) alert(menuBar.target)
-  },[menuBar.target])
+  setTimeout(()=> {
+	localStorage.removeItem('actSection')
+  },60000 * 60)
 
   // Scroll to Sections
   sectionLinks.forEach((e)=> {
 	e.addEventListener('click', ()=> {
-	  const secNav = document.querySelector(`#${ss}`)
-	  localStorage.setItem('actSection', e.dataset.menuitem)
-	  if(e.dataset.menuitem !== 's_portfolio'){
-		const encSection = encodeURIComponent(e.dataset.menuitem)
-		setTimeout(()=> {
-		  window.location = `/#${encSection}`
-		},200)
-	  } else if(!window.location.pathname.includes('portfolio')){
-		setTimeout(()=> {
-		  setMenuHidden(prev => !prev)
-		  window.location = `/portfolio`
-		},200)
+	  const section = e.dataset.menuitem
+	  const encSection = encodeURIComponent(section)
+	  const path = window.location.pathname
+
+	  localStorage.setItem('actSection', section)
+
+	  if(section !== 's_portfolio'){
+		window.location = `/#${encSection}`
+	  } else if(!path.includes('portfolio')){
+		window.location = `/portfolio`
 	  }
-	  if(ss === 's_portfolio' && window.location.pathname.includes('portfolio')) return
+	  if(section === 's_portfolio' && path.includes('portfolio')) return
 	  return e.removeEventListener('click', null)
 	})
   })
   
-  // Sow/Hide Mobile menu
+  // Sow/Hide Mobile Menu
   const showmenu = ()=> {
 	if(m_menu_container.current){
 	  const hideMenu = ()=> {
@@ -82,6 +69,7 @@ export const CompMenu = ({ navs, ss }) => {
 	  getEscKey(hideMenu)
 	  m_menu_container.current.addEventListener('click', hideMenu)
 	}
+	m_menu_container.current.removeEventListener('click', null)
   }
   
   return (
@@ -106,7 +94,7 @@ export const CompMenu = ({ navs, ss }) => {
 		  {/* MOVILE MENU */}
 		  <div className="m_menu_btn animate__animated animate__heartBeat" id="m_menu_btn" onClick={showmenu}>
 			<span>{menuIcon}</span>
-		  </div>*
+		  </div>
 		  <div className="m_menu_container" id="m_menu_container" ref={m_menu_container}>
 			<div className="m_menu" id="m_menu" ref={m_menu}>
 			  <ul>
