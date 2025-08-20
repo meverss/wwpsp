@@ -60,10 +60,18 @@ const App = () => {
   const section = localStorage.getItem('actSection')
 
   const showPage = ()=> {
-	pageContent.current.style.opacity = "1"
-	document.body.style.overflowY = "scroll"
-	loaderContainer.current.style.display = 'none'
-	document.removeEventListener("DOMContentLoaded", null)
+	loaderPercentBar.style.width = "100%"
+	setTimeout(()=> {
+	  if(loadingPercent !== null){
+		loadingPercent = null
+		pageContent.current.style.opacity = "1"
+		document.body.style.overflowY = "scroll"
+		loaderContainer.current.style.display = 'none'
+		document.removeEventListener("DOMContentLoaded", null)
+		window.location = `/#${section}`
+		localStorage.removeItem('actSection')
+	  }
+	},1000)
   }
 
   const imageLoaded = ()=> {
@@ -73,15 +81,12 @@ const App = () => {
 	
 	loadingPercent = `${Math.ceil(imagesLoaded / images.length * 100)}%`
 	loaderPercentBar.style.width = loadingPercent
-	gsp.innerText = `${loadingPercent}` //| L: ${images.length} | ${loadingPercent}`
+	//gsp.innerText = `${loadingPercent}`
 
 	if(loadingPercent === '100%') {
-	  loaderPercentBar.style.width = loadingPercent
-	  setTimeout(()=> showPage(), 2000)
-	  window.location = `/#${section}`
-	}else if(rootDir && section !== '') {
-	  loaderPercentBar.style.width = loadingPercent
-	  setTimeout(()=> showPage(), 10000)
+	  setTimeout(()=> showPage(), 1000)
+	}else if(rootDir) {
+	  setTimeout(()=> showPage(), 20000)
 	}
   }
 
