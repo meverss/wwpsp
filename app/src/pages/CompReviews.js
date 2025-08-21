@@ -203,16 +203,18 @@ const CompReviews = ({ mediaServer, mainContainer, getReviews, reviews, showNoti
 			  </div>
 			</div>
 		  )).slice(0, reviewsToShow)
-		  : null
+		  : 'No reviews to show yet'
 		  } 
 		</article>
 		<div className="reviewsMoreLess">
 		  <p hidden={reviews && reviewsToShow <= 5 ? true : false}
-			onClick={(e)=> reviewsMoreLess(e, 'less')}>
+			onClick={(e)=> reviewsMoreLess(e, 'less')}
+			style={{display: reviewsToShow <= 5 || reviews.length === 0 ? 'none' : 'flex'}}>
 			  View less
 			</p>
 		  <p hidden={reviews && reviewsToShow >= reviews.length ? true : false}
-			onClick={(e)=> reviewsMoreLess(e, 'more')}>
+			onClick={(e)=> reviewsMoreLess(e, 'more')}
+			style={{display: reviewsToShow >= reviews.length || reviews.length === 0 ? 'none' : 'flex'}}>
 			  View more
 			</p>
 		</div>

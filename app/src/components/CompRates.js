@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { IoMdStar, IoMdStarOutline, IoMdStarHalf } from "react-icons/io";
 
 export const CompRates = ({ mainContainer, data })=> {
-  const [totalRates, setTotalRates] = useState('')
+  const [totalRates, setTotalRates] = useState(0)
   const [totalOneStar, setTotalOneStar] = useState(0)
   const [totalTwoStars, setTotalTwoStars] = useState(0)
   const [totalThreeStars, setTotalThreeStars] = useState(0)

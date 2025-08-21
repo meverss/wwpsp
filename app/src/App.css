@@ -1,7 +1,8 @@
 @import "./css/water.css";
 /* @import 'https://unpkg.com/@picocss/pico@latest/css/pico.min.css';
-@import 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css';
-@import "tailwindcss"; */
+@import 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css';*/
+/*@import "tailwindcss";*/
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext');
 
 @-ms-viewport {
 	width: device-width;
@@ -42,17 +43,19 @@
 }
 
 :root {
- --min-width: 130px;
+  --min-width: 130px;
+  --header-height: 100px;
+  --main-top: calc(var(--header-height) + 40px);
 }
 
 html {
-	font-family: "IBM";
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	-ms-overflow-style: -ms-autohiding-scrollbar;
 }
 
 body {
+	font-family: "IBM",sans-serif;
 	overflow: hidden;
 	width: 100%;
 	height: 100vh;
@@ -119,7 +122,7 @@ p {
 	text-align: justify;
 	line-height: 1.6;
 	padding: 10px;
-	font-size: 12pt;
+	font-size: 13pt;
 }
 
 hr {
@@ -260,7 +263,8 @@ a, a:active {
 	justify-content: center;
 	align-items: center;
 	width: 100%;
-	height: 100px;
+	min-height: 100px;
+	height: var(--header-height);
 	background: #000;
 	background-image: url(./media/images/top_background.png);
 	background-size: cover;
@@ -327,7 +331,8 @@ a, a:active {
 .s_menu_bar {
 	width: 100%;
 	position: fixed;
-	top: 100px;
+	top: var(--header-height);
+	overflow: hidden;
 	z-index: 1005;
 }
 
@@ -352,6 +357,7 @@ a, a:active {
 
   .menu_item {
 	display: flex;
+	align-items: center;
 	font-weight: bold;
 	padding: 0;
 	color: #fff;
@@ -617,7 +623,7 @@ a, a:active {
 }
 
 .budget_float {
-	display: none;
+	display: flex;
 	justify-content: center;
 	align-items: center;
 	width: 50px;
@@ -656,7 +662,7 @@ a, a:active {
     justify-content: center;
     align-items: center;
     position: relative;
-    top: 140px;
+	/*top: 140px;*/
     width: 100%;
     height: 100vh;
 	transition: .2s;
@@ -665,7 +671,7 @@ a, a:active {
 
 .main {
 	position: fixed;
-	top: 140px;
+    top: var(--main-top);
 	overflow-x: hidden;
 	width: 100%;
 	max-width: 980px;
@@ -771,7 +777,8 @@ a, a:active {
 .why_us_cards {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	justify-content: space-around;
+	align-content: center;
 	align-items: center;
 	margin-top: 20px;
 	gap: 10px;
@@ -780,11 +787,10 @@ a, a:active {
 .card {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
 	margin: auto;
 	margin-bottom: 30px;
-	column-gap: 50px;
 	width: 150px;
 	height: 225px;
 	border: 1px solid var(--border-color);
@@ -943,7 +949,6 @@ a, a:active {
 }
 
 /* REVIEWS */
-
 .s_reviews {
 	display: flex;
 	flex-direction: column;
@@ -1000,6 +1005,13 @@ a, a:active {
 .review_card_text {
 	text-align: center;
 	width: 100%;
+}
+
+.review_suthor,
+.review_date {
+  display: flex;
+  slign-items: center;
+  bavkground: red;
 }
 
 .review_author span,
@@ -1174,7 +1186,6 @@ display: flex;
 }
 
 /* OUR TEAM */
-
 .s_our_team {
 	display: flex;
 	flex-direction: column;
@@ -1191,7 +1202,7 @@ display: flex;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	width: fir-content; /*98%;*/
+	width: fit-content; /*98%;*/
 	max-width: 750px;
 	overflow-x: auto;
 	white-space: wrap;
@@ -1231,8 +1242,8 @@ display: flex;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 90px;
-	aspect-ratio: 1/1;
+	height: 90px;
+	aspect-ratio: 1;
 	border-radius: 50%;
 }
 
@@ -1280,7 +1291,6 @@ display: flex;
 
 
 /* CONTACT */
-
 .s_contact_us {
 	display: flex;
 	justify-content: center;
@@ -1310,7 +1320,7 @@ display: flex;
 .contact_message {
 	display: flex;
 	justify-content: left;
-	margin-left: 50px;
+	margin: auto;
 	align-items: center;
 	width: 100%;
 	height: 85%;
@@ -1352,23 +1362,32 @@ display: flex;
 	font-size: 13pt;
 }
 
-#message_counter {
-	text-align: right;
-	margin-right: 20px;
-	font-size: 12pt;
-	color: silver;
-}
 
 .contact_form .frm_text,
 .contact_form textarea {
-	width: 95%;
+	max-width: 95cqw;
+	margin: 5px;
 	color: var(--text-main);
 }
 
 .contact_form label,
 .contact_form textarea {
-	margin-bottom: 10px;
+	margin: 5px;
 }
+
+.message_labels {
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+
+.counter {
+	position: absolute;
+	text-align: right;
+	right: 10px;
+	font-size: 12pt;
+	color: silver;
+} 
 
 textarea {
 	resize: none;
@@ -1445,7 +1464,6 @@ textarea {
 }
 
 /* Contact Me Info */
-
 .contact_me {
 	display: flex;
 	flex-direction: column;
@@ -1641,7 +1659,6 @@ textarea {
 .budget_form textarea,
 .review_form input,
 .review_form textarea {
-	font-family: IBM;
 	font-size: 13pt;
 	padding: 5px;
 	padding-left: 10px;
@@ -1866,7 +1883,7 @@ textarea {
 	opacity: 1;
 	flex-direction: column;
 	padding-top: 50px;
-	z-Index: 1001;
+	z-Index: 1005;
 }
 
 .image_scrolling_box {
@@ -1897,7 +1914,7 @@ textarea {
 .closeButton {
 	display: flex;
 	position: fixed;
-	top: 150px;
+	top: calc(var(--header-height) + 50px);
 	right: 40px;
 	font-size: 44px;
 	color: orange;
@@ -1960,13 +1977,13 @@ textarea {
 }
 
 @keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% { opacity: 0;}
+  100% { opacity: 1;}
 }
 
 @keyframes fadeOut {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
+  0% { opacity: 1;}
+  100% { opacity: 0;}
 }
 
 /* ========= */
@@ -2240,6 +2257,14 @@ p a {
 }
 
 @media (min-width: 980px){
+  :root {
+	--header-height: 180px;
+  }
+  
+  .logo {
+	width: 160px;
+  }
+  
   .menu {
 	display: flex;
   }

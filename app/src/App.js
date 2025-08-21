@@ -44,13 +44,14 @@ const App = () => {
   let images = []
   let imagesLoaded = -1
   let loadingPercent = ''
+  let pageReady = false
   
   useEffect(() => {
 	checkIp()
 	getReviews()
     getTheme()
   }, [])
-
+  
   // Show page
   const tcr = useRef()
   const pageContent = useRef()
@@ -68,7 +69,7 @@ const App = () => {
 		document.body.style.overflowY = "scroll"
 		loaderContainer.current.style.display = 'none'
 		document.removeEventListener("DOMContentLoaded", null)
-		window.location = `/#${section}`
+		if(pageReady) window.location = `/#${section}`
 		localStorage.removeItem('actSection')
 	  }
 	},1000)
@@ -84,8 +85,9 @@ const App = () => {
 	//gsp.innerText = `${loadingPercent}`
 
 	if(loadingPercent === '100%') {
+	  pageReady = true
 	  setTimeout(()=> showPage(), 1000)
-	}else if(rootDir) {
+	}else{
 	  setTimeout(()=> showPage(), 20000)
 	}
   }
@@ -96,32 +98,12 @@ const App = () => {
 	if(rootDir){
 	  images = document.querySelectorAll('img')	
 	  images.forEach((image)=>{
-		  /*const exceptions = ['budget_icon_float']
-		  if(!exceptions.includes(image.id)){
-			image.addEventListener('touchstart', (e)=> {
-			  e.preventDefault()
-			  return image.removeEventListener('touchstart', null)
-			})
-		  } */
 		if(image.complete) imageLoaded()
 	  })
 	}
   }
 
   document.addEventListener("DOMContentLoaded", checkLoadedMedia())
-/*  useEffect(() => {
-//	document.addEventListener("DOMContentLoaded", checkLoadedMedia())
-/*alert(pageReady)
-	if(pageReady){//loadingPercent === '100%'){
-	  setTimeout(()=> {
-
-		if(section !== '') window.location = `/#${section}`
-//		localStorage.removeItem('actSection')
-		setPageReady(false)
-		showPage()
-	  },1500) 
-	} 
-  },[images])*/
   
   //Get IP Info
   const checkIp = async ()=> {
@@ -165,6 +147,7 @@ const App = () => {
 
   const handleErr = (err)=> {
 	showNotification('err', err.response?.data?.message || err.message, {title: 'Error'})
+	setTimeout(()=> checkIp(), 30000)
   }
   
   // Get all reviews
@@ -174,7 +157,7 @@ const App = () => {
   	  setReviews(res.data.filter(r => r.enabled === true))
   	} catch(err){
     	showNotification('err', err.response?.data?.message || err.message, {title: 'Error'})
-  		await axios.get(URI)
+  		setTimeout(()=> getReviews(), 30000)
     }
   }
 

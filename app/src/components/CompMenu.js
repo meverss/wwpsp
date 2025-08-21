@@ -18,10 +18,6 @@ export const CompMenu = ()=> {
   const menuBar = useRef(null)
   const actSection = localStorage.getItem('actSection')
 
-  setTimeout(()=> {
-	localStorage.removeItem('actSection')
-  },60000 * 60)
-
   // Scroll to Sections
   sectionLinks.forEach((e)=> {
 	e.addEventListener('click', ()=> {
@@ -42,7 +38,7 @@ export const CompMenu = ()=> {
   })
   
   // Sow/Hide Mobile Menu
-  const showmenu = ()=> {
+  const showMenu = ()=> {
 	if(m_menu_container.current){
 	  const hideMenu = ()=> {
 		setMenuIcon(<TfiMenu />)
@@ -71,7 +67,7 @@ export const CompMenu = ()=> {
 	}
 	m_menu_container.current.removeEventListener('click', null)
   }
-  
+
   return (
     <>
 	  <section className="s_menu_bar" id="s_menu_bar">
@@ -92,7 +88,7 @@ export const CompMenu = ()=> {
 		  </div>
 		  
 		  {/* MOVILE MENU */}
-		  <div className="m_menu_btn animate__animated animate__heartBeat" id="m_menu_btn" onClick={showmenu}>
+		  <div className="m_menu_btn animate__animated animate__heartBeat" id="m_menu_btn" onClick={showMenu}>
 			<span>{menuIcon}</span>
 		  </div>
 		  <div className="m_menu_container" id="m_menu_container" ref={m_menu_container}>

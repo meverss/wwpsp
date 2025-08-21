@@ -9,6 +9,7 @@ const CompOurTeam = ({ mediaServer, showNotification }) => {
   const URI = `${server}/workers/`
   
   const [workers, setWorkers] = useState([])
+  const [cenPos, setCenPos] = useState()
 
   const team_box = useRef('')
   const team_member = document.querySelectorAll('.team_member')
@@ -25,6 +26,7 @@ const CompOurTeam = ({ mediaServer, showNotification }) => {
 	  setWorkers(res.data)
 	}catch (err){
 	  showNotification('err', err.response?.data?.message, {title: 'Error'})
+	  setTimeout(()=> getWorkers(), 30000)
 	}
   }
   
@@ -32,10 +34,17 @@ const CompOurTeam = ({ mediaServer, showNotification }) => {
 	const parentRectLeft = Math.round(team_box.current.getBoundingClientRect().left)
 	const boxWidth = Number(getComputedStyle(team_box.current).width.split('px')[0])
 	const centerPos = parentRectLeft + (boxWidth / 2)
+	setCenPos(centerPos)
 	//document.querySelector('#gossip').innerHTML = window.innerWidth
 
   	document.querySelectorAll('.team_card').forEach((card)=> {
-	  const intercepting = Math.round(card.getBoundingClientRect().left) >= (centerPos - 75) && Math.round(card.getBoundingClientRect().left) <= (centerPos + 10)
+	  const left = centerPos - Math.round(getComputedStyle(card).width.split('px')[0] / 2)
+	  const right = centerPos - Math.round(getComputedStyle(card).width.split('px')[0] / 2)
+	  const intercepting = Math.round(card.getBoundingClientRect().left) >= left - 60 &&
+						   Math.round(card.getBoundingClientRect().left) <= right + 60
+	  const boxLeft = Math.round(team_box.current.getBoundingClientRect().left + 40)
+	  const boxRight = Math.round(team_box.current.getBoundingClientRect().right - 70)
+
 	  if(intercepting){
 		document.querySelector('#name').innerText = card.children[1].children[0].innerText
 		document.querySelector('#job').innerText = card.children[1].children[1].innerText
@@ -47,7 +56,7 @@ const CompOurTeam = ({ mediaServer, showNotification }) => {
 		card.children[0].children[0].classList.add('anim_image_shrink')
 	  }
 
-	  if(card.getBoundingClientRect().left < (team_box.current.getBoundingClientRect().left + (window.innerWidth <= 640 ? - 70 : -40)) || card.getBoundingClientRect().left > Number(getComputedStyle(team_box.current).width.split('px')[0]) + (window.innerWidth > 640 ? - 40 : 130)){
+	  if(card.getBoundingClientRect().left < boxLeft || card.getBoundingClientRect().left > boxRight){
 		card.style.opacity = '0'
 	  } else {
 	  	card.style.opacity = '1'
@@ -61,9 +70,6 @@ const CompOurTeam = ({ mediaServer, showNotification }) => {
 	  const newCard = card.cloneNode(true)
 	  newCard.setAttribute('id',`card${document.querySelectorAll('.team_card').length + 1}`)
 	  newCard.classList.add('anim_image_shrink')
-	  newCard.addEventListener('touchstart', (e)=>{
-		e.preventDefault()
-	  })
 	  team_box.current.appendChild(newCard)
   	})
   	cardsToShow = []
@@ -76,9 +82,6 @@ const CompOurTeam = ({ mediaServer, showNotification }) => {
 		const newCard = card.cloneNode(true)
 		newCard.setAttribute('id',`card${document.querySelectorAll('.team_card').length + 1}`)
 		newCard.classList.add('anim_image_shrink')
-		newCard.addEventListener('touchstart', (e)=>{
-		  e.preventDefault()
-		})
 		team_box.current.insertBefore(newCard, firstCard)
   	  })
   	  team_box.current.style.overflow = 'hidden'

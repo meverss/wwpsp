@@ -15,7 +15,7 @@ export const getAllWorkers = async (req, res) => {
         res.json(workers)
     } catch (error) {
       return res.status(500).json({
-        message: `ALL Workers: Something went wrong: ${error}`
+        message: `Sorry, couldn't retrive the workers list.`
       })
     }
 }
@@ -62,7 +62,7 @@ export const createWorker = async (req, res) => {
   	  
   } catch (error){
 	return res.status(500).json({
-	message: `CREATE Worker: Something went wrong: ${error}`})
+	message: `Sorry, something went wrong adding the worker ${name}`})
   }
 }
 
