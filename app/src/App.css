@@ -1253,6 +1253,10 @@ display: flex;
 	animation-fill-mode: forwards;
 }
 
+.team_member_text {
+  height: 45px;
+}
+
 .team_card_text {
 	display: none;
 	flex-direction: column;
@@ -1272,11 +1276,11 @@ display: flex;
 }
 
 .anim_image_grow {
-	animation: grow .2s linear;
+	animation: grow .3s ease;
 }
 
 .anim_image_shrink {
-	animation: shrink .2s linear;
+	animation: shrink .3s ease;
 }
 
 @keyframes grow {

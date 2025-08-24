@@ -44,7 +44,6 @@ const App = () => {
   let images = []
   let imagesLoaded = -1
   let loadingPercent = ''
-  let pageReady = false
   
   useEffect(() => {
 	checkIp()
@@ -69,7 +68,7 @@ const App = () => {
 		document.body.style.overflowY = "scroll"
 		loaderContainer.current.style.display = 'none'
 		document.removeEventListener("DOMContentLoaded", null)
-		if(pageReady) window.location = `/#${section}`
+		window.location = `/#${section}`
 		localStorage.removeItem('actSection')
 	  }
 	},1000)
@@ -83,12 +82,24 @@ const App = () => {
 	loadingPercent = `${Math.ceil(imagesLoaded / images.length * 100)}%`
 	loaderPercentBar.style.width = loadingPercent
 	//gsp.innerText = `${loadingPercent}`
+	
+	let timeoutId
+	const startAutoShowPage = ()=> {
+	  timeoutId = setTimeout(()=> showPage(), 10000)
+	}
+
+	const stopAutoShowPage = ()=> {
+	  if(timeoutId){
+		clearTimeout(timeoutId)
+		timeoutId = null
+	  }
+	}
 
 	if(loadingPercent === '100%') {
-	  pageReady = true
 	  setTimeout(()=> showPage(), 1000)
-	}else{
-	  setTimeout(()=> showPage(), 20000)
+	  stopAutoShowPage()
+	} else if(loadingPercent === '97%'){
+	  startAutoShowPage()
 	}
   }
 
