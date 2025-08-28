@@ -18,7 +18,7 @@ const CompContactUs = ({ showNotification }) => {
 
   useEffect(()=>{
     validateAll()
-	disableSendButton()
+	disableSendButton('ct_btn_send')
   },[])
 
   useEffect(()=>{

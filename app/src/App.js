@@ -37,7 +37,6 @@ const App = () => {
   const [theme, setTheme] = useState('')
   const [themeIcon, setThemeIcon] = useState('')
   
-  const ss = localStorage.getItem('actSection') || 's_home'
   const teamBox = document.querySelector('.team_box')
   const loaderPercentBar = document.querySelector('.loaderPercentBar')	  
   const { showNotification, NotificationsContainer } = useNotify()
@@ -272,8 +271,8 @@ const App = () => {
 		{/* Routes */}
         <BrowserRouter>
           <Routes>
-        	<Route path='/' element={<CompMain mediaServer={mediaServer} reviews={reviews} getReviews={getReviews} showNotification={showNotification} ss={ss} />} />
-            <Route path='/portfolio' element={<CompPortfolio mediaServer={mediaServer} ss={ss} showNotification={showNotification} reviews={reviews} />} />
+        	<Route path='/' element={<CompMain mediaServer={mediaServer} reviews={reviews} getReviews={getReviews} showNotification={showNotification} />} />
+            <Route path='/portfolio' element={<CompPortfolio mediaServer={mediaServer} showNotification={showNotification} reviews={reviews} />} />
 	        <Route path='*' element={<Navigate to="/" />} />
           </Routes>
         </BrowserRouter>

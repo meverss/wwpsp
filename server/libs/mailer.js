@@ -99,7 +99,7 @@ const sendEmail = (mailData) => {
 		  notifyByEmail()
 		} catch (err){
 		  console.log(`\x1b[33mError sending the email.\n\x1b[31mCouldn't resolve server ${transporter.options.host}\x1b[0m`)
-		  setTimeout(()=> {notifyByEmail()}, 5000)
+		  setTimeout(()=> notifyByEmail(), 60000)
 		}
 	}
 

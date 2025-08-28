@@ -22,13 +22,8 @@ const CompOurTeam = ({ mediaServer, showNotification }) => {
   
   const getWorkers = async ()=> {
 	try{
-	  const res = await axios.get(URI)
-	  //const res = await fetch('https://randomuser.me/api/?results=10')
-	  //const res = await fetch('https://reqres.in/api/users/?pages=1', {
-	  //headers: {'x-api-key': 'reqres-free-v1'}
-	  //})
-	  //const { data } = await res.json()
-	  setWorkers(res.data)
+	  const { data } = await axios.get(URI)
+	  setWorkers(data)
 	}catch (err){
 	  showNotification('err', err.response?.data?.message || err.message, {title: 'Error'})
 	  setTimeout(()=> getWorkers(), 30000)
@@ -37,9 +32,7 @@ const CompOurTeam = ({ mediaServer, showNotification }) => {
 
   useEffect(()=>{
 	team_cards.current = document.querySelectorAll('.team_card')
-	if(workers.length !== 0){
-  	  startInfiniteLoop()
-  	}
+	if(workers.length > 0) startInfiniteLoop()
   },[workers])
   
   const animateScroll = ()=> {
@@ -79,7 +72,7 @@ const CompOurTeam = ({ mediaServer, showNotification }) => {
   }
 
   const addMoreCardsRight = ()=> {
-  	cardsToShow.current.push(...team_cards.current)
+  	cardsToShow.current = [...team_cards.current]
   	cardsToShow.current.forEach((card)=> {
 	  const newCard = card.cloneNode(true)
 	  newCard.setAttribute('id',`card${document.querySelectorAll('.team_card').length + 1}`)
@@ -90,33 +83,32 @@ const CompOurTeam = ({ mediaServer, showNotification }) => {
   }
 
   const addMoreCardsLeft = ()=> {
-  	  cardsToShow.current.push(...team_cards.current)
-  	  const firstCard = document.getElementById(team_box.current.children[0].id)
-  	  cardsToShow.current.forEach((card)=> {
-		const newCard = card.cloneNode(true)
-		newCard.setAttribute('id',`card${document.querySelectorAll('.team_card').length + 1}`)
-		newCard.classList.add('anim_image_shrink')
-		team_box.current.insertBefore(newCard, firstCard)
-  	  })
-  	  team_box.current.style.overflow = 'hidden'
-  	  setTimeout(()=>{
-  		team_box.current.style.overflow = 'auto'
-  	  },10) 
-  	  cardsToShow.current = []
-  	  
-	}
+  	cardsToShow.current = [...team_cards.current]
+  	const firstCard = document.getElementById(team_box.current.children[0].id)
+  	cardsToShow.current.forEach((card)=> {
+	  const newCard = card.cloneNode(true)
+	  newCard.setAttribute('id',`card${document.querySelectorAll('.team_card').length + 1}`)
+	  newCard.classList.add('anim_image_shrink')
+	  team_box.current.insertBefore(newCard, firstCard)
+  	})
+  	team_box.current.style.overflow = 'hidden'
+  	setTimeout(()=>{
+  	  team_box.current.style.overflow = 'auto'
+  	},10) 
+  	cardsToShow.current = []
+  }
 
-	if(team_box.current){
-	  team_box.current.addEventListener('scroll', ()=>{
-  		if (team_box.current.scrollLeft + team_box.current.clientWidth >= team_box.current.scrollWidth - 130){
-    	  addMoreCardsRight()
-  		}
-  		if (team_box.current.scrollLeft <= 130){
-		  addMoreCardsLeft()
-  		}
-  		animateScroll()
-	  })
-	}
+  if(team_box.current){
+	team_box.current.addEventListener('scroll', ()=>{
+  	  if (team_box.current.scrollLeft + team_box.current.clientWidth >= team_box.current.scrollWidth - 130){
+    	addMoreCardsRight()
+  	  }
+  	  if (team_box.current.scrollLeft <= 130){
+		addMoreCardsLeft()
+  	  }
+  	  animateScroll()
+	})
+  }
 
 	const startInfiniteLoop = ()=> {
   	  const width = (getComputedStyle(team_box.current.firstChild).width).split('px')[0]
@@ -151,7 +143,7 @@ const CompOurTeam = ({ mediaServer, showNotification }) => {
 		  },2700)
 		})
 	  },3000)
-	  
+
   	  addMoreCardsLeft()
   	  animateScroll()
 	}
@@ -164,10 +156,9 @@ const CompOurTeam = ({ mediaServer, showNotification }) => {
 		<p>
 		  We have an excellent staff of professionals, each one committed to offer our costumers a service that meets the highest quality standards.
 		</p>
-		<br />
 		<h3 className="team_member_text" id="name" style={{color: '#37a1c6', fontWeight: 'bold', width: '100%', fontSize: '100%'}}></h3>
 		<span className="team_member_text" id="job"></span>
-		<p id="gossip"></p>		  
+		<p id="gossip" hidden></p>		  
 		<div className="team_box" id="team_box" ref={team_box} >
 		{ workers && workers.map((worker, index)=> (
 		<div className="team_card" id={`card${index + 1}`} data-key={worker.id}>
@@ -175,7 +166,7 @@ const CompOurTeam = ({ mediaServer, showNotification }) => {
 			<img className="team_member" src={`${server}${worker.image}`} alt={worker.name} />
 	  	  </div>
 	  	  <div className="team_card_text" id="team_card_text">
-			<h3>{`${worker.name}`}</h3>
+			<h3>{worker.name}</h3>
 			<span>{worker.ocupation}</span>
 	  	  </div>
 		</div>

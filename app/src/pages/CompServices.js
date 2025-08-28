@@ -13,7 +13,6 @@ const CompServices = ()=> {
   	  <section className="services_container" id="services_container">
 		<div className="services_box box" id="services_box">
 		  <h2>Services</h2>
-			<br />
 			<p>
 			  Do you have a pool enclosure that needs to be checked? Or maybe your lanai needs a new
 			  screen installed. Maybe your

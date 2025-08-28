@@ -14,7 +14,7 @@ import { RiMoonLine } from "react-icons/ri"
 import { PiGearFill } from "react-icons/pi"
 
 
-const CompMain = ({ mediaServer, getReviews, reviews, showNotification, ss }) => {
+const CompMain = ({ mediaServer, getReviews, reviews, showNotification }) => {
   const server = useContext(serverContext)
   const mainContainer = useRef('')
   const sCards = document.querySelectorAll('.e_services_card')
@@ -33,9 +33,9 @@ const CompMain = ({ mediaServer, getReviews, reviews, showNotification, ss }) =>
 
   return (
     <>
-  	  <CompMenu ss={ss} />
+  	  <CompMenu />
 	  <section className="main" id="main_container" ref={mainContainer} data-theme="dark" >
-		<div style={{position: 'absolute', left: '0', width: '100%', margin: '0', paddingLeft: '10px', paddingRight: '10px', paddingBottom: '230px'}}>
+		<div style={{position: 'absolute', left: '0', width: '100%', margin: '0', paddingLeft: '10px', paddingRight: '10px', paddingBottom: '250px'}}>
 		{/* Welcome! */}
 		<nav id="s_home"></nav>
 		<section className="welcome box" id="welcome">
@@ -54,10 +54,9 @@ const CompMain = ({ mediaServer, getReviews, reviews, showNotification, ss }) =>
 			are here to offer our clients nothing but the best.
 		  </p>
 		</section>
-		<br /><br />
 
 		{/* About Us */}
-		<nav id="s_about_us" ></nav>
+		<nav id="s_about_us"></nav>
 		<section className="s_about_us box" id="s_about_us">
 		  <div className="about_us_box" id="about_us_box">
 			<h2 className="about_us_title" id="about_us_title">About Us</h2>
@@ -83,7 +82,6 @@ const CompMain = ({ mediaServer, getReviews, reviews, showNotification, ss }) =>
 			</div>
 			</div>
 		  </div>
-		</section>
 		
 		{/* Why choosing us? */}
 		<article className="s_why_us box" id="s_why_us">
@@ -125,6 +123,7 @@ const CompMain = ({ mediaServer, getReviews, reviews, showNotification, ss }) =>
 			</div>
 		  </div>
 		</article>
+		</section>
 		<CompServices />
 		<CompOurTeam mediaServer={mediaServer} showNotification={showNotification}/>
 		<CompReviews mediaServer={mediaServer} mainContainer={mainContainer.current} getReviews={getReviews} reviews={reviews} showNotification={showNotification} />
