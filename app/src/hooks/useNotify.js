@@ -25,10 +25,10 @@ const NotificationItem = ({ id, type, title, message, duration, onClose })=> {
 
   return (
 	<>
-    <div className="ntf_box animate-show" id={id} onClick={onClose}>
+    <div className="ntf_box animate-show" id={id} onClicks={onClose}>
       <div className="ntf_msg">
         <div className="ntf_text">
-          <h3>{icon}{title}</h3>
+          <h3>{icon}{title}<span onClick={onClose}>x</span></h3>
           <p>{message}</p>
         </div>
       </div>
@@ -63,7 +63,7 @@ export const useNotify = ()=> {
 
     // Auto-delete after 'duration'
     setTimeout(()=> {
-      removeNotification(id)
+      //removeNotification(id)
     }, duration)
   }, [removeNotification])
   

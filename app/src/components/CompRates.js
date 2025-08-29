@@ -17,16 +17,6 @@ export const CompRates = ({ mainContainer, data })=> {
   
   useEffect(()=>{
 	getRates()
-	if(mainContainer){
-	  mainContainer.addEventListener('scroll', ()=>{
-		const top = rateTableContainer.getBoundingClientRect().top - 5
-		if(top <= 160){
-		  rateTableContainer.style.transform = 'scale(0.5)'
-		} else {
-		  rateTableContainer.style.transform = 'scale(1)'		
-		}
-	  })
-	}
   },[mainContainer, data])
   
   const getRates = ()=> {
@@ -43,7 +33,6 @@ export const CompRates = ({ mainContainer, data })=> {
 		const setRateBars = `set${rateId}(data.filter(e => e.rate === ${rb.firstChild.innerText}).length)`
 		eval(setRateBars)
 	  })
-
 	}
   }
   
@@ -71,37 +60,37 @@ return (
 	  </div>
 	</div>
 	<div className="rateStats">
-	  <p className="rateTotal"><b>Total reviews: </b>{totalRates}</p>
+	  <p className="rateTotal"><b>Total reviews: </b>{totalRates || 0}</p>
 	  <div className="rateBar" id="totalFiveStars">
-		<span>5</span>
+		<span id="fiveStars">5</span>
 		<IoMdStar className="rateStar"/>
 		<div className="ratePercentBar">
 		  <div className="ratePercentBarProgress"/>
 		</div>
 	  </div>
 	  <div className="rateBar" id="totalFourStars">
-		<span>4</span>
+		<span id="fourStars">4</span>
 		<IoMdStar className="rateStar"/>
 		<div className="ratePercentBar">
 		  <div className="ratePercentBarProgress"/>
 		</div>
 	  </div>
 	  <div className="rateBar" id="totalThreeStars">
-		<span>3</span>
+		<span id="threeStars">3</span>
 		<IoMdStar className="rateStar"/>
 		<div className="ratePercentBar">
 		  <div className="ratePercentBarProgress"/>
 		</div>
 	  </div>
 	  <div className="rateBar" id="totalTwoStars">
-		<span>2</span>
+		<span id="twoStars">2</span>
 		<IoMdStar className="rateStar"/>
 		<div className="ratePercentBar">
 		  <div className="ratePercentBarProgress"/>
 		</div>
 	  </div>
 	  <div className="rateBar" id="totalOneStar">
-		<span>1</span>
+		<span id="oneStar">1</span>
 		<IoMdStar className="rateStar"/>
 		<div className="ratePercentBar">
 		  <div className="ratePercentBarProgress"/>

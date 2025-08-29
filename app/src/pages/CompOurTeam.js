@@ -2,17 +2,14 @@
 import axios from 'axios'
 import { serverContext } from '../App.js'
 import { useState, useEffect, useRef, useContext } from 'react'
-import { smoothDragScroll } from '../libs/smoothDragScroll.js'
 
-const CompOurTeam = ({ mediaServer, showNotification }) => {
+export const CompOurTeam = ({ showNotification }) => {
   const server = useContext(serverContext)
   const URI = `${server}/workers/`
   
   const [workers, setWorkers] = useState([])
-  const [cenPos, setCenPos] = useState()
 
   const team_box = useRef('')
-  const team_member = document.querySelectorAll('.team_member')
   const team_cards = useRef([])
   const cardsToShow = useRef([])
 
@@ -39,7 +36,6 @@ const CompOurTeam = ({ mediaServer, showNotification }) => {
 	const parentRectLeft = Math.round(team_box.current.getBoundingClientRect().left)
 	const boxWidth = Number(getComputedStyle(team_box.current).width.split('px')[0])
 	const centerPos = parentRectLeft + (boxWidth / 2)
-	setCenPos(centerPos)
 	//document.querySelector('#gossip').innerHTML = `${window.innerWidth} - ${team_box.current.children.length}`
 
   	document.querySelectorAll('.team_card').forEach((card)=> {
@@ -156,14 +152,14 @@ const CompOurTeam = ({ mediaServer, showNotification }) => {
 		<p>
 		  We have an excellent staff of professionals, each one committed to offer our costumers a service that meets the highest quality standards.
 		</p>
-		<h3 className="team_member_text" id="name" style={{color: '#37a1c6', fontWeight: 'bold', width: '100%', fontSize: '100%'}}></h3>
+		<h3 className="team_member_text" id="name" style={{color: '#37a1c6', fontWeight: 'bold', width: '100%', fontSize: '100%'}}>&nbsp;</h3>
 		<span className="team_member_text" id="job"></span>
 		<p id="gossip" hidden></p>		  
 		<div className="team_box" id="team_box" ref={team_box} >
 		{ workers && workers.map((worker, index)=> (
 		<div className="team_card" id={`card${index + 1}`} data-key={worker.id}>
 	  	  <div className="team_card_img">
-			<img className="team_member" src={`${server}${worker.image}`} alt={worker.name} />
+			<img className="team_member" src={`${worker.image}`} alt={worker.name} />
 	  	  </div>
 	  	  <div className="team_card_text" id="team_card_text">
 			<h3>{worker.name}</h3>
@@ -176,5 +172,3 @@ const CompOurTeam = ({ mediaServer, showNotification }) => {
     </>
   )
 }
-
-export default CompOurTeam

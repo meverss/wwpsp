@@ -1,11 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useRef } from 'react'
-import metalRepair from "../media/images/metal_repair.webp"
-import painting from "../media/images/painting.webp"
-import preasureWashing from "../media/images/preasure_washing.webp"
-import rescreening from "../media/images/rescreening.webp"
+const metalRepair = "/media/images/metal_repair.webp"
+const painting = "/media/images/painting.webp"
+const preasureWashing = "/media/images/preasure_washing.webp"
+const rescreening = "/media/images/rescreening.webp"
 
-const CompServices = ()=> {
+export const CompServices = ()=> {
 
   return (
     <>
@@ -66,5 +65,3 @@ const CompServices = ()=> {
     </>
   )
 }
-
-export default CompServices

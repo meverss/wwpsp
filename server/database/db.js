@@ -9,7 +9,7 @@ export const connectDB = ()=> {
   ]
 
   // SETTINGS
-  const dbServer = 1	// 0-Localhost, 1-MongoDB Atlas
+  const dbServer = 0	// 0-Localhost, 1-MongoDB Atlas
   const timeout = 3.5	// Timeout in seconds
 
   const connect = ()=> {

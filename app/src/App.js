@@ -1,6 +1,6 @@
 import './App.css'
 import axios from './libs/axios.js'
-import { React, useState, useRef, useEffect, useCallback, useMemo, createContext } from 'react'
+import { React, useState, useRef, useEffect, createContext } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
 import { useNotify } from './hooks/useNotify.js'
@@ -22,10 +22,8 @@ let mediaServer
 
 if(!window.location.hostname.includes('vercel.app')){ //('localhost') || window.location.hostname.includes('192.168.') || window.location.hostname.includes('127.0.') || window.location.hostname.includes('10.')){
   server = `http://${window.location.hostname}:4000/api`
-  mediaServer = server
 } else {
   server = `https://wwpsp-server.vercel.app/api`
-  mediaServer = server
 }
 
 export const serverContext = createContext()
@@ -271,8 +269,8 @@ const App = () => {
 		{/* Routes */}
         <BrowserRouter>
           <Routes>
-        	<Route path='/' element={<CompMain mediaServer={mediaServer} reviews={reviews} getReviews={getReviews} showNotification={showNotification} />} />
-            <Route path='/portfolio' element={<CompPortfolio mediaServer={mediaServer} showNotification={showNotification} reviews={reviews} />} />
+        	<Route path='/' element={<CompMain reviews={reviews} getReviews={getReviews} showNotification={showNotification} />} />
+            <Route path='/portfolio' element={<CompPortfolio showNotification={showNotification} reviews={reviews} />} />
 	        <Route path='*' element={<Navigate to="/" />} />
           </Routes>
         </BrowserRouter>

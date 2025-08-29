@@ -2,7 +2,6 @@ import axios from 'axios'
 import { useEffect, useState, useContext, useRef } from 'react'
 import { disableSendButton, enableSendButton, validateAll} from '../libs/validator.js'
 import { serverContext } from '../App.js'
-import budgetIcon from "../media/images/budget.webp"
 import { MdClose } from "react-icons/md"
 import { getEscKey } from '../libs/getEscKey.js'
 
@@ -16,6 +15,7 @@ export const CompBudgetFloat = ({ showNotification })=> {
   const [budget, setBudget] = useState('')
   const [budgetLength, setBudgetLength] = useState(0)
 
+  const budgetIcon = "/media/images/budget.webp"
   const budgetForm = document.getElementById('s_budget_form')
   const budgetFormBox = document.getElementById('budget_form_box')
   const budgetCloseBtn = document.getElementById('budget_close_btn')

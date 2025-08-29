@@ -3,14 +3,11 @@ import axios from 'axios'
 import { CompMenu } from '../components/CompMenu.js'
 import { useState, useEffect, useRef, useContext } from 'react'
 import { serverContext } from '../App.js'
-import { formatDate } from '../libs/formatDate.js'
-import { FaRegImages } from "react-icons/fa6"
 import { GiPhotoCamera, GiFilmSpool } from "react-icons/gi"
-import { IoMdCloseCircleOutline, IoMdCloseCircle } from "react-icons/io"
-import { ImPrevious, ImNext } from "react-icons/im"
+import { IoMdCloseCircleOutline } from "react-icons/io"
 import { RxDotFilled } from "react-icons/rx"
 
-const CompPortfolio = ({ ss, mediaServer, showNotification, reviews })=> {
+const CompPortfolio = ({ showNotification, reviews })=> {
   const server = useContext(serverContext)
   const URI = `${server}/albums/`
   
@@ -24,7 +21,6 @@ const CompPortfolio = ({ ss, mediaServer, showNotification, reviews })=> {
   const [imagesToView, setImagesToView] = useState([])
   const [videoToPlay, setVideoToPlay] = useState('')
   
-  let albumsThumbnails = document.querySelectorAll('.album_thumbnail')
   let images = []
   let imagesLoaded = -1
   
@@ -62,7 +58,6 @@ const CompPortfolio = ({ ss, mediaServer, showNotification, reviews })=> {
 
   useEffect(() => {
 	const imageLoaded = ()=> {
-  	  const gsp = document.querySelector('.gossip')
   	  const loaderPercentBar = document.querySelector('.loaderPercentBar')
   	  imagesLoaded ++
 
@@ -177,7 +172,6 @@ const CompPortfolio = ({ ss, mediaServer, showNotification, reviews })=> {
 
 	  setTimeout(()=> {
 	  	const scrollingBox = document.getElementById('image_scrolling_box')
-		const firstCard = document.querySelector('#image_card_2')
 		const imagesCards = document.querySelectorAll('.image_card_div')
 		const parentRectLeft = Math.ceil(scrollingBox.getBoundingClientRect().left)
 		const closeBtn = document.querySelector('.closeButton')
@@ -212,7 +206,6 @@ const CompPortfolio = ({ ss, mediaServer, showNotification, reviews })=> {
   
   const closeAlbum = ()=> {
 	const imageViewer = document.querySelector('.imageViewer')	
-	const imagescrollingBox = document.querySelector('.image_scrolling_box')
 
 	imageViewer.style.animation = 'fadeOut 0.3s forwards'
 	setTimeout(()=> {
@@ -303,7 +296,7 @@ const CompPortfolio = ({ ss, mediaServer, showNotification, reviews })=> {
 
   return (
     <>
-  	  <CompMenu ss={ss} />
+  	  <CompMenu />
   	  <div className="main" ref={pageContent}>
 		<section className="s_portfolio" id="s_portfolio">
 		  <h2 className="portfolio_title" id="portfolio_title">Portfolio</h2><br />
@@ -339,7 +332,7 @@ const CompPortfolio = ({ ss, mediaServer, showNotification, reviews })=> {
         			  onClick={(e)=> openAlbum(e, album)} >
         			  <img
           				id={`Image_${index + 1}`}
-          				src={`${mediaServer}/media/images/portfolio/${image.album}/${image.name}`}
+          				src={`/media/images/portfolio/${image.album}/${image.name}`}
           				loading="lazy"
           				alt={image.name} />
       				  </div>
@@ -363,8 +356,9 @@ const CompPortfolio = ({ ss, mediaServer, showNotification, reviews })=> {
           				id={`image_${index + 1}`}
           				classNsme="image_card"
           				loading="lazy"
+          				alt={image.name}
           				onClick={(e)=> zoomImage(e)}					  
-          				src={`${mediaServer}/media/images/portfolio/${image.album}/${image.name}`} />
+          				src={`/media/images/portfolio/${image.album}/${image.name}`} />
 					</div>
 				  ))}
 				</div>
@@ -385,8 +379,8 @@ const CompPortfolio = ({ ss, mediaServer, showNotification, reviews })=> {
 				  <>
 				  <div className="video_thumbnail mediaVideo animFadeIn" id={video.id} key={video.id}>
 					<video className="video" id={`video_${index + 1}`} alt={`video_${index + 1}`} muted autoplay={index === 0 ? 'true' : null}
-					src={`${mediaServer}/media/videos/${video.name}`} />
-					<img className="video_frame" id="video_frame_${id}" src="../media/images/video_frame.webp" alt="frame" data-src="${path}" 
+					src={`/media/videos/${video.name}`} />
+					<img className="video_frame" id={`video_frame_${video.id}`} src="/media/images/video_frame.webp" alt="frame"
 					onMouseEnter={()=> setVideoToPlay(video.name)}
 					onMouseLeave={()=> setVideoToPlay()}
 					onClick={()=> videoPlayerWindow(video.name)} />
@@ -403,7 +397,7 @@ const CompPortfolio = ({ ss, mediaServer, showNotification, reviews })=> {
 				</span>
 				<div id="video_player_box" className="video_player_box">
 				  <video id="videoPlaying" className="videoPlaying" controls
-				  src = {`${mediaServer}/media/videos/${videoToPlay}`} />
+				  src = {`/media/videos/${videoToPlay}`} />
 				</div>
 			  </div>
 			</div>

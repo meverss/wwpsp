@@ -1,41 +1,28 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useRef, useEffect, useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { serverContext } from '../App.js'
-import CompServices from './CompServices.js'
-import CompOurTeam from './CompOurTeam.js'
-import CompReviews from './CompReviews.js'
-import CompContactUs from './CompContactUs.js'
+import { useRef } from 'react'
+import { CompServices } from './CompServices.js'
+import { CompOurTeam } from './CompOurTeam.js'
+import { CompReviews } from './CompReviews.js'
+import { CompContactUs } from './CompContactUs.js'
 import { CompMenu } from '../components/CompMenu.js'
 import { CompBudgetFloat } from '../components/CompBudgetFloat.js'
-import { FaCircleCheck, FaTriangleExclamation, FaCircleExclamation } from "react-icons/fa6"
-import { IoSunnyOutline, IoLogOutOutline } from "react-icons/io5"
-import { RiMoonLine } from "react-icons/ri"
-import { PiGearFill } from "react-icons/pi"
 
-
-const CompMain = ({ mediaServer, getReviews, reviews, showNotification }) => {
-  const server = useContext(serverContext)
+const CompMain = ({ getReviews, reviews, showNotification }) => {
   const mainContainer = useRef('')
-  const sCards = document.querySelectorAll('.e_services_card')
-
-  const aboutThumb = `../media/images/about_thumb.webp`
-  const freeConsultation = `../media/images/free_consultation.svg`
-  const experiencedTechnician = `../media/images/experienced_technician.svg`
-  const qualityParts = `../media/images/parts_quality.svg`
-  const workGuaranteed = `../media/images/work_guaranteed.svg`
-  const serviceOnTime = `../media/images/service_on_time.svg`
-  const majorBrands = `../media/images/cover_major_brands.svg`
-  const metalRepair = `../media/images/metal_repair.webp`
-  const painting = `../media/images/painting.webp`
-  const preasureWashing = `../media/images/preasure_washing.webp`
-  const rescreening = `../media/images/rescreening.webp`
+  const aboutThumb = '/media/images/about_thumb.webp'
+  const freeConsultation = '/media/images/free_consultation.svg'
+  const experiencedTechnician = '/media/images/experienced_technician.svg'
+  const qualityParts = '/media/images/parts_quality.svg'
+  const workGuaranteed = '/media/images/work_guaranteed.svg'
+  const serviceOnTime = '/media/images/service_on_time.svg'
+  const majorBrands = '/media/images/cover_major_brands.svg'
 
   return (
     <>
   	  <CompMenu />
 	  <section className="main" id="main_container" ref={mainContainer} data-theme="dark" >
 		<div style={{position: 'absolute', left: '0', width: '100%', margin: '0', paddingLeft: '10px', paddingRight: '10px', paddingBottom: '250px'}}>
+	
 		{/* Welcome! */}
 		<nav id="s_home"></nav>
 		<section className="welcome box" id="welcome">
@@ -97,27 +84,27 @@ const CompMain = ({ mediaServer, getReviews, reviews, showNotification }) => {
 			</p>
 			<div className="why_us_cards" id="why_us_cards">
 			  <div className="card box" id="free_consultation">
-				<img src={freeConsultation} alt="consultation" srcset="" />
+				<img src={freeConsultation} alt="consultation" />
 				<p className="card_text"> Free consultation </p>
 			  </div>
 			  <div className="card box" id="experienced_technicians">
-				<img src={experiencedTechnician} alt="experience" srcset="" />
+				<img src={experiencedTechnician} alt="experience" />
 				<p className="card_text"> Experienced technicians</p>
 			  </div>
 			  <div className="card box" id="parts_quality">
-				<img src={qualityParts} alt="parts qulity" srcset="" />
+				<img src={qualityParts} alt="parts qulity" />
 				<p className="card_text"> Parts quality guarantee </p>
 			  </div>
 			  <div className="card box" id="work_waranteed">
-				<img src={workGuaranteed} alt="work guaranteed" srcset="" />
+				<img src={workGuaranteed} alt="work guaranteed" />
 				<p className="card_text"> All work guaranteed </p>
 			  </div>
 			  <div className="card box" id="service_on_time">
-				<img src={serviceOnTime} alt="service on time" srcset="" />
+				<img src={serviceOnTime} alt="service on time" />
 				<p className="card_text"> Service on time </p>
 			  </div>
 			  <div className="card box" id="cover_major_brands">
-				<img src={majorBrands} alt="cover mayor brands" srcset="" />
+				<img src={majorBrands} alt="cover mayor brands" />
 				<p className="card_text"> We cover all major brands </p>
 			  </div>
 			</div>
@@ -125,8 +112,8 @@ const CompMain = ({ mediaServer, getReviews, reviews, showNotification }) => {
 		</article>
 		</section>
 		<CompServices />
-		<CompOurTeam mediaServer={mediaServer} showNotification={showNotification}/>
-		<CompReviews mediaServer={mediaServer} mainContainer={mainContainer.current} getReviews={getReviews} reviews={reviews} showNotification={showNotification} />
+		<CompOurTeam showNotification={showNotification}/>
+		<CompReviews mainContainer={mainContainer.current} getReviews={getReviews} reviews={reviews} showNotification={showNotification} />
 		<CompContactUs showNotification={showNotification} />
 		<CompBudgetFloat showNotification={showNotification} />
 		</div>

@@ -1,18 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios'
-import { disableSendButton, enableSendButton, validateAll} from '../libs/validator.js'
+import { disableSendButton, validateAll} from '../libs/validator.js'
 import { CompRates } from '../components/CompRates.js'
 import { useState, useEffect, useRef, useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { serverContext } from '../App.js'
 import { formatDate } from '../libs/formatDate.js'
-import { RiDoubleQuotesL, RiDoubleQuotesR } from "react-icons/ri"
 import { PiUserFill } from "react-icons/pi"
 import { LiaCalendar } from "react-icons/lia"
 import { MdClose } from "react-icons/md"
-import { IoMdStar, IoMdStarOutline, IoMdStarHalf } from "react-icons/io";
+import { IoMdStar, IoMdStarOutline } from "react-icons/io";
 
-const CompReviews = ({ mediaServer, mainContainer, getReviews, reviews, showNotification }) => {
+export const CompReviews = ({ mediaServer, mainContainer, getReviews, reviews, showNotification }) => {
   const server = useContext(serverContext)
   const URI = `${server}/reviews/`
   
@@ -223,5 +221,3 @@ const CompReviews = ({ mediaServer, mainContainer, getReviews, reviews, showNoti
     </>
   )
 }
-
-export default CompReviews

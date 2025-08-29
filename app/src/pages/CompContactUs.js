@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios'
-import { disableSendButton, enableSendButton, validateAll} from '../libs/validator.js'
+import { disableSendButton, validateAll} from '../libs/validator.js'
 import { serverContext } from '../App.js'
-import { useState, useEffect, useRef, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { BiMailSend } from "react-icons/bi"
 import { MdLocalPhone, MdOutlineLocationOn } from "react-icons/md"
 
-const CompContactUs = ({ showNotification }) => {
+export const CompContactUs = ({ showNotification }) => {
   const server = useContext(serverContext)
   const URI = `${server}/messages`
   
@@ -15,6 +15,8 @@ const CompContactUs = ({ showNotification }) => {
   const [subject, setSubject] = useState('')
   const [message, setMessage] = useState('')
   const [messageLength, setMessageLength] = useState(0)  
+
+  const contact_background = "/media/images/contact_us.webp"
 
   useEffect(()=>{
     validateAll()
@@ -46,7 +48,13 @@ const CompContactUs = ({ showNotification }) => {
   return (
     <>
 		<nav id="s_contact"></nav>
-		<section className="s_contact box" id="s_contact">
+		<section className="s_contact box" id="s_contact"
+		  style={{
+			backgroundImage: `url(${contact_background})`,
+  			backgroundSize: 'cover',
+  			backgroundRepeat: 'no-repeat',
+  			backgroundOosition: 'left',
+		  }}>
 		  <div className="contact_box" id="contact_box">
 			<div className="contact_title" id="contact_title">
 			  <h2>Contact</h2>
@@ -97,5 +105,3 @@ const CompContactUs = ({ showNotification }) => {
     </>
   )
 }
-
-export default CompContactUs

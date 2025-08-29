@@ -10,7 +10,7 @@ export const formatDate = (date) => {
     })
     const formattedDate = formatter.format(newDate)
 
-    const yyyy = newDate.getFullYear()
+    //const yyyy = newDate.getFullYear()
     let mm = newDate.getMonth() + 1
     let dd = newDate.getDate()
     let hh = newDate.getHours()
@@ -23,7 +23,7 @@ export const formatDate = (date) => {
     if (min < 10) min = `0${min}`
     if (sec < 10) sec = `0${sec}`
 
-//    return `${dd}-${mm}-${yyyy}.${hh}:${min}:${sec}`
+    //return `${dd}-${mm}-${yyyy}.${hh}:${min}:${sec}`
     return `${formattedDate}`
 }
 

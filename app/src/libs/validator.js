@@ -18,19 +18,13 @@ export const validateAll = (user, fullname) => {
   const dataForms = document.querySelectorAll('.form')
   const formContactName = document.getElementById("name")
   const formContactEmail = document.getElementById("email")
-  const formContactSubject = document.getElementById("subj")
-  const formContactMessage = document.getElementById("message")
 
-  const budgetForm = document.getElementById('budget_form')
   const formBudgetName = document.getElementById("br_name")
   const formBudgetEmail = document.getElementById("br_email")
   const formBudgetPhone = document.getElementById("br_phone")
-  const formBudgetMessage = document.getElementById("br_message")
 
-  const reviewForm = document.getElementById('review_form')
   const formReviewName = document.getElementById("rv_name")
   const formReviewEmail = document.getElementById("rv_email")
-  const formReviewMessage = document.getElementById("rv_message")
 
   const validEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,4})+$/
   const validPhone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
@@ -153,7 +147,7 @@ export const validateAll = (user, fullname) => {
 				break
 			  case "budget_form":
 				e.addEventListener('keyup', ()=> {
-				  if (formBudgetName.value !== "" && formBudgetEmail.value !== "" && formBudgetPhone.value != "" && e.value.length >= 5) {
+				  if (formBudgetName.value !== "" && formBudgetEmail.value !== "" && formBudgetPhone.value !== "" && e.value.length >= 5) {
 					enableSendButton('br_btn_send')
 				  } else {
 					disableSendButton('br_btn_send')		
@@ -168,9 +162,14 @@ export const validateAll = (user, fullname) => {
 					disableSendButton('rv_btn_send')
 				  }
 				})
-      		  default:
+				break
+			  default:
+				return
       		}
       	  })
+      	  break
+      	  default:
+      		e.type = 'text'
 		}
   })
 }
