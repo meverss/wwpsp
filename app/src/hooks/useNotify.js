@@ -63,7 +63,7 @@ export const useNotify = ()=> {
 
     // Auto-delete after 'duration'
     setTimeout(()=> {
-      //removeNotification(id)
+    //  removeNotification(id)
     }, duration)
   }, [removeNotification])
   
