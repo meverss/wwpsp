@@ -24,13 +24,13 @@
 	src: url("./fonts/symbols.woff") format("woff");
 }
 
-@view-transition {
+/*@view-transition {
 	navigation: auto;
 }
 
 ::view-transition-group(*){
 	animation-duration: .5s;
-}
+}*/
 
 * {
 	padding: 0;
