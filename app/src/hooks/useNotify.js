@@ -4,6 +4,8 @@ import { FaCircleCheck, FaTriangleExclamation } from "react-icons/fa6"
 import { IoInformationCircle } from "react-icons/io5"
 import { PiGearFill } from "react-icons/pi"
 
+let ids = []
+
 // Single notification component
 const NotificationItem = ({ id, type, title, message, duration, onClose })=> {
   let icon
@@ -24,9 +26,11 @@ const NotificationItem = ({ id, type, title, message, duration, onClose })=> {
       icon = <IoInformationCircle className="ntf_icon" style={{ fontSize:'40px',color: 'yellow', left: '3pc' }} />
   }
 
+  if(!ids.includes(id)) ids=[...ids, id] //ids.push(id)
+
   return (
 	<>
-    <div className="ntf_box animate-show" id={id} onClicks={onClose}>
+    <div className={ids.includes(id) ? "ntf_box" : "ntf_box animate-show"} id={id}>
       <div className="ntf_msg">
       	<div className="ntf_bar">
       	  {icon}
@@ -47,7 +51,11 @@ export const useNotify = ()=> {
   const [notifications, setNotifications] = useState([])
 
   const removeNotification = useCallback((id)=> {
-  	setNotifications(prev => prev.filter(noti => noti.id !== id))	
+	const msg = document.getElementById(id)
+	if(msg){
+	  msg.classList.add('animate-hide')
+  	  setTimeout(()=> setNotifications(prev => prev.filter(n => n.id !== id) || prev), 300)
+	}
   }, [])
 
   const showNotification = useCallback((type, message, options = {})=> {
@@ -58,10 +66,12 @@ export const useNotify = ()=> {
     setNotifications(prev => [
       ...prev, { id, type, title, message, duration }
     ])
-
+    
     // Auto-delete after 'duration'
     setTimeout(()=> {
-      removeNotification(id)
+  	  if(document.getElementById(`${id}`)){
+	  }
+      setTimeout(()=> removeNotification(id, duration), 1000)
     }, duration)
   }, [removeNotification])
   
@@ -69,7 +79,7 @@ export const useNotify = ()=> {
   // Container for ALL notifications
   const NotificationsContainer = useMemo(()=> {
     return ()=> (
-      <section className="s_notifications" id="s_notifications" onLoad={()=> alert('fgggg')}>
+      <section className="s_notifications" id="s_notifications" >
         {notifications.map(notification => (
           <NotificationItem
             key={notification.id}

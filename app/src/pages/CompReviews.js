@@ -178,8 +178,8 @@ export const CompReviews = ({ mediaServer, mainContainer, getReviews, reviews, s
 	  <section className="s_reviews box" id="s_reviews">
 		<h2 className="reviews_title" id="reviews_title">Reviews</h2>
 		<p>
-		  Please, read what our clients think about the services we have provided
-		  them and, once we are done with your job, feel free to rate us and share your experience with others.
+		  Please, read <strong>what our clients think about the services we have provided
+		  them</strong> and, once we are done with your job, feel free to <strong>rate us</strong> and <strong>share your experience with others</strong>.
 		</p>
 		<CompRates data={reviews} mainContainer={mainContainer} />
 		<article className="reviews_box" ref={reviews_box} id="reviews_box">

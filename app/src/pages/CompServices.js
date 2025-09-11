@@ -13,20 +13,20 @@ export const CompServices = ()=> {
 		<div className="services_box box" id="services_box">
 		  <h2>Services</h2>
 			<p>
-			  Do you have a pool enclosure that needs to be checked? Or maybe your lanai needs a new
-			  screen installed. Maybe your
-			  patio screen just needs to be fixed. If you're experiencing any of these issues, you've come
-			  to the right place. We are
-			  your Bradenton screen repair experts. We also regularly serve clients in Sarasota, St.
-			  Petersburg, Orlando,
-			  Jacksonville, Englewood, North Port, Cape Coral, and Fort Myers. We have extensive
-			  experience and pride ourselves on the
-			  quality workmanship of every pool service job we do and the high-quality products we
-			  install. We use only the best
-			  Phifer pool and patio screens. Our screens last 50% longer due to the quality of the product
-			  we install and the care we
-			  take when installing them. All our services in general are carried out with the highest
-			  quality in the market.
+			  Do you have <strong>a pool enclosure that needs to be checked</strong>? Or maybe <strong>your lanai needs a new
+			  screen installed</strong>. Maybe <strong>your patio screen just needs to be fixed</strong>. If you're experiencing any of these issues, <strong>you've come
+			  to the right place</strong>.
+			</p>
+			<p>
+			  We are your <strong>Bradenton screen repair experts</strong>. We also regularly serve clients in <strong>Sarasota, St.
+			  Petersburg, Orlando, Jacksonville, Englewood, North Port, Cape Coral, and Fort Myers</strong>. We have <strong>extensive
+			  experience</strong> and pride ourselves on the <strong>quality workmanship of every pool service job</strong> we do and the <strong>high-quality products</strong> we
+			  install.
+			</p>
+			<p>
+			  We use only <strong>the best Phifer pool and patio screens</strong>. Our screens <strong>last 50% longer</strong> due to the quality of the product
+			  we install and the care we take when installing them. All our services in general are carried out with <strong>the highest
+			  quality in the market</strong>.
 			</p>
 		  </div>
 		  <article className="e_services" id="e_services">

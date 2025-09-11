@@ -82,7 +82,10 @@ const App = () => {
 	
 	let timeoutId
 	const startAutoShowPage = ()=> {
-	  timeoutId = setTimeout(()=> showPage(), 10000)
+	  timeoutId = setTimeout(()=> {
+		showPage()
+		setTimeout(()=> stopAutoShowPage(), 1000)
+	  }, 15000)
 	}
 
 	const stopAutoShowPage = ()=> {
@@ -95,7 +98,7 @@ const App = () => {
 	if(loadingPercent === '100%') {
 	  setTimeout(()=> showPage(), 1000)
 	  stopAutoShowPage()
-	} else if(loadingPercent === '97%'){
+	} else {
 	  startAutoShowPage()
 	}
   }

@@ -18,6 +18,10 @@ export const CompOurTeam = ({ showNotification }) => {
   },[])
   
   const getWorkers = async ()=> {
+/*	showNotification('ok', 'Good!')
+    setTimeout(()=> showNotification('err', 'Bad stuff...'), 500)
+    setTimeout(()=> showNotification('inf', 'Gossip...'), 1000)
+    setTimeout(()=> showNotification('sys', 'Admin shit...'), 1500) */
 	try{
 	  const { data } = await axios.get(URI)
 	  setWorkers(data)
@@ -150,7 +154,7 @@ export const CompOurTeam = ({ showNotification }) => {
   	  <section className="s_our_team box" id="s_our_team">
 		<h2 className="team_title" id="team_title">Our Team</h2>
 		<p>
-		  We have an excellent staff of professionals, each one committed to offer our costumers a service that meets the highest quality standards.
+		  We have an <strong>excellent staff of professionals</strong>, each one committed to offer our costumers a service that meets <strong>the highest quality standards</strong>.
 		</p>
 		<h3 className="team_member_text" id="name" style={{color: '#37a1c6', fontWeight: 'bold', width: '100%', fontSize: '100%'}}>&nbsp;</h3>
 		<span className="team_member_text" id="job"></span>
