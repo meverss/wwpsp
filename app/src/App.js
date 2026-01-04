@@ -21,11 +21,11 @@ if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js')
       .then(registration => {
-		console.log('Service Worker registered with scope:', registration.scope);
+		console.log('Service Worker registered with scope:', registration.scope)
 
   		// Access the currently active worker
   		if (registration.active) {
-    	  console.log('Active worker:', registration.active.state);
+    	  console.log('Active worker:', registration.active.state)
   		}
   	  })
 	})
