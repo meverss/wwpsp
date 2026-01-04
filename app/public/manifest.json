@@ -1,20 +1,26 @@
 {
   "short_name": "WWPSP"
   "name": "WWP Screening & Painting LLC",
+  "description": "WWPSP Official website",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
   "icons": [
     {
       "src": "icon.webp",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/webp"
     },
     {
       "src": "icon192.webp",
-      "type": "image/png",
+      "type": "image/webp",
       "sizes": "192x192"
+    },
+    {
+      "src": "icon192.webp",
+      "type": "image/webp",
+      "sizes": "512x512"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  ]
 }

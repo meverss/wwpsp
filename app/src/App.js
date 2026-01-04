@@ -16,6 +16,21 @@ import { CompMenu } from './components/CompMenu.js'
 import CompMain from './pages/CompMain.js'
 import CompPortfolio from './pages/CompPortfolio.js'
 
+// Register ServiceWorker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(registration => {
+		console.log('Service Worker registered with scope:', registration.scope);
+
+  		// Access the currently active worker
+  		if (registration.active) {
+    	  console.log('Active worker:', registration.active.state);
+  		}
+  	  })
+	})
+}
+
 // API & Media Server
 let server
 let mediaServer
