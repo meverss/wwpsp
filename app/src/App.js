@@ -78,7 +78,8 @@ const App = () => {
 		loadingPercent = null
 		pageContent.current.style.opacity = "1"
 		document.body.style.overflowY = "scroll"
-		loaderContainer.current.style.display = 'none'
+		loaderContainer.current.classList.add("animFadeOut")
+		setTimeout(()=> loaderContainer.current.style.display = 'none', 2000)
 		document.removeEventListener("DOMContentLoaded", null)
 		window.location = `/#${section}`
 		localStorage.removeItem('actSection')
