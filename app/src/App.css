@@ -1975,12 +1975,11 @@ textarea {
 .s_notifications {
   display: flex;
   justify-content: flex-end;
-  align-items: flex-end;
   flex-direction: column;
   gap: 2px;
   position: fixed;
   max-width: 395px;
-  height: 500px;
+  height: auto;
   margin: 0;
   padding: 3px;
   right: 2px;
